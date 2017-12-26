@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://weibo.com/ttarticle/p/show?id=2309403969318634263193 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>移动直播技术秒开优化经验（含PPT）</title>
+<link href="./移动直播技术秒开优化经验（含PPT）_files/frame.css" type="text/css" rel="stylesheet">
+<link href="./移动直播技术秒开优化经验（含PPT）_files/comb_artical.css" type="text/css" rel="stylesheet">
+<link id="uuskin_host" href="./移动直播技术秒开优化经验（含PPT）_files/skin.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">
+var $CONFIG = {};
+$CONFIG['uid'] = '0';
+$CONFIG['nick'] = '';
+$CONFIG['onick'] = '高可用架构';
+$CONFIG['oid'] = '5795064591';
+$CONFIG['isPay'] = '0';
+$CONFIG['isMask'] = '0';
+$CONFIG['article_list_url'] = '/5795064591/wenzhang';
+$CONFIG['isImport'] = '0';
+$CONFIG['js_dist'] = 'dist';
+$CONFIG['cssPath'] = 'http://img2.t.sinajs.cn';
+$CONFIG['jsPath'] = 'http://js2.t.sinajs.cn';
+$CONFIG['tt_version'] = '3ee5296bede3513965522869f4abbfa4';
+</script>
+<style></style><link href="./移动直播技术秒开优化经验（含PPT）_files/rewardModule.css" rel="stylesheet" type="text/css"><link rel="Stylesheet" type="text/css" charset="utf-8" href="./移动直播技术秒开优化经验（含PPT）_files/WB_outframe.css"><div style="position: absolute; top: -9999px;"><div id="js_style_css_module_global_WB_outframe"></div></div><style></style></head>
+<body class="B_artical ">
+  <div class="WB_miniblog" id="articleRoot">
+    <div class="WB_miniblog_fb">
+                     <div id="plc_top">
+        <div class="WB_global_nav">
+          <div id="weibo_top_public"><!--spec start-->    <!--顶部导航--> 
+    <div class="WB_global_nav WB_global_nav_v2 WB_global_nav_alpha " node-type="top_all">
+      <div class="gn_header clearfix">
+        <div class="gn_logo" node-type="logo" data-logotype="logo" data-logourl="http://weibo.com?topnav=1&amp;mod=logo">
+	        <a href="http://weibo.com/?topnav=1&amp;mod=logo" class="box" title="" node-type="logolink" suda-uatrack="key=topnav_tab&amp;value=weibologo" target="_top">
+	            	            	<span class="logo"></span>
+	            	        </a>
+        </div>
+        <div class=" gn_search_v2">
+          <span class=" placeholder">大家正在搜：电视剧漂亮的李慧珍</span><input type="text" node-type="searchInput" autocomplete="off" value="" class="W_input" name="14841008588932">
+          <a href="javascript:void(0);" title="搜索" node-type="searchSubmit" class="W_ficon ficon_search S_ficon" suda-uatrack="key=topnav_tab&amp;value=search" target="_top">f</a> 
+          <!--搜索热词下拉-->
+          <div class="gn_topmenulist_search" node-type="searchSuggest" style="display:none;">
+             <div class="gn_topmenulist">
+              <div node-type="basic"></div>
+              <div node-type="plus"></div>
+            </div>
+          </div>
+          <!--/搜索热词下拉--> 
+        </div>       
+        <div class="gn_position">
+          <div class="gn_nav">
+	          <ul class="gn_nav_list">
+		            <li><a href="http://weibo.com/" class="home S_txt1" suda-uatrack="key=topnav_tab&amp;value=homepage" target="_top"><em class="W_ficon ficon_home S_ficon">E</em><em class="S_txt1">首页</em></a></li>
+                    	    <li><a href="http://weibo.com/tv" nm="tv" class="S_txt1" suda-uatrack="key=topnav_tab&amp;value=video"><em class="W_ficon ficon_video_v2 S_ficon"></em><em class="S_txt1">视频</em></a></li>
+		            <li><a href="http://d.weibo.com/?topnav=1&amp;mod=logo" class="S_txt1" suda-uatrack="key=topnav_tab&amp;value=discover" target="_top"><em class="W_ficon ficon_found S_ficon">F</em><em class="S_txt1">发现</em></a></li>
+		            		            <li><a href="http://game.weibo.com/?topnav=1&amp;mod=logo&amp;wvr=6" nm="game" class="S_txt1" suda-uatrack="key=topnav_tab&amp;value=game" target="_top"><em class="W_ficon ficon_game S_ficon">G</em><em class="S_txt1">游戏</em></a></li>
+		            	          </ul>
+          </div>
+          <div class="gn_login">
+	          <ul class="gn_login_list">
+	            	<li><a href="http://weibo.com/signup/signup.php" class="S_txt1" target="_top">注册</a></li>
+	            	<li class="W_vline S_line1"></li>
+	            	<li><a node-type="loginBtn" href="javascript:void(0)" class="S_txt1" target="_top">登录</a></li>
+	          </ul>
+        </div>
+        </div>             
+      </div>
+    </div>
+<!--spec end--></div>
+        </div>
+      </div>
+  
+            <div class="WB_main clearfix" id="plc_frame">
+                  <div class="WB_frame">
+          <div id="plc_main">
+            <div class="WB_frame_a">
+              <div class="WB_cardwrap S_bg2">
+                <div class="WB_artical">
+                  <div class="main_toppic">
+                    <div class="picbox">
+                      <img node-type="articleHeaderPic" src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cn1h9gmhj30q40hqjum.jpg">
+                                          </div>
+                  </div>
+
+                  <div class="main_editor " node-type="articleContent">
+                                    <div class="title" node-type="articleTitle">移动直播技术秒开优化经验（含PPT）</div>
+                    <div class="authorinfo clearfix S_txt2">
+                      <div class="W_fl">
+                                              <span class="author1 W_autocut"><img title="" alt="" src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jjw8ez1z2jmhh2j30bm0bo3z9.jpg" class="W_face_radius"><a href="http://weibo.com/u/5795064591" class="S_txt1" target="_blank">高可用架构                                                    </a></span>
+                            <em class="W_vline S_line1"></em>
+                                                                     
+                                                <span class="time">2016-04-28 19:26:11</span>
+
+                                                      <em class="W_vline S_line1"></em>
+                            <span class="del"><a href="javascript:void(0);" onclick="javascript:window.open(&#39;http://service.account.weibo.com/reportspam?rid=3969318645262622&amp;type=32&amp;from=11101&#39;, &#39;newwindow&#39;, &#39;height=700, width=550, toolbar =yes, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no&#39;);" suda-uatrack="key=tblog_headline_article&amp;value=headline_pc_trend_report_click">举报</a></span>
+                          
+                                                                        </div>
+                      <div class="W_fr"><span class="num">阅读数：29万+</span></div>
+                    </div>
+                                        <div class="WB_editor_iframe" node-type="contentBody" style="opacity: 1; zoom: 1; user-select: initial;">
+                    <p><i><font color="#808080">编者按：本文由徐立在高可用架构群分享，转载请注明来自@高可用架构。</font></i></p><blockquote><p><font color="#888888">徐立，七牛创始合伙人兼产品副总裁，负责七牛直播云的整体研发，是国内 Go / Docker / Container 技术早期布道者，Go / Containers / Distributed Systems 技术的忠实爱好者和实践者。曾合著国内第一本 Go 语言图书《Go 语言编程》，翻译《Go 语言程序设计》。</font></p></blockquote><p>现今移动直播技术上的挑战要远远难于传统设备或电脑直播，其完整的处理环节包括但不限于：音视频采集、美颜/滤镜/特效处理、编码、封包、推流、转码、分发、解码/渲染/播放等。</p><p>直播常见的问题包括</p><ul><li><p>主播在不稳定的网络环境下如何稳定推流？</p></li><li><p>偏远地区的观众如何高清流畅观看直播？</p></li><li><p>直播卡顿时如何智能切换线路？</p></li><li><p>如何精确度量直播质量指标并实时调整？</p></li><li><p>移动设备上不同的芯片平台如何高性能编码和渲染视频？</p></li><li><p>美颜等滤镜特效处理怎么做？</p></li><li><p>如何实现播放秒开？</p></li><li><p>如何保障直播持续播放流畅不卡顿？</p></li></ul><p>本次分享将为大家揭开移动直播核心技术的神秘面纱。</p><p><b><font color="#ac39ff">视频、直播等基础知识</font></b><br></p><p><b>什么是视频？</b></p><p>首先我们需要理解一个最基本的概念：视频。从感性的角度来看，视频就是一部充满趣味的影片，可以是电影，可以是短片，是一连贯的视觉冲击力表现丰富的画面和音频。但从理性的角度来看，视频是一种有结构的数据，用工程的语言解释，我们可以把视频剖析成如下结构：</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cbzgrwgnj30sg0lbadu.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>内容元素 ( Content )</p><ul><li><p>图像 ( Image )</p></li><li><p>音频 ( Audio )</p></li><li><p>元信息 ( Metadata )&nbsp;</p></li></ul><p>编码格式 ( Codec )</p><ul><li><p>Video : H.264，H.265, …</p></li><li><p>Audio : AAC， HE-AAC, …</p></li></ul><p>容器封装 (Container)<br></p><ul><li><p>MP4，MOV，FLV，RM，RMVB，AVI，…</p></li></ul><p>任何一个视频 Video 文件，从结构上讲，都是这样一种组成方式：</p><ul><li><p>由图像和音频构成最基本的内容元素；</p></li><li><p>图像经过视频编码压缩格式处理（通常是 H.264）；</p></li><li><p>音频经过音频编码压缩格式处理（例如 AAC）；</p></li><li><p>注明相应的元信息（Metadata）；</p></li></ul><p>最后经过一遍容器（Container）封装打包（例如 MP4），构成一个完整的视频文件。</p><p>如果觉得难以理解，可以想象成一瓶番茄酱。最外层的瓶子好比这个容器封装（Container），瓶子上注明的原材料和加工厂地等信息好比元信息（Metadata），瓶盖打开（解封装）后，番茄酱本身好比经过压缩处理过后的编码内容，番茄和调料加工成番茄酱的过程就好比编码（Codec），而原材料番茄和调料则好比最原本的内容元素（Content）。</p><p><b>视频的实时传输</b></p><p>简而言之，理性的认知视频的结构后，有助于我们理解视频直播。如果视频是一种“有结构的数据”，那么视频直播无疑是<b>实时传输</b>这种“有结构的数据”（视频）的方式。</p><p>那么一个显而易见的问题是：如何实时（Real-Time）传输这种“有结构的数据”（视频）呢？</p><p>这里边一个悖论是：一个经过容器（Container）封装后的视频，一定是不可变的 ( Immutable ) 视频文件，不可变的 ( Immutable ) 的视频文件已经是一个生产结果，根据“相对论”，而这个生产结果显然不可能精确到实时的程度，它已经是一段时空的记忆。</p><p>因此视频直播，一定是一个 “边生产，边传输，边消费”的过程。这意味着，我们需要更近一步了解视频从原始的内容元素 ( 图像和音频 ) 到成品 ( 视频文件 ) 之前的中间过程 ( 编码 )。</p><p><b>视频编码压缩</b></p><p>不妨让我们来深入浅出理解视频编码压缩技术。</p><p>为了便于视频内容的存储和传输，通常需要减少视频内容的体积，也就是需要将原始的内容元素(图像和音频)经过压缩，压缩算法也简称编码格式。例如视频里边的原始图像数据会采用 H.264 编码格式进行压缩，音频采样数据会采用 AAC 编码格式进行压缩。</p><p>视频内容经过编码压缩后，确实有利于存储和传输; 不过当要观看播放时，相应地也需要解码过程。因此编码和解码之间，显然需要约定一种编码器和解码器都可以理解的约定。就视频图像编码和解码而言，这种约定很简单：</p><p><b>编码器将多张图像进行编码后生产成一段一段的 GOP ( Group of Pictures ) ， 解码器在播放时则是读取一段一段的 GOP 进行解码后读取画面再渲染显示。</b></p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc0dih9uj30sg0lhad6.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>GOP ( Group of Pictures ) 是一组连续的画面，由一张 I 帧和数张 B / P 帧组成，是视频图像编码器和解码器存取的基本单位，它的排列顺序将会一直重复到影像结束。</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc0m3v4yj30sb0leq57.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>I 帧是内部编码帧（也称为关键帧），P 帧是前向预测帧（前向参考帧），B 帧是双向内插帧（双向参考帧）。简单地讲，I 帧是一个完整的画面，而 P 帧和 B 帧记录的是相对于 I 帧的变化。</p><p><b>如果没有 I 帧，P 帧和 B 帧就无法解码。</b></p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc0x6eo7j30sf0lcmzz.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>小结一下，一个视频 ( Video ) ，其图像部分的数据是一组 GOP 的集合, 而单个 GOP 则是一组 I / P / B 帧图像的集合。</p><p>在这样的一种几何关系中，Video 好比一个 “物体”，GOP 好比 “分子”，I / P / B 帧的图像则好比 “原子”。</p><p>想象一下，如果我们把传输一个 “物体”，改成传输一个一个的 “原子”，将最小颗粒以光速传送，那么以人的生物肉眼来感知，将是一种怎样的体验？</p><p><b>什么是视频直播？</b></p><p>不难脑洞大开一下，直播就是这样的一种体验。视频直播技术，就是将视频内容的最小颗粒 ( I / P / B 帧，…)，基于时间序列，以光速进行传送的一种技术。</p><p>简而言之，直播就是将每一帧数据 ( Video / Audio / Data Frame )，打上时序标签 ( Timestamp ) 后进行流式传输的过程。发送端源源不断的采集音视频数据，经过编码、封包、推流，再经过中继分发网络进行扩散传播，播放端再源源不断地下载数据并按时序进行解码播放。如此就实现了 “边生产、边传输、边消费” 的直播过程。</p><p>理解以上两个关于 <b>视频</b> 和 <b>直播</b> 两个基础概念后，接下来我们就可以一窥直播的业务逻辑了。</p><p><b>直播的业务逻辑</b></p><p>如下是一个最精简的一对多直播业务模型，以及各个层级之间的协议。</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc2iko2mj30sj0ldq5q.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p><font color="#3e3e3e">各协议差异对比如下</font></p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc3ovly1j30sh0l9jv1.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc403ddzj30sh0lbju6.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>以上就是关于直播技术的一些基础概念。下面我们进一步了解下影响人们视觉体验的直播性能指标。</p><p><font color="#ac39ff">影响视觉体验的直播性能指标</font></p><p><b>直播第一个性能指标是延迟</b>，延迟是数据从信息源发送到目的地所需的时间。</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc4bz9sxj30sf0ld40t.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>根据爱因斯坦的狭义相对论，光速是所有能量、物质和信息运动所能达到的最高速度，这个结论给传播速度设定了上限。因此，即便我们肉眼感觉到的实时，实际上也是有一定的延迟。</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc4m0ojaj30s90l677b.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>由于 RTMP/HLS 是基于 TCP 之上的应用层协议，TCP 三次握手，四次挥手，慢启动过程中的每一次往返来回，都会加上一次往返耗时 ( RTT )，这些交互过程都会增加延迟。</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc4yfb1rj30sf0lcgos.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>其次根据 TCP 丢包重传特性，网络抖动可能导致丢包重传，也会间接导致延迟加大。</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc59cpvyj30sh0lbq57.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>一个完整的直播过程，包括但不限于以下环节：<b>采集、处理、编码、封包、推流、传输、转码、分发、拉流、解码、播放。</b>从推流到播放，再经过中间转发环节，延迟越低，则用户体验越好。<br></p><p><b>第二个直播性能指标卡顿</b>，是指视频播放过程中出现画面滞帧，让人们明显感觉到“卡”。单位时间内的播放卡顿次数统计称之为<b>卡顿率</b>。</p><p>造成卡顿的因素有可能是推流端发送数据中断，也有可能是公网传输拥塞或网络抖动异常，也有可能是终端设备的解码性能太差。卡顿频次越少或没有，则说明用户体验越好。</p><p><b>第三个直播性能指标首屏耗时</b>，指第一次点击播放后，肉眼看到画面所等待的时间。技术上指播放器解码第一帧渲染显示画面所花的耗时。通常说的 “秒开”，指点击播放后，一秒内即可看到播放画面。首屏打开越快，说明用户体验越好。</p><p>如上三个直播性能指标，分别对应一个低延迟、高清流畅、极速秒开 的用户体验诉求。了解这三个性能指标，对优化移动直播 APP 的用户体验至关重要。</p><p>那么移动直播场景下具体而言有哪些常见的坑呢？</p><p>根据实践总结下来的经验，移动平台上视频直播的坑主要可以总结为两方面：设备差异，以及网络环境这些场景下带来的技术考验。</p><p><b>移动直播场景的坑与规避措施</b></p><p><b>不同芯片平台上的编码差异</b><b><br></b></p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc5ww4dyj30s90l677b.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p><b>iOS 平台上无论硬编还是软编，由于是 Apple 一家公司出厂，几乎不存在因为芯片平台不同而导致的编码差异。</b></p><p>然而，在 Android 平台上，Android Framework SDK 提供的 MediaCodec 编码器，在不同的芯片平台上，差异表现很大， 不同的厂家使用不同的芯片，而不同的芯片平台上 Android MediaCodec 表现略有差异，通常实现全平台兼容的成本不低。</p><p>另外就是 Android MediaCodec 硬编层面的 H.264 编码画质参数是固定的 baseline，所以画质通常也一般。因此，在 Android 平台下，<b>推荐是用软编，好处是画质可调控，兼容性也更好</b>。</p><p><b>低端设备如何上高性能地采集和编码？</b></p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc691asuj30sf0l7tb9.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>例如 Camera 采集输出的可能是图片，一张图的体积并不会小，如果采集的频次很高，编码的帧率很高，每张图都经过编码器，那么编码器又可能会出现过载。</p><p>这个时候，可以考虑在编码前，不影响画质的前提下（前面我们讲过帧率的微观意义），进行<b>选择性丢帧</b>，以此降低编码环节的功耗开销。</p><p><b>弱网下如何保障高清流畅推流</b></p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc7sj7huj30se0lcacl.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>移动网络下，通常容易遇到网络不稳定，连接被重置，断线重连，一方面频繁重连，建立连接需要开销。另一方面尤其是发生 GPRS / 2G / 3G / 4G 切换时，带宽可能出现瓶颈。当带宽不够，帧率较高/码率较高的内容较难发送出去，这个时候就需要可变码率支持。</p><p>即在推流端，可检测网络状态和简单测速，动态来切换码率，以保障网络切换时的推流流畅。</p><p>其次编码、封包、推流 这一部分的逻辑也可以做微调，可以尝试选择性丢帧，比如优先丢视频参考帧（不丢 I 帧和音频帧 )，这样也可以减少要传输的数据内容，但同时又达到了不影响画质和版视听流畅的目的。</p><p><b>需要区分直播流的状态和业务状态</b></p><p>直播是媒体流、APP 的交互是 API 信令流，两者的状态不能混为一谈。尤其是不能基于 APP 的交互的 API 状态来判断直播流的状态。</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc84pkotj30sd0lcgp2.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>以上是移动直播场景下常见的几个坑和规避措施。</p><p><b>移动直播场景其他优化措施</b><br></p><p><b>一、怎么优化打开速度，达到传说中的 “秒开”？</b></p><p>大家可能会看到，市面上某些手机直播 APP 的打开速度非常快，一点就开。而某些手机直播 APP，点击播放后要等好几秒以后才能播放。是什么原因导致如此的天壤之别呢？</p><p>大部分播放器都是拿到一个完成的 GOP 后才能解码播放，基于 FFmpeg 移植的播放器甚至需要等待音画时间戳同步后才能播放（如果一个直播里边没有音频只有视频相当于要等待音频超时后才能播放画面）。</p><p>“秒开”可以从以下几个方面考虑：</p><p><b>1. 改写播放器逻辑让播放器拿到第一个关键帧后就给予显示。</b><br></p><p>GOP 的第一帧通常都是关键帧，由于加载的数据较少，可以达到 “首帧秒开”。</p><p>如果直播服务器支持 GOP 缓存，意味着播放器在和服务器建立连接后可立即拿到数据，从而省却跨地域和跨运营商的回源传输时间。</p><p>GOP 体现了关键帧的周期，也就是两个关键帧之间的距离，即一个帧组的最大帧数。假设一个视频的恒定帧率是 24fps（即1秒24帧图像），关键帧周期为 2s，那么一个 GOP 就是 48 张图像。一般而言，每一秒视频至少需要使用一个关键帧。</p><p><b>增加关键帧个数可改善画质（GOP 通常为 FPS 的倍数），但是同时增加了带宽和网络负载。</b>这意味着，客户端播放器下载一个 GOP，毕竟该 GOP 存在一定的数据体积，如果播放端网络不佳，有可能不是能够快速在秒级以内下载完该 GOP，进而影响观感体验。</p><p>如果不能更改播放器行为逻辑为首帧秒开，直播服务器也可以做一些取巧处理，比如<b>从缓存 GOP 改成缓存双关键帧</b>（减少图像数量），这样可以极大程度地减少播放器加载 GOP 要传输的内容体积。</p><p><b>2. 在 APP 业务逻辑层面方面优化。</b></p><p>比如提前做好 DNS 解析（省却几十毫秒），和提前做好测速选线（择取最优线路）。经过这样的预处理后，在点击播放按钮时，将极大提高下载性能。</p><p>一方面，可以围绕传输层面做性能优化；另一方面，可以围绕客户播放行为做业务逻辑优化。两者可以有效的互为补充，作为秒开的优化空间。</p><p><b>二、美颜等滤镜如何处理？</b></p><p>在手机直播场景下，这就是一个刚需。没有美颜功能的手机直播 APP，主播基本不爱用。可以在采集画面后，将数据送给编码器之前，将数据源回调给滤镜处理程序，原始数据经过滤镜处理完后，再送回给编码器进行编码即可。</p><p>除了移动端可以做体验优化之外，直播流媒体服务端架构也可以降低延迟。例如收流服务器主动推送 GOP 至边缘节点，边缘节点缓存 GOP，播放端则可以快速加载，减少回源延迟。</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc8gdfwpj30sa0l740q.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p>其次，可以贴近终端就近处理和分发</p><p></p><p img-box="img-box" class="picbox"><img src="./移动直播技术秒开优化经验（含PPT）_files/006kbv1Jgw1f3cc8oxsf8j30sb0ldwh8.jpg" alt=""><span class="picinfo" style="display:none;">&nbsp;</span></p><p></p><p><b>三、如何保障直播持续播放流畅不卡顿？</b></p><p>“秒开”解决的是直播首次加载的播放体验，如何保障直播持续播放过程中的画面和声音视听流畅呢？因为，一个直播毕竟不是一个 HTTP 一样的一次性请求，而是一个 Socket 层面的长连接维持，直到直到主播主动终止推流。</p><p>上述我们讲过卡顿的定义：即播放时画面滞帧，触发了人们的视觉感受。在不考虑终端设备性能差异的情况下，针对网络传输层面的原因，我们看看如何保障一个持续的直播不卡顿。</p><p>这其实是一个直播过程中传输网络不可靠时的容错问题。例如，播放端临时断网了，但又快速恢复了，针对这种场景，播放端如果不做容错处理，很难不出现黑屏或是重新加载播放的现象。</p><p>为了容忍这种网络错误，并达到让终端用户无感知，<b>客户端播放器可以考虑构建一个FIFO（先进先出）的缓冲队列</b>，解码器从播放缓存队列读取数据，缓存队列从直播服务器源源不断的下载数据。通常，缓存队列的容量是以时间为单位（比如3s），在播放端网络不可靠时，客户端缓存区可以起到“断网无感”的过渡作用。</p><p>显然，这只是一个“缓兵之计”，如果直播服务器边缘节点出现故障，而此时客户端播放器又是长连接，在无法收到对端的连接断开信号，客户端的缓冲区容量再大也不管用了，这个时候就需要结合客户端业务逻辑来做调度。</p><p>重要的是客户端结合服务端，可以做精准调度。在初始化直播推流之前，例如基于 IP 地理位置和运营商的精确调度，分配线路质量最优的边缘接入节点。在直播推流的过程中，可以实时监测帧率反馈等质量数据，基于直播流的质量动态调整线路。</p><p><b><font color="#ac39ff">Q&amp;A&nbsp;</font></b><br></p><p><b><b><b>1.&nbsp;关键帧设置频率一般是多少？有没有根据接入动态设置？过长首屏秒会很难做到。</b></b></b></p><p>徐立：关键帧间隔越长，也就是 GOP 越长，理论上画面越高清。但是生成 HLS 直播时，最小切割粒度也是一个 GOP，所以针对交互直播，通常不建议 GOP 设置太长。直播一般 2 个关键帧间隔即可。比如帧率是 24fps， 那么 2 个关键帧的间隔就是 48fps ，这个 GOP 就是2s。</p><p><b><b><b>2.&nbsp;七牛这个直播是用的网宿加速？有遇到什么坑没？</b></b></b></p><p>徐立：七牛在直播方面主要是自建节点，也支持融合众多第三方 CDN 服务商，多样化的线路组合为客户提供更优质的服务。在和第三方 CDN 合作的过程中遇到的问题等有机会再做更细粒度的交流和分享。</p><p><b><b><b>3.&nbsp;RTMP 直播流除了优化线路外，还有什么加速手段吗？</b></b></b></p><p>徐立：物理上优化线路，逻辑上优化策略，比如选择性丢帧，不影响编码画质的前提下减轻传输体积。</p><p><b><b><b>4.&nbsp;OBS 推流，播放端 HLS 出现视/音频不同步是哪个环节的问题？怎么优化？</b></b></b></p><p>徐立：有可能是采集端的问题，如果是采集端编码环节就出现音画不同步，可以在收流服务器上做音画时间戳同步，这样是全局的校对。如果是播放端解码性能问题，那么需要调节播放逻辑，比如保证音画时间戳强一致性的前提下，选择性丢一部帧。</p><p><b><b><b>5.&nbsp;PPT 前几页中一个概念好像错了，I 帧不是关键帧，IDR 帧才是。IDR 帧是 I 帧，但是 I 帧不一定是 IDR 帧。只有 IDR 帧才是可重入的。</b></b></b></p><p>徐立：中文都把 I 帧翻译成关键帧了，不过既然提到了 IDR 帧，可以展开说明一下。所有的 IDR 帧都是 I 帧，但是并不是所有 I 帧都是 IDR 帧，IDR 帧是 I 帧的子集。I 帧严格定义是帧内编码帧，由于是一个全帧压缩编码帧，通常用 I 帧表示 “关键帧”。IDR 是基于 I 帧的一个 “扩展”，带了控制逻辑，IDR 图像都是 I 帧图像，当解码器解码到 IDR 图像时，会立即将参考帧队列清空，将已解码的数据全部输出或抛弃。重新查找参数集，开始一个新的序列。这样如果前一个序列出现重大错误，在这里可以获得重新同步的机会。IDR 图像之后的图像永远不会使用 IDR 之前的图像的数据来解码。</p><p><b><b><b>6.&nbsp;有没有调研过 nginx rtmp module，为什么没有用，对它有什么评价？</b></b></b></p><p>徐立：有调研过，nginx_rtmp_module 是单进程多线程，非 go 这种轻量级线程/协程用并发自然语义的方式编写流业务。nginx 原本的代码量较大（约 16 万行，但和直播业务相关的功能并不是很多）。且主要靠写 nginx.conf 做配置租户，通常单租户可以，但业务可扩展性方面不是很灵活，可满足基本需求，不满足高级功能。</p><p><b><b><b>7.&nbsp;用到了那些开源软件？编码用的是 x264 吗？直播服务器你们自己开发还是开源的？</b></b></b></p><p>徐立：直播服务器用 go 开发的，移动端编码优先硬编，软编用 x264</p><p><b><b><b>8.&nbsp;请教一下用 OBS 推流到 nginx_rtmp_module 的时候是已经做了视频压缩了还是需要基于 OBS 再开发？</b></b></b></p><p>徐立：OBS 把编码压缩都做了，不需要再开发。</p><p><b><b><b>9.&nbsp;视频直播想在 HLS 流中无缝插入一段广告的 ts 文件，有问题想请教一下：1、这段 ts 的分辨率是否一定要和之前的视频流一致？2、pts 时间戳是否要和上一个 ts 递增？</b></b></b></p><p>徐立：1、可以不一致。这种情况两段视频完全是独立状态，可以没有任何关系，只需要插入 discontinue 标记，播放器在识别到这个标记之后重置解码器参数就可以无缝播放，画面会很平滑的切换。2、不需要递增。举个例子，视频 A 正在直播，播放到 pts 在 5s 的时候，插入一个视频 B，需要先插入一个 discontinue，再插入 B，等 B 播放完之后，再插入一个 discontinue，再插入 A，这个时候 A 的 pts 可以和之前递增，也可以按照中间插入的 B 的时长做偏移，一般做点播和时移的时候 pts 会连续递增，直播的话会算上 B 的时长。</p><p><b><font color="#ac39ff">PPT 下载地址</font></b></p><ul><li><p><a href="http://77fycs.com2.z0.glb.qiniucdn.com/pili_technology_sharing.pdf" target="_blank">http://77fycs.com2.z0.glb.qiniucdn.com/pili_technology_sharing.pdf</a></p></li></ul><p><i><font color="#b5b5b5">本文策划 Tim、刘芸，主持人丁一琼，编辑王杰。转载请注明来自@高可用架构</font></i></p>                  
+                    </div>
+
+                                        
+                    <div node-type="fanService">
+                      
+                                            <div extendparam="type=pagecard&amp;version=ea8f43b5391de5ea" rewardcomponentbak="seller=5795064591&amp;bid=1000207805&amp;oid=1022%3A2309403969318634263193&amp;access_type=pcLayer&amp;share=1&amp;sign=27818bbe6ca8fda80ca66239d7587c44"><!--renderData start--><div class="rewardcomponent feed_app_btn_a fend_app_reward"><p class="feed_app_reward_title" node-type="rewardTxt"></p><p class="btn fend_app_reward_btn"><a esuda="key=tblog_weibo_reward&amp;value=reward_button_pc&amp;ext=0:1000207805:article:1022_2309403969318634263193" href="javascript:void(0);" class="btn_b" action-type="buyWrap" action-data="type=reward" node-data="seller=5795064591&amp;buyer=0&amp;object_id=1022:2309403969318634263193&amp;bid=1000207805&amp;share=1&amp;type=5&amp;tid=&amp;from=3&amp;from=1&amp;price=9.90" config-data="reward=9.90">赏</a></p><p class="con S_txt2 fend_app_reward_persons_number"></p> </div><!--renderData end--></div>
+                                            
+                      <div action-type="reward"></div>
+                    </div>
+
+
+                  </div>
+                  
+                  <div node-type="thirdModule">
+                  </div>
+
+                                                      <div node-type="recommend"><!--data start--><div node-type="recommend_wrap" class="otherlist S_line1"><div class="title clearfix"><div class="W_fl W_f16">推荐阅读</div><div class="W_fr W_f14" node-type="recommend_all"><!--<a href="/5795064591/wenzhang" target="_blank" suda-uatrack="key=tblog_headline_article&value=headline_pc_list_click">查看全部</a>--></div></div><div class="PCD_pictext_i PCD_pictext_i_v2"><div class="WB_innerwrap"><div class="m_wrap"><ul class="pt_ul clearfix"><!--data start--><li class="pt_li pt_li_1 S_bg2"><div class="pic_txt clearfix"><div class="pic_box "><a href="http://weibo.com/ttarticle/p/show?id=2309351000014060234887911164#related" target="_blank"><img src="./移动直播技术秒开优化经验（含PPT）_files/005M94J9jw1fbeoneuzzej30m80ciabx.jpg" alt="" class="piccut_v"></a></div><div class="info_box"><div class="info_box_inner"><div class="text_box"><div class="title W_autocut"><a href="http://weibo.com/ttarticle/p/show?id=2309351000014060234887911164#related" target="_blank" class="W_autocut S_txt1">眼球的盛宴——VR in SIGGRAPH 2016</a></div><div class="text text_cut S_txt2">绝大部分计算机图形技术软硬件厂商每年都会将最新研究成果拿到SIGGRAPH年会上发布，顶尖的游戏公司会在SIGGRAPH揭秘最新的实时渲染技术， 电脑动画创作者也将他们本年度最杰出的艺术作品集中在SIGGRAPH上展示。今年SIGGRAPH上有什么VR新技术呢？</div></div></div></div></div></li><li class="pt_li pt_li_1 S_bg2"><div class="pic_txt clearfix"><div class="pic_box "><a href="http://weibo.com/ttarticle/p/show?id=2309351000014050192751053388#related" target="_blank"><img src="./移动直播技术秒开优化经验（含PPT）_files/005M94J9jw1fainp91378j30m80cin1a.jpg" alt="" class="piccut_v"></a></div><div class="info_box"><div class="info_box_inner"><div class="text_box"><div class="title W_autocut"><a href="http://weibo.com/ttarticle/p/show?id=2309351000014050192751053388#related" target="_blank" class="W_autocut S_txt1">如何站在微软的肩上玩AR？</a></div><div class="text text_cut S_txt2">如果你正琢磨着开发一款AR应用，不知道从何下手； 如果你想快速了解AR应用的窍门，正愁没有干货； 恭喜你，这是目前最详细的帖子。</div></div></div></div></div></li><li class="pt_li pt_li_1 S_bg2"><div class="pic_txt clearfix"><div class="pic_box "><a href="http://weibo.com/ttarticle/p/show?id=2309351001684059408907773683#related" target="_blank"><img src="./移动直播技术秒开优化经验（含PPT）_files/005M94J9jw1fbc1xcqnnlj30be097jrf.jpg" alt="" class="piccut_v"></a></div><div class="info_box"><div class="info_box_inner"><div class="text_box"><div class="title W_autocut"><a href="http://weibo.com/ttarticle/p/show?id=2309351001684059408907773683#related" target="_blank" class="W_autocut S_txt1">2016总结：苹果AR-VR的神秘之路</a></div><div class="text text_cut S_txt2">[摘要]根据苹果的专利申请我们可以判断，他们探索虚拟现实和增强现实技术已经有10年以上的时间</div></div></div></div></div></li><li class="pt_li pt_li_1 S_bg2"><div class="pic_txt clearfix"><div class="pic_box "><a href="http://weibo.com/ttarticle/p/show?id=2309614054319434488882#related" target="_blank"><img src="./移动直播技术秒开优化经验（含PPT）_files/005M94J9jw1favt8x2urdj30go0b4aa7.jpg" alt="" class="piccut_v"></a></div><div class="info_box"><div class="info_box_inner"><div class="text_box"><div class="title W_autocut"><a href="http://weibo.com/ttarticle/p/show?id=2309614054319434488882#related" target="_blank" class="W_autocut S_txt1">剖析Magic Live系统 教你荣耀未来手机的正确用法</a></div><div class="text text_cut S_txt2">在经过了各种悬念和窥探之后，荣耀Magic终于正式发布了。对于不少吃瓜群众而言，曲面好不好看、配置够不够强，恐怕是一个非常值得关心的问题，但关于荣耀Magic的很多特性其实都被忽视了。这款手机更大的意义在于荣耀对硬件和软件系统都进行了前瞻性的探索，而其中很多功能可能要在不久的将来被我们用到，这才是“概念”的真正含义。 概念手机并不应该仅仅是硬件上的概念，很多第三方提供的硬件功能其实只要花钱就能买到。此前其他品牌发布的所谓“概念手机”，除了外观设计和宣传上让人惊讶一下之外，并没有跳开传统智能手机的概念。而如果关注荣耀Magic就会发现，这款手机不仅仅是由八曲面、30分钟充满90%等硬件上的概念，使用方式的颠覆也非常关键。</div></div></div></div></div></li><li class="pt_li pt_li_1 S_bg2"><div class="pic_txt clearfix"><div class="pic_box "><a href="http://weibo.com/ttarticle/p/show?id=2309614059847120280276#related" target="_blank"><img src="./移动直播技术秒开优化经验（含PPT）_files/005M94J9jw1fbdg35lepgj30kk0bk0tv.jpg" alt="" class="piccut_v"></a></div><div class="info_box"><div class="info_box_inner"><div class="text_box"><div class="title W_autocut"><a href="http://weibo.com/ttarticle/p/show?id=2309614059847120280276#related" target="_blank" class="W_autocut S_txt1">2017年科技10大预测：VR、人工智能、智能驾驶继续领衔</a></div><div class="text text_cut S_txt2">如星战里的“Force”那样，我们的世界被科技环绕着，这也是为何很难判断来年对我们有最大影响力的科技是哪些。 我们所能肯定的是在2017年无数的科技将会到来。有些会排山倒海而來地改变我们的生活，有些则默不作声、毫无预警的来到。这里要探讨的是那些最显著也带来最大影响的科技。 VR电影体验，想象一下进入一个挂在你脸上、看起来比你见过的屏幕都还要大的电影院 如作者一年前预知的一样，2016年VR在改进及视觉效果出现了显著的成长，然而却尚未足以改变社会。来年VR仍会保持最重要的开发中科技，但在2017年将会出现象征性的转变，从好奇阶段进入提升平凡活动的有形工具。</div></div></div></div></div></li><!--data end--></ul><div class="W_tc"><div class="WB_innerwrap" action-type="recommend_loading" style="display: none;"> <div class="empty_con clearfix"><p class="text"><i class="W_loading"></i>正在加载中</p></div></div><a href="javascript:" action-type="more_recommend">换一换 查看更多<!--<i class="W_ficon ficon_arrow_down">c</i>--></a></div></div></div></div></div><!--data end--></div>  
+                                    
+                 
+                                    <div class="WB_feed WB_feed_v3 WB_feed_v3_one">
+  <div class="WB_cardwrap WB_feed_type S_bg2" node-type="feed_list">
+    <div action-type="feed_list_item" mid="3969318645262622" isforward="1">
+      <div class="WB_feed_handle" node-type="feed_list_options">
+        <div class="WB_handle">
+          <ul class="WB_row_line WB_row_r3 clearfix S_line2">
+            <li>
+                                    <a action-type="login" href="javascript:void(0);" class="S_txt2" suda-uatrack="key=profile_feed&amp;value=transfer"><span class="pos"><span class="line S_line1" node-type="forward_btn_text">转发 791</span></span></a>
+                                <span class="arrow"><span class="W_arrow_bor W_arrow_bor_t"><i class="S_line1"></i><em class="S_bg1_br"></em></span></span>
+            </li>
+            <li>
+                                    <a href="javascript:void(0);" class="S_txt2" action-type="login" action-data="ouid=5795064591&amp;location=&amp;comment_type=1" suda-uatrack="key=profile_feed&amp;value=comment:3969318645262622"><span class="pos"><span class="line S_line1" node-type="comment_btn_text">评论 125</span></span></a>
+                                <span class="arrow"><span class="W_arrow_bor W_arrow_bor_t"><i class="S_line1"></i><em class="S_bg1_br"></em></span></span>
+            </li>
+            <li>
+              <a href="javascript:void(0);" class="S_txt2" action-type="login" action-data="version=mini&amp;qid=heart&amp;mid=3969318645262622&amp;loc=profile" title="赞" suda-uatrack="key=profile_feed&amp;value=like"><span class="pos"><span class="line S_line1"><span node-type="like_status"><i class="W_icon icon_praised_b"></i> <em>179</em></span></span></span></a>
+              <span class="arrow"><span class="W_arrow_bor W_arrow_bor_t"><i class="S_line1"></i><em class="S_bg1_br"></em></span></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+                      <div class="W_tips tips_warn clearfix" style="font-size: 16px; padding: 20px 0;">
+        <p class="icon"><i class="W_icon icon_warnS"></i></p><p class="txt"><a target="_blank" href="http://weibo.com/signup/signup.php?inviteCode=5795064591&amp;from=weiyonghu">快速开通微博</a>你可以查看更多内容，还可以评论、转发微博。</p>
+        </div>
+    </div>
+  </div>
+</div>
+ 
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div node-type="sidebar">
+        <div class="W_gotop W_gotop_v2" action-type="shareBox" style="position: fixed; top: auto;">
+            <a href="javascript:" action-type="data-tip" data-tip="text=分享到微博&amp;showWithAni=fadeInRight&amp;hideWithAni=fadeOutLeft&amp;pos=left-middle" class="S_ficon_bg" suda-uatrack="key=tblog_headline_article&amp;value=headline_pc_weibo_click"><em class="W_ficon ficon_wb S_bg2_c" action-type="shareToWeibo"></em></a>
+            <a href="javascript:" action-type="data-tip" data-tip="text=分享到微信&amp;showWithAni=fadeInRight&amp;hideWithAni=fadeOutLeft&amp;pos=left-middle" class="S_ficon_bg" suda-uatrack="key=tblog_headline_article&amp;value=headline_pc_wechat_click"><em class="W_ficon ficon_wx S_bg2_c" action-type="shareToWeiXin"></em></a>
+      <a href="javascript:" action-type="data-tip" data-tip="text=分享到QQ&amp;showWithAni=fadeInRight&amp;hideWithAni=fadeOutLeft&amp;pos=left-middle" class="S_ficon_bg" suda-uatrack="key=tblog_headline_article&amp;value=headline_pc_qq_click"><em class="W_ficon ficon_qq S_bg2_c" action-type="shareToQQ"></em></a>
+      <a href="http://js2.t.sinajs.cn/t6/article/publish/dist/js/static/faq.pdf?_v=3ee5296bede3513965522869f4abbfa4" action-type="data-tip" data-tip="text=使用说明&amp;showWithAni=fadeInRight&amp;hideWithAni=fadeOutLeft&amp;pos=left-middle" class="S_ficon_bg" target="_blank"><em class="W_ficon ficon_FAQ S_bg2_c"></em></a>
+      </div>
+      <a href="javascript:" data-tip="text=回到顶部&amp;showWithAni=fadeInRight&amp;hideWithAni=fadeOutLeft&amp;pos=left-middle" class="W_gotop S_ficon_bg" action-type="data-tip" style="position: fixed; top: auto;"><em class="W_ficon ficon_backtop S_bg2_c" action-type="goTop">Ú</em></a>
+    </div>
+  
+          <div id="pl_common_footer">
+      <div class="WB_footer S_bg2">
+        <div class="footer_link clearfix">
+          <dl class="list">
+            <dt>微博精彩</dt>
+            <dd><a class="col1 S_txt2" target="_blank" href="http://hot.plaza.weibo.com/?bottomnav=1&amp;wvr=6&amp;type=re&amp;act=day">热门微博</a><a class="col1 S_txt2" target="_blank" href="http://huati.weibo.com/?bottomnav=1&amp;wvr=6">热门话题</a></dd>
+            <dd><a class="col1 S_txt2" target="_blank" href="http://verified.weibo.com/?bottomnav=1&amp;wvr=6">名人堂</a><a class="col1 S_txt2" target="_blank" href="http://vip.weibo.com/home?bottomnav=1&amp;wvr=6">微博会员</a></dd>
+            <dd><a class="col1 S_txt2" target="_blank" href="http://photo.weibo.com/?bottomnav=1&amp;wvr=6">微相册</a><a class="col1 S_txt2" target="_blank" href="http://game.weibo.com/?bottomnav=1&amp;wvr=6">微游戏</a></dd>
+            <dd><a class="col1 S_txt2" target="_blank" href="http://data.weibo.com/index/?bottomnav=1&amp;wvr=6">微指数</a></dd>
+          </dl>
+          <dl class="list">
+            <dt>手机玩微博</dt>
+            <dd><a class="T_code col2">
+                <img src="./移动直播技术秒开优化经验（含PPT）_files/footer_code.jpg" alt="二维码">
+              </a>
+              <a class="T_txt S_txt2 " href="http://m.weibo.cn/client/guide/show">扫码下载，更多版本<br>戳这里</a>
+            </dd>
+          </dl>
+          <dl class="list">
+            <dt>认证&amp;合作</dt>
+            <dd><a class="col3 S_txt2" target="_blank" href="http://verified.weibo.com/verify?bottomnav=1&amp;wvr=6">申请认证</a><a class="col3 S_txt2" target="_blank" href="http://open.weibo.com/?bottomnav=1&amp;wvr=6">开放平台</a></dd>
+            <dd><a class="col3 S_txt2" target="_blank" href="http://e.weibo.com/introduce/introduce?bottomnav=1&amp;wvr=6">企业微博</a><a class="col3 S_txt2" target="_blank" href="http://open.weibo.com/connect?bottomnav=1&amp;wvr=6">链接网站</a></dd>
+            <dd><a class="col3 S_txt2" target="_blank" href="http://weibo.com/static/logo?bottomnav=1&amp;wvr=6">微博标识</a><a class="col3 S_txt2" target="_blank" href="http://tui.weibo.com/?bottomnav=1&amp;wvr=6">广告服务</a></dd>
+            <dd><a class="col3 S_txt2" target="_blank" href="http://xueyuan.weibo.com/?bottomnav=1&amp;wvr=6">微博商学院</a></dd>
+          </dl>
+          <dl class="list">
+            <dt>微博帮助</dt>
+            <dd><a class="col4 S_txt2" target="_blank" href="http://help.weibo.com/faq/q/358?bottomnav=1&amp;wvr=6">常见问题</a></dd>
+            <dd><a class="col4 S_txt2" target="_blank" href="http://help.weibo.com/selfservice?bottomnav=1&amp;wvr=6">自助服务</a></dd>
+           </dl>
+          </div>
+          <div class="other_link S_bg1 clearfix">
+            <p class="copy">
+            <a href="http://ir.weibo.com/?bottomnav=1&amp;wvr=6" class="S_txt2" target="__blank"><i class="W_icon icon_weibo"></i>关于微博</a><a href="http://help.weibo.com/?refer=didao&amp;bottomnav=1" target="_blank" class="S_txt2">微博帮助</a><a class="S_txt2" href="http://help.weibo.com/newtopic/suggest?bottomnav=1" target="_blank">意见反馈</a><a class="S_txt2" target="_blank" href="http://weibo.com/aj/static/report.html?_wv=6">舞弊举报</a><a class="S_txt2" href="http://open.weibo.com/?bottomnav=1" target="_blank">开放平台</a><a class="S_txt2" href="http://hr.weibo.com/?bottomnav=1" target="_blank">微博招聘</a><a class="S_txt2" href="http://news.sina.com.cn/guide/?bottomnav=1" target="_blank">新浪网导航</a><a class="S_txt2" href="http://service.account.weibo.com/?bottomnav=1" target="_blank">社区管理中心</a><a class="S_txt2" href="http://service.account.weibo.com/roles/gongyue?bottomnav=1" target="_blank">微博社区公约</a><a class="S_txt2" href="http://weibo.com/aj/static/jicp.html?_wv=6" target="_blank">京ICP证100780号</a><a class="S_txt2" href="http://weibo.com/aj/static/medi_license.html?_wv=6" target="__blank">互联网药品服务许可证</a></p>
+            <p class="company"><span class="copy S_txt2">Copyright ? 2009-2015 WEIBO 北京微梦创科网络技术有限公司</span><span><a class="S_txt2" href="http://weibo.com/aj/static/jww.html?_wv=6" target="_blank">京网文[2014]2046-296号</a><a class="S_txt2" href="http://www.miibeian.gov.cn/" target="_blank">京ICP备12002058号</a><a class="S_txt2" href="http://weibo.com/aj/static/license.html?_wv=6" target="_blank">增值电信业务经营许可证B2-20140447</a>
+            <select node-type="changeLanguage" suda-data="key=tblog_home_click&amp;value=language_versions_click">
+              <option value="zh-cn" selected="">中文(简体)</option>
+              <option value="zh-tw">中文(台灣)</option>
+              <option value="zh-hk">中文(香港)</option>
+              <option value="en">English</option>
+             </select></span></p>
+            <p class="T_server S_txt2">服务热线：4000 960 960（个人/企业）服务时间9:00-21:00 4000 980 980（广告主）服务时间9:00-18:00 （按当地市话标准计算）    </p></div>
+      </div>
+    </div>
+ 
+  <script type="text/javascript" charset="utf-8" async="" src="./移动直播技术秒开优化经验（含PPT）_files/suda.js.下载"></script>
+<script type="text/javascript" src="./移动直播技术秒开优化经验（含PPT）_files/init.js.下载"></script>
+
+<script type="text/javascript" src="./移动直播技术秒开优化经验（含PPT）_files/index.js.下载"></script>  
+<script>
+var SUDA = SUDA || [];
+SUDA.push(["setGatherInfo", null, 'WEIBO-V6']); 
+</script>
+
+
+
+<script src="./移动直播技术秒开优化经验（含PPT）_files/flashtactics.js.下载"></script></body></html>

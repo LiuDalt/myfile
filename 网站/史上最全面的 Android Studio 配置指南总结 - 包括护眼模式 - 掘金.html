@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://gold.xitu.io/entry/572c5ab31532bc0065e54dc4 -->
+<html xmlns:wb="http://open.weibo.com/wb"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金</title><link rel="apple-touch-icon" sizes="57x57" href="http://gold.xitu.io/favicons/apple-touch-icon-57x57.png"><link rel="apple-touch-icon" sizes="60x60" href="http://gold.xitu.io/favicons/apple-touch-icon-60x60.png"><link rel="apple-touch-icon" sizes="72x72" href="http://gold.xitu.io/favicons/apple-touch-icon-72x72.png"><link rel="apple-touch-icon" sizes="76x76" href="http://gold.xitu.io/favicons/apple-touch-icon-76x76.png"><link rel="apple-touch-icon" sizes="114x114" href="http://gold.xitu.io/favicons/apple-touch-icon-114x114.png"><link rel="apple-touch-icon" sizes="120x120" href="http://gold.xitu.io/favicons/apple-touch-icon-120x120.png"><link rel="apple-touch-icon" sizes="144x144" href="http://gold.xitu.io/favicons/apple-touch-icon-144x144.png"><link rel="apple-touch-icon" sizes="152x152" href="http://gold.xitu.io/favicons/apple-touch-icon-152x152.png"><link rel="apple-touch-icon" sizes="180x180" href="http://gold.xitu.io/favicons/apple-touch-icon-180x180.png"><link rel="icon" type="image/png" href="http://gold.xitu.io/favicons/favicon-32x32.png" sizes="32x32"><link rel="icon" type="image/png" href="http://gold.xitu.io/favicons/android-chrome-192x192.png" sizes="192x192"><link rel="icon" type="image/png" href="http://gold.xitu.io/favicons/favicon-96x96.png" sizes="96x96"><link rel="icon" type="image/png" href="http://gold.xitu.io/favicons/favicon-16x16.png" sizes="16x16"><link rel="manifest" href="http://gold.xitu.io/favicons/manifest.json"><link rel="mask-icon" href="http://gold.xitu.io/favicons/safari-pinned-tab.svg" color="#007fff"><link rel="shortcut icon" href="http://gold.xitu.io/favicons/favicon.ico"><meta name="msapplication-TileColor" content="#007fff"><meta name="msapplication-TileImage" content="favicons/mstile-144x144.png"><meta name="msapplication-config" content="favicons/browserconfig.xml"><meta name="theme-color" content="#007fff"><meta name="keywords" content="稀土掘金,掘金,移动开发,Android开发,iOS开发,前端开发,后端开发,产品设计,资源下载,React.js,vue.js,node.js,编程,程序员,开发者,设计师,产品经理,Hacker News,ECMAScript,开源,Github"><meta name="description" content="使用 Android Studio 开发 APP 已有半年多的时间了，从刚开始的不习惯到慢慢适应再到逐渐喜欢上 Android Studio，中间的过程颇有一番曲折，现在把自己对 Android Studio 的配置心得总结下来，分享给大家，希望给后来人带来方便。"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><meta property="wb:webmaster" content="592d5aa78e3ec93b"><meta name="apple-itunes-app" content="app-id=987739104"><link href="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/entry-content.css" rel="stylesheet"></head><body>       <header><div class="container clearfix"><ul class="actions"><li class="action action-image"><a href="http://gold.xitu.io/"><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/logo-header.svg" class="inline home-logo"></a></li></ul><ul class="actions secondary"><li class="action action-image"><a href="http://gold.xitu.io/welcome"><button class="inline login">注册 / 登录</button></a></li><li class="action dropdown header-dropdown"><i class="ion-ios-more header-icon"></i><ul class="dropdown-list"><li><a href="http://gold.xitu.io/app" target="_blank">下载应用</a></li><li><a href="http://gold.xitu.io/about" target="_blank">关于我们</a></li><li><a href="http://gold.xitu.io/i-want-u" target="_blank">加入我们</a></li><li><a href="http://gold.xitu.io/partners" target="_blank">合作伙伴</a></li><li><a href="https://github.com/xitu/gold-miner" target="_blank">翻译计划</a></li></ul></li></ul></div></header><script async="" src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/analytics.js"></script><script async="" src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/analytics.js"></script><script src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/push.js"></script><script>(function(){
+    var dropdown = document.querySelector('.header-dropdown')
+    dropdown.addEventListener('click', function(e) {
+        let target = e.target
+        let ele = e.currentTarget
+        let ul = ele.querySelector('.dropdown-list')
+        let lis = ul.querySelectorAll('li')
+        while (target.parentNode != ele) {
+            if (!target.parentNode || target.parentNode == ul) return
+            target = target.parentNode
+        }
+        ele.classList.contains('open') ? ele.classList.remove('open') : ele.classList.add('open')
+        for (let i = 0; i < lis.length; i++) {
+            let li = lis[i]
+            li.addEventListener('click', (e) => ele.classList.remove('open'))
+        }
+        e.stopPropagation()
+    })
+})();</script><div class="container entry-view entry-share-view"><div style="background-image: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, 0)), url(http://ac-mhke0kuv.clouddn.com/98b1ddff1baa895cda37.jpg?imageView/2/w/800/h/600/q/80/format/png), url(http://ac-mhke0kuv.clouddn.com/98b1ddff1baa895cda37.jpg?imageView/2/w/80/h/60/q/80/format/png)" class="entry-hero"></div><a href="http://blog.csdn.net/mynameishuangshuai/article/details/51332790" rel="nofollow"><h2 class="entry-title">史上最全面的 Android Studio 配置指南总结 - 包括护眼模式</h2></a><p><small class="entry-meta"><span class="action">阅读 5781</span><span class="action">收藏 523</span><span class="action">2016-5-6</span></small></p><div class="share-by"><div class="ellipsis"><span>作者：</span><a href="http://blog.csdn.net/mynameishuangshuai/article/details/51332790" target="_blank" class="share-link">猴子搬来的救兵</a>，<span>原文链接：</span><a href="http://blog.csdn.net/mynameishuangshuai/article/details/51332790" target="_blank" class="share-link">http://blog.csdn.net/mynameishuangshuai/article/details/51332790</a></div><div class="share-content">使用 Android Studio 开发 APP 已有半年多的时间了，从刚开始的不习惯到慢慢适应再到逐渐喜欢上 Android Studio，中间的过程颇有一番曲折，现在把自己对 Android Studio 的配置心得总结下来，分享给大家，希望给后来人带来方便。 —— 由 <a href="https://gold.xitu.io/user/56ac70aa71cfe4005c0453ad" target="_blank" class="share-link">猴子搬来的救兵</a> 分享</div></div><div class="entry-content"><div><div><p>&nbsp; &nbsp; &nbsp; &nbsp;使用AndroidStudio开发APP已有半年多的时间了，从刚开始的不习惯到慢慢适应再到逐渐喜欢上AndroidStudio，中间的过程颇有一番曲折，现在把自己对AndroidStudio的配置心得总结下来，分享给大家，希望给后来人带来方便。</p>
+
+<h2>强迫症童鞋的护眼模式设置方法</h2>
+
+<p>传统模式的编辑域</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506153722062" alt="这里写图片描述" title=""></p>
+
+<p>护眼模式的编辑域</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506153743798" alt="这里写图片描述" title=""></p>
+
+<p>设置保护视力颜色    #C7EDCC（护眼绿）</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506153753376" alt="这里写图片描述" title=""></p>
+
+<h2>开发界面设置</h2>
+
+<p>默认的 Android Studio 为灰色界面，可以选择使用炫酷的黑色界面，Settings –&gt; Appearance –&gt; Theme ，选择 Darcula 主题即可。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506154506603" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>系统字体设置</h2>
+
+<p>如果你的Android Studio界面中，中文显示有问题，或者选择中文目录显示有问题，或者想修改菜单栏的字体，可以如下设置： <br>
+Settings –&gt; Appearance ，勾选 Override default fonts by (not recommended) ，选择一款支持中文的字体即可，默认是微软雅黑。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506154714872" alt="这里写图片描述" title=""></p>
+
+<h2>编程字体设置</h2>
+
+<p>如果想修改编辑器的字体，以及所有的文件显示的字体，可以如下设置： <br>
+Settings –&gt; Editor –&gt; Colors &amp; Fonts –&gt; Font 。默认系统显示的 Scheme 为 Defualt ，你是不能编辑的，你需要点击右侧的 Save As… ，保存一份自己的设置，并在当中设置。之后，在 Editor Font 中即可设置字体。我喜欢用Courier New字体。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506154830146" alt="这里写图片描述" title=""></p>
+
+<p>通过Settings –&gt; Editor –&gt; Colors &amp; Fonts 中也还可以设置字体的颜色，当然也可以导入自定义字体包。</p>
+
+
+
+<h2>代码格式设置</h2>
+
+<p>如果你想设置你的代码格式化时显示的样式，可以如下设置： <br>
+Settings –&gt; Code Style 。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506155031033" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>默认文件编码设置</h2>
+
+<p>开发中需要使用 utf-8 ，可以如下设置： <br>
+Settings –&gt; File Encodings 。建议将 IDE Encoding 、 Project Encoding 、 Properties Fiels 都设置成统一的编码。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506155204272" alt="这里写图片描述" title=""></p>
+
+<h2>快捷键设置</h2>
+
+<p>首先你可以在Android Studio中使用Eclipse的快捷键。也可以单独设置： <br>
+Settings –&gt; Keymap 。从 Keymaps 中选择对应IDE的快捷键，Android Studio对其他IDE的快捷键支持还是比较多的。建议不使用其他IDE的快捷键，而是使用Android Studio的快捷键。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506155314661" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>修改默认快捷键</h2>
+
+<p>当你想修改某一个默认快捷键配置时，你需要点击 copy 创建一个自己的快捷键，并在上面进行设置。 <br>
+Main menu –&gt; Code –&gt; Completion –&gt; Basic ，修改为你想替换的快捷键组合。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506155452054" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>设置right margin警示线</h2>
+
+<p>老司机程序员通常喜欢给代码编辑域设置一条竖线，这条线是用以提醒程序员，一行的代码长度最好不要超过这条线，可以如下设置： <br>
+Settings –&gt; Editor –&gt; Appearance ，勾选 Show right margin (configured in Code Style options) 。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506155806386" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>显示行号</h2>
+
+<p>不多说，还是上面的页面：Settings –&gt; Editor –&gt; Appearance ，勾选 Show line numbers 。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506155806386" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>显示缩进空格</h2>
+
+<p>Settings –&gt; Editor –&gt; Appearance ，勾选 Show whitespaces 。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506155806386" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>禁用拼写检查</h2>
+
+<p>目的你懂的Settings –&gt; Inspections –&gt; Spelling ，取消勾选。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506160229762" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>插件设置</h2>
+
+<p>Eclipse一样，AndroidStudio对插件支持也非常完善，Android Studio默认自带了一些插件，如果你不使用某些插件，你可以禁用它。Settings –&gt; Plugins ，右侧会显示出已经安装的插件列表，取消勾选即可禁用插件。 </p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506160359310" alt="这里写图片描述" title=""></p>
+
+<p>为了提升AndroidStudio的性能，我们通常会禁用下列插件。</p>
+
+<p>1.CVS Integration ： CVS 版本控制系统，用不到 <br>
+2.Google Cloud Tools For Android Studio ： Google云 用不到 <br>
+3.Google Login ： Google账号登录，`Google Cloud Tools For Android Studio** 插件需用，用不到 <br>
+4.hg4idea ： Mercurial 版本控制系统，用不到</p>
+
+<p>这里需要注意的是，如果禁用了2和3选项，将导致不能使用导入官方样例的功能（ import sample ）。</p>
+
+
+
+<h2>检查更新</h2>
+
+<p>Android Studio支持自动检查更新。之前尚未发布正式版时，一周有时会有几次更新。你可以设置检查的类型，用以控制更新类型。Settings –&gt; Updates 。勾选 Check for updates in channel ，即开通了自动检查更新。你可以禁用自动检查更新。右侧的列表，是更新通道。 <br>
+<strong>Stable Channel</strong> ： 正式版本通道，只会获取最新的正式版本 <br>
+<strong>Beta Channel</strong> ： 测试版本通道，只会获取最新的测试版本 <br>
+<strong>Dev Channel</strong> ： 开发发布通道，只会获取最新的开发版本 <br>
+<strong>Canary Channel</strong> ： 预览发布通道，只会获取最新的预览版本</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506160658351" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>自动导入设置</h2>
+
+<p>当你从其他地方复制了一段代码到Android Studio中，默认的Android Studio不会自动导入这段代码中使用到的类的引用 ，可以如下设置： <br>
+Settings –&gt; Editor –&gt; Auto Import ，勾选 Add unambiguous improts on the fly 。</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506160853916" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>设置选中行颜色 #E8F2FE</h2>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506161439750" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>设置代理</h2>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506161525361" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>设置SDK</h2>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506161555080" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>设置JDK</h2>
+
+<p><strong>方法一：</strong> <br>
+你需要到全局的Project Structure 页面下进行设置。进入全局的 Project Structure 页面方法如下：</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506161621643" alt="这里写图片描述" title=""></p>
+
+<p>选择 Configure –&gt; Project Defaults –&gt; Project Structure</p>
+
+<p><strong>方法二：</strong></p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506161718676" alt="这里写图片描述" title=""></p>
+
+<p>选择 File –&gt; Other Settings –&gt; Default Project Structure</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506161800536" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>设置批量修改选中的文本</h2>
+
+<p>1.使用鼠标拖选文本 <br>
+2.同时按住Ctrl+F  <br>
+3.如图操作，点击replace all即可</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506162003368" alt="这里写图片描述" title=""></p>
+
+<h2>设置代码注释模板</h2>
+
+<p>1.点击菜单栏的“File“-&gt;“Settings”，打开Settings窗口</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506161718676" alt="这里写图片描述" title=""></p>
+
+<p>2.点击“IDE Settings”下面的“File and Code Templates”，然后选中Templates里面的Class</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506162514896" alt="这里写图片描述" title=""></p>
+
+<p>3.然后选中Includes tab下面的File Header</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506162606906" alt="这里写图片描述" title=""></p>
+
+<p>4.设置自定义模板</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506162631297" alt="这里写图片描述" title=""></p>
+
+<p>5.新建一个Java类，我们就可以看到自己设置的注释模板了</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506162639829" alt="这里写图片描述" title=""></p>
+
+
+
+<h2>设置LogCat颜色</h2>
+
+<p>最终效果</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506163150195" alt="这里写图片描述" title=""></p>
+
+<p>1.在File-&gt;Settings中打开Android-Logcat</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506163217789" alt="这里写图片描述" title=""></p>
+
+<p>2.按图中提示设置</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506163344368" alt="这里写图片描述" title=""></p>
+
+<p>3.系统调色盘</p>
+
+<p><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/20160506163406821" alt="这里写图片描述" title=""></p>
+
+<p>下面是我使用的Log级别色值，仅供参考</p>
+
+
+
+<pre><code class="hljs">VERBOSE：BBBBBB
+DEBUG：0070BB
+INFO：48BB31
+WARN：BBBB23
+ERROR：FF0006
+ASSERT：8F0005</code></pre>
+
+<p>上面就是我总结的AndroidStudio常用配置，后续我还会继续更新更多的配置，分享给大家。</p>
+
+<p>安卓开发高级技术交流QQ群：<strong>108721298</strong></p></div>
+        
+   
+</div></div><p class="tags cloud"><a href="http://gold.xitu.io/tag/Android%20Studio" class="tag">Android Studio</a><a href="http://gold.xitu.io/tag/Android" class="tag">Android</a></p><ul class="box-list recommended-entries"><div style="margin-bottom: 1em;" class="text-bold text-center">相关热门文章</div><li class="half"><a href="http://gold.xitu.io/entry/57e0d0c7c4c971006137f11b"><div class="box-content"><div class="box-title text-left">推看——Android 开源 app</div></div></a></li><li class="half"><a href="http://gold.xitu.io/entry/57e084de5bbb50005e726835"><div class="box-content"><div class="box-title text-left">Android App 优化之消除卡顿</div></div></a></li><li class="half"><a href="http://gold.xitu.io/entry/57e0d46aa0bb9f0058ad9c0c"><div class="box-content"><div class="box-title text-left">详解 7.0 带来的新工具类：DiffUtil</div></div></a></li><li class="half"><a href="http://gold.xitu.io/entry/57e0d46c0e3dd900697de380"><div class="box-content"><div class="box-title text-left">再仿知乎日报，基于 MVP+RxJava+Retrofit2+Dagger2 </div></div></a></li></ul><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.daimajia.gold" target="_blank" style="display: block;"><p class="text-center"><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/yingyongbao.png" style="width: 8em;" class="entry-photo"></p></a><div id="iosWeiboTip" class="ios-weibo-tip"><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/weibo@2x.png" class="ios-weibo-tip-img"></div><footer style="padding: 1em;"><div style="position: relative;" class="container clearfix"><div class="entry-pop-up"><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.daimajia.gold" style="display: block;" class="pop-up-content">Android高手都在看</a></div><a href="http://gold.xitu.io/about"><img src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/logo-bold.svg" class="inline"><span style="font-size: .9em; color: #b4b4b4;">技术·设计·产品</span></a><a style="margin-top: -.3em; margin-bottom: -.3em; line-height: 2em;" onclick="gaDownloadClick()" class="button float-right inline app-download-button">打开应用</a></div></footer></div><script src="./史上最全面的 Android Studio 配置指南总结 - 包括护眼模式 - 掘金_files/entry-content.js"></script><script>(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';   
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-57015356-3', 'auto');
+ga('send', 'pageview');</script></body></html>

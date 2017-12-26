@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://bxbxbai.github.io/2014/09/14/android-working-with-volley/ -->
+<html lang="en"><!-- Head tag --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="bxbxbai Android Notes">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="bxbxbai">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Android库Volley的使用介绍">
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Android Notes">
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined">
+    
+
+    <!-- Title -->
+    
+    <title>Android库Volley的使用介绍 - Android Notes</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="./Android库Volley的使用介绍 - Android Notes_files/bootstrap.min.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./Android库Volley的使用介绍 - Android Notes_files/style.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="./Android库Volley的使用介绍 - Android Notes_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./Android库Volley的使用介绍 - Android Notes_files/css" rel="stylesheet" type="text/css">
+    <link href="./Android库Volley的使用介绍 - Android Notes_files/css(1)" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="./Android库Volley的使用介绍 - Android Notes_files/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    
+    <script async="" src="./Android库Volley的使用介绍 - Android Notes_files/analytics.js.下载"></script><script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-51089251-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://bxbxbai.github.io/">Android Notes</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="https://bxbxbai.github.io/">Home</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://bxbxbai.github.io/archives">Archives</a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url(&#39;/img/bg.jpg&#39;)">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Android库Volley的使用介绍</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        Sep 14 2014
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="https://bxbxbai.github.io/tags/Android/">#Android</a> <a href="https://bxbxbai.github.io/tags/volley/">#volley</a> <a href="https://bxbxbai.github.io/tags/%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C/">#开发经验</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                        
+
+<a href="https://bxbxbai.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p><a href="http://developer.android.com/training/volley/index.html" target="_blank" rel="external">Android Volley</a> 是Google开发的一个网络lib，可以让你更加简单并且快速的访问网络数据。Volley库的网络请求都是异步的，你不必担心异步处理问题。</p>
+<a id="more"></a>
+<p>Volley的优点：</p>
+<ol>
+<li>请求队列和请求优先级</li>
+<li>请求Cache和内存管理</li>
+<li>扩展性性强</li>
+<li>可以取消请求</li>
+</ol>
+<h2 id="下载和编译volley-jar"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#下载和编译volley-jar" class="headerlink" title="下载和编译volley.jar"></a>下载和编译volley.jar</h2><ul>
+<li>需要安装git，ant，android sdk</li>
+</ul>
+<p>clone代码：<br><code>git clone https://android.googlesource.com/platform/frameworks/volley</code></p>
+<ul>
+<li>编译jar：<br><code>android update project -p . 
+ant jar</code></li>
+</ul>
+<ul>
+<li><p>添加volley.jar到你的项目中</p>
+<p><strong><em>不过已经有人将volley的代码放到github上了：</em></strong><br><a href="https://github.com/mcxiaoke/android-volley" target="_blank" rel="external">https://github.com/mcxiaoke/android-volley</a>，你可以使用更加简单的方式来使用volley：</p>
+</li>
+</ul>
+<h3 id="Maven"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#Maven" class="headerlink" title="Maven"></a>Maven</h3><p>format: jar</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.mcxiaoke.volley&lt;/groupId&gt;
+    &lt;artifactId&gt;library&lt;/artifactId&gt;
+    &lt;version&gt;1.0.6&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><hr>
+<h3 id="Gradle"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><p>format: jar</p>
+<p><code>compile 'com.mcxiaoke.volley:library:1.0.6'</code></p>
+<h2 id="Volley工作原理图"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#Volley工作原理图" class="headerlink" title="Volley工作原理图"></a>Volley工作原理图</h2><p><img src="./Android库Volley的使用介绍 - Android Notes_files/volley.png" alt="Volley"></p>
+<h2 id="创建Volley-单例"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#创建Volley-单例" class="headerlink" title="创建Volley 单例"></a>创建Volley 单例</h2><p>使用volley时，必须要创建一个请求队列<code>RequestQueue</code>，使用请求队列的最佳方式就是将它做成一个单例，整个app使用这么一个请求队列。</p>
+<pre><code>public class AppController extends Application {
+
+public static final String TAG = AppController.class
+        .getSimpleName();
+
+private RequestQueue mRequestQueue;
+private ImageLoader mImageLoader;
+
+private static AppController mInstance;
+
+@Override
+public void onCreate() {
+    super.onCreate();
+    mInstance = this;
+}
+
+public static synchronized AppController getInstance() {
+    return mInstance;
+}
+
+public RequestQueue getRequestQueue() {
+    if (mRequestQueue == null) {
+        mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+    }
+
+    return mRequestQueue;
+}
+
+public ImageLoader getImageLoader() {
+    getRequestQueue();
+    if (mImageLoader == null) {
+        mImageLoader = new ImageLoader(this.mRequestQueue,
+                new LruBitmapCache());
+    }
+    return this.mImageLoader;
+}
+
+public &lt;T&gt; void addToRequestQueue(Request&lt;T&gt; req, String tag) {
+    // set the default tag if tag is empty
+    req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+    getRequestQueue().add(req);
+}
+
+public &lt;T&gt; void addToRequestQueue(Request&lt;T&gt; req) {
+    req.setTag(TAG);
+    getRequestQueue().add(req);
+}
+
+public void cancelPendingRequests(Object tag) {
+    if (mRequestQueue != null) {
+        mRequestQueue.cancelAll(tag);
+    }
+}
+}
+</code></pre><p>另外，你还需要一个Cache来存放请求的图片：</p>
+<pre><code>public class LruBitmapCache extends LruCache&lt;String, Bitmap&gt; implement ImageCache {
+    public static int getDefaultLruCacheSize() {
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+        final int cacheSize = maxMemory / 8;
+
+        return cacheSize;
+    }
+
+    public LruBitmapCache() {
+        this(getDefaultLruCacheSize());
+    }
+
+    public LruBitmapCache(int sizeInKiloBytes) {
+        super(sizeInKiloBytes);
+    }
+
+    @Override
+    protected int sizeOf(String key, Bitmap value) {
+        return value.getRowBytes() * value.getHeight() / 1024;
+    }
+
+    @Override
+    public Bitmap getBitmap(String url) {
+        return get(url);
+    }
+
+    @Override
+    public void putBitmap(String url, Bitmap bitmap) {
+        put(url, bitmap);
+    }
+}
+</code></pre><p>别忘记在<code>AndroidManifest.xml</code>文件中添加<code>android.permission.INTERNET</code>权限。</p>
+<h2 id="创建Json请求"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#创建Json请求" class="headerlink" title="创建Json请求"></a>创建Json请求</h2><p>volley自带了<code>JsonObjectRequest</code>和<code>JsonArrayRequest</code>分别来处理Json对象请求和Json数据请求（但是voley没有使用gson库写一个GsonRequest，发送一个request，volley直接返回一个java对象，不过我们可以自己写）。</p>
+<h3 id="创建json-object请求"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#创建json-object请求" class="headerlink" title="创建json object请求"></a>创建json object请求</h3><p>发送一个请求只要这么简单，创建一个<code>JsonRequest</code>对象，写好response回调接口，并把这个请求放到请求队列中就可以了。<code>JsonArrayRequest</code>也类似。</p>
+<pre><code>// Tag used to cancel the request
+String tag_json_obj = "json_obj_req";
+String url = "http://api.androidhive.info/volley/person_object.json";
+
+JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,url, null,
+            new Response.Listener&lt;JSONObject&gt;() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.d(TAG, response.toString());
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+                }
+            });
+
+// Adding request to request queue
+AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+</code></pre><h2 id="创建String请求"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#创建String请求" class="headerlink" title="创建String请求"></a>创建String请求</h2><p><code>StringRequest</code>可以用来请求任何string类型的数据：json，xml，文本等等。</p>
+<pre><code>// Tag used to cancel the request
+String  tag_string_req = "string_req";
+
+String url = "http://api.androidhive.info/volley/string_response.html";
+
+ProgressDialog pDialog = new ProgressDialog(this);
+pDialog.setMessage("Loading...");
+pDialog.show();     
+
+StringRequest strReq = new StringRequest(Method.GET,
+            url, new Response.Listener&lt;String&gt;() {
+
+                @Override
+                public void onResponse(String response) {
+                    Log.d(TAG, response.toString());
+                    pDialog.hide();
+
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+                    pDialog.hide();
+                }
+            });
+
+// Adding request to request queue
+AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+</code></pre><h2 id="创建POST请求"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#创建POST请求" class="headerlink" title="创建POST请求"></a>创建POST请求</h2><p>上面说的都是GET请求，下面来说一下POST请求，与GET请求不同的是，只要在创建请求的时候将请求类型改为POST请求，并且override <code>Request</code>的getParams方法即可。</p>
+<pre><code>// Tag used to cancel the request
+String tag_json_obj = "json_obj_req";
+
+String url = "http://api.androidhive.info/volley/person_object.json";
+ProgressDialog pDialog = new ProgressDialog(this);
+pDialog.setMessage("Loading...");
+pDialog.show();     
+
+    JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.POST,
+            url, null,
+            new Response.Listener&lt;JSONObject&gt;() {
+
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.d(TAG, response.toString());
+                    pDialog.hide();
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+                    pDialog.hide();
+                }
+            }) {
+
+        @Override
+        protected Map&lt;String, String&gt; getParams() {
+            Map&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();
+            params.put("name", "Androidhive");
+            params.put("email", "abc@androidhive.info");
+            params.put("password", "password123");
+
+            return params;
+        }
+
+    };
+
+// Adding request to request queue
+AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+</code></pre><h2 id="添加请求头部信息"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#添加请求头部信息" class="headerlink" title="添加请求头部信息"></a>添加请求头部信息</h2><pre><code>// Tag used to cancel the request
+String tag_json_obj = "json_obj_req";
+
+String url = "http://api.androidhive.info/volley/person_object.json";
+
+ProgressDialog pDialog = new ProgressDialog(this);
+pDialog.setMessage("Loading...");
+pDialog.show();     
+
+JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.POST,url, null,new Response.Listener&lt;JSONObject&gt;() {
+    @Override
+    public void onResponse(JSONObject response) {
+        Log.d(TAG, response.toString());
+        pDialog.hide();
+    }
+}, new Response.ErrorListener() {
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        VolleyLog.d(TAG, "Error: " + error.getMessage());
+        pDialog.hide();
+    }
+}) {
+
+/**
+* Passing some request headers
+* */
+@Override
+public Map&lt;String, String&gt; getHeaders() throws AuthFailureError {
+    HashMap&lt;String, String&gt; headers = new HashMap&lt;String, String&gt;();
+    headers.put("Content-Type", "application/json");
+    headers.put("apiKey", "xxxxxxxxxxxxxxx");
+    return headers;
+}
+};
+// Adding request to request queue
+AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+</code></pre><h2 id="创建Image请求"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#创建Image请求" class="headerlink" title="创建Image请求"></a>创建Image请求</h2><p>Volley库中自带了<code>NetworkImageView</code>类，这个<code>ImageView</code>可以自动使用volley下载图片</p>
+<h3 id="用NetworkImageView加载图片"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#用NetworkImageView加载图片" class="headerlink" title="用NetworkImageView加载图片"></a>用<code>NetworkImageView</code>加载图片</h3><p>首先，说明一下，加载图片的原理：</p>
+<p><code>NetworkImageView</code>加载图片需要一个ImageLoader和一个图片URL，这个ImageLoader对象需要一个请求队列对象和ImageCahe对象。调用<code>NetworkImageView</code>的setUrl方法后，首先会判断当前ImageView的URL和新传入的URL是否一致，如果相同，就不用再发送http请求了，如果不同，那么就使用ImageLoader对象来发送http请求获取图片。</p>
+<pre><code>ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+// If you are using NetworkImageView
+imgNetWorkView.setImageUrl(Const.URL_IMAGE, imageLoader);
+</code></pre><p>加载一个图片只要这么简单~~~</p>
+<h3 id="用ImageView来加载图片"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#用ImageView来加载图片" class="headerlink" title="用ImageView来加载图片"></a>用ImageView来加载图片</h3><p>这个过程和<code>NetworkImageView</code>类似</p>
+<pre><code>ImageLoader imageLoader = AppController.getInstance().getImageLoader();
+
+// If you are using normal ImageView
+imageLoader.get(Const.URL_IMAGE, new ImageListener() {
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Log.e(TAG, "Image Load Error: " + error.getMessage());
+    }
+
+    @Override
+    public void onResponse(ImageContainer response, boolean arg1) {
+        if (response.getBitmap() != null) {
+            // load image into imageview
+            imageView.setImageBitmap(response.getBitmap());
+        }
+    }
+});
+</code></pre><p>可以再简单一点：</p>
+<pre><code>// Loading image with placeholder and error image
+imageLoader.get(Const.URL_IMAGE, ImageLoader.getImageListener(imageView, R.drawable.ico_loading, R.drawable.ico_error));
+</code></pre><p><code>ImageLoader.getImageListener</code>方法中已经写了一个默认的<code>ImageListener</code>了</p>
+<h2 id="Volley-Cache"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#Volley-Cache" class="headerlink" title="Volley Cache"></a>Volley Cache</h2><p>volley中自带了强大的cache机制来管理请求cache，这会减少网络请求次数和用户等待时间。</p>
+<h3 id="从请求Cache中加载请求"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#从请求Cache中加载请求" class="headerlink" title="从请求Cache中加载请求"></a>从请求Cache中加载请求</h3><pre><code>Cache cache = AppController.getInstance().getRequestQueue().getCache();
+Entry entry = cache.get(url);
+if(entry != null){
+    try {
+        String data = new String(entry.data, "UTF-8");
+        // handle data, like converting it to xml, json, bitmap etc.,
+    } catch (UnsupportedEncodingException e) {      
+        e.printStackTrace();
+        }
+    }
+}else{
+    // Cached response doesn't exists. Make network call here
+}
+</code></pre><h3 id="使请求缓存失效"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#使请求缓存失效" class="headerlink" title="使请求缓存失效"></a>使请求缓存失效</h3><p>失效并不意味这删除，Volley还会继续使用缓存的对象直到从服务器上获取到了新的数据，新的数据会覆盖旧的数据。</p>
+<pre><code>AppController.getInstance().getRequestQueue().getCache().invalidate(url, true);
+</code></pre><h3 id="关闭Cache"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#关闭Cache" class="headerlink" title="关闭Cache"></a>关闭Cache</h3><p>如果你想将某一个请求的Cache功能关闭，直接调用<code>Request</code>的setShouldCache()方法就可以：</p>
+<pre><code>// String request
+StringRequest stringReq = new StringRequest(....);
+
+// disable cache
+stringReq.setShouldCache(false);
+</code></pre><h3 id="将某一URL的Cache删除"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#将某一URL的Cache删除" class="headerlink" title="将某一URL的Cache删除"></a>将某一URL的Cache删除</h3><p>调用<code>Cache</code>的<code>remove</code>方法可以删除这个URL的cache:</p>
+<pre><code>AppController.getInstance().getRequestQueue().getCache().remove(url);
+</code></pre><h3 id="删除所有的Cache"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#删除所有的Cache" class="headerlink" title="删除所有的Cache"></a>删除所有的Cache</h3><pre><code>AppController.getInstance().getRequestQueue().getCache().clear();
+</code></pre><h2 id="取消请求"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#取消请求" class="headerlink" title="取消请求"></a>取消请求</h2><p>在你添加一个请求到请求队列中的时候，你可以发现，<code>addToRequestQueue(request, tag)</code>方法还接受一个tag参数，这个tag就是用来标记某一类请求的，这样就可以取消这个tag的所有请求了：</p>
+<pre><code>String tag_json_arry = "json_req";
+ApplicationController.getInstance().getRequestQueue().cancelAll("feed_request");
+</code></pre><h2 id="请求优先级"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#请求优先级" class="headerlink" title="请求优先级"></a>请求优先级</h2><p>在创建一个request的时候可以Override <code>Request</code>方法的<code>getPriority</code>方法返回一个优先级，优先级分为：Normal, Low, Immediate, High</p>
+<pre><code>private Priority priority = Priority.HIGH;
+
+StringRequest strReq = new StringRequest(Method.GET,
+            Const.URL_STRING_REQ, new Response.Listener&lt;String&gt;() {
+
+                @Override
+                public void onResponse(String response) {
+                    Log.d(TAG, response.toString());
+                    msgResponse.setText(response.toString());
+                    hideProgressDialog();
+
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+                    hideProgressDialog();
+                }
+            }) {
+        @Override
+        public Priority getPriority() {
+            return priority;
+        }
+
+    };
+</code></pre><h2 id="Missing-创建xml请求"><a href="https://bxbxbai.github.io/2014/09/14/android-working-with-volley/#Missing-创建xml请求" class="headerlink" title="Missing! 创建xml请求"></a>Missing! 创建xml请求</h2><p>就像创建Gson请求一样，你可以自定义一个<code>XMLRequest</code>类来请求xml数据</p>
+
+            </div>
+
+            <!-- Comments -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+
+
+            </div>
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                   <!-- 
+                    <li>
+                        <a href="" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    -->
+                    <li>
+                        <a href="https://github.com/bxbxbai" target="_blank">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">© bxbxbai</p>
+
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="./Android库Volley的使用介绍 - Android Notes_files/jquery.min.js.下载" type="text/javascript"></script>
+
+<!-- Bootstrap -->
+<script src="./Android库Volley的使用介绍 - Android Notes_files/bootstrap.min.js.下载" type="text/javascript"></script>
+
+<!-- Gallery -->
+<script src="./Android库Volley的使用介绍 - Android Notes_files/featherlight.min.js.下载" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+
+</body></html>

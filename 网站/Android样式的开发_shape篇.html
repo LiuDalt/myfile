@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://keeganlee.me/post/android/20150830 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link rel="alternate" type="application/rss+xml" title="atom 1.0" href="http://keeganlee.me/feed">
+
+
+
+<title>Android样式的开发:shape篇</title>
+
+
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+    <meta name="keywords" content="Keegan 小钢 开发 创业 Android 架构">
+    <meta name="description" content="分享自己在创业路上的点点滴滴">
+    <meta name="renderer" content="webkit"><!--[if lt IE 9]><script type="text/javascript" src="html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--><!--[if IE]><link href="/template/sass/ie.scss" type="text/css" rel="stylesheet"/>
+<![endif]--><link href="./Android样式的开发_shape篇_files/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link href="./Android样式的开发_shape篇_files/normalize.scss" type="text/css" rel="stylesheet">
+<link href="./Android样式的开发_shape篇_files/screen.scss" type="text/css" rel="stylesheet">
+
+  <script type="text/javascript" async="" src="./Android样式的开发_shape篇_files/embed.js" charset="UTF-8"></script><script type="text/javascript" async="" src="./Android样式的开发_shape篇_files/embed.js" charset="UTF-8"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?rev=2.6.0') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?rev=2.6.0') format('woff'), url('http://keeganlee.me/service/static_3rd/staticfile/ajax/libs/mathjax/2.6.0/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?rev=2.6.0') format('opentype')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><link type="text/css" rel="stylesheet" href="./Android样式的开发_shape篇_files/embed.default.css"></head>
+  <body><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+    <div id="wrap">
+      <header id="header" class="cf">
+        <div class="logo"><a href="http://keeganlee.me/">Keegan小钢</a>
+        </div>
+        <nav class="main-nav">
+          <ul class="menu">
+            <li><a href="http://keeganlee.me/">Home</a></li>
+            <li><a href="http://keeganlee.me/archive">Archive</a></li>
+            <!--if has('images')-->
+            <!--    li= a_with_selected('/album', 'Photos')-->
+          </ul>
+        </nav>
+      </header>
+      <div id="main" class="cf">
+
+
+<div class="primary">
+  <article class="post">
+    <header>
+      <h2><a href="http://keeganlee.me/post/android/20150830">Android样式的开发:shape篇</a>
+      </h2>
+      <div class="entry-meta"><span><i class="fa fa-calendar">&nbsp;</i>2015-08-30
+</span><span><i class="fa fa-tags">&nbsp;</i><a href="http://keeganlee.me/tags/Android" class="tag">&nbsp;Android</a></span><span class="count"><i class="fa fa-book"></i>&nbsp;<!--fb:20458be310615f7d1adc29fa9bbafb0c:visits-->19821<!--/fb-->
+</span>
+      </div>
+    </header>
+    <div class="entry"><p>原创文章，转载请注明：转载自<a href="http://keeganlee.me/">Keegan小钢</a><br>并标明原文链接：<strong>http://keeganlee.me/post/android/20150830</strong><br>微信订阅号：<strong>keeganlee_me</strong><br>写于2015-08-30</p>
+
+<hr>
+
+<p><a href="http://keeganlee.me/post/android/20150830">Android样式的开发:shape篇</a><br><a href="http://keeganlee.me/post/android/20150905">Android样式的开发:selector篇</a><br><a href="http://keeganlee.me/post/android/20150909">Android样式的开发:layer-list篇</a><br><a href="http://keeganlee.me/post/android/20150916">Android样式的开发:drawable汇总篇</a><br><a href="http://keeganlee.me/post/android/20151003">Android样式的开发:View Animation篇</a><br><a href="http://keeganlee.me/post/android/20151026">Android样式的开发:Property Animation篇</a><br><a href="http://keeganlee.me/post/android/20151031">Android样式的开发:Style篇</a></p>
+
+<hr>
+
+<p>一个应用，应该保持一套统一的样式，包括Button、EditText、ProgressBar、Toast、Checkbox等各种控件的样式，还包括控件间隔、文字大小和颜色、阴影等等。web的样式用css来定义，而android的样式主要则是通过shape、selector、layer-list、level-list、style、theme等组合实现。我将用一系列文章，循序渐进地讲解样式的每个方面该如何实现。第一个要讲的就是shape，最基础的形状定义工具。</p>
+
+<p>一般用shape定义的xml文件存放在drawable目录下，若项目没有该目录则新建一个，而不要将它放到drawable-hdpi等目录中。</p>
+
+<p>使用shape可以自定义形状，可以定义下面四种类型的形状，通过android:shape属性指定：</p>
+
+<ul>
+<li><strong>rectangle</strong>: 矩形，默认的形状，可以画出直角矩形、圆角矩形、弧形等</li>
+<li><strong>oval</strong>: 椭圆形，用得比较多的是画正圆</li>
+<li><strong>line</strong>: 线形，可以画实线和虚线</li>
+<li><strong>ring</strong>: 环形，可以画环形进度条</li>
+</ul>
+
+<blockquote>
+<h1 id="toc_0">rectangle</h1>
+</blockquote>
+
+<p>rectangle是默认的形状，也是用得最多的形状，一些文字背景、按钮背景、控件或布局背景等，以下是一些简单的例子：</p>
+
+<p><img src="./Android样式的开发_shape篇_files/S50829-115225.jpg" alt=""></p>
+
+<p>实现上面的那些效果，都用到了以下这些特性：</p>
+
+<ul>
+<li><p><strong>solid</strong>: 设置形状填充的颜色，只有android:color一个属性</p>
+
+<ul>
+<li><em>android:color</em> 填充的颜色</li>
+</ul></li>
+<li><p><strong>padding</strong>: 设置内容与形状边界的内间距，可分别设置左右上下的距离</p>
+
+<ul>
+<li><em>android:left</em> 左内间距</li>
+<li><em>android:right</em> 右内间距</li>
+<li><em>android:top</em> 上内间距</li>
+<li><em>android:bottom</em> 下内间距</li>
+</ul></li>
+<li><p><strong>gradient</strong>: 设置形状的渐变颜色，可以是线性渐变、辐射渐变、扫描性渐变</p>
+
+<ul>
+<li><em>android:type</em> 渐变的类型
+
+<ul>
+<li><em>linear</em> 线性渐变，默认的渐变类型</li>
+<li><em>radial</em> 放射渐变，设置该项时，android:gradientRadius也必须设置</li>
+<li><em>sweep</em> 扫描性渐变</li>
+</ul></li>
+<li><em>android:startColor</em> 渐变开始的颜色</li>
+<li><em>android:endColor</em> 渐变结束的颜色</li>
+<li><em>android:centerColor</em> 渐变中间的颜色</li>
+<li><em>android:angle</em> 渐变的角度，线性渐变时才有效，必须是45的倍数，0表示从左到右，90表示从下到上</li>
+<li><em>android:centerX</em> 渐变中心的相对X坐标，放射渐变时才有效，在0.0到1.0之间，默认为0.5，表示在正中间</li>
+<li><em>android:centerY</em> 渐变中心的相对X坐标，放射渐变时才有效，在0.0到1.0之间，默认为0.5，表示在正中间</li>
+<li><em>android:gradientRadius</em> 渐变的半径，只有渐变类型为radial时才使用</li>
+<li><em>android:useLevel</em> 如果为true，则可在LevelListDrawable中使用</li>
+</ul></li>
+<li><p><strong>corners</strong>: 设置圆角，只适用于rectangle类型，可分别设置四个角不同半径的圆角，当设置的圆角半径很大时，比如200dp，就可变成弧形边了</p>
+
+<ul>
+<li><em>android:radius</em> 圆角半径，会被下面每个特定的圆角属性重写</li>
+<li><em>android:topLeftRadius</em> 左上角的半径</li>
+<li><em>android:topRightRadius</em> 右上角的半径</li>
+<li><em>android:bottomLeftRadius</em> 左下角的半径</li>
+<li><em>android:bottomRightRadius</em> 右下角的半径</li>
+</ul></li>
+<li><p><strong>stroke</strong>: 设置描边，可描成实线或虚线。</p>
+
+<ul>
+<li><em>android:color</em> 描边的颜色</li>
+<li><em>android:width</em> 描边的宽度</li>
+<li><em>android:dashWidth</em> 设置虚线时的横线长度</li>
+<li><em>android:dashGap</em> 设置虚线时的横线之间的距离</li>
+</ul></li>
+</ul>
+
+<p>接下来说下实际怎么使用。以下是加了虚线描边的矩形的代码，文件命名为bg_rectangle_with_stroke_dash.xml，放在drawable目录下：</p>
+<div class="codehilite"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="c">&lt;!-- android:shape指定形状类型，默认为rectangle --&gt;</span>
+<span class="nt">&lt;shape</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">android:shape=</span><span class="s">"rectangle"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- solid指定形状的填充色，只有android:color一个属性 --&gt;</span>
+    <span class="nt">&lt;solid</span> <span class="na">android:color=</span><span class="s">"#2F90BD"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- padding设置内容区域离边界的间距 --&gt;</span>
+    <span class="nt">&lt;padding</span>
+        <span class="na">android:bottom=</span><span class="s">"12dp"</span>
+        <span class="na">android:left=</span><span class="s">"12dp"</span>
+        <span class="na">android:right=</span><span class="s">"12dp"</span>
+        <span class="na">android:top=</span><span class="s">"12dp"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- corners设置圆角，只适用于rectangle --&gt;</span>
+    <span class="nt">&lt;corners</span> <span class="na">android:radius=</span><span class="s">"200dp"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- stroke设置描边 --&gt;</span>
+    <span class="nt">&lt;stroke</span>
+        <span class="na">android:width=</span><span class="s">"2dp"</span>
+        <span class="na">android:color=</span><span class="s">"@android:color/darker_gray"</span>
+        <span class="na">android:dashGap=</span><span class="s">"4dp"</span>
+        <span class="na">android:dashWidth=</span><span class="s">"4dp"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/shape&gt;</span>
+</pre></div>
+
+<p>接着在要使用的view里引用就可以了，例如本例中用做TextView的background：</p>
+<div class="codehilite"><pre><span class="nt">&lt;TextView</span>
+    <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+    <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+    <span class="na">android:layout_margin=</span><span class="s">"8dp"</span>
+    <span class="na">android:text=</span><span class="s">"加了虚线描边的矩形"</span>
+    <span class="na">android:textSize=</span><span class="s">"16sp"</span>
+    <span class="na">android:textColor=</span><span class="s">"@android:color/white"</span>
+    <span class="na">android:background=</span><span class="s">"@drawable/bg_rectangle_with_stroke_dash"</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+<blockquote>
+<h1 id="toc_1">oval</h1>
+</blockquote>
+
+<p>oval用来画椭圆，而在实际应用中，更多是画正圆，比如消息提示，圆形按钮等，下图是一些例子：</p>
+
+<p><img src="./Android样式的开发_shape篇_files/097E4ABF-0D82-4FEA-BC76-F37AB37EB94C.jpeg" alt=""></p>
+
+<p>上面的效果图应用了solid、padding、stroke、gradient、size几个特性。size是用来设置形状大小的，如下：</p>
+
+<ul>
+<li><strong>size</strong>: 设置形状默认的大小，可设置宽度和高度
+
+<ul>
+<li><em>android:width</em> 宽度</li>
+<li><em>android:height</em> 高度</li>
+</ul></li>
+</ul>
+
+<p>数字0是默认的椭圆，只加了solid填充颜色，数字1则加了上下左右4dp的padding，后面的数字都是正圆，是通过设置size的同样大小的宽高实现的，也可以通过设置控件的宽高一致大小来实现。数字3加了描边，数字4是镂空描边，数字5是虚线描边，数字6用了radial渐变。注意，使用radial渐变时，必须指定渐变的半径，即android:gradientRadius属性。</p>
+
+<p>以下是渐变的代码实现，文件为bg_oval_with_gradient.xml：</p>
+<div class="codehilite"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="c">&lt;!-- android:shape指定形状类型，默认为rectangle --&gt;</span>
+<span class="nt">&lt;shape</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">android:shape=</span><span class="s">"oval"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- padding设置内间距 --&gt;</span>
+    <span class="nt">&lt;padding</span>
+        <span class="na">android:bottom=</span><span class="s">"4dp"</span>
+        <span class="na">android:left=</span><span class="s">"4dp"</span>
+        <span class="na">android:right=</span><span class="s">"4dp"</span>
+        <span class="na">android:top=</span><span class="s">"4dp"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- size设置形状的大小 --&gt;</span>
+    <span class="nt">&lt;size</span>
+        <span class="na">android:width=</span><span class="s">"40dp"</span>
+        <span class="na">android:height=</span><span class="s">"40dp"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- gradient设置渐变 --&gt;</span>
+    <span class="nt">&lt;gradient</span>
+        <span class="na">android:endColor=</span><span class="s">"#000000"</span>
+        <span class="na">android:gradientRadius=</span><span class="s">"40dp"</span>
+        <span class="na">android:startColor=</span><span class="s">"#FFFFFF"</span>
+        <span class="na">android:type=</span><span class="s">"radial"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/shape&gt;</span>
+</pre></div>
+
+<p>引用的代码：</p>
+<div class="codehilite"><pre><span class="nt">&lt;TextView</span>
+    <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+    <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span>
+    <span class="na">android:gravity=</span><span class="s">"center"</span>
+    <span class="na">android:layout_margin=</span><span class="s">"8dp"</span>
+    <span class="na">android:text=</span><span class="s">"6"</span>
+    <span class="na">android:textSize=</span><span class="s">"20sp"</span>
+    <span class="na">android:textColor=</span><span class="s">"@android:color/black"</span>
+    <span class="na">android:background=</span><span class="s">"@drawable/bg_oval_with_gradient"</span> <span class="nt">/&gt;</span>
+</pre></div>
+
+<blockquote>
+<h1 id="toc_2">line</h1>
+</blockquote>
+
+<p><img src="./Android样式的开发_shape篇_files/4C634096-CD97-4C5B-99B4-434CC0951631.jpeg" alt=""></p>
+
+<p>line主要用于画分割线，是通过stroke和size特性组合来实现的，先看虚线的代码：</p>
+<div class="codehilite"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;shape</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">android:shape=</span><span class="s">"line"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!-- 实际显示的线 --&gt;</span>
+    <span class="nt">&lt;stroke</span>
+        <span class="na">android:width=</span><span class="s">"1dp"</span>
+        <span class="na">android:color=</span><span class="s">"#2F90BD"</span>
+        <span class="na">android:dashGap=</span><span class="s">"2dp"</span>
+        <span class="na">android:dashWidth=</span><span class="s">"4dp"</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- 形状的高度 --&gt;</span>
+    <span class="nt">&lt;size</span> <span class="na">android:height=</span><span class="s">"4dp"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/shape&gt;</span>
+</pre></div>
+
+<p>画线时，有几点特性必须要知道的：</p>
+
+<ol>
+<li>只能画水平线，画不了竖线；</li>
+<li>线的高度是通过stroke的android:width属性设置的；</li>
+<li>size的android:height属性定义的是整个形状区域的高度；</li>
+<li>size的height必须大于stroke的width，否则，线无法显示；</li>
+<li>线在整个形状区域中是居中显示的；</li>
+<li>线左右两边会留有空白间距，线越粗，空白越大；</li>
+<li>引用虚线的view需要添加属性android:layerType，值设为"software"，否则显示不了虚线。</li>
+</ol>
+
+<blockquote>
+<h1 id="toc_3">ring</h1>
+</blockquote>
+
+<p>首先，shape根元素有些属性只适用于ring类型，先过目下这些属性吧：</p>
+
+<ul>
+<li><em>android:innerRadius</em>  内环的半径</li>
+<li><em>android:innerRadiusRatio</em>  浮点型，以环的宽度比率来表示内环的半径，默认为3，表示内环半径为环的宽度除以3，该值会被android:innerRadius覆盖</li>
+<li><em>android:thickness</em>  环的厚度</li>
+<li><em>android:thicknessRatio</em>  浮点型，以环的宽度比率来表示环的厚度，默认为9，表示环的厚度为环的宽度除以9，该值会被android:thickness覆盖</li>
+<li><em>android:useLevel</em>  一般为false，否则可能环形无法显示，只有作为LevelListDrawable使用时才设为true</li>
+</ul>
+
+<p><img src="./Android样式的开发_shape篇_files/C89E4D64-2A95-45C1-B4A9-4FC03EE18F4F.jpeg" alt=""></p>
+
+<p>第一个图只添加了solid；第二个图只添加了gradient，类型为sweep；第三个图只添加了stroke；第四个图添加了gradient和stroke两项特性。<br>以下为第四个图的代码：</p>
+<div class="codehilite"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;shape</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">android:innerRadiusRatio=</span><span class="s">"3"</span>
+    <span class="na">android:shape=</span><span class="s">"ring"</span>
+    <span class="na">android:thicknessRatio=</span><span class="s">"9"</span>
+    <span class="na">android:useLevel=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;gradient</span>
+        <span class="na">android:endColor=</span><span class="s">"#2F90BD"</span>
+        <span class="na">android:startColor=</span><span class="s">"#FFFFFF"</span>
+        <span class="na">android:type=</span><span class="s">"sweep"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;stroke</span>
+        <span class="na">android:width=</span><span class="s">"1dp"</span>
+        <span class="na">android:color=</span><span class="s">"@android:color/black"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/shape&gt;</span>
+</pre></div>
+
+<p>如果想让这个环形旋转起来，变成可用的进度条，则只要在shape外层包多一个rotate元素就可以了。</p>
+<div class="codehilite"><pre><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;rotate</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">android:fromDegrees=</span><span class="s">"0"</span>
+    <span class="na">android:pivotX=</span><span class="s">"50%"</span>
+    <span class="na">android:pivotY=</span><span class="s">"50%"</span>
+    <span class="na">android:toDegrees=</span><span class="s">"1080.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;shape</span>
+        <span class="na">android:innerRadiusRatio=</span><span class="s">"3"</span>
+        <span class="na">android:shape=</span><span class="s">"ring"</span>
+        <span class="na">android:thicknessRatio=</span><span class="s">"8"</span>
+        <span class="na">android:useLevel=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;gradient</span>
+            <span class="na">android:endColor=</span><span class="s">"#2F90BD"</span>
+            <span class="na">android:startColor=</span><span class="s">"#FFFFFF"</span>
+            <span class="na">android:type=</span><span class="s">"sweep"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/shape&gt;</span>
+<span class="nt">&lt;/rotate&gt;</span>
+</pre></div>
+
+<blockquote>
+<p>结尾</p>
+</blockquote>
+
+<p>shape篇就讲到这里了，代码也已经放上github，地址：<br><a href="https://github.com/keeganlee/kstyle.git">https://github.com/keeganlee/kstyle.git</a></p>
+
+<hr>
+
+<p>扫描以下二维码即可关注订阅号。<br><img src="./Android样式的开发_shape篇_files/qrcode_keegan.jpg" alt=""></p></div>
+<div id="fb_comments_container">
+  <div data-url="http://keeganlee.me/post/android/20150830" class="ds-thread" id="ds-thread"><div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"></span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc">最新</a><a class="ds-order-asc ds-current">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">26</span>条评论</a></li> <li class="ds-tab"><a class="ds-comments-tab-weibo" href="javascript:void(0);"><span class="ds-highlight">2</span>条新浪微博</a></li> </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="6223670879801312002"><div class="ds-post-self" data-post-id="6223670879801312002" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="11099521"><a rel="nofollow author" target="_blank" href="http://weibo.com/1909992831" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=11099521&#39;;" title="SlamDunk_小弓虽"><img src="./Android样式的开发_shape篇_files/1" alt="SlamDunk_小弓虽"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/1909992831" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=11099521&#39;;" rel="nofollow" target="_blank" data-user-id="11099521">SlamDunk_小弓虽</a></div><p>赞一个</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-02T21:01:36+08:00" title="2015年12月2日 下午9:01:36">2015年12月2日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6224345020351120129"><div class="ds-post-self" data-post-id="6224345020351120129" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6219481096363442945"><a rel="nofollow author" target="_blank" href="https://liuwang.github.io/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6219481096363442945&#39;;" title="旺LOVE秀"><img src="./Android样式的开发_shape篇_files/1(1)" alt="旺LOVE秀"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="https://liuwang.github.io/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6219481096363442945&#39;;" rel="nofollow" target="_blank" data-user-id="6219481096363442945">旺LOVE秀</a></div><p>非常的赞</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-04T16:37:37+08:00" title="2015年12月4日 下午4:37:37">2015年12月4日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6224820319069143810"><div class="ds-post-self" data-post-id="6224820319069143810" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="7691193"><a rel="nofollow author" target="_blank" href="http://t.qq.com/zeratel3000" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=7691193&#39;;" title="LHF"><img src="./Android样式的开发_shape篇_files/50" alt="LHF"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/zeratel3000" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=7691193&#39;;" rel="nofollow" target="_blank" data-user-id="7691193">LHF</a></div><p>非常赞，这个系列的我转发下哈~ <img src="./Android样式的开发_shape篇_files/tootha_org.gif" alt="[嘻嘻]" title="[嘻嘻]" class="ds-smiley"> </p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-05T23:22:01+08:00" title="2015年12月5日 下午11:22:01">2015年12月5日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6225459068123742977"><div class="ds-post-self" data-post-id="6225459068123742977" data-thread-id="6220678839782081282" data-root-id="6224820319069143810" data-source="duoshuo"><div class="ds-avatar" data-user-id="513673"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" rel="nofollow" target="_blank" data-user-id="513673">Keegan小钢</a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6224820319069143810"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/zeratel3000" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=7691193&#39;;" title="LHF"><img src="./Android样式的开发_shape篇_files/50" alt="LHF"></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="http://t.qq.com/zeratel3000">LHF</a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2015-12-05T23:22:01+08:00" title="2015年12月5日 下午11:22:01">2015年12月5日</a><div class="ds-ctx-nth" title="2015年12月5日 下午11:22:01">1楼</div></div><div class="ds-ctx-content">非常赞，这个系列的我转发下哈~ <img src="./Android样式的开发_shape篇_files/tootha_org.gif" alt="[嘻嘻]" title="[嘻嘻]" class="ds-smiley"> 　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p>可以</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-07T16:40:41+08:00" title="2015年12月7日 下午4:40:41">2015年12月7日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6228511862967763714"><div class="ds-post-self" data-post-id="6228511862967763714" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="8607802"><a rel="nofollow author" target="_blank" href="http://t.qq.com/witype" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=8607802&#39;;" title="Typer"><img src="./Android样式的开发_shape篇_files/100" alt="Typer"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/witype" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=8607802&#39;;" rel="nofollow" target="_blank" data-user-id="8607802">Typer</a></div><p>我一直很好奇，这些内容在哪可以找到？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-15T22:07:06+08:00" title="2015年12月15日 下午10:07:06">2015年12月15日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6228526830404502273"><div class="ds-post-self" data-post-id="6228526830404502273" data-thread-id="6220678839782081282" data-root-id="6228511862967763714" data-source="duoshuo"><div class="ds-avatar" data-user-id="513673"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" rel="nofollow" target="_blank" data-user-id="513673">Keegan小钢</a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6228511862967763714"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/witype" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=8607802&#39;;" title="Typer"><img src="./Android样式的开发_shape篇_files/100" alt="Typer"></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="http://t.qq.com/witype">Typer</a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2015-12-15T22:07:06+08:00" title="2015年12月15日 下午10:07:06">2015年12月15日</a><div class="ds-ctx-nth" title="2015年12月15日 下午10:07:06">1楼</div></div><div class="ds-ctx-content">我一直很好奇，这些内容在哪可以找到？　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p>大部分内容在官网里有</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-15T23:05:10+08:00" title="2015年12月15日 下午11:05:10">2015年12月15日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6233144284808217346"><div class="ds-post-self" data-post-id="6233144284808217346" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="13554478"><a rel="nofollow author" target="_blank" href="http://weibo.com/yuhongpc" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=13554478&#39;;" title="宝尊之"><img src="./Android样式的开发_shape篇_files/1(3)" alt="宝尊之"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/yuhongpc" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=13554478&#39;;" rel="nofollow" target="_blank" data-user-id="13554478">宝尊之</a></div><p>感谢钢哥在这方面的总结，已转载备用，基本上试了下效果，大多都是 ok 的只是在渐变属性的放射类型有点问题，    &lt;gradient android:type="radial"<br>
+        android:gradientRadius="100"<br>
+        android:centerX="0.1"<br>
+        android:centerY="1"<br>
+        android:startColor="@android:color/holo_orange_light"<br>
+        android:centerColor="@android:color/holo_red_dark"<br>
+        android:endColor="@android:color/holo_purple"/&gt; 这里android:gradientRadius="100"不能加dp单位不然在5.0以下的手机渲染不出来。我没有5.0+的手机使用的是模拟器测试验证的。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-28T09:43:15+08:00" title="2015年12月28日 上午9:43:15">2015年12月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6233147922947506945"><div class="ds-post-self" data-post-id="6233147922947506945" data-thread-id="6220678839782081282" data-root-id="6233144284808217346" data-source="duoshuo"><div class="ds-avatar" data-user-id="513673"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" rel="nofollow" target="_blank" data-user-id="513673">Keegan小钢</a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6233144284808217346"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://weibo.com/yuhongpc" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=13554478&#39;;" title="宝尊之"><img src="./Android样式的开发_shape篇_files/1(3)" alt="宝尊之"></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="http://weibo.com/yuhongpc">宝尊之</a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2015-12-28T09:43:15+08:00" title="2015年12月28日 上午9:43:15">2015年12月28日</a><div class="ds-ctx-nth" title="2015年12月28日 上午9:43:15">1楼</div></div><div class="ds-ctx-content">感谢钢哥在这方面的总结，已转载备用，基本上试了下效果，大多都是 ok 的只是在渐变属性的放射类型有点问题，    &lt;gradient android:type="radial"<br>
+        android:gradientRadius="100"<br>
+        android:centerX="0.1"<br>
+        android:centerY="1"<br>
+        android:startColor="@android:color/holo_orange_light"<br>
+        android:centerColor="@android:color/holo_red_dark"<br>
+        android:endColor="@android:color/holo_purple"/&gt; 这里android:gradientRadius="100"不能加dp单位不然在5.0以下的手机渲染不出来。我没有5.0+的手机使用的是模拟器测试验证的。　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p>那可能我测试的时候系统是5.0的</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2015-12-28T09:57:22+08:00" title="2015年12月28日 上午9:57:22">2015年12月28日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6235576315152433922"><div class="ds-post-self" data-post-id="6235576315152433922" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6235576184713773825"><a rel="nofollow author" target="_blank" href="http://weibo.com/3845009720" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6235576184713773825&#39;;" title="Mr_LittleDay"><img src="./Android样式的开发_shape篇_files/1(4)" alt="Mr_LittleDay"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/3845009720" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6235576184713773825&#39;;" rel="nofollow" target="_blank" data-user-id="6235576184713773825">Mr_LittleDay</a></div><p>谢谢小钢哥的分享，赞</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-03T23:00:47+08:00" title="2016年1月3日 下午11:00:47">1月3日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6237304484691706626"><div class="ds-post-self" data-post-id="6237304484691706626" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6237304420007150337"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6237304420007150337&#39;;" title="路过 ◑▂◑ 问好"><img src="./Android样式的开发_shape篇_files/0" alt="路过 ◑▂◑ 问好"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6237304420007150337&#39;;" rel="nofollow" target="_blank" data-user-id="6237304420007150337">路过 ◑▂◑ 问好</a></div><p>很好很全面，必须转起啊</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-01-08T14:46:57+08:00" title="2016年1月8日 下午2:46:57">1月8日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6257308837288608514"><div class="ds-post-self" data-post-id="6257308837288608514" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6242510838226223873"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6242510838226223873&#39;;" title="东泽"><img src="./Android样式的开发_shape篇_files/0(1)" alt="东泽"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6242510838226223873&#39;;" rel="nofollow" target="_blank" data-user-id="6242510838226223873">东泽</a></div><p>很好的分享</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-03-02T12:34:04+08:00" title="2016年3月2日 下午12:34:04">3月2日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6271007751418151681"><div class="ds-post-self" data-post-id="6271007751418151681" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="8338551"><a rel="nofollow author" target="_blank" href="http://t.qq.com/chenzhichai210" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=8338551&#39;;" title="陈致钗"><img src="./Android样式的开发_shape篇_files/50(1)" alt="陈致钗"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/chenzhichai210" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=8338551&#39;;" rel="nofollow" target="_blank" data-user-id="8338551">陈致钗</a></div><p>我把代码放到Eclipse跑一遍，一个是paddingMode属性没有，这个应该是sdk的问题。另外一个就是shape下面的Ring会报错。bg_ring_with_gradient_rotate.xml这个rotote标签漏了子标签。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-08T10:32:51+08:00" title="2016年4月8日 上午10:32:51">4月8日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6271014730920362754"><div class="ds-post-self" data-post-id="6271014730920362754" data-thread-id="6220678839782081282" data-root-id="6271007751418151681" data-source="duoshuo"><div class="ds-avatar" data-user-id="513673"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" rel="nofollow" target="_blank" data-user-id="513673">Keegan小钢</a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6271007751418151681"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/chenzhichai210" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=8338551&#39;;" title="陈致钗"><img src="./Android样式的开发_shape篇_files/50(1)" alt="陈致钗"></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="http://t.qq.com/chenzhichai210">陈致钗</a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2016-04-08T10:32:51+08:00" title="2016年4月8日 上午10:32:51">4月8日</a><div class="ds-ctx-nth" title="2016年4月8日 上午10:32:51">1楼</div></div><div class="ds-ctx-content">我把代码放到Eclipse跑一遍，一个是paddingMode属性没有，这个应该是sdk的问题。另外一个就是shape下面的Ring会报错。bg_ring_with_gradient_rotate.xml这个rotote标签漏了子标签。　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p>你说的是github上的代码吗？我刚才看了，的确漏了，现在补上了。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-08T10:59:56+08:00" title="2016年4月8日 上午10:59:56">4月8日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6271088069416321794"><div class="ds-post-self" data-post-id="6271088069416321794" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./Android样式的开发_shape篇_files/noavatar_default.png" alt="aaa"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">aaa</span></div><p>赞</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-08T15:44:31+08:00" title="2016年4月8日 下午3:44:31">4月8日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6272335155772261121"><div class="ds-post-self" data-post-id="6272335155772261121" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./Android样式的开发_shape篇_files/noavatar_default.png" alt="Android_XiaoBai"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">Android_XiaoBai</span></div><p>很想知道这些信息怎么在官网上查到的，一直不知道页面布局的东西在官网怎么查看</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-12T00:23:51+08:00" title="2016年4月12日 上午12:23:51">4月12日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6272522058198942465"><div class="ds-post-self" data-post-id="6272522058198942465" data-thread-id="6220678839782081282" data-root-id="6272335155772261121" data-source="duoshuo"><div class="ds-avatar" data-user-id="513673"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" rel="nofollow" target="_blank" data-user-id="513673">Keegan小钢</a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6272335155772261121"><div class="ds-avatar"><img src="./Android样式的开发_shape篇_files/noavatar_default.png" alt="Android_XiaoBai"></div><div class="ds-ctx-body"><div class="ds-ctx-head">Android_XiaoBai<a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2016-04-12T00:23:51+08:00" title="2016年4月12日 上午12:23:51">4月12日</a><div class="ds-ctx-nth" title="2016年4月12日 上午12:23:51">1楼</div></div><div class="ds-ctx-content">很想知道这些信息怎么在官网上查到的，一直不知道页面布局的东西在官网怎么查看　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p><a href="http://developer.android.com/index.html" target="_blank" rel="nofollow">http://developer.android.com/index.html</a></p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-12T12:29:08+08:00" title="2016年4月12日 下午12:29:08">4月12日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6272577191083508482"><div class="ds-post-self" data-post-id="6272577191083508482" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="14120479"><a rel="nofollow author" target="_blank" href="http://t.qq.com/zt80hou" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=14120479&#39;;" title="畅通无阻"><img src="./Android样式的开发_shape篇_files/50(2)" alt="畅通无阻"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/zt80hou" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=14120479&#39;;" rel="nofollow" target="_blank" data-user-id="14120479">畅通无阻</a></div><p>总结的很吊！</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-04-12T16:03:04+08:00" title="2016年4月12日 下午4:03:04">4月12日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6280455754298163970"><div class="ds-post-self" data-post-id="6280455754298163970" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6280455716318741250"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6280455716318741250&#39;;" title="戴益波"><img src="./Android样式的开发_shape篇_files/0(2)" alt="戴益波"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6280455716318741250&#39;;" rel="nofollow" target="_blank" data-user-id="6280455716318741250">戴益波</a></div><p>牛逼，忍不住要发个评论了。博主写博客太走心！</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-05-03T21:35:55+08:00" title="2016年5月3日 下午9:35:55">5月3日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6295957910673425153"><div class="ds-post-self" data-post-id="6295957910673425153" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6295957679294644993"><a rel="nofollow author" target="_blank" href="http://t.qq.com/sangbigye" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6295957679294644993&#39;;" title="SangBigYe"><img src="./Android样式的开发_shape篇_files/100(1)" alt="SangBigYe"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/sangbigye" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6295957679294644993&#39;;" rel="nofollow" target="_blank" data-user-id="6295957679294644993">SangBigYe</a></div><p>先膜拜一下博主，文章写的很不错。<br>
+但是在练习中发现一个问题。<br>
+Line中，线条的粗细和stroke下的width有关，貌似和size中的height并无关系。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-06-14T16:12:12+08:00" title="2016年6月14日 下午4:12:12">6月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6296047666019173121"><div class="ds-post-self" data-post-id="6296047666019173121" data-thread-id="6220678839782081282" data-root-id="6295957910673425153" data-source="duoshuo"><div class="ds-avatar" data-user-id="513673"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" rel="nofollow" target="_blank" data-user-id="513673">Keegan小钢</a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6295957910673425153"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/sangbigye" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6295957679294644993&#39;;" title="SangBigYe"><img src="./Android样式的开发_shape篇_files/100(1)" alt="SangBigYe"></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="http://t.qq.com/sangbigye">SangBigYe</a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2016-06-14T16:12:12+08:00" title="2016年6月14日 下午4:12:12">6月14日</a><div class="ds-ctx-nth" title="2016年6月14日 下午4:12:12">1楼</div></div><div class="ds-ctx-content">先膜拜一下博主，文章写的很不错。<br>
+但是在练习中发现一个问题。<br>
+Line中，线条的粗细和stroke下的width有关，貌似和size中的height并无关系。　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p>文中说了，线的高度是通过stroke的android:width属性设置的；size的android:height属性定义的是整个形状区域的高度</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-06-14T22:00:30+08:00" title="2016年6月14日 下午10:00:30">6月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6296223990566372098"><div class="ds-post-self" data-post-id="6296223990566372098" data-thread-id="6220678839782081282" data-root-id="6295957910673425153" data-source="duoshuo"><div class="ds-avatar" data-user-id="6295957679294644993"><a rel="nofollow author" target="_blank" href="http://t.qq.com/sangbigye" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6295957679294644993&#39;;" title="SangBigYe"><img src="./Android样式的开发_shape篇_files/100(1)" alt="SangBigYe"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/sangbigye" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6295957679294644993&#39;;" rel="nofollow" target="_blank" data-user-id="6295957679294644993">SangBigYe</a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6295957910673425153"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/sangbigye" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6295957679294644993&#39;;" title="SangBigYe"><img src="./Android样式的开发_shape篇_files/100(1)" alt="SangBigYe"></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="http://t.qq.com/sangbigye">SangBigYe</a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2016-06-14T16:12:12+08:00" title="2016年6月14日 下午4:12:12">6月14日</a><div class="ds-ctx-nth" title="2016年6月14日 下午4:12:12">1楼</div></div><div class="ds-ctx-content">先膜拜一下博主，文章写的很不错。<br>
+但是在练习中发现一个问题。<br>
+Line中，线条的粗细和stroke下的width有关，貌似和size中的height并无关系。　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li><li class="ds-ctx-entry" data-post-id="6296047666019173121"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/">Keegan小钢</a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2016-06-14T22:00:30+08:00" title="2016年6月14日 下午10:00:30">6月14日</a><div class="ds-ctx-nth" title="2016年6月14日 下午10:00:30">2楼</div></div><div class="ds-ctx-content">文中说了，线的高度是通过stroke的android:width属性设置的；size的android:height属性定义的是整个形状区域的高度　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p>1、size的height必须大于stroke的width，否则，线无法显示。<br>
+实际发现，height小于width依然可以显示线条，只要height不为0即可。<br>
+&lt;shape xmlns:android="<a href="http://schemas.android.com/apk/res/android%22" target="_blank" rel="nofollow">http://schemas.android.com/apk/res/android"</a><br>
+    android:shape="line"&gt;<br>
+    &lt;stroke<br>
+        android:width="10dp"<br>
+        android:color="@color/colorPrimary"<br>
+        /&gt;<br>
+    &lt;size android:height="1dp"/&gt;<br>
+&lt;/shape&gt;<br>
+2、size的android:height属性定义的是整个形状区域的高度<br>
+当组件的android:layout_height="wrap_content"时，设置size的android:height的高度会覆盖android:layout_height的值。这个终于明白了，谢谢博主。</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-06-15T09:24:44+08:00" title="2016年6月15日 上午9:24:44">6月15日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6314235243037459201"><div class="ds-post-self" data-post-id="6314235243037459201" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6279347419889009410"><a rel="nofollow author" target="_blank" href="http://bfchengnuo.info/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6279347419889009410&#39;;" title="K冰封承諾"><img src="./Android样式的开发_shape篇_files/247970.jpg" alt="K冰封承諾"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://bfchengnuo.info/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6279347419889009410&#39;;" rel="nofollow" target="_blank" data-user-id="6279347419889009410">K冰封承諾</a></div><p>太赞了！经典！</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-08-02T22:17:35+08:00" title="2016年8月2日 下午10:17:35">8月2日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6316033458296587010"><div class="ds-post-self" data-post-id="6316033458296587010" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar"><img src="./Android样式的开发_shape篇_files/noavatar_default.png" alt="book"></div><div class="ds-comment-body"><div class="ds-comment-header"><span class="ds-user-name" data-qqt-account="">book</span></div><p>真是感谢</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-08-07T18:35:35+08:00" title="2016年8月7日 下午6:35:35">8月7日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6318150695249773313"><div class="ds-post-self" data-post-id="6318150695249773313" data-thread-id="6220678839782081282" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6318150645085897474"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6318150645085897474&#39;;" title=""><img src="./Android样式的开发_shape篇_files/0(3)" alt=""></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6318150645085897474&#39;;" rel="nofollow" target="_blank" data-user-id="6318150645085897474"></a></div><p>我想问一下如果想换进度条，要怎么引入到progerssBar中去呀？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-08-13T11:31:33+08:00" title="2016年8月13日 上午11:31:33">8月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6318241522810618625"><div class="ds-post-self" data-post-id="6318241522810618625" data-thread-id="6220678839782081282" data-root-id="6318150695249773313" data-source="duoshuo"><div class="ds-avatar" data-user-id="513673"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" rel="nofollow" target="_blank" data-user-id="513673">Keegan小钢</a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6318150695249773313"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6318150645085897474&#39;;" title=""><img src="./Android样式的开发_shape篇_files/0(3)" alt=""></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="javascript:void(0)"></a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2016-08-13T11:31:33+08:00" title="2016年8月13日 上午11:31:33">8月13日</a><div class="ds-ctx-nth" title="2016年8月13日 上午11:31:33">1楼</div></div><div class="ds-ctx-content">我想问一下如果想换进度条，要怎么引入到progerssBar中去呀？　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p>请查看github的示例代码</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-08-13T17:24:00+08:00" title="2016年8月13日 下午5:24:00">8月13日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6318529441798554369"><div class="ds-post-self" data-post-id="6318529441798554369" data-thread-id="6220678839782081282" data-root-id="6318150695249773313" data-source="duoshuo"><div class="ds-avatar" data-user-id="6318150645085897474"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6318150645085897474&#39;;" title=""><img src="./Android样式的开发_shape篇_files/0(3)" alt=""></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6318150645085897474&#39;;" rel="nofollow" target="_blank" data-user-id="6318150645085897474"></a></div><ol id="ds-ctx"><li class="ds-ctx-entry" data-post-id="6318150695249773313"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="javascript:void(0)" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=6318150645085897474&#39;;" title=""><img src="./Android样式的开发_shape篇_files/0(3)" alt=""></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="javascript:void(0)"></a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2016-08-13T11:31:33+08:00" title="2016年8月13日 上午11:31:33">8月13日</a><div class="ds-ctx-nth" title="2016年8月13日 上午11:31:33">1楼</div></div><div class="ds-ctx-content">我想问一下如果想换进度条，要怎么引入到progerssBar中去呀？　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li><li class="ds-ctx-entry" data-post-id="6318241522810618625"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/" onclick="this.href=&#39;http://keeganlee.duoshuo.com/user-url/?user_id=513673&#39;;" title="Keegan小钢"><img src="./Android样式的开发_shape篇_files/1(2)" alt="Keegan小钢"></a></div><div class="ds-ctx-body"><div class="ds-ctx-head"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/">Keegan小钢</a><a href="http://keeganlee.me/post/android/undefined" target="_blank" rel="nofollow" class="ds-time" datetime="2016-08-13T17:24:00+08:00" title="2016年8月13日 下午5:24:00">8月13日</a><div class="ds-ctx-nth" title="2016年8月13日 下午5:24:00">2楼</div></div><div class="ds-ctx-content">请查看github的示例代码　　　　　　　<div class="ds-comment-actions"><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a></div></div></div></li></ol><p>好的，谢谢您</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-08-14T12:01:16+08:00" title="2016年8月14日 下午12:01:16">8月14日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://keeganlee.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://keeganlee.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://keeganlee.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://keeganlee.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://keeganlee.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://keeganlee.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://keeganlee.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://keeganlee.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./Android样式的开发_shape篇_files/noavatar_default.png" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="6220678839782081282">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="57a482957f830"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">Keegan小钢正在使用多说</a></p></div></div>
+  <script type="text/javascript">var duoshuoQuery = {short_name:"keeganlee"};
+(function() { 
+    var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+
+  </article>
+</div>
+<div class="sider">
+  <aside>
+    <h3><i class="fa fa-magic"></i><span>&nbsp; Recent Articles</span>
+    </h3>
+    <ul class="recent_posts">
+
+
+      <li class="listing-item"><a href="http://keeganlee.me/post/practice/20160812" title="App项目实战之路(二):API篇">App项目实战之路(二):API篇</a>
+      </li>
+      <li class="listing-item"><a href="http://keeganlee.me/post/practice/20160807" title="App项目实战之路(一):概述篇">App项目实战之路(一):概述篇</a>
+      </li>
+      <li class="listing-item"><a href="http://keeganlee.me/post/reading/20160722" title="读《图解密码技术》(三):密钥、随机数和应用技术">读《图解密码技术》(三):密钥、随机数和应用技术</a>
+      </li>
+      <li class="listing-item"><a href="http://keeganlee.me/post/reading/20160705" title="读《图解密码技术》(二):认证">读《图解密码技术》(二):认证</a>
+      </li>
+      <li class="listing-item"><a href="http://keeganlee.me/post/reading/20160629" title="读《图解密码技术》(一):密码">读《图解密码技术》(一):密码</a>
+      </li>
+      <li class="listing-item"><a href="http://keeganlee.me/post/architecture/20160621" title="小钢的架构思考:架构设计">小钢的架构思考:架构设计</a>
+      </li>
+      <li class="listing-item"><a href="http://keeganlee.me/post/architecture/20160509" title="小钢的架构思考:架构规划">小钢的架构思考:架构规划</a>
+      </li>
+      <li class="listing-item"><a href="http://keeganlee.me/post/architecture/20160425" title="小钢的架构思考:什么是架构">小钢的架构思考:什么是架构</a>
+      </li>
+    </ul>
+  </aside>
+  <aside>
+    <h3><i class="fa fa-comments"></i><span>&nbsp; Recent Comments</span>
+    </h3>
+    <ul data-show-title="0" data-show-time="0" data-show-avatars="0" class="ds-recent-comments" id="ds-recent-comments"><li class="ds-comment" data-post-id="6318970863265776385"><div class="ds-meta"><a rel="nofollow author" target="_blank" href="javascript:void(0)">Cruise</a></div><a class="ds-excerpt" title="App架构设计经验谈:接口的设计 中的评论" href="http://keeganlee.me/post/architecture/20160107#comments">学习~小肛..</a></li><li class="ds-comment" data-post-id="6318967667810108161"><div class="ds-meta"><a rel="nofollow author" target="_blank" href="http://keeganlee.me/">Keegan小钢</a></div><a class="ds-excerpt" title="App项目实战之路(一):概述篇 中的评论" href="http://keeganlee.me/post/practice/20160807#comments">开源的时候就会放上github</a></li><li class="ds-comment" data-post-id="6318656422124978945"><div class="ds-meta">洛大叔</div><a class="ds-excerpt" title="App项目实战之路(一):概述篇 中的评论" href="http://keeganlee.me/post/practice/20160807#comments">代码会放到github上吗，可以放出github地址，观摩观摩</a></li><li class="ds-comment" data-post-id="6318529441798554369"><div class="ds-meta"><a rel="nofollow author" target="_blank" href="javascript:void(0)"></a></div><a class="ds-excerpt" title="Android样式的开发:shape篇 中的评论" href="http://keeganlee.me/post/android/20150830#comments">好的，谢谢您</a></li><li class="ds-comment" data-post-id="6318304840023802626"><div class="ds-meta"><a rel="nofollow author" target="_blank" href="http://t.qq.com/fengxianfei7279">南飞</a></div><a class="ds-excerpt" title=" 中的评论" href="http://keeganlee.me/post/20120927#comments">这就好解释了</a></li></ul>
+  </aside>
+  <aside>
+    <h3><i class="fa fa-tags"></i><span>&nbsp;Tags</span>
+    </h3>
+    <div><a href="http://keeganlee.me/tags/%E6%9E%B6%E6%9E%84">架构 &nbsp;</a><a href="http://keeganlee.me/tags/Android">Android &nbsp;</a><a href="http://keeganlee.me/tags/%E6%9D%82%E8%B0%88">杂谈 &nbsp;</a><a href="http://keeganlee.me/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0">读书笔记 &nbsp;</a><a href="http://keeganlee.me/tags/%E5%88%9B%E4%B8%9A">创业 &nbsp;</a><a href="http://keeganlee.me/tags/BaaS">BaaS &nbsp;</a><a href="http://keeganlee.me/tags/PUA">PUA &nbsp;</a><a href="http://keeganlee.me/tags/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98">项目实战 &nbsp;</a><a href="http://keeganlee.me/tags/iOS">iOS &nbsp;</a>
+    </div>
+  </aside>
+</div>
+
+
+
+      </div>
+      <footer id="footer">
+        <div class="footer-right"><a href="http://keeganlee.me/template" title="Clone Template"><i class="fa fa-cloud-download"></i></a>
+        </div>
+        <div class="copyright">Powered by &nbsp;<a href="https://www.farbox.com/" target="_blank">FarBox &nbsp;</a>Theme by <a href="http://motype.org/">Deepure</a> . Thanks for
+<a href="http://fontawesome.io/">Fontawesome</a>&nbsp; &amp;
+<a href="http://dropbox.com/">Dropbox</a>
+        </div>
+      </footer>
+      <!-- for duoshuo recent comments-->
+      <script type="text/javascript">var duoshuoQuery = {short_name:"keeganlee"};
+(function() { var ds = document.createElement('script'); ds.type = 'text/javascript';ds.async = true;
+ds.src = '//static.duoshuo.com/embed.js';ds.charset = 'UTF-8';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+    </div>
+  
+<script src="./Android样式的开发_shape篇_files/MathJax.js" type="text/javascript">
+       MathJax.Hub.Config({
+           tex2jax: {
+                inlineMath: [ ['$','$']]
+                },
+            extensions: ["jsMath2jax.js", 'tex2jax.js'],
+            messageStyle: "none"
+        });
+    </script>
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Size1, Times;"></div></div></body></html>

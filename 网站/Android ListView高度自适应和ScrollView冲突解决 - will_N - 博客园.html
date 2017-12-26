@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.cnblogs.com/ning1121/p/4464457.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/bundle-darkgreentrip.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/ning1121/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/ning1121/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/ning1121/wlwmanifest.xml">
+<script type="text/javascript" src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/encoder.js"></script><script src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'ning1121', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/ning1121/"><img id="blogLogo" src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/ning1121/">will_N</a></h1>
+<h2>要么什么都不做，要么尽自己最大努力做到更好！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/ning1121/">首页</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/will_N">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/ning1121/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/ning1121/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			
+<span id="stats_post_count">随笔 - 45&nbsp; </span>
+<span id="stats_article_count">文章 - 4&nbsp; </span>
+<span id="stats-comment_count">评论 - 3</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/ning1121/p/4464457.html">Android ListView高度自适应和ScrollView冲突解决</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>在ScrollView中嵌套使用ListView，ListView只会显示一行到两行的数据。起初我以为是样式的问题，一直在对XML文件的样式进行尝试性设置，但始终得不到想要的效果。后来在网上查了查，ScrollView和ListView两个View都有滚动的效果，在嵌套使用时起了冲突，一般不建议两者套用。</p>
+<p>&nbsp;</p>
+<p>下面说说具体解决方案。方案的主要思路就是根据ListView子项重置其高度。</p>
+<p>首先，ListView不能直接用，要自定义一个，然后重写onMeasure（）方法：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> android.content.Context;
+</span><span style="color: #008080;"> 2</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> android.util.AttributeSet;
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> android.widget.ListView;
+</span><span style="color: #008080;"> 4</span> 
+<span style="color: #008080;"> 5</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MyListView <span style="color: #0000ff;">extends</span><span style="color: #000000;"> ListView {
+</span><span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span>     <span style="color: #0000ff;">public</span><span style="color: #000000;"> MyListView(Context context) {
+</span><span style="color: #008080;"> 8</span>     <span style="color: #0000ff;">super</span><span style="color: #000000;">(context);
+</span><span style="color: #008080;"> 9</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">10</span>     
+<span style="color: #008080;">11</span>     <span style="color: #0000ff;">public</span><span style="color: #000000;"> MyListView(Context context, AttributeSet attrs) {
+</span><span style="color: #008080;">12</span>     <span style="color: #0000ff;">super</span><span style="color: #000000;">(context, attrs);
+</span><span style="color: #008080;">13</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">14</span>     
+<span style="color: #008080;">15</span>     <span style="color: #0000ff;">public</span> MyListView(Context context, AttributeSet attrs, <span style="color: #0000ff;">int</span><span style="color: #000000;"> defStyle) {
+</span><span style="color: #008080;">16</span>     <span style="color: #0000ff;">super</span><span style="color: #000000;">(context, attrs, defStyle);
+</span><span style="color: #008080;">17</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">18</span>     
+<span style="color: #008080;">19</span> <span style="color: #000000;">    @Override
+</span><span style="color: #008080;">20</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onMeasure(<span style="color: #0000ff;">int</span> widthMeasureSpec, <span style="color: #0000ff;">int</span><span style="color: #000000;"> heightMeasureSpec) {
+</span><span style="color: #008080;">21</span>         <span style="color: #0000ff;">int</span> expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE &gt;&gt; 2<span style="color: #000000;">,
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">                MeasureSpec.AT_MOST);
+</span><span style="color: #008080;">23</span>         <span style="color: #0000ff;">super</span><span style="color: #000000;">.onMeasure(widthMeasureSpec, expandSpec);
+</span><span style="color: #008080;">24</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">25</span> 
+<span style="color: #008080;">26</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>第二步：写个计算listView每个Item的方法：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> setListViewHeightBasedOnChildren(ListView listView) {
+</span><span style="color: #008080;"> 2</span> 
+<span style="color: #008080;"> 3</span>   <span style="color: #008000;">//</span><span style="color: #008000;"> 获取ListView对应的Adapter</span>
+<span style="color: #008080;"> 4</span> 
+<span style="color: #008080;"> 5</span>   ListAdapter listAdapter =<span style="color: #000000;"> listView.getAdapter();
+</span><span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span>   <span style="color: #0000ff;">if</span> (listAdapter == <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+</span><span style="color: #008080;"> 8</span> 
+<span style="color: #008080;"> 9</span>    <span style="color: #0000ff;">return</span><span style="color: #000000;">;
+</span><span style="color: #008080;">10</span> 
+<span style="color: #008080;">11</span> <span style="color: #000000;">  }
+</span><span style="color: #008080;">12</span> 
+<span style="color: #008080;">13</span>   <span style="color: #0000ff;">int</span> totalHeight = 0<span style="color: #000000;">;
+</span><span style="color: #008080;">14</span> 
+<span style="color: #008080;">15</span>   <span style="color: #0000ff;">for</span> (<span style="color: #0000ff;">int</span> i = 0; i &lt; listAdapter.getCount(); i++) { <span style="color: #008000;">//</span><span style="color: #008000;"> listAdapter.getCount()返回数据项的数目</span>
+<span style="color: #008080;">16</span> 
+<span style="color: #008080;">17</span>    View listItem = listAdapter.getView(i, <span style="color: #0000ff;">null</span><span style="color: #000000;">, listView);
+</span><span style="color: #008080;">18</span> 
+<span style="color: #008080;">19</span>    listItem.measure(0, 0); <span style="color: #008000;">//</span><span style="color: #008000;"> 计算子项View 的宽高</span>
+<span style="color: #008080;">20</span> 
+<span style="color: #008080;">21</span>    totalHeight += listItem.getMeasuredHeight(); <span style="color: #008000;">//</span><span style="color: #008000;"> 统计所有子项的总高度</span>
+<span style="color: #008080;">22</span> 
+<span style="color: #008080;">23</span> <span style="color: #000000;">  }
+</span><span style="color: #008080;">24</span> 
+<span style="color: #008080;">25</span>   ViewGroup.LayoutParams params =<span style="color: #000000;"> listView.getLayoutParams();
+</span><span style="color: #008080;">26</span> 
+<span style="color: #008080;">27</span>   params.height =<span style="color: #000000;"> totalHeight
+</span><span style="color: #008080;">28</span>     + (listView.getDividerHeight() * (listAdapter.getCount() - 1<span style="color: #000000;">));
+</span><span style="color: #008080;">29</span> 
+<span style="color: #008080;">30</span>   <span style="color: #008000;">//</span><span style="color: #008000;"> listView.getDividerHeight()获取子项间分隔符占用的高度
+</span><span style="color: #008080;">31</span> 
+<span style="color: #008080;">32</span>   <span style="color: #008000;">//</span><span style="color: #008000;"> params.height最后得到整个ListView完整显示需要的高度</span>
+<span style="color: #008080;">33</span> 
+<span style="color: #008080;">34</span> <span style="color: #000000;">  listView.setLayoutParams(params);
+</span><span style="color: #008080;">35</span> 
+<span style="color: #008080;">36</span>  }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>在设置LIstView的Adapter后调用此方法便可。</p>
+<p>&nbsp;</p>
+<p>但是要注意的是，子ListView的每个Item必须是LinearLayout，不能是其他的，因为其他的Layout(如RelativeLayout)没有重写onMeasure()，所以会在onMeasure()时抛出异常。</p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">1</span> <span style="color: #000000;">listView.setAdapter(adapter);  
+</span><span style="color: #008080;">2</span> setListViewHeightBasedOnChildren(listView);  </pre>
+</div>
+<p>&nbsp;</p>
+<p>谢谢作者：http://www.jb51.net/article/37202.htm，http://blog.csdn.net/wulianghuan/article/details/8627958</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/ning1121/category/605605.html">Android</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/ning1121/tag/listView/">listView</a>, <a href="http://www.cnblogs.com/ning1121/tag/ScrollView/">ScrollView</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4464457,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;744450c8-9c3b-e311-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ning1121/" target="_blank"><img src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/20140829221048.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/ning1121/">will_N</a><br>
+            <a href="http://home.cnblogs.com/u/ning1121/followees">关注 - 3</a><br>
+            <a href="http://home.cnblogs.com/u/ning1121/followers">粉丝 - 4</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;744450c8-9c3b-e311-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4464457,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(4464457,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/ning1121/p/4462985.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/ning1121/p/4462985.html" title="发布于2015-04-28 14:43">ADT版本问题--This Android SDK requires Android Developer Toolkit version 23.0.0 or above，androidadt23.0.0</a><br><a href="http://www.cnblogs.com/ning1121/p/4483233.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/ning1121/p/4483233.html" title="发布于2015-05-06 21:27">GitHub上最火的74个Android开源项目（收藏）</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-04-28 23:55</span> <a href="http://www.cnblogs.com/ning1121/">will_N</a> 阅读(<span id="post_view_count">1030</span>) 评论(<span id="post_comment_count">2</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4464457" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/ning1121/p/4464457.html#" onclick="AddToWz(4464457);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=166677,cb_entryId=4464457,cb_blogApp=currentBlogApp,cb_blogUserGuid='744450c8-9c3b-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2015/4/28 23:55:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/ning1121/p/4464457.html#3212924" class="layer">#1楼</a><a name="3212924" id="comment_anchor_3212924"></a>  <span class="comment_date">2015-06-22 14:13</span> <a id="a_comment_author_3212924" href="http://www.cnblogs.com/smyhvae/" target="_blank">生命壹号</a> <a href="http://msg.cnblogs.com/send/%E7%94%9F%E5%91%BD%E5%A3%B9%E5%8F%B7" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3212924" class="blog_comment_body">亲测有效，谢谢楼主。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3212924,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3212924,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3212924_avatar" style="display:none;">http://pic.cnblogs.com/face/641601/20151116171645.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/ning1121/p/4464457.html#3257648" class="layer">#2楼</a><a name="3257648" id="comment_anchor_3257648"></a><span id="comment-maxId" style="display:none;">3257648</span><span id="comment-maxDate" style="display:none;">2015/8/31 16:09:20</span>  <span class="comment_date">2015-08-31 16:09</span> <a id="a_comment_author_3257648" href="http://home.cnblogs.com/u/583055/" target="_blank">对公司非关税</a> <a href="http://msg.cnblogs.com/send/%E5%AF%B9%E5%85%AC%E5%8F%B8%E9%9D%9E%E5%85%B3%E7%A8%8E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3257648" class="blog_comment_body">感谢楼主，帮了大忙</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3257648,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3257648,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/ning1121/p/4464457.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/ning1121/p/4464457.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://www.rongcloud.cn/live" target="_blank">【推荐】移动直播百强八成都在用融云即时通讯云</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br><a href="http://netease.im/?&amp;hmsr=bky8&amp;from=bky8" target="_blank">【推荐】网易云信-一天开发一个微信，独创1对1技术顾问让开发加速</a><br><a href="http://click.aliyun.com/m/5912/" target="_blank">【推荐】一个小型创业公司怎样低成本起步？</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://gold.xitu.io/welcome/?utm_source=cnblogs&amp;utm_medium=banner&amp;utm_content=gaoshou&amp;utm_campaign=q3_website" target="_blank"><img width="300" height="250" src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/24442-20160805112458981-1554012564.jpg" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/552233/" target="_blank">搜房网第二季度净亏4060万美元 同比转亏</a><br> ·  <a href="http://news.cnblogs.com/n/552232/" target="_blank">董明珠：我最反对政府给我补贴 企业应想着多为国家交税</a><br> ·  <a href="http://news.cnblogs.com/n/552231/" target="_blank">微信WeChat Pay获得香港首批第三方支付牌照</a><br> ·  <a href="http://news.cnblogs.com/n/552229/" target="_blank">支付宝回应关闭网银接口传闻：谣言 继续与银行保持合作</a><br> ·  <a href="http://news.cnblogs.com/n/552228/" target="_blank">微软用免费许可证引诱VMware用户切换到Hyper-V</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice/?from=cnblogs01" target="_blank"><img width="468" height="60" src="./Android ListView高度自适应和ScrollView冲突解决 - will_N - 博客园_files/24442-20160803181056012-1919505484.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/550625/" target="_blank">程序猿媳妇儿注意事项</a><br> ·  <a href="http://kb.cnblogs.com/page/540529/" target="_blank">可是姑娘，你为什么要编程呢？</a><br> ·  <a href="http://kb.cnblogs.com/page/549631/" target="_blank">知其所以然（以算法学习为例）</a><br> ·  <a href="http://kb.cnblogs.com/page/548394/" target="_blank">如何给变量取个简短且无歧义的名字</a><br> ·  <a href="http://kb.cnblogs.com/page/549080/" target="_blank">编程的智慧</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/ning1121/">will_N</a><br>园龄：<a href="http://home.cnblogs.com/u/ning1121/" title="入园时间：2013-10-23">2年10个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/ning1121/followers/">4</a><br>关注：<a href="http://home.cnblogs.com/u/ning1121/followees/">3</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;744450c8-9c3b-e311-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/07/01&#39;);return false;">&lt;</a></td><td align="center">2016年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalTodayDay" align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/ning1121/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/ning1121/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/ning1121/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/ning1121/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/ning1121/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/ning1121/tag/android/">android</a>(12)</li><li><a href="http://www.cnblogs.com/ning1121/tag/java/">java</a>(9)</li><li><a href="http://www.cnblogs.com/ning1121/tag/socket/">socket</a>(4)</li><li><a href="http://www.cnblogs.com/ning1121/tag/listView/">listView</a>(3)</li><li><a href="http://www.cnblogs.com/ning1121/tag/%E5%8F%8D%E5%B0%84/">反射</a>(3)</li><li><a href="http://www.cnblogs.com/ning1121/tag/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>(2)</li><li><a href="http://www.cnblogs.com/ning1121/tag/flex/">flex</a>(2)</li><li><a href="http://www.cnblogs.com/ning1121/tag/Genymotion/">Genymotion</a>(2)</li><li><a href="http://www.cnblogs.com/ning1121/tag/http/">http</a>(1)</li><li><a href="http://www.cnblogs.com/ning1121/tag/HttpURLConnection/">HttpURLConnection</a>(1)</li><li><a href="http://www.cnblogs.com/ning1121/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/ning1121/category/605605.html">Android(27)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/ning1121/category/605607.html">FLex(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/ning1121/category/608349.html">Genymotion(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/ning1121/category/605606.html">JAVA基本(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/ning1121/category/606987.html">反射(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/ning1121/category/607009.html">数据库</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/ning1121/category/607008.html">数据相关</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/ning1121/archive/2015/05.html">2015年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/ning1121/archive/2015/04.html">2015年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/ning1121/archive/2015/03.html">2015年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/ning1121/archive/2015/01.html">2015年1月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/ning1121/archive/2014/09.html">2014年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/ning1121/archive/2014/08.html">2014年8月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/ning1121/archive/2014/05.html">2014年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/ning1121/archive/2013/12.html">2013年12月 (9)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlecategory" class="catListArticleCategory sidebar-block">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/ning1121/category/540397.html">Android(5)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/ning1121/category/540398.html">Flex(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/ning1121/category/540396.html">JAVA基本(9)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/ning1121/category/580802.html">web(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/ning1121/category/606986.html">反射(2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/ning1121/category/606978.html">数据库(2)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.cnblogs.com/ning1121/category/605602.html">数据类型相关(3)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links605609" class="catList sidebar-block">
+<h3 class="catListTitle">software</h3>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ning1121/p/3738065.html#3310234">1. Re:自学整理一：java文件对话框的使用（包括文件多选，文件、文件夹同时可选操作）</a></li>
+        <li class="recent_comment_body">想问JFileChooser适用于web端吗？</li>
+        <li class="recent_comment_author">--vivi佩佩</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ning1121/p/4464457.html#3257648">2. Re:Android ListView高度自适应和ScrollView冲突解决</a></li>
+        <li class="recent_comment_body">感谢楼主，帮了大忙</li>
+        <li class="recent_comment_author">--对公司非关税</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/ning1121/p/4464457.html#3212924">3. Re:Android ListView高度自适应和ScrollView冲突解决</a></li>
+        <li class="recent_comment_body">亲测有效，谢谢楼主。</li>
+        <li class="recent_comment_author">--生命壹号</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/ning1121/p/3944808.html">1. Android虚拟机Genymotion使用相关问题及处理(2140)</a></li><li><a href="http://www.cnblogs.com/ning1121/p/4464457.html">2. Android ListView高度自适应和ScrollView冲突解决(1030)</a></li><li><a href="http://www.cnblogs.com/ning1121/p/4460210.html">3. Android DrawerLayout 点击事件穿透(983)</a></li><li><a href="http://www.cnblogs.com/ning1121/p/3922439.html">4. android异步任务图片下载(进度条提示进度)(474)</a></li><li><a href="http://www.cnblogs.com/ning1121/p/3738065.html">5. 自学整理一：java文件对话框的使用（包括文件多选，文件、文件夹同时可选操作）(428)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/ning1121/p/4464457.html">1. Android ListView高度自适应和ScrollView冲突解决(2)</a></li><li><a href="http://www.cnblogs.com/ning1121/p/3738065.html">2. 自学整理一：java文件对话框的使用（包括文件多选，文件、文件夹同时可选操作）(1)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap" style="display: none;">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 will_N
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

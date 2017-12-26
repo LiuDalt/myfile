@@ -1,0 +1,40 @@
+$(function() {
+    //导航下拉
+    var sfEls = document.getElementById("main-nav").getElementsByTagName("li");
+    for (var i = 0; i < sfEls.length; i++) {
+        sfEls[i].onmouseover = function() {
+            this.className += (this.className.length > 0 ? " " : "") + "sfhover";
+        };
+        sfEls[i].onMouseDown = function() {
+            this.className += (this.className.length > 0 ? " " : "") + "sfhover";
+        };
+        sfEls[i].onMouseUp = function() {
+            this.className += (this.className.length > 0 ? " " : "") + "sfhover";
+        };
+        sfEls[i].onmouseout = function() {
+            this.className = this.className.replace(new RegExp("( ?|^)sfhover\\b"), "");
+        };
+    }
+
+    //热榜切换
+    $(".hot-week,.hot-month,.hot-year").bind("mouseover", function() {
+        //激活当前导航
+        $(this).siblings().removeClass("bar-active");
+        $(this).addClass("bar-active");
+
+        //显示列表
+        $(".hot-bar-week,.hot-bar-month,.hot-bar-year").css("display", "none");
+        var _targetBar = $(this).attr("tar");
+        $("." + _targetBar).css("display", "block");
+    });
+
+    //智能推荐
+    /*$("html").bind("click", function() {
+        var _cookieKey = "tj_pop";
+        var _cookieValue = $.cookie(_cookieKey);
+        if (typeof (_cookieValue) === "undefined" && $(".tj-pop").length > 0) {
+            $.cookie(_cookieKey, "well done", {expires: 1, path: "/", domain: "blog.5ibc.net"});
+            window.open($(".tj-pop").attr("tar"));
+        }
+    });*/
+});

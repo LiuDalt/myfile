@@ -1,0 +1,43 @@
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:carrey="http://schemas.android.com/apk/res/com.carrey.customview"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <com.carrey.customview.customview.CustomView 
+        android:id="@+id/customview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:background="#FFD700"
+        carrey:imageSrc="@drawable/clock"
+        carrey:imageAspectRatio="1.0"
+        carrey:imageAlpha="0.5"
+        carrey:imagePaddingLeft="5dp"
+        carrey:imagePaddingTop="5dp"
+        carrey:imagePaddingRight="5dp"
+        carrey:imagePaddingBottom="5dp"
+        carrey:imageScaleType="center"
+        carrey:titleText="这是一级标题"
+        carrey:titleTextSize="30sp"
+        carrey:titleTextColor="#1E90FF"
+        carrey:titlePaddingLeft="4dp"
+        carrey:titlePaddingTop="4dp"
+        carrey:titlePaddingRight="4dp"
+        carrey:titlePaddingBottom="4dp"
+        carrey:subTitleText="这是二级子标题"
+        carrey:subTitleTextSize="20sp"
+        carrey:subTitleTextColor="#00FF7F"
+        carrey:subTitlePaddingLeft="3dp"
+        carrey:subTitlePaddingTop="3dp"
+        carrey:subTitlePaddingRight="3dp"
+        carrey:subTitlePaddingBottom="3dp"/>
+
+    <Button 
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="next page"/>
+</RelativeLayout>

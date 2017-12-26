@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/4eff036360da -->
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<script type="text/javascript" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/1255494d3a"></script><script src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/nr-974.min.js"></script><script type="text/javascript" async="" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/ga.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"1255494d3a","applicationID":"15702971","transactionName":"e1daR0JWVV9RER9ZWkxdRxxDUVZE","queueTime":32,"applicationTime":71,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(u(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(2),u=t(3),c=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var s=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit"],p="api-",l=p+"ixn-";a(s,function(t,e){f[e]=o(p+e,!0,"api")}),f.addPageAction=o(p+"addPageAction",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var d=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{c.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){d[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],2:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],3:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?u(t,a,i):i()}function n(n,r,o){t&&t(n,r,o);for(var i=e(o),a=l(n),u=a.length,c=0;c<u;c++)a[c].apply(i,r);var s=f[m[n]];return s&&s.push([w,n,r,i]),i}function p(t,e){g[t]=l(t).concat(e)}function l(t){return g[t]||[]}function d(t){return s[t]=s[t]||o(n)}function v(t,e){c(t,function(t,n){e=e||"feature",m[n]=e,e in f||(f[e]=[])})}var g={},m={},w={on:p,emit:n,get:d,listeners:l,context:e,buffer:v};return w}function i(){return new r}var a="nr@context",u=t("gos"),c=t(2),f={},s={},p=e.exports=o();p.backlog=f},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!h++){var t=y.info=NREUM.info,e=s.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){c(m,function(e,n){t[e]||(t[e]=n)});var n="https"===g.split(":")[0]||t.sslForHttp;y.proto=n?"https://":"http://",u("mark",["onload",a()],null,"api");var r=s.createElement("script");r.src=y.proto+t.agent,e.parentNode.insertBefore(r,e)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=t("handle"),c=t(2),f=window,s=f.document,p="addEventListener",l="attachEvent",d=f.XMLHttpRequest,v=d&&d.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:d,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},t(1);var g=""+location,m={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-974.min.js"},w=d&&v&&v[p]&&!/CriOS/.test(navigator.userAgent),y=e.exports={offset:a(),origin:g,features:{},xhrWrappable:w};s[p]?(s[p]("DOMContentLoaded",i,!1),f[p]("load",r,!1)):(s[l]("onreadystatechange",o),f[l]("onload",r)),u("mark",["firstbyte",a()],null,"api");var h=0},{}]},{},["loader"]);</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="description" content="就在昨天中午，我在简书上发布了我个人的第一篇技术文档:RecyclerView系列之：RecyclerView系列之（1）为RecyclerView添加Header和Footer，也很有幸，能够得到那么多人的支持，这让我迫不及待的赶紧写第二篇文章。今天我将谈谈：为RecyclerView添加分隔线。一.理解ListView和RecyclerView中的ChildView在讲为Item加入分割线本质的前，先来介绍，认识一下ChildView，也就是平时我们用到的ListView，RecyclerView中的getChildAt(intposition)这个返回的...">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/4eff036360da">
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/4076573">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="RecyclerView系列之（2）：为RecyclerView添加分隔线" property="twitter:title">
+  <meta content="就在昨天中午，我在简书上发布了我个人的第一篇技术文档:RecyclerView系列之：RecyclerView系列之（1）为RecyclerView添加Header和Footer，也很有幸，能够得到那么多人的支持，这让我迫不及待的赶紧写第二篇文章。今天我将谈谈：为RecyclerView添加分隔线。一.理解ListView和RecyclerView中的ChildView在讲为Item加入分割线本质的前，先来介绍，认识一下ChildView，也就是平时我们用到的ListView，RecyclerView中的getChildAt(intposition)这个返回的..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/4eff036360da" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="RecyclerView系列之（2）：为RecyclerView添加分隔线">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/4eff036360da">
+  <meta property="og:description" content="就在昨天中午，我在简书上发布了我个人的第一篇技术文档:RecyclerView系列之：RecyclerView系列之（1）为RecyclerView添加Header和Footer，也很有幸，能够...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/4076573">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/4076573">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+  <title>RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书</title>
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="QYsSyBwPgsgO30RCujHfQ8D1rguld9NaH//edUNtGYI2kFLEkDFiSnwfCI1hM6qUiMTE7/eJ35KRTnvJ+ctcBQ==">
+  <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="stylesheet" media="all" href="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/base-28859e35d389885d08837bc971ff742c.css">
+
+    <link rel="stylesheet" media="all" href="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/reading-note-cc35f3caf1b79498ea4800b856bcf8a6.css">
+  <link rel="stylesheet" media="all" href="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/base-read-mode-64acccf6966299cfa3d580140a2582fe.css">
+  <script src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/modernizr-613ea63b5aa2f0e2a1946e9c28c8eedb.js"></script>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if IE 8]><link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/scaffolding/for_ie-7f1c477ffedc13c11315103e8787dc6c.css" /><![endif]-->
+  <!--[if lt IE 9]><link rel="stylesheet" media="all" href="http://cdn-qn0.jianshu.io/assets/scaffolding/for_ie-7f1c477ffedc13c11315103e8787dc6c.css" /><![endif]-->
+  <link href="http://baijii-common.b0.upaiyun.com/icons/favicon.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/57-b426758a1fcfb30486f20fd073c3b8ec.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/72-feca4b183b9d29fd188665785dc7a7f1.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/76-ba757f1ad3421192ce7192170393d2b0.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/114-8dae53b3bcea3f06bb139e329d1edab3.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/120-fa315ee0177dba4c55d4f66d4129b47f.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn-qn0.jianshu.io/assets/apple-touch-icons/152-052f5799bec8fb3aa624bdc72ef5bd1d.png" sizes="152x152">
+
+<style type="text/css"></style></head>
+
+<body class="post output zh cn win reader-day-mode reader-font2" data-js-module="note-show" data-locale="zh-CN">
+  
+  <div class="navbar navbar-jianshu shrink">
+  <div class="dropdown">
+    <a class="dropdown-toggle logo" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="javascript:void(0)">
+      简
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+      <li><a href="http://www.jianshu.com/"><i class="fa fa-home"></i> 首页</a></li>
+      <li><a href="http://www.jianshu.com/collections"><i class="fa fa-th"></i> 专题</a></li>
+      <li><a href="http://www.jianshu.com/user_invitations"><i class="fa fa-money"></i> 发钱啦</a></li>
+    </ul>
+  </div>
+</div>
+<div class="navbar-user">
+    <a class="login" data-signup-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_up">
+      <i class="fa fa-user"></i> 注册
+</a>    <a class="login" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+      <i class="fa fa-sign-in"></i> 登录
+</a>    <a class="daytime set-view-mode pull-right" href="javascript:void(0)"><i class="fa fa-moon-o"></i></a>
+</div>
+<div class="navbar navbar-jianshu expanded">
+  <div class="dropdown">
+      <a class="active logo" role="button" data-original-title="个人主页" data-container="div.expanded" href="http://www.jianshu.com/">
+        <b>简</b><i class="fa fa-home"></i><span class="title">首页</span>
+</a>      <a data-toggle="tooltip" data-placement="right" data-original-title="专题" data-container="div.expanded" href="http://www.jianshu.com/collections">
+        <i class="fa fa-th"></i><span class="title">专题</span>
+</a>    <a class="ad-selector" href="http://www.jianshu.com/apps">
+      <i class="fa fa-mobile"></i><span class="title">下载手机应用</span>
+</a>    <div class="ad-container ">
+      <div class="ad-pop">
+        <img class="ad-logo" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/114-8dae53b3bcea3f06bb139e329d1edab3.png" alt="114">
+        <p class="ad-title">简书</p>
+        <p class="ad-subtitle">交流故事，沟通想法</p>
+        <img class="ad-qrcode" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/download-app-qrcode-053849fa25f9b44573ef8dd3c118a20f.png" alt="Download app qrcode">
+        <div>
+          <a class="ad-link" href="https://itunes.apple.com/cn/app/jian-shu/id888237539?ls=1&amp;mt=8">iOS</a>·
+          <a class="ad-link" href="http://downloads.jianshu.io/apps/haruki/JianShu-1.11.1.apk">Android</a>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div class="nav-user">
+      <a href="http://www.jianshu.com/p/4eff036360da#view-mode-modal" data-toggle="modal"><i class="fa fa-font"></i><span class="title">显示模式</span></a>
+
+      <a class="signin" data-signin-link="true" data-toggle="modal" data-placement="right" data-original-title="登录" data-container="div.expanded" href="http://www.jianshu.com/sign_in">
+        <i class="fa fa-sign-in"></i><span class="title">登录</span>
+</a>    </div>
+  </div>
+
+  
+    <div class="fixed-btn">
+    <a class="go-top" href="http://www.jianshu.com/p/4eff036360da#"> <i class="fa fa-angle-up"></i></a>
+    <a class="qrcode" data-target="#bottom-qrcode" data-toggle="modal" href="javascript:void(0)"><i class="fa fa-qrcode"></i></a>
+    <a class="writer" href="http://www.jianshu.com/writer#/" data-toggle="tooltip" data-placement="left" title="" data-original-title="写篇文章"><i class="fa fa-pencil"></i></a>
+    <!-- qrcode modal -->
+    <div id="bottom-qrcode" class="modal panel-modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <h4>下载简书移动应用</h4>
+      <div class="panel-body"><img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/download-app-qrcode-053849fa25f9b44573ef8dd3c118a20f.png" alt="Download app qrcode"></div>
+    </div>
+  </div>
+
+
+  <div id="show-note-container" class="imagebubble-container imagebubble-mode-off">
+    
+<div class="post-bg" id="flag">
+  <div class="wrap-btn" style="top: -1px;">
+    <!-- Notebook and collections button upper left -->
+      <div class="article-related pull-left">
+          <a class="collection-menu-btn" data-toggle="modal" data-target="#collection-menu" href="javascript:void(null);">
+            <i class="fa fa-th"></i>
+</a>          <a class="notebooks-menu-btn" data-toggle="modal" data-target="#notebooks-menu" href="javascript:void(null);"><i class="fa fa-list-ul"></i></a>
+        <div class="related-avatar-group activities"></div>
+      </div>
+    <!-- ******* -->
+
+      <a class="login" data-signup-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_up">
+    <i class="fa fa-user"></i> 注册
+</a>  <a class="login" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+    <i class="fa fa-sign-in"></i> 登录
+</a>
+
+    <!-- Buttons upper right -->
+    <!-- ******* -->
+  </div>
+
+  <div class="container">
+    <!-- Article activities for width under 768px -->
+    <div class="related-avatar-group activities"></div>
+      <div class="article">
+        <div class="preview">
+          <div class="author-info">
+              <div class="btn btn-small btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-plus"></i>  <span>添加关注</span></a>
+  </div>
+
+            <a class="avatar" href="http://www.jianshu.com/users/8a21923f1c49">
+              <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/4b2752cf3fb0" alt="100">
+</a>            <span class="label">
+                作者
+            </span>
+            <a class="author-name blue-link" href="http://www.jianshu.com/users/8a21923f1c49">
+              <span>右眼皮的爱</span>
+</a>              <span data-toggle="tooltip" data-original-title="最后编辑于 2016.05.23 13:54">2016.05.23 12:24*</span>
+            <div>
+              <span>写了7168字</span>，<span>被107人关注</span>，<span>获得了170个喜欢</span>
+            </div>
+          </div>
+          <h1 class="title">RecyclerView系列之（2）：为RecyclerView添加分隔线</h1>
+          <div class="meta-top">
+            <span class="wordage">字数3148</span>
+            <span class="views-count">阅读2605</span>
+            <span class="comments-count">评论8</span>
+            <span class="likes-count">喜欢37</span>
+          </div>
+
+          <!-- Collection/Bookmark/Share for width under 768px -->
+          <div class="article-share"><a class="bookmark" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"> <i class="fa fa-bookmark-o"></i><span>收藏文章</span></a><span> <a href="javascript:void(null)" data-toggle="dropdown"><i class="fa fa-share-square-o"></i> 分享</a> <ul class="dropdown-menu arrow-top"> <li> <a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/4076573/weibo/image_756c88511872.jpg&#39;, &#39;推荐 右眼皮的爱 的文章《RecyclerView系列之（2）：为RecyclerView添加分隔线》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/4eff036360da&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/weibo.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;)+&#39;&amp;title=&#39;+e(&#39;RecyclerView系列之（2）：为RecyclerView添加分隔线&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/douban.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 右眼皮的爱 的文章《RecyclerView系列之（2）：为RecyclerView添加分隔线》（ 分享自 @jianshuio ）&#39;),x=function(){if(!window.open(r,&#39;tweibo&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/tweibo.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 右眼皮的爱 的文章《RecyclerView系列之（2）：为RecyclerView添加分隔线》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/qzone.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 右眼皮的爱 的文章《RecyclerView系列之（2）：为RecyclerView添加分隔线》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/twitter.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/4eff036360da&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/facebook.png"> </a> </li> <li> <a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/google_plus.png"> </a> </li> <li> <a href="http://www.jianshu.com/p/4eff036360da"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/renren.png"> </a> </li> </ul></span></div>
+          <!-- -->
+
+          <div class="show-content"><p>就在昨天中午，我在简书上发布了我个人的第一篇技术文档:RecyclerView系列之： <a href="http://www.jianshu.com/p/991062d964cf" target="_blank">RecyclerView系列之（1）为RecyclerView添加Header和Footer</a>，也很有幸，能够得到那么多人的支持，这让我迫不及待的赶紧写第二篇文章。今天我将谈谈：为RecyclerView添加分隔线。</p>
+<hr>
+<h2>一.  理解ListView和RecyclerView中的ChildView</h2>
+<p>在讲为Item加入分割线本质的前，先来介绍，认识一下ChildView，也就是平时我们用到的ListView，RecyclerView中的getChildAt(int position)这个返回的ChildView是哪一部分？到底是哪一部分呢？一开始的时候，我理解错了，但是经过下面两张图这么一比较，你就明白了：</p>
+<div class="image-package imagebubble" widget="ImageBubble">
+<img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-eefee46cdc968452.png" data-original-src="http://upload-images.jianshu.io/upload_images/2068191-eefee46cdc968452.png?imageMogr2/auto-orient/strip%7CimageView2/2" class="imagebubble-image"><br><div class="image-caption">Item布局layout_margin == 0</div>
+</div>
+<div class="image-package imagebubble" widget="ImageBubble">
+<img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-c79495d4fd3fd5c0.png" data-original-src="http://upload-images.jianshu.io/upload_images/2068191-c79495d4fd3fd5c0.png?imageMogr2/auto-orient/strip%7CimageView2/2" class="imagebubble-image"><br><div class="image-caption">Item布局Layout_margin == 16dp</div>
+</div>
+<p>下面看代码的区别：<br>第一张图的代码， 也就是每一个list_item的布局文件（下同）如下：</p>
+<pre class="hljs xml"><code class="xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>              <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>             
+<span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>              
+<span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"50dp"</span>&gt;</span>    
+      <span class="hljs-tag">&lt;<span class="hljs-title">TextView</span>        
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/list_item"</span>        
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span> 
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>        
+        <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span>        
+        <span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"20sp"</span>        
+        <span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#262526"</span>        
+        <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"#08da1d"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span></code></pre>
+<p>第二张图的代码：</p>
+<pre class="hljs xml"><code class="xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>              <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>             
+<span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>              
+<span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"50dp"</span>
+<span class="hljs-attribute">android:layout_margin</span>=<span class="hljs-value">"16dp"</span>&gt;</span>    
+      <span class="hljs-tag">&lt;<span class="hljs-title">TextView</span>        
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/list_item"</span>        
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span> 
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>        
+        <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span>        
+        <span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"20sp"</span>        
+        <span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#262526"</span>        
+        <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"#08da1d"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span></code></pre>
+<p>仔细看一下，它们的不同之处， 就是第二个图的代码中多了：</p>
+<pre class="hljs css"><code class="css"><span class="hljs-rule"><span class="hljs-attribute">android</span>:<span class="hljs-value">layout_margin = <span class="hljs-string">"16dp"</span></span></span></code></pre>
+<p>就多这一句而已。</p>
+<p>所以到这里我们应该知道了ChildView是哪一部分了，就是图二中绿色这一部分，边距这一部分并不属于ChildView, 而是属于ChildView的布局。</p>
+<h2>这样我们了解ChildView之后，下面再来理解加入分隔线的原理就简单多了。</h2>
+<h2>二. 理解加入分隔线的原理</h2>
+<p>在ListView中，Google为我们提供了SetDivider(Drawable divider)这样的方法来设置分隔线，那么在RecyclerView中，Google又为我们提供了什么样的方法去添加分隔线呢？通过查看官方文档，它，提供了:addItemDecoration(RecyclerView.ItemDecoration decor)这个方法了设置分隔线，那问题又来了，RecyclerView.ItemDecoration是什么东西呢？继续查：然后发现如下:它原来是一个类，里面封装了三个方法：<br>（1）void getItemOffsets ()<br>（2）void onDraw ()<br>（3）void onDrawOver ()</p>
+<hr>
+<p>通过上面的三个方法，可以看出，这是要自己直接画上去，准确的说这几个方法是：添加Divider,主要是找到添加Divider的位置， 而Divider是在drawable文件中写好了的。 利用onDraw和onDrawOver都差不多，我们在创建自己的Decoration类继承RecyclerView.ItemDecoration的时候，我们只要重写getItemOffsets()，还有onDraw()和onDrawOver两者其中之一就可以了.</p>
+<hr>
+<p>那getItemOffsets()方法有什么用呢？从字面意思就是Item要偏移， 由于我们在Item和Item之间加入了分隔线，线其实本质就是一个长方形，也是用户自定义的，既然线也有长宽高，就画横线来说，上面的Item加入了分隔线，那下面的Item就要往下平移，平移的量就是分隔线的高度。不理解每关系，后面看代码就容易理解了。</p>
+<hr>
+<p>现在我们知道了如何添加了，就是通过画，那到底是画在哪里呢？画的位置又怎么确定呢？下面看图：</p>
+<div class="image-package imagebubble" widget="ImageBubble">
+<img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-f394e31b2e8ac302.png" data-original-src="http://upload-images.jianshu.io/upload_images/2068191-f394e31b2e8ac302.png?imageMogr2/auto-orient/strip%7CimageView2/2" class="imagebubble-image"><br><div class="image-caption">分隔线的位置图</div>
+</div>
+<p>我现在拿画横线来说，从上面这个图中，我们很容易就可以看到，我们画分隔线的位置，是在每一个Item的布局之间，注意：是布局之间。</p>
+<p>好了，我们确定了画在哪里，那我们怎么确定画线的具体的坐标位置呢？也就是我们要确定：分隔线的left,  top,  right,  Bottom.  在Adapter中，我们很容易通过parent(这个parent它其实就是我们能看到的部分)获取每一个childView：<br>（1）left：parent.getPaddingLeft()<br>（2）right: parent. getWidth()-parent.getPaddingRight();<br>（3）top : 就是红线的上面：我们通过ChildView.getBottom()来得到这个Item的底部的高度，也就是蓝线位置，蓝线和红线之间间距：就是这个Item布局文件的：layout_marginBottom， 然后top的位置就是两者之和。<br>（4）bttom: 就是top加上分隔线的高度：top+线高</p>
+<hr>
+<p>通过上面的解析，你也许知道了加入分隔线的原理，不理解也没有关系，说也不是说得很清楚，下面直接上代码，通过代码来理解。</p>
+<h2>三. Talk is cheap, show you the code.</h2>
+<h6>（1）首先，先来看主布局文件：activity_main.xml:</h6>
+<pre class="hljs xml"><code class="xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">android.support.design.widget.CoordinatorLayout</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span> 
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:fitsSystemWindows</span>=<span class="hljs-value">"true"</span>
+    <span class="hljs-attribute">tools:context</span>=<span class="hljs-value">"com.study.wnw.recyclerviewdivider.MainActivity"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">android.support.v7.widget.RecyclerView</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/recyclerview"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+       <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>&gt;</span>    
+    <span class="hljs-tag">&lt;/<span class="hljs-title">android.support.v7.widget.RecyclerView</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">android.support.design.widget.CoordinatorLayout</span>&gt;</span></code></pre>
+<p>我在这里面仅仅加入了一个RecyclerView</p>
+<hr>
+<h6>（2）RecyclerView里面每个Item的布局文件：item_view.xml</h6>
+<pre class="hljs xml"><code class="xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+              <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>
+              <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span> 
+              <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"50dp"</span>
+              <span class="hljs-attribute">android:layout_margin</span>=<span class="hljs-value">"16sp"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">TextView</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/list_item"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span>
+        <span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"20sp"</span>
+        <span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#f7f4f7"</span>
+        <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"#08da1d"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span></code></pre>
+<p>这也没有什么可讲的，就是在里面添加一个TextView用来显示文本</p>
+<hr>
+<h6>（3）我们RecyclerView的适配器MyAdapater.java:</h6>
+<pre class="hljs scala"><code class="scala"><span class="hljs-keyword">package</span> com.study.wnw.recyclerviewdivider;
+<span class="hljs-keyword">import</span> android.content.<span class="hljs-type">Context</span>;
+<span class="hljs-keyword">import</span> android.support.v7.widget.<span class="hljs-type">RecyclerView</span>;
+<span class="hljs-keyword">import</span> android.view.<span class="hljs-type">LayoutInflater</span>;
+<span class="hljs-keyword">import</span> android.view.<span class="hljs-type">View</span>;
+<span class="hljs-keyword">import</span> android.view.<span class="hljs-type">ViewGroup</span>;
+<span class="hljs-keyword">import</span> android.widget.<span class="hljs-type">TextView</span>;
+<span class="hljs-keyword">import</span> java.util.<span class="hljs-type">List</span>;
+<span class="hljs-keyword">import</span> java.util.concurrent.<span class="hljs-type">CopyOnWriteArrayList</span>;
+<span class="hljs-comment">/** * Created by wnw on 16-5-22. */</span>
+public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAdapter</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">RecyclerView</span>.<span class="hljs-title">Adapter&lt;RecyclerView</span>.<span class="hljs-title">ViewHolder&gt;</span> {</span>
+
+    <span class="hljs-comment">//定义一个集合，接收从Activity中传递过来的数据和上下文</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-type">List</span>&lt;<span class="hljs-type">String</span>&gt; mList;
+    <span class="hljs-keyword">private</span> <span class="hljs-type">Context</span> mContext;
+
+    <span class="hljs-type">MyAdapter</span>(<span class="hljs-type">Context</span> context, <span class="hljs-type">List</span>&lt;<span class="hljs-type">String</span>&gt; list){
+        <span class="hljs-keyword">this</span>.mContext = context;
+        <span class="hljs-keyword">this</span>.mList = list;
+    }
+
+    <span class="hljs-comment">//得到child的数量</span>
+    <span class="hljs-annotation">@Override</span>
+    public int getItemCount() {
+        <span class="hljs-keyword">return</span> mList.size();
+    }
+
+    <span class="hljs-comment">//创建ChildView</span>
+    <span class="hljs-annotation">@Override</span>
+    public <span class="hljs-type">RecyclerView</span>.<span class="hljs-type">ViewHolder</span> onCreateViewHolder(<span class="hljs-type">ViewGroup</span> parent, int viewType) {
+        <span class="hljs-type">View</span> layout = <span class="hljs-type">LayoutInflater</span>.from(mContext).inflate(<span class="hljs-type">R</span>.layout.item_view, parent, <span class="hljs-literal">false</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-type">MyHolder</span>(layout);
+    }
+
+    <span class="hljs-comment">//将数据绑定到每一个childView中</span>
+    <span class="hljs-annotation">@Override</span>
+    public void onBindViewHolder(<span class="hljs-type">RecyclerView</span>.<span class="hljs-type">ViewHolder</span> holder, int position) {
+        <span class="hljs-keyword">if</span> (holder instanceof <span class="hljs-type">MyHolder</span>){
+            <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> itemText = mList.get(position);
+            ((<span class="hljs-type">MyHolder</span>)holder).tv.setText(itemText);
+        }
+    }
+
+    <span class="hljs-comment">// 通过holder的方式来初始化每一个ChildView的内容</span>
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyHolder</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">RecyclerView</span>.<span class="hljs-title">ViewHolder</span>{</span>
+        <span class="hljs-type">TextView</span> tv;
+        public <span class="hljs-type">MyHolder</span>(<span class="hljs-type">View</span> itemView) {
+            <span class="hljs-keyword">super</span>(itemView);
+            tv = (<span class="hljs-type">TextView</span>)itemView.findViewById(<span class="hljs-type">R</span>.id.list_item);
+        }
+    }
+}</code></pre>
+<p>好了，这里也没有什么好讲的，也不是我们这篇文章的重点，下面重点来了。</p>
+<hr>
+<h6>（4）我们自定义的MyDecoration.java：（继承RecyclerView.ItemDecoration）</h6>
+<pre class="hljs java"><code class="java"><span class="hljs-keyword">package</span> com.study.wnw.recyclerviewdivider;
+<span class="hljs-keyword">import</span> android.content.Context;
+<span class="hljs-keyword">import</span> android.content.res.TypedArray;
+<span class="hljs-keyword">import</span> android.graphics.Canvas;
+<span class="hljs-keyword">import</span> android.graphics.Rect;
+<span class="hljs-keyword">import</span> android.graphics.drawable.Drawable;
+<span class="hljs-keyword">import</span> android.support.v7.widget.LinearLayoutManager;
+<span class="hljs-keyword">import</span> android.support.v7.widget.RecyclerView;
+<span class="hljs-keyword">import</span> android.util.Log;
+<span class="hljs-keyword">import</span> android.view.View;
+
+<span class="hljs-comment">/** * Created by wnw on 16-5-22. */</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyDecoration</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">RecyclerView</span>.<span class="hljs-title">ItemDecoration</span></span>{
+
+    <span class="hljs-keyword">private</span> Context mContext;
+    <span class="hljs-keyword">private</span> Drawable mDivider;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mOrientation;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> VERTICAL_LIST = LinearLayoutManager.VERTICAL;
+
+    <span class="hljs-comment">//我们通过获取系统属性中的listDivider来添加，在系统中的AppTheme中设置</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span>[] ATRRS  = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]{
+            android.R.attr.listDivider
+    };
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyDecoration</span><span class="hljs-params">(Context context, <span class="hljs-keyword">int</span> orientation)</span> </span>{
+        <span class="hljs-keyword">this</span>.mContext = context;
+        <span class="hljs-keyword">final</span> TypedArray ta = context.obtainStyledAttributes(ATRRS);
+        <span class="hljs-keyword">this</span>.mDivider = ta.getDrawable(<span class="hljs-number">0</span>);
+        ta.recycle();
+        setOrientation(orientation);
+    }
+
+    <span class="hljs-comment">//设置屏幕的方向</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setOrientation</span><span class="hljs-params">(<span class="hljs-keyword">int</span> orientation)</span></span>{
+        <span class="hljs-keyword">if</span> (orientation != HORIZONTAL_LIST &amp;&amp; orientation != VERTICAL_LIST){
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"invalid orientation"</span>);        }        mOrientation = orientation;
+    } 
+
+   <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDraw</span><span class="hljs-params">(Canvas c, RecyclerView parent, RecyclerView.State state)</span> </span>{
+        <span class="hljs-keyword">if</span> (mOrientation == HORIZONTAL_LIST){
+            drawVerticalLine(c, parent, state);
+        }<span class="hljs-keyword">else</span> {
+            drawHorizontalLine(c, parent, state);
+        }
+    }
+
+    <span class="hljs-comment">//画横线, 这里的parent其实是显示在屏幕显示的这部分</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawHorizontalLine</span><span class="hljs-params">(Canvas c, RecyclerView parent, RecyclerView.State state)</span></span>{
+        <span class="hljs-keyword">int</span> left = parent.getPaddingLeft();
+        <span class="hljs-keyword">int</span> right = parent.getWidth() - parent.getPaddingRight();
+        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> childCount = parent.getChildCount();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; childCount; i++){
+            <span class="hljs-keyword">final</span> View child = parent.getChildAt(i);
+
+            <span class="hljs-comment">//获得child的布局信息</span>
+            <span class="hljs-keyword">final</span> RecyclerView.LayoutParams params = (RecyclerView.LayoutParams)child.getLayoutParams();
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> top = child.getBottom() + params.bottomMargin;
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> bottom = top + mDivider.getIntrinsicHeight();
+            mDivider.setBounds(left, top, right, bottom);
+            mDivider.draw(c);
+            <span class="hljs-comment">//Log.d("wnw", left + " " + top + " "+right+"   "+bottom+" "+i);</span>
+        }
+    }
+
+    <span class="hljs-comment">//画竖线</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">drawVerticalLine</span><span class="hljs-params">(Canvas c, RecyclerView parent, RecyclerView.State state)</span></span>{
+        <span class="hljs-keyword">int</span> top = parent.getPaddingTop();
+        <span class="hljs-keyword">int</span> bottom = parent.getHeight() - parent.getPaddingBottom();
+        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> childCount = parent.getChildCount();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; childCount; i++){
+            <span class="hljs-keyword">final</span> View child = parent.getChildAt(i); 
+
+           <span class="hljs-comment">//获得child的布局信息</span>
+            <span class="hljs-keyword">final</span> RecyclerView.LayoutParams params = (RecyclerView.LayoutParams)child.getLayoutParams();
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> left = child.getRight() + params.rightMargin;
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> right = left + mDivider.getIntrinsicWidth();
+            mDivider.setBounds(left, top, right, bottom);
+            mDivider.draw(c);
+        }
+    }
+
+    <span class="hljs-comment">//由于Divider也有长宽高，每一个Item需要向下或者向右偏移</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getItemOffsets</span><span class="hljs-params">(Rect outRect, View view, RecyclerView parent, RecyclerView.State state)</span> </span>{
+        <span class="hljs-keyword">if</span>(mOrientation == HORIZONTAL_LIST){
+            <span class="hljs-comment">//画横线，就是往下偏移一个分割线的高度</span>
+            outRect.set(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, mDivider.getIntrinsicHeight());
+        }<span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">//画竖线，就是往右偏移一个分割线的宽度</span>
+            outRect.set(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, mDivider.getIntrinsicWidth(), <span class="hljs-number">0</span>);
+        }
+    }
+}</code></pre>
+<p>从上面的代码中，我们还通过系统属性来适应屏幕的横屏和竖屏，然后确定画横的，还是竖的Divider，其实在里面我们做了三件事，第一件是：获取到系统中的listDivider， 我们就是通过它在主题中去设置的，下面第（6）小点看一下代码就知道了。第二件事：就是找到我们需要添加Divider的位置，从onDraw方法中去找到，并将Divider添加进去。第三个是：得到Item的偏移量。</p>
+<hr>
+<h6>（5）看看我们的MainActivity.java</h6>
+<pre class="hljs scala"><code class="scala"><span class="hljs-keyword">package</span> com.study.wnw.recyclerviewdivider;
+<span class="hljs-keyword">import</span> android.os.<span class="hljs-type">Bundle</span>;
+<span class="hljs-keyword">import</span> android.support.v7.app.<span class="hljs-type">AppCompatActivity</span>;
+<span class="hljs-keyword">import</span> android.support.v7.widget.<span class="hljs-type">LinearLayoutManager</span>;
+<span class="hljs-keyword">import</span> android.support.v7.widget.<span class="hljs-type">RecyclerView</span>;
+<span class="hljs-keyword">import</span> java.util.<span class="hljs-type">ArrayList</span>;
+<span class="hljs-keyword">import</span> java.util.<span class="hljs-type">List</span>;
+public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword"><span class="hljs-keyword">extends</span></span> <span class="hljs-title">AppCompatActivity</span> {</span>
+    <span class="hljs-comment">//定义RecyclerView</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-type">RecyclerView</span> mRecyclerView = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-comment">//定义一个List集合，用于存放RecyclerView中的每一个数据</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-type">List</span>&lt;<span class="hljs-type">String</span>&gt; mData = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-comment">//定义一个Adapter</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-type">MyAdapter</span> mAdapter; 
+
+   <span class="hljs-comment">//定义一个LinearLayoutManager</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-type">LinearLayoutManager</span> mLayoutManager;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> void onCreate(<span class="hljs-type">Bundle</span> savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(<span class="hljs-type">R</span>.layout.activity_main);
+
+        <span class="hljs-comment">//RecyclerView三步曲+LayoutManager</span>
+        initView();
+        initData();
+        mAdapter = <span class="hljs-keyword">new</span> <span class="hljs-type">MyAdapter</span>(<span class="hljs-keyword">this</span>,mData);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter); 
+
+        <span class="hljs-comment">//这句就是添加我们自定义的分隔线</span>
+        mRecyclerView.addItemDecoration(<span class="hljs-keyword">new</span> <span class="hljs-type">MyDecoration</span>(<span class="hljs-keyword">this</span>, <span class="hljs-type">MyDecoration</span>.<span class="hljs-type">VERTICAL_LIST</span>));
+    }
+
+    <span class="hljs-comment">//初始化View</span>
+    <span class="hljs-keyword">private</span> void initView(){
+        mLayoutManager = <span class="hljs-keyword">new</span> <span class="hljs-type">LinearLayoutManager</span>(<span class="hljs-keyword">this</span>);
+        mRecyclerView = (<span class="hljs-type">RecyclerView</span>)findViewById(<span class="hljs-type">R</span>.id.recyclerview);
+    }
+
+    <span class="hljs-comment">//初始化加载到RecyclerView中的数据, 我这里只是给每一个Item添加了String类型的数据</span>
+    <span class="hljs-keyword">private</span> void initData(){
+        mData = <span class="hljs-keyword">new</span> <span class="hljs-type">ArrayList</span>&lt;<span class="hljs-type">String</span>&gt;();
+        <span class="hljs-keyword">for</span> (int i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++){
+            mData.add(<span class="hljs-string">"Item"</span> + i);
+        }
+    }
+}</code></pre>
+<h6>（6）分隔线Divider的drawable文件：divider..xml</h6>
+<pre class="hljs xml"><code class="xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">shape</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:shape</span>=<span class="hljs-value">"rectangle"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">solid</span> <span class="hljs-attribute">android:color</span>=<span class="hljs-value">"#7b7a7a"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">size</span> <span class="hljs-attribute">android:height</span>=<span class="hljs-value">"1dp"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">shape</span>&gt;</span></code></pre>
+<p>我们在这里面，画了一个：rectangle, 给它填充颜色，还有高度，这样就搞定了，高度小，显示出来也是一条线：其实线的本质就是长方形。这里可以根据个人需要，画不同类型的divider</p>
+<hr>
+<p>（7）在styles.xml的AppTheme中，设置listDivider为我们的divider.xml文件：</p>
+<pre class="hljs xml"><code class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"AppTheme"</span> <span class="hljs-attribute">parent</span>=<span class="hljs-value">"Theme.AppCompat.Light.DarkActionBar"</span>&gt;</span><span class="css">
+    &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-rule"><span class="hljs-attribute">android</span>:<span class="hljs-value">listDivider<span class="hljs-string">"&gt;@drawable/divider&lt;/item&gt;
+</span></span></span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span></code></pre>
+<p>这样，我们将系统的listDivider设置成我们自定义的divider.  还记得我们在MyDecoration中获取系统的listDivider这个属性吗，这样通过这个属性，我们就可以将我们的divider.xml文件和MyDecoration.java进行关联了。</p>
+<hr>
+<p>到这里所有的工作就完成了，下面展示一下运行结果：</p>
+<div class="image-package imagebubble" widget="ImageBubble">
+<img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-761c3fa4ae5fda4c.png" data-original-src="http://upload-images.jianshu.io/upload_images/2068191-761c3fa4ae5fda4c.png?imageMogr2/auto-orient/strip%7CimageView2/2" class="imagebubble-image"><br><div class="image-caption">竖屏效果图</div>
+</div>
+<div class="image-package imagebubble" widget="ImageBubble">
+<img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-4e38dc444b0424f3.png" data-original-src="http://upload-images.jianshu.io/upload_images/2068191-4e38dc444b0424f3.png?imageMogr2/auto-orient/strip%7CimageView2/2" class="imagebubble-image"><br><div class="image-caption">横屏效果图</div>
+</div>
+<hr>
+<p>经过几个小时的写作，终于搞定了，虽然仅仅是一个添加分隔线的功能，但是还是想尽可能的通过自己的语言去理解，去认知它的原理，这样做起来就简单多了。一开始的时候，我夜不知道怎么去用，也参考了别人写的文章，特别是鸿洋大神的：<a href="http://blog.csdn.net/lmj623565791/article/details/45059587" target="_blank">Android RecyclerView 使用完全解析 体验艺术般的控件</a>， 写得特别的棒，从中也学到了一些知识。</p>
+<hr>
+<p>好了，这篇文章暂时写到这里了，简单的介绍了一些RecyclerView分隔线的原理和添加方法，希望大家能够多多交流，过几天我会继续写下一篇文章，RecyclerView系列之（3）：为RecyclerView添加下拉刷新和上拉加载的功能。最后还是要感谢大家，感谢这个平台，能够让我们一起交流，一切学习。</p>
+</div>
+        </div>
+      </div>
+
+      <div class="visitor_edit">
+        <!-- further readings -->
+        <div id="further-readings" data-user-slug="" data-user-nickname="">
+          <div id="further-reading-line" class="hide further-reading-line"></div>
+          <ul id="further-readings-list" class="reading-list unstyled"></ul>
+          <div id="further-reading-new" class="reading-edit">
+              <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+                <i class="fa fa-plus-circle"></i> 推荐拓展阅读
+</a>            <div id="further-reading-form"></div>
+          </div>
+        </div>
+        <div class="pull-right">
+          <!-- copyright -->
+          <div class="author-copyright pull-right" data-toggle="tooltip" data-html="true" title="" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            <a><i class="fa fa-copyright"></i> 著作权归作者所有</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reward / Support Author -->
+        <div class="support-author">
+          <p>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</p>
+            <a class="btn btn-pay" data-toggle="modal" href="http://www.jianshu.com/p/4eff036360da#pay-modal">¥ 打赏支持</a>
+          <div class="avatar-list"></div>
+        </div>
+
+      <!-- article meta bottom -->
+      <div class="meta-bottom clearfix">
+        <!--  Like Button -->
+        <div class="like ">
+            <div class="like-button">
+              <a id="like-note" class="like-content" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+                <i class="fa fa-heart-o"></i>  喜欢
+</a></div>          <span id="likes-count" data-toggle="tooltip" data-placement="right" title="" data-original-title="查看所有喜欢的用户">37</span>        </div>
+        <!--  share group -->
+        <div class="share-group pull-right">
+          <a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/4076573/weibo/image_756c88511872.jpg&#39;, &#39;推荐 右眼皮的爱 的文章《RecyclerView系列之（2）：为RecyclerView添加分隔线》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/4eff036360da&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-name="weibo">
+            <i class="fa fa-weibo"></i><span>分享到微博</span>
+          </a>
+          <a data-toggle="modal" href="http://www.jianshu.com/p/4eff036360da#share-weixin-modal" data-name="weixin">
+            <i class="fa fa-weixin"></i><span>分享到微信</span>
+          </a>
+          <div class="more">
+            <a href="javascript:void(0)" data-toggle="dropdown">更多分享<i class="fa fa-caret-down"></i></a>
+            <ul class="dropdown-menu arrow-top">
+                <li><a href="http://cwb.assets.jianshu.io/notes/images/4076573/weibo/image_756c88511872.jpg" target="_blank" data-name="changweibo"><i class="fa fa-arrow-circle-o-down"></i> 下载长微博图片</a></li>
+                <li>
+                  <a data-name="tweibo" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://share.v.t.qq.com/index.php?c=share&amp;a=index&amp;url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 右眼皮的爱 的文章《RecyclerView系列之（2）：为RecyclerView添加分隔线》（ 分享自 @jianshuio ）&#39;),x=function(){if(!window.open(r,&#39;tweibo&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/tweibo.png" alt="Tweibo"> 分享到腾讯微博
+</a>                </li>
+                <li>
+                  <a data-name="qzone" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 右眼皮的爱 的文章《RecyclerView系列之（2）：为RecyclerView添加分隔线》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/qzone.png" alt="Qzone"> 分享到QQ空间
+</a>                </li>
+                <li>
+                  <a data-name="twitter" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 右眼皮的爱 的文章《RecyclerView系列之（2）：为RecyclerView添加分隔线》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/twitter.png" alt="Twitter"> 分享到Twitter
+</a>                </li>
+                <li>
+                  <a data-name="facebook" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/4eff036360da&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/facebook.png" alt="Facebook"> 分享到Facebook
+</a>                </li>
+                <li>
+                  <a data-name="google_plus" href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();">
+                    <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/google_plus.png" alt="Google plus"> 分享到Google+
+</a>                </li>
+                <li>
+                  <a data-name="douban" href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/4eff036360da&#39;)+&#39;&amp;title=&#39;+e(&#39;RecyclerView系列之（2）：为RecyclerView添加分隔线&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()">
+                    <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/douban.png" alt="Douban"> 分享到豆瓣
+</a>                </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modals -->
+      <div id="share-weixin-modal" class="modal hide fade share-weixin-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body" title="http://www.jianshu.com/p/4eff036360da?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weixin">
+    <h5>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</h5>
+  <canvas width="170" height="170" style="display: none;"></canvas><img src="data:image/png;base64,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" style="display: block;"></div>
+</div>
+
+      
+      <div id="notebooks-menu" class="panel notebooks-menu arrow-top modal hide fade"><img class="loader-tiny" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/tiny.gif" alt="Tiny"></div>
+      <div id="collection-menu" class="panel collection-menu arrow-top modal hide fade"><img class="loader-tiny" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/tiny.gif" alt="Tiny"></div>
+      
+      <div id="likes-modal" class="modal modal_new support_list-modal fullscreen hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>喜欢的用户</h3>
+      </div>
+      <div class="modal-body">
+        <ul class="unstyled users">
+        <li data-user-id="1838663"> <a class="avatar" href="http://www.jianshu.com/users/f44b3a9dc42e"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2-65a6e6d032559f3c53475eb61d7ea573.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/f44b3a9dc42e">刘子琦</a> <span class="time">2016.08.15 14:24</span></li><li data-user-id="118706"> <a class="avatar" href="http://www.jianshu.com/users/77cf961197c9"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/1856e07cf605.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/77cf961197c9">冰冰的冻结</a> <span class="time">2016.08.10 18:19</span></li><li data-user-id="1425503"> <a class="avatar" href="http://www.jianshu.com/users/b4d7a90194ff"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/084cb108c067"> </a> <a class="blue-link" href="http://www.jianshu.com/users/b4d7a90194ff">踏雪鸿雁</a> <span class="time">2016.08.05 20:38</span></li><li data-user-id="1489910"> <a class="avatar" href="http://www.jianshu.com/users/e13c67a94a46"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/27c1aa3dca8c"> </a> <a class="blue-link" href="http://www.jianshu.com/users/e13c67a94a46">EastYoung</a> <span class="time">2016.07.24 17:28</span></li><li data-user-id="2557899"> <a class="avatar" href="http://www.jianshu.com/users/5109bc0f25af"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/beed3747a35c"> </a> <a class="blue-link" href="http://www.jianshu.com/users/5109bc0f25af">泛艺fineemb</a> <span class="time">2016.07.23 22:45</span></li><li data-user-id="1452550"> <a class="avatar" href="http://www.jianshu.com/users/6360ad743e7d"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/f4671cd10d86.jpeg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/6360ad743e7d">高一博</a> <span class="time">2016.07.22 08:32</span></li><li data-user-id="2424724"> <a class="avatar" href="http://www.jianshu.com/users/4d3574b92733"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/f53afc901441.jpeg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/4d3574b92733">nbpzjy</a> <span class="time">2016.07.22 06:53</span></li><li data-user-id="2186957"> <a class="avatar" href="http://www.jianshu.com/users/570c6832ec8f"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/ba7e9f2b1f80"> </a> <a class="blue-link" href="http://www.jianshu.com/users/570c6832ec8f">琴声悠扬TODO</a> <span class="time">2016.06.03 22:54</span></li><li data-user-id="1945146"> <a class="avatar" href="http://www.jianshu.com/users/8ab79f75dd84"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/f6e79d554d89"> </a> <a class="blue-link" href="http://www.jianshu.com/users/8ab79f75dd84">angelsmoke</a> <span class="time">2016.06.01 03:36</span></li><li data-user-id="1736851"> <a class="avatar" href="http://www.jianshu.com/users/dc89d69b1766"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/e363e00278d3.jpeg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/dc89d69b1766">淡如止水</a> <span class="time">2016.05.28 11:01</span></li><li data-user-id="1650127"> <a class="avatar" href="http://www.jianshu.com/users/65375b8a897b"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/92ebd4928f36"> </a> <a class="blue-link" href="http://www.jianshu.com/users/65375b8a897b">bingshi3333</a> <span class="time">2016.05.28 00:35</span></li><li data-user-id="2071905"> <a class="avatar" href="http://www.jianshu.com/users/c4aa3cd76f5f"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/ab3291797e79"> </a> <a class="blue-link" href="http://www.jianshu.com/users/c4aa3cd76f5f">还招实习吗</a> <span class="time">2016.05.26 19:27</span></li><li data-user-id="2068856"> <a class="avatar" href="http://www.jianshu.com/users/17e14fc8c485"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/3-575b6d78d8c89400d30e4ed72c2675bf.jpg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/17e14fc8c485">snowlen</a> <span class="time">2016.05.26 11:28</span></li><li data-user-id="2093711"> <a class="avatar" href="http://www.jianshu.com/users/28e6956f7fbb"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/df53e3386f4c.png"> </a> <a class="blue-link" href="http://www.jianshu.com/users/28e6956f7fbb">78848d676612</a> <span class="time">2016.05.26 10:03</span></li><li data-user-id="1018039"> <a class="avatar" href="http://www.jianshu.com/users/470afcb80dc2"> <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/5fa8b6c050e0.jpeg"> </a> <a class="blue-link" href="http://www.jianshu.com/users/470afcb80dc2">r17171709</a> <span class="time">2016.05.25 06:15</span></li><a class="more hidden" data-max-id="19956687" href="javascript:void(null);"><i class="fa fa-ellipsis-h"></i></a></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Comments -->
+    <div id="comments" class="comment-list clearfix">
+        <div class="comment-head clearfix">
+          8条评论
+          <span class="order">
+            （
+            <a data-order="asc" class="active" href="javascript:void(0)">按时间正序</a>·
+            <a data-order="desc" href="javascript:void(0)">按时间倒序</a>·
+            <a data-order="likes_count" href="javascript:void(0)">按喜欢排序</a>
+            ）
+          </span>
+            <a class="goto-comment pull-right" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+              <i class="fa fa-pencil"></i>添加新评论
+</a>        </div>
+        <div id="comment-list">
+
+
+<div class="note-comment clearfix" id="comment-2498512">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/c60fe00f2031">
+          <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/5ea6c37f7854.jpeg" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/c60fe00f2031">人间入画</a>
+        </p>
+        <span class="reply-time">
+          <small>2 楼 · </small>
+          <a href="http://www.jianshu.com/p/4eff036360da/comments/2498512#comment-2498512">2016.05.23 12:50</a></span>
+      </div>
+      <p>讲的非常详细</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2498512" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="2498512" data-nickname="人间入画" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2498721">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/8a21923f1c49">
+          <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/4b2752cf3fb0" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/8a21923f1c49">右眼皮的爱</a>
+        </p>
+        <span class="reply-time">
+          <small>3 楼 · </small>
+          <a href="http://www.jianshu.com/p/4eff036360da/comments/2498721#comment-2498721">2016.05.23 13:03</a></span>
+      </div>
+      <p>代码开源地址：<a href="https://github.com/wangnaiwen/RecyclerViewDivider" rel="nofollow" target="_blank">https://github.com/wangnaiwen/RecyclerViewDivider</a></p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2498721" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(1)</span>
+</a>        
+
+        <a data-id="2498721" data-nickname="右眼皮的爱" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2510536">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/aca6f77fff3e">
+          <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/8e3728454f26" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/aca6f77fff3e">ray_lee_</a>
+        </p>
+        <span class="reply-time">
+          <small>4 楼 · </small>
+          <a href="http://www.jianshu.com/p/4eff036360da/comments/2510536#comment-2510536">2016.05.24 11:22</a></span>
+      </div>
+      <p>写的不错。</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2510536" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="2510536" data-nickname="ray_lee_" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2514720">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/7b84529d4c49">
+          <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/9645f7a2b311.jpg" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/7b84529d4c49">MarcoWong</a>
+        </p>
+        <span class="reply-time">
+          <small>5 楼 · </small>
+          <a href="http://www.jianshu.com/p/4eff036360da/comments/2514720#comment-2514720">2016.05.24 18:04</a></span>
+      </div>
+      <p>嗯，不错。我说我之前一直分割线一直不显示，然后加了Margin之后就出来了。 <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/joy.png" alt=":joy:" title=":joy:" class="emoji" width="20" height="20"> <br><br>对了，item的点击事件 你研究到了没？我加了selector做选择变色，好像没有变化。</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2514720" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(1)</span>
+</a>        
+
+        <a data-id="2514720" data-nickname="MarcoWong" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list ">
+        <div class="child-comment" id="comment-3218662" data-id="3218662">
+    <p>
+      <a class="blue-link" href="http://www.jianshu.com/users/ec0c29b91ec5">ec0c29b91ec5</a>：
+      <a href="http://www.jianshu.com/users/7b84529d4c49" class="maleskine-author" target="_blank" data-user-slug="7b84529d4c49">@MarcoWong</a> 我用到RecycleView，它的Item是左边图片，右边文字。因为recycle没有Item的点击事件，我就把占比较大图片设置一个tag。<br>holder.iv_icon.setTag(position);<br>然后下面就可以<br> iv_icon.setOnClickListener(new View.OnClickListener()<br>对了，这写成一个内部类个时候适配器
+    </p>
+    <div class="child-comment-footer text-right clearfix">
+      
+      <a data-id="2514720" data-nickname="ec0c29b91ec5" class="reply" href="javascript:void(null)">回复</a>
+      
+      
+      <span class="reply-time pull-left">
+        <a href="http://www.jianshu.com/p/4eff036360da/comments/3218662#comment-3218662">2016.07.21 18:08</a></span>
+      
+    </div>
+  </div>
+
+      <div data-state="remaining-child-comments"></div>
+        <div class="comment-toolbar clearfix">
+          <span class="pull-right">
+            <a data-id="2514720" class="reply" href="javascript:void(null)"><i class="fa fa-pencil"></i> 添加新回复</a>
+          </span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2521781">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/8a21923f1c49">
+          <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/4b2752cf3fb0" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/8a21923f1c49">右眼皮的爱</a>
+        </p>
+        <span class="reply-time">
+          <small>6 楼 · </small>
+          <a href="http://www.jianshu.com/p/4eff036360da/comments/2521781#comment-2521781">2016.05.25 10:19</a></span>
+      </div>
+      <p>恩恩，我项目加了点击事件，就是在RecyclerView的Adapter中，加入接口OnItemClickListener和setOnItemClickListener()这个方法，然后在onBindViewHolder中给加添加事件：<br>holder.itemView.setOnClickListener(new View.OnClickListener() {<br>                    <a href="http://www.jianshu.com/users/d55323762b08" class="maleskine-author" target="_blank" data-user-slug="d55323762b08">@Override</a><br>                    public void onClick(View v) {<br>                        mItemClickListener.onItemClick(position, item);<br>                    }<br>  });<br><br>然后在Activity或者Fragment中为RecyclerView加入这个事件。这样就可以了，至于selector这个，我没有做选择变色，不是很了解为什么没有变化 <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/joy.png" alt=":joy:" title=":joy:" class="emoji" width="20" height="20"> </p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2521781" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="2521781" data-nickname="右眼皮的爱" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-2591953">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/aca1b56751ab">
+          <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/28007a9bb9a5" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/aca1b56751ab">aca1b56751ab</a>
+        </p>
+        <span class="reply-time">
+          <small>7 楼 · </small>
+          <a href="http://www.jianshu.com/p/4eff036360da/comments/2591953#comment-2591953">2016.05.31 15:01</a></span>
+      </div>
+      <p>     top 和 left  是直接计算的<br><br>对应的right和bottom，则如下：<br>     right = left + width;<br>     bottom = top + height;<br><br>所以对应的如下：<br>final int top = child.getBottom() + params.bottomMargin;<br>final int bottom = top + mDivider.getIntrinsicHeight();<br>mDivider.setBounds(left, top, right, bottom);<br><br>还要注意getChildAt()所指的部分。<br></p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="2591953" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="2591953" data-nickname="aca1b56751ab" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-comment clearfix" id="comment-3573392">
+  <div class="content">
+      <div class="meta-top">
+        <a class="avatar" href="http://www.jianshu.com/users/77cf961197c9">
+          <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/1856e07cf605.jpg" alt="100">
+</a>        <p>
+          <a class="author-name" href="http://www.jianshu.com/users/77cf961197c9">冰冰的冻结</a>
+        </p>
+        <span class="reply-time">
+          <small>8 楼 · </small>
+          <a href="http://www.jianshu.com/p/4eff036360da/comments/3573392#comment-3573392">2016.08.11 17:07</a></span>
+      </div>
+      <p>颜色 和 高度如何自定义呢</p>
+      <div class="comment-footer clearfix text-right">
+        <a data-id="3573392" class="like pull-left" href="javascript:void(0)">
+          <i class="fa fa-heart-o"></i>喜欢<span>(0)</span>
+</a>        
+
+        <a data-id="3573392" data-nickname="冰冰的冻结" class="reply" href="javascript:void(0)">回复</a>
+        
+        
+      </div>
+    <div class="child-comment-list hide">
+      
+      <div data-state="remaining-child-comments"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+          <p class="signout-comment">
+    <a class="btn btn-info" data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in">
+      登录后发表评论
+</a>  </p>
+
+    </div>
+    <!-- -->
+
+  </div>
+
+  <script type="application/json" data-name="note">
+    {"id":4076573,"abbr":"就在昨天中午，我在简书上发布了我个人的第一篇技术文档:RecyclerView系列之：RecyclerView系列之（1）为RecyclerView添加Header和Footer，也很有幸，能够得到那么多人的支持，这让我迫不及待的赶紧写第二篇文章。今天我将谈谈：为RecyclerView添加分隔线。一.理解ListView和RecyclerView中的ChildView在讲为Item加入分割线本质的前，先来介绍，认识一下ChildView，也就是平时我们用到的ListView，RecyclerView中的getChildAt(intposition)这个返回的...","slug":"4eff036360da","url":"http://www.jianshu.com/p/4eff036360da","image_url":"http://cwb.assets.jianshu.io/notes/images/4076573/weibo/image_756c88511872.jpg","wordage":3148,"has_further_readings":false,"views_count":2605,"likes_count":37,"comments_count":8,"rewards_total_count":0}
+  </script>
+
+  <script type="application/json" data-name="uuid">
+    {"uuid":"86efbbd0-3ad5-41d6-ae4c-e56760aeb225"}
+  </script>
+
+  <script type="application/json" data-name="author">
+    {"id":2068191,"nickname":"右眼皮的爱","slug":"8a21923f1c49","public_notes_count":3,"followers_count":107,"total_likes_count":170,"is_current_user":false,"is_signed_author":false}
+  </script>
+
+
+    <div class="include-collection">
+      <div class="content">
+        <h5>被以下专题收入，发现更多相似内容：</h5>
+        <ul id="all-collections" class="unstyled collections-list">
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/NEt52a"><img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/computer_guy.jpg" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/NEt52a">程序员</a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>153.4K</span>
+  </div>
+
+                <p class="description">如果你是程序员，或者有一颗喜欢写程序的心，喜欢分享技术干货、项目经验、程序员日常囧事等等，欢迎投稿《程序员》专题。
+
+专题主编：小...</p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/NEt52a">21883篇文章</a> · 153403人关注
+                </p>
+              </div>
+            </li>
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/bDHhpK"><img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/rdn_4ddb18fddd2e9_(1).jpg" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/bDHhpK">首页投稿</a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>125.0K</span>
+  </div>
+
+                <p class="description">玩转简书的第一步，从这个专题开始。
+
+想上首页热门榜么？好内容想被更多人看到么？来投稿吧！如果被拒也不要灰心哦～入选文章会进一个队...</p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/bDHhpK">93282篇文章</a> · 125065人关注
+                </p>
+              </div>
+            </li>
+            <li>
+              <a class="avatar" href="http://www.jianshu.com/collection/3fde3b545a35"><img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/android.graphics.Bitmap_3d178cba.jpeg" alt="180"></a>              <div class="collections-info">
+                <h5>
+                  <a href="http://www.jianshu.com/collection/3fde3b545a35">Android知识</a>
+                </h5>
+                
+  <div class="btn btn-success follow">
+    <a data-signin-link="true" data-toggle="modal" href="http://www.jianshu.com/sign_in"><i class="fa fa-fw fa-plus"></i>  <span>添加关注</span></a>
+    <span>19.7K</span>
+  </div>
+
+                <p class="description">分享Android开发的知识，教程，解析，前沿信息，都可以，欢迎大家投稿~
+内容可搞笑，可逗比，另外欢迎申请管理员
+</p>
+                <p>
+                  <a class="blue-link" href="http://www.jianshu.com/collection/3fde3b545a35">4098篇文章</a> · 19751人关注
+                </p>
+              </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+  <!-- Modal -->
+    <div class="modal pay-modal text-center hide fade" id="pay-modal">
+  <div class="modal-header clearfix">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <form id="new_reward" class="new_reward" target="_blank" action="http://www.jianshu.com/notes/4076573/rewards" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="QYsSyBwPgsgO30RCujHfQ8D1rguld9NaH//edUNtGYI2kFLEkDFiSnwfCI1hM6qUiMTE7/eJ35KRTnvJ+ctcBQ==">
+    <div class="modal-body">
+      <a href="http://www.jianshu.com/users/8a21923f1c49">
+        <div class="avatar"><img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/4b2752cf3fb0" alt="100"></div>
+</a>      <p><i class="fa fa-quote-left pull-left"></i>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！<i class="fa fa-quote-right pull-right"></i></p>
+      <div class="main-inputs text-left">
+        <div class="control-group">
+          <label for="reward_amount">打赏金额</label><i class="fa fa-yen"></i>
+          <input value="2.00" type="text" name="reward[amount_in_yuan]" id="reward_amount_in_yuan">
+        </div>
+        <div class="control-group message">
+          <textarea placeholder="给Ta留言" name="reward[message]" id="reward_message"></textarea>
+        </div>
+      </div>
+      <div class="choose-pay text-left">
+        <h5>选择支付方式：</h5>
+        <div>
+          <label for="reward_channel_alipay">
+            <div class="iradio_minimal checked" style="position: relative;"><input type="radio" value="alipay" checked="checked" name="reward[channel]" id="reward_channel_alipay" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+            <span class="alipay-bg"></span>
+</label>
+          
+          <label for="reward_channel_wx_pub_qr">
+            <div class="iradio_minimal" style="position: relative;"><input type="radio" value="wx_pub_qr" name="reward[channel]" id="reward_channel_wx_pub_qr" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+            微信支付
+</label>        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button name="button" type="submit" class="btn btn-large btn-pay">立即支付</button>
+    </div>
+</form></div>
+
+    <div class="modal success-pay text-center hide fade" id="success-pay">
+  <div class="modal-header clearfix">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  </div>
+  <div class="modal-body">
+    <h3><i class="icon-ok"></i>打赏成功</h3>
+    <img src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/complete-pay-25426877089eb23bd76d9d0e6aad89c1.png" alt="Complete pay">
+  </div>
+  <div class="modal-footer">
+    
+  </div>
+</div>
+
+</div>
+
+  <div class="imagebubble-backmask image-package" style="z-index: 1000;"><div class="image-caption">Item布局layout_margin == 0</div><div class="image-caption">Item布局Layout_margin == 16dp</div><div class="image-caption">分隔线的位置图</div><div class="image-caption">竖屏效果图</div><div class="image-caption">横屏效果图</div><img class="imagebubble-ghost" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-f394e31b2e8ac302(1).png" style="top: 2339px; left: 678.5px; width: 376px; height: 700px;"><img class="imagebubble-ghost" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-c79495d4fd3fd5c0(1).png" style="top: -290px; left: 678.5px; width: 376px; height: 700px;"><img class="imagebubble-ghost" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-4e38dc444b0424f3(1).png" style="top: 10366px; left: 556.5px; width: 620px; height: 373px;"><img class="imagebubble-ghost" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-761c3fa4ae5fda4c(1).png" style="top: 10212px; left: 678.5px; width: 376px; height: 700px;"><img class="imagebubble-ghost" src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/2068191-eefee46cdc968452(1).png" style="top: 656px; left: 678.5px; width: 376px; height: 700px;"></div></div>
+  <div id="flash" class="hide"></div>
+  
+  <div id="view-mode-modal" tabindex="-1" class="modal hide read-modal" aria-hidden="false" data-js-module="view-mode-modal">
+    <div class="btn-group change-background" data-toggle="buttons-radio">
+      <a class="btn btn-daytime active" data-mode="day" href="javascript:void(null);">
+        <i class="fa fa-sun-o"></i>
+</a>      <a class="btn btn-nighttime " data-mode="night" href="javascript:void(null);">
+        <i class="fa fa-moon-o"></i>
+</a>    </div>
+    <div class="btn-group change-font" data-toggle="buttons-radio">
+      <a class="btn font " data-font="font1" href="javascript:void(null);">宋体</a>
+      <a class="btn font hei active" data-font="font2" href="javascript:void(null);">黑体</a>
+    </div>
+    <div class="btn-group change-locale" data-toggle="buttons-radio">
+      <a class="btn font active" data-locale="zh-CN" href="javascript:void(null);">简</a>
+      <a class="btn font hei " data-locale="zh-TW" href="javascript:void(null);">繁</a>
+    </div>
+  </div>
+
+  
+
+  <script src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/base-ded41764c207f7ff545c28c670922d25.js"></script>
+  
+  <script src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/reading-base-0028299ec0c770293c0f07e2f338b48f.js"></script>
+  <script src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/note_show-1805bf39f59948b52870922039360dbb.js"></script>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35169517-1']);
+  _gaq.push(['_setCustomVar', 2, 'User Type', 'Visitor', 1 ]);
+  _gaq.push(['_trackPageview']);
+
+  
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<div style="display:none">
+  <script src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/z_stat.php" language="JavaScript"></script><script src="./RecyclerView系列之（2）：为RecyclerView添加分隔线 - 简书_files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1258679142" target="_blank" title="站长统计">站长统计</a>
+</div>
+
+
+
+</body></html>

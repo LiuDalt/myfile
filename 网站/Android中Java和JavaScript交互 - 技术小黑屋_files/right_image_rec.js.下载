@@ -1,0 +1,16 @@
+var rightAnli = '<h4 align="center">感谢以下品牌对本网站的支持</h4>';
+	function addRightAnli(targetLink, imageLink, title) {
+		rightAnli = rightAnli + '<a href="' + targetLink + '" class="bnr_img" title="' +  title + '"><img class="no_boarder_class" style="border: 0;" src="' + imageLink + '" width="280"></a>';
+	}
+	
+	addRightAnli('http://www.kancloud.cn/', 'http://7jpolu.com1.z0.glb.clouddn.com/kancloud.jpg', '看云');
+		
+	//addRightAnli('http://www.qiniu.com/', 'http://7jpolu.com1.z0.glb.clouddn.com/qiniu_paas.jpg', 'qiniu');
+	
+
+	//addRightAnli('http://www.qiniu.com/products/live?utm_campaign=zhiboyunproduct&utm_source=jsxhw&utm_medium=advposition&utm_content=png', 'http://7jpolu.com1.z0.glb.clouddn.com/qiniu_zhibo_yun.jpg', 'qiniu_zhiboyun');
+
+	addRightAnli('http://www.qiniu.com/products/pili?utm_campaign=zhiboyunproduct&utm_source=jishuxiaoheiwu&utm_medium=advposition&utm_content=png', 'http://7jpolu.com1.z0.glb.clouddn.com/qiniu_zhibo_yun.jpg', 'qiniu_zhiboyun');
+
+	//addRightAnli('http://union.click.jd.com/jdc?e=&p=AyIHVCtaJQMiQwpDBUoyS0IQWlALHE5XCEZETlcNVQtHRVJaRkE7WgtDVg4EUxpYEQYRAEpCHklfIg4LGzxgQ3VnMGYtD1VWUwsBGxBGS2dZF2sXBBoEUxtYFAMiBVcbWxwGEgZQK2t0cCJMOxprFwQaBFMZWBwFIgdQH1IdChUBVBxcFAciAGVLBEBBTF8AUx9BMiI%3D&t=W1dCFBBFC15CWggEAEAdQFkJBRxNVlRpFEsNQR4RAVQYXxEBFRgMXgdI', 'http://7jpolu.com1.z0.glb.clouddn.com/huazhang.png', '华章');
+	document.write(rightAnli);

@@ -1,0 +1,538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0042)http://zhoujianghai.iteye.com/blog/1048823 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站</title>
+    <meta name="description" content="一：TextView组件改变部分文字的颜色：     TextView textView = (TextView)findViewById(R.id.textview);    //方法一：  textView.setText(Html.fromHtml(&quot;&lt;font color=\&quot;#ff0000\&quot;&gt;红色&lt;/font&gt;其它颜色&quot;)) ...">
+    <meta name="keywords" content="XML, Android, HTML android textview改变部分文字的颜色和string.xml中文字的替换">
+    <link rel="shortcut icon" href="http://zhoujianghai.iteye.com/images/favicon.ico" type="image/x-icon">
+    <link rel="search" type="application/opensearchdescription+xml" href="http://zhoujianghai.iteye.com/open_search.xml" title="ITeye">
+    <link href="http://zhoujianghai.iteye.com/rss" rel="alternate" title="Alex Zhou" type="application/rss+xml">
+    <link href="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/blog.css" media="screen" rel="stylesheet" type="text/css">
+<link href="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/blue.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" async="" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/dynamicFloat.js"></script><script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/ca-pub-8990951720398508.js"></script><script type="text/javascript" async="" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icrm"></script><script type="text/javascript" async="" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icrm(1)"></script><script type="text/javascript" async="" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icrm(2)"></script><script type="text/javascript" async="" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/ga.js"></script><script type="text/javascript" async="" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/ga.js"></script><script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/application.js" type="text/javascript"></script>    
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-535605-1']);
+  _gaq.push(['_setDomainName', 'iteye.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+      <link href="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/SyntaxHighlighter.css" media="screen" rel="stylesheet" type="text/css">
+  <script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/shCoreCommon.js" type="text/javascript"></script>
+<script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/hotkey.js" type="text/javascript"></script>
+  <script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/code_favorites.js" type="text/javascript"></script>
+<script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/weiboshare.js" type="text/javascript"></script>
+    
+  <style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><style type="text/css">.dp-xml .cdata { color: #ff1493; }.dp-xml .tag, .dp-xml .tag-name { color: #069; font-weight: bold; }.dp-xml .attribute { color: red; }.dp-xml .attribute-value { color: blue; }</style><style type="text/css">.dp-j .annotation { color: #646464; }.dp-j .number { color: #C00000; }</style><script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/get_ads.php" type="text/javascript"></script></head>
+  <body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div>
+    <div id="header">
+	      <div id="blog_site_nav">
+  <a href="http://www.iteye.com/" class="homepage">首页</a>
+  <a href="http://www.iteye.com/news">资讯</a>
+  <a href="http://www.iteye.com/magazines">精华</a>
+  <a href="http://www.iteye.com/forums">论坛</a>
+  <a href="http://www.iteye.com/ask">问答</a>
+  <a href="http://www.iteye.com/blogs">博客</a>
+  <a href="http://www.iteye.com/blogs/subjects">专栏</a>
+  <a href="http://www.iteye.com/groups">群组</a>
+  <a href="http://zhoujianghai.iteye.com/blog/1048823#" onclick="return false;" id="msna"><u>更多</u> <small>▼</small></a>
+  <div class="quick_menu" style="display:none;">
+    <a target="_blank" href="http://job.iteye.com/iteye">知识库</a>
+    <a href="http://www.iteye.com/search">搜索</a>
+  </div>
+</div>
+
+	      <div id="user_nav">
+      <a href="http://zhoujianghai.iteye.com/login" class="welcome" title="登录">您还未登录 !</a>
+    <a href="http://zhoujianghai.iteye.com/login">登录</a>
+    <a href="http://zhoujianghai.iteye.com/signup" class="nobg">注册</a>
+  </div>
+
+	    
+    </div>
+
+    <div id="page">
+        <div id="branding" class="clearfix" style="overflow: hidden;background: none;padding:0 0 2px;">
+        	<div class="J_adv" data-view="true" data-mod="ad_popu_184" data-mtp="34" data-order="92" data-con="ad_content_1127" style="width: 960px; height: 90px;"><!-- 广告占位容器 --><div id="cpro_u2720131"><iframe id="iframeu2720131_0" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icrm.html" width="960" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><!-- 投放代码 --><script type="text/javascript">   /*服务器频道首页置顶Banner960*90，创建于2014-7-3*/    (window.cproArray = window.cproArray || []).push({        id: 'u2720131'      });  </script>  <script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/c.js" type="text/javascript"></script></div>
+        </div>
+      <div id="branding" class="clearfix">
+        <div id="blog_name">
+          <h1><a href="http://zhoujianghai.iteye.com/">Alex Zhou</a></h1>
+        </div>
+        <div id="fd"></div>
+        <div id="blog_navbar">
+          <ul>
+            <li class="blog_navbar_for"><a href="http://zhoujianghai.iteye.com/"><strong>博客</strong></a></li>
+            <li><a href="http://zhoujianghai.iteye.com/weibo">微博</a></li>
+            <li><a href="http://zhoujianghai.iteye.com/album">相册</a></li>
+            <li><a href="http://zhoujianghai.iteye.com/link">收藏</a></li>
+            <li><a href="http://zhoujianghai.iteye.com/blog/guest_book">留言</a></li>
+            <li><a href="http://zhoujianghai.iteye.com/blog/profile">关于我</a></li>
+          </ul>
+    
+          <div class="search">
+            <form action="http://zhoujianghai.iteye.com/blog/search" method="get">
+              <input class="search_text" id="query" name="query" style="margin-left: 10px;width: 110px;" type="text" value="">
+              <input class="submit_search" type="submit" value="">
+            </form>
+          </div> 
+          <div id="fd"></div>         
+        </div>
+      </div>
+      
+      <div id="content" class="clearfix">
+        <div id="main">
+          
+
+
+
+          
+
+
+<div class="h-entry" style="display:none">
+  <a href="http://zhoujianghai.iteye.com/" class="p-author" target="_blank">zhoujianghai</a>
+</div>
+
+
+<div class="blog_main">
+  <div class="blog_title">
+    <h3>
+      <a href="http://zhoujianghai.iteye.com/blog/1048823">android textview改变部分文字的颜色和string.xml中文字的替换</a>
+      <em class="actions">      </em>
+    </h3>
+    <ul class="blog_categories"><strong>博客分类：</strong> <li><a href="http://zhoujianghai.iteye.com/category/115658">android开发</a></li> </ul>
+        <div class="news_tag"><a href="http://www.iteye.com/blogs/tag/XML">XML</a><a href="http://www.iteye.com/blogs/tag/Android">Android</a><a href="http://www.iteye.com/blogs/tag/HTML">HTML</a>&nbsp;</div>
+    	  
+    	
+    	
+  		
+      </div>
+
+  <div id="blog_content" class="blog_content">
+    <p>一：TextView组件改变部分文字的颜色：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=TextView%20textView%20%3D%20(TextView)findViewById(R.id.textview)%3B%0A%0A%2F%2F%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%0AtextView.setText(Html.fromHtml(%22%3Cfont%20color%3D%5C%22%23ff0000%5C%22%3E%E7%BA%A2%E8%89%B2%3C%2Ffont%3E%E5%85%B6%E5%AE%83%E9%A2%9C%E8%89%B2%22))%3B%0A%0A%2F%2F%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%0A%20String%20text%20%3D%20%22%E8%8E%B7%E5%BE%97%E9%93%B6%E5%AE%9D%E7%AE%B1!%22%3B%0A%20SpannableStringBuilder%20style%3Dnew%20SpannableStringBuilder(text)%3B%20%20%20%0A%20%20style.setSpan(new%20BackgroundColorSpan(Color.RED)%2C2%2C5%2CSpannable.SPAN_EXCLUSIVE_INCLUSIVE)%3B%20%20%20%20%20%2F%2F%E8%AE%BE%E7%BD%AE%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AEtextview%E7%9A%84%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%0A%20%20style.setSpan(new%20ForegroundColorSpan(Color.RED)%2C0%2C2%2CSpannable.SPAN_EXCLUSIVE_INCLUSIVE)%3B%20%20%20%20%20%2F%2F%E8%AE%BE%E7%BD%AE%E6%8C%87%E5%AE%9A%E4%BD%8D%E7%BD%AE%E6%96%87%E5%AD%97%E7%9A%84%E9%A2%9C%E8%89%B2%0A%20%20textView.setText(style)%3B%20%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span>TextView&nbsp;textView&nbsp;=&nbsp;(TextView)findViewById(R.id.textview);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="comment">//方法一：</span><span>&nbsp;&nbsp;</span></span></li><li><span>textView.setText(Html.fromHtml(<span class="string">"&lt;font&nbsp;color=\"#ff0000\"&gt;红色&lt;/font&gt;其它颜色"</span><span>));&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span><span class="comment">//方法二：</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;String&nbsp;text&nbsp;=&nbsp;<span class="string">"获得银宝箱!"</span><span>;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;SpannableStringBuilder&nbsp;style=<span class="keyword">new</span><span>&nbsp;SpannableStringBuilder(text);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;style.setSpan(<span class="keyword">new</span><span>&nbsp;BackgroundColorSpan(Color.RED),</span><span class="number">2</span><span>,</span><span class="number">5</span><span>,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">//设置指定位置textview的背景颜色</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;style.setSpan(<span class="keyword">new</span><span>&nbsp;ForegroundColorSpan(Color.RED),</span><span class="number">0</span><span>,</span><span class="number">2</span><span>,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">//设置指定位置文字的颜色</span><span>&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;textView.setText(style);&nbsp;&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" codeable_id="" codeable_type="BlogComment" source_url="http://zhoujianghai.iteye.com/blog/1048823#" pre_index="0" title="android textview改变部分文字的颜色和string.xml中文字的替换" style="display: none;">TextView textView = (TextView)findViewById(R.id.textview);
+
+//方法一：
+textView.setText(Html.fromHtml("&lt;font color=\"#ff0000\"&gt;红色&lt;/font&gt;其它颜色"));
+
+//方法二：
+ String text = "获得银宝箱!";
+ SpannableStringBuilder style=new SpannableStringBuilder(text);   
+  style.setSpan(new BackgroundColorSpan(Color.RED),2,5,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);     //设置指定位置textview的背景颜色
+  style.setSpan(new ForegroundColorSpan(Color.RED),0,2,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);     //设置指定位置文字的颜色
+  textView.setText(style); 
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>二：android string.xml文件中的整型和string型代替：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%20String%20text%20%3D%20String.format(getResources().getString(R.string.baoxiang)%2C%202%2C18%2C%22%E9%93%B6%E5%AE%9D%E7%AE%B1%22)%3B%0A" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span>String&nbsp;text&nbsp;=&nbsp;String.format(getResources().getString(R.string.baoxiang),&nbsp;</span><span class="number">2</span><span>,</span><span class="number">18</span><span>,</span><span class="string">"银宝箱"</span><span>);&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="java" codeable_id="" codeable_type="BlogComment" source_url="http://zhoujianghai.iteye.com/blog/1048823#" pre_index="1" title="android textview改变部分文字的颜色和string.xml中文字的替换" style="display: none;"> String text = String.format(getResources().getString(R.string.baoxiang), 2,18,"银宝箱");
+</pre>
+<p>&nbsp;</p>
+<p>&nbsp;对应的string.xml文件参数：</p>
+<p>&nbsp;</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Xml代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=%3Cstring%20name%3D%22baoxiang%22%3E%E6%82%A8%E4%BB%8A%E5%A4%A9%E6%89%93%E4%BA%86%251%24d%E5%B1%80%2C%E8%BF%98%E5%B7%AE%252%24d%E5%B1%80%E5%8F%AF%E8%8E%B7%E5%BE%97%253%24s!%3C%2Fstring%3E" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-xml"><li><span><span class="tag">&lt;</span><span class="tag-name">string</span><span>&nbsp;</span><span class="attribute">name</span><span>=</span><span class="attribute-value">"baoxiang"</span><span class="tag">&gt;</span><span>您今天打了%1$d局,还差%2$d局可获得%3$s!</span><span class="tag">&lt;/</span><span class="tag-name">string</span><span class="tag">&gt;</span><span>&nbsp;&nbsp;</span></span></li></ol></div><pre name="code" class="xml" codeable_id="" codeable_type="BlogComment" source_url="http://zhoujianghai.iteye.com/blog/1048823#" pre_index="2" title="android textview改变部分文字的颜色和string.xml中文字的替换" style="display: none;">&lt;string name="baoxiang"&gt;您今天打了%1$d局,还差%2$d局可获得%3$s!&lt;/string&gt;</pre>
+<p>&nbsp;%1$d表达的意思是整个name=”<span style="white-space: pre;">baoxiang</span>”字符串中，第一个整型</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>在项目开发者，经常需要把以上两者结合起来使用。可以避免很多textview的拼接，如下所示：</p>
+<p>&nbsp;</p>
+<p>
+</p>
+<div class="dp-highlighter" id=""><div class="bar"><div class="tools">Java代码 <embed wmode="transparent" src="/javascripts/syntaxhighlighter/clipboard_new.swf" width="14" height="15" flashvars="clipboard=TextView%20textView%20%3D%20(TextView)findViewById(R.id.testview)%3B%0A%0AString%20text%20%3D%20String.format(getResources().getString(R.string.baoxiang)%2C%202%2C18%2C%22%E9%93%B6%E5%AE%9D%E7%AE%B1%22)%3B%0A%20%20%20%20%20%20%20int%20index%5B%5D%20%3D%20new%20int%5B3%5D%3B%0A%20%20%20%20%20%20%20index%5B0%5D%20%3D%20text.indexOf(%222%22)%3B%0A%20%20%20%20%20%20%20index%5B1%5D%20%3D%20text.indexOf(%2218%22)%3B%0A%20%20%20%20%20%20%20index%5B2%5D%20%3D%20text.indexOf(%22%E9%93%B6%E5%AE%9D%E7%AE%B1%22)%3B%0A%0A%20SpannableStringBuilder%20style%3Dnew%20SpannableStringBuilder(text)%3B%20%20%20%0A%09%20%20%20%20%20%20%20style.setSpan(new%20ForegroundColorSpan(Color.RED)%2Cindex%5B0%5D%2Cindex%5B0%5D%2B1%2CSpannable.SPAN_EXCLUSIVE_INCLUSIVE)%3B%20%20%20%20%0A%09%20%20%20%20%20%20%20style.setSpan(new%20ForegroundColorSpan(Color.RED)%2Cindex%5B1%5D%2Cindex%5B1%5D%2B2%2CSpannable.SPAN_EXCLUSIVE_INCLUSIVE)%3B%20%20%20%20%0A%09%20%20%20%20%20%20%20style.setSpan(new%20BackgroundColorSpan(Color.RED)%2Cindex%5B2%5D%2Cindex%5B2%5D%2B3%2CSpannable.SPAN_EXCLUSIVE_INCLUSIVE)%3B%20%20%20%20%0A%09%20%20%20%20%20%20%20textView.setText(style)%3B" quality="high" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">&nbsp;<a href="javascript:void()" title="收藏这段代码" onclick="code_favorites_do_favorite(this);return false;"><img class="star" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icon_star.png" alt="收藏代码"><img class="spinner" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/spinner.gif" style="display:none"></a></div></div><ol start="1" class="dp-j"><li><span><span>TextView&nbsp;textView&nbsp;=&nbsp;(TextView)findViewById(R.id.testview);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>String&nbsp;text&nbsp;=&nbsp;String.format(getResources().getString(R.string.baoxiang),&nbsp;<span class="number">2</span><span>,</span><span class="number">18</span><span>,</span><span class="string">"银宝箱"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span><span>&nbsp;index[]&nbsp;=&nbsp;</span><span class="keyword">new</span><span>&nbsp;</span><span class="keyword">int</span><span>[</span><span class="number">3</span><span>];&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index[<span class="number">0</span><span>]&nbsp;=&nbsp;text.indexOf(</span><span class="string">"2"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index[<span class="number">1</span><span>]&nbsp;=&nbsp;text.indexOf(</span><span class="string">"18"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index[<span class="number">2</span><span>]&nbsp;=&nbsp;text.indexOf(</span><span class="string">"银宝箱"</span><span>);&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;</span></li><li><span>&nbsp;SpannableStringBuilder&nbsp;style=<span class="keyword">new</span><span>&nbsp;SpannableStringBuilder(text);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style.setSpan(<span class="keyword">new</span><span>&nbsp;ForegroundColorSpan(Color.RED),index[</span><span class="number">0</span><span>],index[</span><span class="number">0</span><span>]+</span><span class="number">1</span><span>,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style.setSpan(<span class="keyword">new</span><span>&nbsp;ForegroundColorSpan(Color.RED),index[</span><span class="number">1</span><span>],index[</span><span class="number">1</span><span>]+</span><span class="number">2</span><span>,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style.setSpan(<span class="keyword">new</span><span>&nbsp;BackgroundColorSpan(Color.RED),index[</span><span class="number">2</span><span>],index[</span><span class="number">2</span><span>]+</span><span class="number">3</span><span>,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span></li><li><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textView.setText(style);&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="java" codeable_id="" codeable_type="BlogComment" source_url="http://zhoujianghai.iteye.com/blog/1048823#" pre_index="3" title="android textview改变部分文字的颜色和string.xml中文字的替换" style="display: none;">TextView textView = (TextView)findViewById(R.id.testview);
+
+String text = String.format(getResources().getString(R.string.baoxiang), 2,18,"银宝箱");
+       int index[] = new int[3];
+       index[0] = text.indexOf("2");
+       index[1] = text.indexOf("18");
+       index[2] = text.indexOf("银宝箱");
+
+ SpannableStringBuilder style=new SpannableStringBuilder(text);   
+	       style.setSpan(new ForegroundColorSpan(Color.RED),index[0],index[0]+1,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);    
+	       style.setSpan(new ForegroundColorSpan(Color.RED),index[1],index[1]+2,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);    
+	       style.setSpan(new BackgroundColorSpan(Color.RED),index[2],index[2]+3,Spannable.SPAN_EXCLUSIVE_INCLUSIVE);    
+	       textView.setText(style);</pre>
+&nbsp;
+<p>&nbsp;</p>
+  </div>
+
+  
+
+  
+  <div class="J_adv" data-view="true" data-mod="ad_popu_171" data-mtp="43" data-order="93" data-con="ad_content_488" style="width: 680px; height: 90px;"><script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="ca-pub-8990951720398508" data-ad-slot="8267689356/1918544322" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:60px;margin:0;padding:0;position:relative;visibility:visible;width:468px;background-color:transparent"><iframe width="468" height="60" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/saved_resource.html"></iframe></ins></ins></ins><script>(adsbygoogle=window.adsbygoogle || []).push({});</script></div>
+  
+
+  <div id="bottoms" class="clearfix">
+    
+    <div id="share_weibo">分享到：
+      <a data-type="sina" href="javascript:;" title="分享到新浪微博"><img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/sina.jpg"></a>
+      <a data-type="qq" href="javascript:;" title="分享到腾讯微博"><img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/tec.jpg"></a>
+    </div>
+  </div>
+
+  <div class="blog_nav">
+    <div class="pre_next">
+      <a href="http://zhoujianghai.iteye.com/blog/1052970" class="next" title="简述TCP和UDP协议">简述TCP和UDP协议</a>
+      |
+      <a href="http://zhoujianghai.iteye.com/blog/1045373" class="pre" title="AndroiManifest.xml文件中android属性">AndroiManifest.xml文件中android属性</a>
+    </div>
+  </div>
+  <div class="blog_bottom">
+    <ul>
+      <li>2011-05-18 18:49</li>
+      <li>浏览 10711</li>
+      <li><a href="http://zhoujianghai.iteye.com/blog/1048823#comments">评论(2)</a></li>
+      
+      
+      <li>分类:<a href="http://www.iteye.com/blogs/category/mobile">移动开发</a></li>      
+      <li class="last"><a href="http://www.iteye.com/wiki/blog/1048823" target="_blank" class="more">相关推荐</a></li>
+    </ul>    
+  </div>
+  
+		    
+		
+<div class="boutique-curr-box blog_comment">
+	  <div class="boutique-curr clearfix">
+	    <h5 class="h3titles">参考知识库</h5>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/go"><img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/1471395508721_721.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/go" classs="title">Go知识库</a>
+              <span>
+                 <em>122</em>&nbsp;&nbsp;关注 <i>|</i> <em>648</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/machinelearning"><img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/1452498104247_247.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/machinelearning" classs="title">机器学习知识库</a>
+              <span>
+                 <em>7761</em>&nbsp;&nbsp;关注 <i>|</i> <em>1465</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/unity3d"><img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/1470302448213_213.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/unity3d" classs="title">Unity3D知识库</a>
+              <span>
+                 <em>427</em>&nbsp;&nbsp;关注 <i>|</i> <em>184</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	    <dl class="dlnewlist">
+	    
+          <dd><a target="_blank" href="http://lib.csdn.net/base/docker"><img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/1452500466484_484.jpg" width="58" height="58" alt=""></a></dd>
+          <dt>
+              <a target="_blank" href="http://lib.csdn.net/base/docker" classs="title">Docker知识库</a>
+              <span>
+                 <em>3443</em>&nbsp;&nbsp;关注 <i>|</i> <em>199</em>&nbsp;&nbsp;收录                  
+              </span>
+          </dt>
+      
+	    </dl>
+	    
+	  </div>
+</div>
+ 		
+      
+  <div class="blog_comment">
+    <h5>评论</h5>
+    <a id="comments" name="comments"></a>
+    <div id="bc2232563">
+  <div class="comment_title">
+    2 楼
+    <a href="http://vanezkw.iteye.com/" target="_blank" title="vanezkw">vanezkw</a>
+    2011-11-30&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">非常有用。谢谢分享</div>
+</div>
+
+<div id="bc2211972">
+  <div class="comment_title">
+    1 楼
+    <a href="http://greenboy1.iteye.com/" target="_blank" title="greenboy1">greenboy1</a>
+    2011-08-20&nbsp;&nbsp;
+    
+    
+  </div>
+  <div class="comment_content">谢谢分享 </div>
+</div>
+
+
+    
+    
+  </div>
+
+  <div class="blog_comment">
+    <h5>发表评论</h5>
+            <p style="text-align:center; margin-top:30px;margin-bottom:0px;"><a href="http://zhoujianghai.iteye.com/login" style="background-color:white;"> <img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/login_icon.png" style="vertical-align:middle; margin-right: 10px;"></a><a href="http://zhoujianghai.iteye.com/login">  您还没有登录,请您登录后再发表评论 </a></p>
+      </div>
+</div>
+
+
+<script type="text/javascript">
+  dp.SyntaxHighlighter.HighlightAll('code', true, true);
+
+  $$('#main .blog_content pre[name=code]').each(function(pre, index){ // blog content
+    var post_id = 1048823;
+    var location = window.location;
+    source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+    pre.writeAttribute('codeable_id', post_id);
+    pre.writeAttribute('codeable_type', "Blog");
+    pre.writeAttribute('source_url', source_url);
+    pre.writeAttribute('pre_index', index);
+    pre.writeAttribute('title', 'android textview改变部分文字的颜色和string.xml中文字的替换');
+  });
+
+  fix_image_size($$('div.blog_content img'), 700);
+
+  function processComment() {
+    $$('#main .blog_comment > div').each(function(comment){// comment
+      var post_id = comment.id.substr(2);
+      $$("#"+comment.id+" pre[name=code]").each(function(pre, index){
+        var location = window.location;
+        source_url = location.protocol + "//" + location.host + location.pathname + location.search;
+        source_url += "#" + comment.id;
+        pre.writeAttribute('codeable_id', post_id);
+        pre.writeAttribute('codeable_type', "BlogComment");
+        pre.writeAttribute('source_url', source_url);
+        pre.writeAttribute('pre_index', index);
+        pre.writeAttribute('title', 'android textview改变部分文字的颜色和string.xml中文字的替换');
+      });
+    });
+  }
+
+  function quote_comment(id) {
+    new Ajax.Request('/editor/quote', {
+      parameters: {'id':id, 'type':'BlogComment'},
+      onSuccess:function(response){editor.bbcode_editor.textarea.insertAfterSelection(response.responseText);
+        Element.scrollTo(editor.bbcode_editor.textarea.element);}
+    });
+  }
+
+  code_favorites_init();
+  processComment();
+  new WeiboShare({share_buttons: $('share_weibo'), img_scope: $('blog_content')});
+</script>
+
+
+
+
+        </div>
+
+        <div id="local">
+          <div class="local_top"></div>
+          <div id="blog_owner">
+  <div id="blog_owner_logo"><a href="http://zhoujianghai.iteye.com/"><img alt="zhoujianghai的博客" class="logo" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/7c6215ca-f7ca-361d-a902-fe0da4592862.jpg" title="zhoujianghai的博客: Alex Zhou" width=""></a></div>
+  <div id="blog_owner_name">zhoujianghai</div>
+</div>
+
+          <div id="blog_actions">
+            <ul>
+              <li>浏览: 260170 次</li>
+              <li>性别: <img alt="Icon_minigender_1" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icon_minigender_1.gif" title="男"></li>
+              <li>来自: 深圳</li>
+              <li><img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/offline.gif"></li>
+              
+            </ul>
+          </div>
+          <div id="user_visits" class="clearfix">
+            <h5>最近访客 <span style="font-weight:normal;font-size:12px;padding-left:30px;"><a href="http://zhoujianghai.iteye.com/blog/user_visits">更多访客&gt;&gt;</a></span></h5>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://chenshaoao.iteye.com/" target="_blank"><img alt="chenshaoao的博客" class="logo" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/d2acfdab-743b-38c2-bdab-02389b33eee1-thumb.jpg" title="chenshaoao的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://chenshaoao.iteye.com/" target="_blank" title="chenshaoao">chenshaoao</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://flameday.iteye.com/" target="_blank"><img alt="flameday的博客" class="logo" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/user-logo-thumb.gif" title="flameday的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://flameday.iteye.com/" target="_blank" title="flameday">flameday</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://lwvermds.iteye.com/" target="_blank"><img alt="lwvermds的博客" class="logo" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/user-logo-thumb.gif" title="lwvermds的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://lwvermds.iteye.com/" target="_blank" title="lwvermds">lwvermds</a></div>
+              </div>
+            
+              <div class="user_visit">
+                <div class="logo"><a href="http://pp848401.iteye.com/" target="_blank"><img alt="pp848401的博客" class="logo" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/user-logo-thumb.gif" title="pp848401的博客: " width="48px"></a></div>
+                <div class="left"><a href="http://pp848401.iteye.com/" target="_blank" title="pp848401">pp848401</a></div>
+              </div>
+            
+          </div>
+
+          
+
+                      <div id="blog_menu">
+              <h5>文章分类</h5>
+              <ul>
+                <li><a href="http://zhoujianghai.iteye.com/">全部博客 (107)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/97745">数据库 (4)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/100016">编辑器 (10)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/101987">前端开发 (1)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/106018">linux/C/C++ (17)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/115658">android开发 (38)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/141718">版本管理 (1)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/174514">java开发 (30)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/176696">算法学习 (5)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/181961">生活杂记 (2)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/220796">python开发 (3)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/220797">网络协议 (1)</a></li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/category/224595">搜索 (1)</a></li>
+                
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>社区版块</h5>
+              <ul>
+                <li><a href="http://zhoujianghai.iteye.com/blog/news">我的资讯</a> (0)</li>
+                <li>
+                  <a href="http://zhoujianghai.iteye.com/blog/post">我的论坛</a> (172)
+                </li>
+                <li><a href="http://zhoujianghai.iteye.com/blog/answered_problems">我的问答</a> (4)</li>
+              </ul>
+            </div>
+            <div id="month_blogs">
+              <h5>存档分类</h5>
+              <ul>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/blog/monthblog/2012-10">2012-10</a> (1)</li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/blog/monthblog/2012-05">2012-05</a> (5)</li>
+                
+                  <li><a href="http://zhoujianghai.iteye.com/blog/monthblog/2012-04">2012-04</a> (2)</li>
+                
+                <li><a href="http://zhoujianghai.iteye.com/blog/monthblog_more">更多存档...</a></li>
+              </ul>
+            </div>
+            
+            
+
+            <div id="guest_books">
+              <h5>最新评论</h5>
+              <ul>
+                
+                <li>
+                  <a href="http://qja.iteye.com/" target="_blank" title="qja">qja</a>： 
+                  Iterator.remove()这个方法也会出错的。<br>
+                  <a href="http://zhoujianghai.iteye.com/blog/1041555#bc2367555">java.util.ConcurrentModificationException 出现的原因和解决办法</a>
+                </li>
+                
+                <li>
+                  <a href="http://angeli.iteye.com/" target="_blank" title="angeli">angeli</a>： 
+                  List&lt;String&gt; save = new A ...<br>
+                  <a href="http://zhoujianghai.iteye.com/blog/1041555#bc2363189">java.util.ConcurrentModificationException 出现的原因和解决办法</a>
+                </li>
+                
+                <li>
+                  <a href="http://692403693.iteye.com/" target="_blank" title="大峰子">大峰子</a>： 
+                  灰常感谢 刚好碰到这个问题， 搜了好多都没找到解决方法<br>
+                  <a href="http://zhoujianghai.iteye.com/blog/1511161#bc2343621">python学习笔记-Python交互模式下方向键出现乱码</a>
+                </li>
+                
+                <li>
+                  <a href="http://anypwx.iteye.com/" target="_blank" title="anypwx">anypwx</a>： 
+                  牛哥，怎么找到的，解决了我的报错问题，谢谢<br>
+                  <a href="http://zhoujianghai.iteye.com/blog/637276#bc2342689">JSONObject NestableRuntimeException</a>
+                </li>
+                
+                <li>
+                  <a href="http://tp7300.iteye.com/" target="_blank" title="tp7300">tp7300</a>： 
+                  确实好很多了，谢谢博主。<br>
+                  <a href="http://zhoujianghai.iteye.com/blog/847016#bc2319664">Failed to install on device 'emulator-5554': timeout</a>
+                </li>
+                
+              </ul>
+            </div>
+
+            <div class="local_bottom"></div>
+          
+        </div>
+        <div style="margin-top: 10px;float: left;clear: left;">
+					<div class="J_adv" data-view="true" data-mod="ad_popu_185" data-mtp="36" data-order="92" data-con="ad_content_1129" style="width: 200px; height: 200px;"><!-- 广告占位容器 --><div id="cpro_u2720202" style="width: 200px; height: 200px; display: inline-block;"><iframe id="iframeu2720202_0" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icrm(3).html" width="200" height="200" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] ||{})['u2720202']={at:'3',rsi0:'200',rsi1:'200',pat:'6',tn:'baiduCustNativeAD',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'',rss2:'#000000',titSU:'0',ptbg:'90',piw:'0',pih:'0',ptp:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u2720202'});  </script>  <script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/c.js" type="text/javascript"></script></div>
+				</div>
+      </div>    
+
+      <div id="footer" class="clearfix">
+        <div id="copyright">
+          <hr>
+          声明：ITeye文章版权属于作者，受法律保护。没有作者书面许可不得转载。若作者同意转载，必须以超链接形式标明文章原始出处和作者。<br>
+          © 2003-2016 ITeye.com.   All rights reserved.  [ 京ICP证110151号  京公网安备110105010620 ]
+        </div>
+        <div class="J_adv" data-view="true" data-mod="ad_popu_186" data-mtp="40" data-order="92" data-con="ad_content_1132" style="width: 1px; height: 1px; position: fixed; right: 10px; bottom: 10px; z-index: 999; background-color: transparent;"><div id="location_parent"></div><script>document.getElementById('location_parent').parentNode.style.height='1px';document.getElementById('location_parent').parentNode.style.width='1px';document.getElementById('location_parent').parentNode.style.position='fixed';document.getElementById('location_parent').parentNode.style.right='10px';document.getElementById('location_parent').parentNode.style.bottom='10px';document.getElementById('location_parent').parentNode.style.zIndex=999;document.getElementById('location_parent').parentNode.style.backgroundColor='transparent';</script><!-- 广告占位容器 --><div id="cpro_u2720296" style="box-sizing: content-box; width: 311px; height: 286px; overflow: hidden; z-index: 2147483647; position: fixed; bottom: 10px; right: 10px;"><div style="box-sizing: content-box;width:300px;height:250px;padding:4px;border:#acacac 1px solid;overflow:hidden;position:absolute;left:0;top:25px;"><iframe id="cpro_u2720296_iframe" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/icrm(4).html" width="300" height="250" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><div id="cpro_u2720296_closebtn" style="box-sizing: content-box;position:absolute;width:61px;height:20px;top:0;left:250px;margin:0;padding:0;margin-bottom:5px;cursor:pointer;overflow:hidden;"><div style="box-sizing: content-box;width:40px;height:20px;background-color:#999999;color:#fff;float:left;margin-right:1px;font-size:12px;font-family:微软雅黑;text-align: center;line-height:20px;">关闭</div><a style="maring:0;padding:0;display:inline-block;border:none;overflow:hidden;height:20px;line-height:20px;cursor:pointer;width:20px;background:url(&#39;//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/xuanfu_close.png&#39;) no-repeat 0 0;margin-bottom:3px;float:left"></a></div></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] || {})['u2720296']={at:'3',rsi0:'300',rsi1:'250',pat:'17',tn:'baiduCustNativeAD_xuanfu',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'14',rss2:'#000000',titSU:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u2720296'});  </script>  <script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/f.js" type="text/javascript"></script></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+  document.write("<img src='http://stat.iteye.com/?url="+ encodeURIComponent(document.location.href) + "&referrer=" + encodeURIComponent(document.referrer) + "&user_id=' width='0' height='0' />");
+</script><img src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/saved_resource" width="0" height="0">
+
+<script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/tracking.js" type="text/javascript"></script>
+
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33209723-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+      
+    
+    <script language="javascript" type="text/javascript" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/async_new.js"></script>
+<script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">var $csdn_iteye_jq = jQuery.noConflict();// 解决jq与prototype.js命名空间冲突的问题</script>
+<script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/tracking(1).js" type="text/javascript"></script>
+    
+	    
+	    <script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/web-storage-cache.min.js" type="text/javascript"></script>
+	    <script src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/replace.min.js" type="text/javascript"></script>
+    
+    
+  
+
+<iframe id="google_osd_static_frame_4259277798164" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./android textview改变部分文字的颜色和string.xml中文字的替换 - Alex Zhou - ITeye技术网站_files/saved_resource(1).html"></iframe></body></html>

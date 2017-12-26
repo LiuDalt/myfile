@@ -1,0 +1,608 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0061)http://www.360doc.com/content/13/0826/13/9482_309992449.shtml -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="./49 款人脸检测_识别的API、库和软件_files/hm.js.下载"></script><script type="text/javascript">
+        if (window.location.toString().indexOf("shtml?") > 0) {
+            self.location = window.location.toString().replace(window.location.search.toString(), "");
+        }
+        function doccheckart(json) {
+            if (json[0].result == "1") {
+                self.location = "http://www.360doc.com/noarticle.aspx";
+            }
+        }
+    </script>
+    <script src="./49 款人脸检测_识别的API、库和软件_files/getstatusv2.ashx" type="text/javascript" charset="utf-8"></script><style type="text/css">div[style="height: 90px; padding-top: 13px;"],iframe#ifartrightsogou,div[style="width: 676px; float: left;"]{display:none !important;}</style>
+    <script src="./49 款人脸检测_识别的API、库和软件_files/jquery1.js.下载" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        if (navigator.userAgent.indexOf("iPhone") > 0 || navigator.userAgent.indexOf("Android") > 0 || navigator.userAgent.indexOf("iPod") > 0) {  //手机端跳转
+            var patt1 = new RegExp("[0-9]*_[0-9]*");
+            var url = patt1.exec(location.href);
+            if (url != "") {
+                self.location = "http://www.360doc.cn/article/" + url + ".html";
+            }
+        }
+    </script>
+    <meta content="360doc" name="classification"><link rel="alternate" media="only screen and (max-width: 640px)" href="http://www.360doc.cn/article/9482_309992449.html"><meta content="人脸,识别,面部" name="keywords"><meta content="49 款人脸检测/识别的API、库和软件" name="description"><meta name="mobile-agent" content="format=html5;url=http://www.360doc.cn/article/9482_309992449.html"><meta content="49 款人脸检测/识别的API、库和软件自从Google Glass被推出以来，围绕人脸识别出现了很多争议。为了帮助研究过程中探索人脸识别，我们列出以下人脸检测和识别API。Animetrics的人脸识别API可用于图片中的人脸检测。FaceRect是一个功能强大且免费的API进行人脸检测，能够发现网页中的或者上传文件中特定图片上的脸部（包括正面和侧面），并能够在一张图片中找到多张人脸，生成的 JSON输出每个脸部的边界框。人脸检测和识别。" name="360docabstract"><meta content="www.360doc.com" name="author"><title>
+	49 款人脸检测/识别的API、库和软件
+</title>
+    <script type="text/javascript" language="javascript">
+        window.onerror = ignoreError;
+        function ignoreError() {
+            return true;
+        }
+    </script>
+    <script src="./49 款人脸检测_识别的API、库和软件_files/indexhead.js.下载" type="text/javascript" charset="utf-8"></script><script type="text/javascript" src="./49 款人脸检测_识别的API、库和软件_files/chat.js.下载"></script><script type="text/javascript" src="./49 款人脸检测_识别的API、库和软件_files/chatuserlist.js.下载"></script><link rel="stylesheet" type="text/css" href="./49 款人脸检测_识别的API、库和软件_files/chat.css">
+    <script src="./49 款人脸检测_识别的API、库和软件_files/showarticlefollow20160329.js.下载" type="text/javascript" charset="utf-8"></script>
+    <script src="./49 款人脸检测_识别的API、库和软件_files/jQuery.md5.min.js.下载" type="text/javascript" charset="utf-8"></script>
+    
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d86954201130d615136257dde062a503";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="./49 款人脸检测_识别的API、库和软件_files/wzhead-cleaned.css"><link rel="stylesheet" type="text/css" href="./49 款人脸检测_识别的API、库和软件_files/newArticle20160509.css"><script src="./49 款人脸检测_识别的API、库和软件_files/share.js.下载"></script><script type="text/javascript" src="./49 款人脸检测_识别的API、库和软件_files/EssayforIE120425.js.下载"></script><link href="about:blank" rel="styleSheet" type="text/css"><style type="text/css">#gj_mini{background-image:url(http://s.pc.qq.com/navigate/adc/v3/hover-ok.png);background-repeat:no-repeat;display:block;width:58px;height:58px;background-position:0 0}#gj_shard{background-image:url(http://s.pc.qq.com/navigate/adc/v3/suipian.png);background-repeat:no-repeat;display:none;width:200px;height:200px;background-position:0 0}#gj_circle{background-image:url(http://s.pc.qq.com/navigate/adc/v3/guangquan.png);background-repeat:no-repeat;display:none;width:58px;height:58px;background-position:0 0}#gj_bar_left{background: url(http://s.pc.qq.com/navigate/adc/v3/zuo.png) no-repeat; height:42px; width :0px; font-family: "Microsoft YaHei" ! important;overflow:hidden; display:block;}#gj_bar_left #tipstext{line-height:normal;padding-left: 20px;padding-top: 3px;font-size: 12px;padding-right: 10px;color: #fff;overflow:hidden;}#gj_bar_left span{font-size: 14px;font-weight: bold;overflow:hidden;}#gj_bar_right{background: url(http://s.pc.qq.com/navigate/adc/v3/you.png) no-repeat; height:42px; width :0px; font-family: "Microsoft YaHei" ! important;overflow:hidden; display:block;}#gj_bar_right #tipstext{line-height:normal;padding-left: 20px;padding-top: 3px;font-size: 12px;padding-right: 10px;color: #fff;overflow:hidden;}#gj_bar_right span{font-size: 14px;font-weight: bold;overflow:hidden;}</style></head>
+<body onmouseup="setDragEnd()" onclick="delAllDiv(event)">
+    
+    <script type="text/javascript">
+        var baiduImagePlus = {
+            noLogo: true,
+            unionId: 'u2617463',
+            maxMiniAdCount: 0,
+            formList: [{ formId: 10 }]
+        };
+    </script>
+    <script type="text/javascript" src="./49 款人脸检测_识别的API、库和软件_files/i.js.下载"></script>
+    
+    <span id="LayerLogin"></span>
+    <div style="position: fixed; width: 100%; z-index: 2147483547; left: 0px;">
+        <div class="mainnav">
+            <div class="mainnav1">
+                <div class="lf360" style="padding-left: 5px;">
+                    <a href="http://www.360doc.com/index.html">
+                        <img src="./49 款人脸检测_识别的API、库和软件_files/logoo.gif"></a>
+                </div>
+                <div style="width: 625px; padding-top: 0px; padding-left: 4px; position: absolute;">
+                    <table height="34" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr id="daohangtr">
+                                <td style="width: 185px; _width: 0px; *width: 0px !important;"></td>
+                                <td class="navwz1" width="95">
+                                    <a href="http://www.360doc.com/index.html">首&nbsp;页</a>
+                                </td>
+                                <td width="100" class="  navwz1">
+                                    <a href="http://www.360doc.com/readroom.html">阅览室</a>
+                                </td>
+                                <td width="88" class="  navwz1">
+                                    <a href="http://www.360doc.com/weekstar.html">馆友</a>
+                                </td>
+                                <td width="132" class="  navwz1">
+                                    <a href="http://www.360doc.com/my360doc.aspx">我的图书馆</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="rt360" style="padding-top: 6px; width: 133px; padding-left: 38px;" id="outerdiv"><div class="denglbj lan2"><div style=" width:43px; float:left; text-align:center;" onmouseover="this.style.backgroundColor=&#39;#e5e5e5&#39;;this.parentNode.className=&#39;denglbj2 lan2&#39;" onmouseout="this.style.backgroundColor=&#39;#fcfcfc&#39;;this.parentNode.className=&#39;denglbj lan2&#39;"><a href="javascript:void(0)" onclick="loginnew()">登录</a></div><div style=" width:1px; float:left; "></div><div style="width:46px; float:left;text-align:center; margin-left:1px;*margin-left:0px;" onmouseover="this.style.backgroundColor=&#39;#e5e5e5&#39;;this.parentNode.className=&#39;denglbj3 lan2&#39;" onmouseout="this.style.backgroundColor=&#39;#fcfcfc&#39;;this.parentNode.className=&#39;denglbj lan2&#39;" id="regdiv"><a href="http://www.360doc.com/register.aspx?refer=800" target="_blank">注册</a></div><div class="boxwid xinngdui" id="bfdiv"><a href="http://www.360doc.com/content/13/0826/13/9482_309992449.shtml#"><img id="imgbfabc" src="./49 款人脸检测_识别的API、库和软件_files/5.gif"></a></div><div style=" position: absolute; margin-left:35px; *margin-left:-95px;_margin-left:-93px; width:96px;display:none;z-index:200;" id="func"><div class="tugduo3" id="divfunc" style="cursor:pointer;float:right; width:41px;"><div style=" height:26px; width:39px; border:1px solid #d4d4d4; border-bottom:none; background-color:#fff;"></div></div><div class="tipzhu3  right hui2" id="layerdiv"><ul><li><a href="http://www.360doc.com/advice.html" target="_blank">留言交流</a></li><li><a href="http://www.360doc.com/helpnew.html" target="_blank">网文摘手</a></li><li><a href="http://www.360doc.com/mobilapp.htm" target="_blank">手机客户端</a></li><li style=" border:none;"><a href="http://www.360doc.com/help.html" target="_blank">帮助</a></li></ul></div></div></div></div>
+                <div class=" rt360" style="padding-top: 6px; padding-right: 0px; position: relative;">
+                    <div class="lf360 serch">
+                        <input name="input2" class="serchpt" id="txtSearchword" onkeydown="ongosearch()" onkeyup="showIntelliSense()" onfocus="if(this.value==&#39;搜文章 找馆友&#39;) this.value=&#39;&#39;;this.style.color=&#39;#272727&#39;" onblur="if(!this.value) {this.value=&#39;搜文章 找馆友&#39;;this.style.color=&#39;#b2b2b2&#39;;}" onpaste="showIntelliSense1()" type="text" value="搜文章 找馆友">
+                    </div>
+                    <div class="lf360 ssuo">
+                        <a id="searchlinkid" href="javascript:gosearch();"></a>
+                    </div>
+                    <div id="divsearch" style="margin-top: 25px; left: 1px; display: block; position: absolute; z-index: 100;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navxt">
+        </div>
+    </div>
+    <div style="height: 44px; _height: 0px; width: 100%;"></div>
+    <div class="clear360doc"></div>
+
+    <div class="doc360article_content" style="width: 1018px;">
+
+        <div style="height: 90px; padding-top: 13px;">
+            <div id="ADAboveArtContent"><iframe marginwidth="0" marginheight="0" frameborder="0" scrolling="no" width="1012" height="90" src="./49 款人脸检测_识别的API、库和软件_files/aboveConentAD2.html"></iframe></div>
+        </div>
+        <p class="clearboth"></p>
+        <div class="a_left" style="width: 688px;">
+            <div id="bgchange" style="width: 662px;">
+                <div class="fontsize_bgcolor_controler">
+                    <div class="a_bgcolor">
+                        <img src="./49 款人脸检测_识别的API、库和软件_files/bgcolor.jpg">
+                        <div class="a_colorlist">
+                            <span class="a_color1" onclick="wzhitnew(18);">
+                                <img src="./49 款人脸检测_识别的API、库和软件_files/yes.gif"></span>
+                            <span class="a_color2" onclick="wzhitnew(19);">
+                                <img src="./49 款人脸检测_识别的API、库和软件_files/yes.gif"></span>
+                            <span class="a_color3" onclick="wzhitnew(20);">
+                                <img src="./49 款人脸检测_识别的API、库和软件_files/yes.gif"></span>
+                            <span class="a_color4" onclick="wzhitnew(21);">
+                                <img src="./49 款人脸检测_识别的API、库和软件_files/yes.gif"></span>
+                            <span class="a_color5" onclick="wzhitnew(22);">
+                                <img src="./49 款人脸检测_识别的API、库和软件_files/yes.gif"></span>
+                            <span class="a_color6 cur" onclick="wzhitnew(23);">
+                                <img src="./49 款人脸检测_识别的API、库和软件_files/yes.gif"></span>
+                        </div>
+                    </div>
+                    <div class="a_fontsize">
+                        <img src="./49 款人脸检测_识别的API、库和软件_files/fontSize.jpg">
+                        <div class="fschange">
+                            <label>
+                                <input type="radio" name="font_Size" id="" value="18" onclick="wzhitnew(15);">大
+                           
+                            </label>
+                            &nbsp;
+                           
+                            <label>
+                                <input type="radio" name="font_Size" id="" value="16" onclick="wzhitnew(16);">中
+                           
+                            </label>
+                            &nbsp;
+                           
+                            <label>
+                                <input type="radio" name="font_Size" id="" value="14" onclick="wzhitnew(17);">小
+                           
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <h2 id="titiletext">49&nbsp;款人脸检测/识别的API、库和软件</h2>
+                <div class="article_data">
+                    <div class="article_data_left">
+                        2013-08-26
+                        <span class="a_username">&nbsp;<a href="http://www.360doc.com/userhome/9482" id="savernickname" target="_blank" onclick="wzhitnew(1);">dinghj</a>
+                        </span>
+                        <span id="articleinfo">
+                            <span id="docsource" class="a_from">&nbsp;<a href="http://www.iteye.com/news/28190" target="_blank" onclick="wzhitnew(14);">文章来源</a></span><span id="360doc_Readnum">&nbsp;&nbsp;阅&nbsp;145&nbsp;</span><span id="360docResaveCount"><span onclick="ShowSaverUser();wzhitnew(3);" id="360doc_saverNum" style="cursor: pointer;">&nbsp;转&nbsp;<span style="cursor:pointer;" onclick="javascript:ShowSaverUser();">2</span></span>
+                                <span id="360doc_saverUser"><div id="sameArtOuter" style="display:none;position: absolute; height:305px;width:144px;left:0px;margin-top:15px;z-index:100000;"><div id="sameArt" style=" overflow-y: auto;  height:300px;overflow-x: hidden; z-index: 100;right:0px;margin-top:-10px;" onclick="event.cancelBubble=true;"></div></div></span>
+                            </span>
+                        </span>
+                    </div>
+                    <div id="resavelayer1" class="bdsharebuttonbox article_data_right bdshare-button-style0-16" data-bd-bind="1482547798321"><div class="zcommond"><a class="p2" href="javascript:void(0);" onclick="SaveArt();wzhitnew(24);">转藏到我的图书馆</a><div class="s2 f_right" onclick="setTimeout(function(){$(&#39;.article_data_right .sharelist_new&#39;).slideToggle(0);},10);"><span onclicl="wzhitnew(5);"></span></div><a class="p1" href="javascript:void(0);" onclick="shareWeixin();wzhitnew(30);">微信</a> <span class="s1" onclick="setTimeout(function(){$(&#39;.article_data_right .sharelist_new&#39;).slideToggle(0);},10);wzhitnew(4);" onmouseover="this.style.color=&#39;#0f659c&#39;" onmouseout="this.style.color=&#39;&#39;">分享：</span></div><div class="sharelist_new" id="fenxiangLayer"> <a class="slbg1" href="javascript:void(0);" data-cmd="qzone" onclick="wzhitnew(8);">QQ空间</a> <a class="slbg2" href="javascript:void(0);" data-cmd="sqq" onclick="wzhitnew(6);">QQ好友</a> <a class="slbg3" href="javascript:void(0);" data-cmd="tsina" onclick="wzhitnew(9);">新浪微博</a> <a class="slbg4" href="javascript:void(0);" data-cmd="tqq" onclick="wzhitnew(10);">腾讯微博</a> <a class="slbg5" href="javascript:void(0);" onclick="showdivemail1();wzhitnew(12);">推荐给朋友</a> </div><div style="position: absolute;display:none;z-index:1;left:143px;" id="fuzhitishidiv"></div></div>
+                </div>
+                
+                <div id="articlecontent" class="article_container" onmousedown="newhighlight = true;" onmouseup="NewHighlight(event);">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td id="artContent">
+                                    <div style="width: 656px; margin: 0; padding: 0; height: 0;"></div>
+                                    自从Google Glass被推出以来，围绕人脸识别出现了很多争议。我们相信，不管是不是通过智能眼镜，人脸识别都将在人与人交往甚至人与物交互中开辟无数种可能性。
+<br>
+<br><div style="text-align: center;"><img src="./49 款人脸检测_识别的API、库和软件_files/34764512_1.jpg"></div>
+<br>
+<br>为了帮助研究过程中探索人脸识别，我们列出以下人脸检测和识别API。希望有所帮助！
+<br>
+<br><strong>1.&nbsp; <a target="_blank" href="https://www.mashape.com/lambda/face-recognition">Face Recognition </a></strong>
+<br>
+<br>由拉姆达实验室斯蒂芬开发。示例代码和图形演示点击<a target="_blank" href="http://api.lambdal.com/docs">http://api.lambdal.com/docs，</a>我们的API提供了面部识别，面部检测，眼睛定位，鼻子定位，嘴巴定位，和性别分类。如果您有任何疑问，只需发一封邮件到s@lambdal.com。
+<br>
+<br><strong>2.&nbsp; <a target="_blank" href="https://www.mashape.com/lambda/face">Face (Detection)</a></strong>
+<br>
+<br>计算机视觉面部识别和面部检测。这是一个完美的face.com替代品。目前，我们有一个免费的API进行人脸检测。
+<br>
+<br><strong>3.&nbsp; <a target="_blank" href="https://www.mashape.com/animetrics/animetrics-face-recognition">Animetrics Face Recognition</a></strong>
+<br>
+<br>Animetrics的人脸识别API可用于图片中的人脸检测。面部特征或“地标”的信息被返回作为图象上的坐标。 Animetrics人脸识别也会在三维坐标轴上侦测并返回脸部位置信息。
+<br>
+<br><strong>4.&nbsp; <a target="_blank" href="https://www.mashape.com/skybiometry-1/skybiometry-face-detection-and-recognition">Skybiometry Face Detection and Recognition</a></strong>
+<br>
+<br>一个易于使用的人脸检测与识别的API。必须在您的SkyBiometry帐户中创建应用程序来使用它。（如果你还没有帐户，请先注册）。
+<br>
+<br><strong>5.&nbsp; <a target="_blank" href="https://www.mashape.com/imagevision/face-detection-beta">ImageVision Face Detection</a></strong>
+<br>
+<br>测试版发布更好的人脸检测服务！ImageVision是一个计算机视觉公司改进技术，确定在任意的（数字）的图像中的人脸的位置和大小。
+<br>
+<br><strong>6.&nbsp; <a target="_blank" href="https://www.mashape.com/orbeus/face-and-scene-recognition-provided-by-rekognition-com">Face and scene recognition by Rekognition.com </a></strong>
+<br>
+<br>Face.com的替代品！快速，强大和可扩展的rekognition引擎可以做面部检测，采集，识别，场景理解！它可以自动训练使用Facebook上的图像和标签！
+<br>
+<br><strong>7.&nbsp; <a target="_blank" href="https://www.mashape.com/apicloud/facerect">FaceRect </a></strong>
+<br>
+<br>FaceRect是一个功能强大且免费的API进行人脸检测，能够发现网页中的或者上传文件中特定图片上的脸部（包括正面和侧面），并能够在一张图片中找到多张人脸，生成的 JSON输出每个脸部的边界框。
+<br>
+<br><strong>8.&nbsp; <a target="_blank" href="https://www.mashape.com/nickponline/infatics-face-detection">Infatics Face Detection</a> </strong>
+<br>
+<br>简单的<a target="_blank" href="https://www.mashape.com/nickponline/infatics-face-detection">人脸检测</a>API。
+<br>
+<br><strong>9.&nbsp; <a target="_blank" href="http://docs.opencv.org/trunk/modules/contrib/doc/facerec/facerec_api.html">OpenCV Face Recognizer </a></strong>
+<br>
+<br>基于OpenCV（开源计算机视觉库： <a target="_blank" href="http://opencv.org/">http://opencv.org </a>）是一个开源的BSD授权的库，其中包括数百个计算机视觉算法。
+<br>
+<br><strong>10.&nbsp; <a target="_blank" href="http://libface.sourceforge.net/file/Home.html">Libface </a></strong>
+<br>
+<br>Libface库旨在使人脸识别技术应用于开源社区。这是用C++编写的，托管在&nbsp; <a target="_blank" href="http://sourceforge.net/projects/libface/">Sourceforge上</a>。这个库使用 <a target="_blank" href="http://sourceforge.net/projects/opencvlibrary/">OpenCV</a> <a target="_blank" href="http://sourceforge.net/projects/opencvlibrary/">2.0 </a> ，目标是成为一个中间件，在人脸识别和检测时，开发人员不必包括任何OpenCV的代码。
+<br>
+<br><strong>11.&nbsp; <a target="_blank" href="http://www.robots.ox.ac.uk/~vgg/research/nface/">Automatic naming of characters in video</a></strong>
+<br>
+<br>用来是标记电视或电影每个帧中出现的人名。
+<br>
+<br><strong>12.&nbsp; <a target="_blank" href="http://libccv.org/">CCV </a></strong>
+<br>
+<br>现代计算机视觉库。
+<br>
+<br><strong>13.&nbsp; <a target="_blank" href="http://openbiometrics.org/">OpenBR</a></strong>
+<br>
+<br>开源的生物特征识别。
+<br>
+<br><strong>14.&nbsp; <a target="_blank" href="http://cmp.felk.cvut.cz/~uricamic/flandmark/">Flandmark </a></strong>
+<br>
+<br>开源实现面部地标探测器。
+<br>
+<br><strong>15.&nbsp; <a target="_blank" href="http://mplab.ucsd.edu/~marni/Projects/CERT.htm">计算机表情识别工具箱（CERT）</a></strong>
+<br>
+<br>一个终端到终端的完全自动化的实时面部表情识别系统。
+<br>
+<br><strong>16.&nbsp; <a target="_blank" href="http://www.nviso.ch/technology.html">Nviso 3D facial imaging technology</a></strong>
+<br>
+<br>从面部表情分析人类的情感。比任何其他方法更直接和自动化。
+<br>
+<br><strong>17.&nbsp; <a target="_blank" href="http://www.noldus.com/human-behavior-research/products/facereader">FaceReader</a></strong>
+<br>
+<br>FaceReader是世界上第一个能够自动分析面部表情的工具，使用户能够客观的评估一个人的情绪。
+<br>
+<br><strong>18.&nbsp; <a target="_blank" href="http://www.affectiva.com/affdex/">Affdex </a></strong>
+<br>
+<br>通过摄像头，Affdex从面部表情读取的人们的情绪状态，比如喜好和兴趣，使营销人员更快，更准确地洞察到消费者对品牌和媒体的回应。
+<br>
+<br><strong>19.&nbsp; <a target="_blank" href="http://www.facewaretech.com/faceware-products/analyzer/">Faceware</a> </strong>
+<br>
+<br>分析仪从视频中抓取一个演员的面部表现，生成用于在<a target="_blank" href="http://www.facewaretech.com/faceware-products/retargeter/">Retargeter? </a>的IMPD文件&nbsp; 。它通过将用户在前端的简单输入和在后端的复杂的计算机视觉算法组合起来实现这一功能。
+<br>
+<br><strong>20.&nbsp; <a target="_blank" href="http://www.abdus.me/ios-programming-tips/how-to-detect-face-in-image-using-face-detection-api-in-ios/">Face detection in iOS</a></strong>
+<br>
+<br>在iOS中的人脸检测。
+<br>
+<br><strong>21.&nbsp; <a target="_blank" href="https://github.com/geopapyrus/face-recognition-sdk">Face-Recognition-SDK</a></strong>
+<br>
+<br>在您的应用程序添加面部识别。
+<br>
+<br><strong>22.&nbsp; <a target="_blank" href="http://www.abdus.me/ios-programming-tips/how-to-detect-face-in-image-using-face-detection-api-in-ios/">Oddcast face detection API</a></strong>
+<br>
+<br>这个人脸跟踪API允许Flash开发人员利用以前只在高端视频游戏中使用的高级技术。
+<br>
+<br><strong>23.&nbsp; <a target="_blank" href="https://www.bioid.com/">BioID</a></strong>
+<br>
+<br>世界上第一个基于摄像头的个人识别。
+<br>
+<br><strong>24.&nbsp; <a target="_blank" href="http://www.betafaceapi.com/">Betaface API</a></strong>
+<br>
+<br>人脸检测和识别。
+<br>
+<br><strong>25.&nbsp; <a target="_blank" href="http://www.semanticvisiontech.com/">Discrete Area Filters Face Detector</a></strong>
+<br>
+<br>可检测脸部15个点，4个部分，多张脸，或遮住的脸。
+<br>
+<br><strong>26.&nbsp; <a target="_blank" href="http://www.mathworks.com/matlabcentral/fileexchange/29834-face-detection-using-support-vector-machine-svm">Face detection using Support Vector Machine</a></strong>
+<br>
+<br>该程序是克隆MATLAB中的“人脸检测系统”，可以代替神经网络算法的<a target="_blank" href="http://www.mathworks.com/matlabcentral/fileexchange/29834-face-detection-using-support-vector-machine-svm">人脸检测</a>，它是基于 SVG。
+<br>
+<br><strong>27.&nbsp; <a target="_blank" href="http://people.kyb.tuebingen.mpg.de/kienzle/facedemo/facedemo.htm">fdlib</a> </strong>
+<br>
+<br>是一个 C / C + +&nbsp; 和&nbsp; MATLAB的人脸检测库，可检测图像中的正脸。
+<br>
+<br><strong>28.&nbsp; <a target="_blank" href="http://sourceforge.net/projects/visage-hci/">Visage</a></strong>
+<br>
+<br>一个人机接口，旨在用脸部取代传统的鼠标。用一个摄像头，将脸部面相的运动变成鼠标指针的运动。如左/右眼睛闪烁产生左/右鼠标点击事件。
+<br>
+<br><strong>29.&nbsp; <a target="_blank" href="http://chenlab.ece.cornell.edu/projects/FaceTracking/">Face tracking Project</a>（卡耐基梅隆大学）</strong>
+<br>
+<br>结合可变形模板和颜色匹配来跟踪脸部。
+<br>
+<br><strong>30.&nbsp; <a target="_blank" href="http://www.cs.colostate.edu/evalfacerec/index.html">Real-time face detection program</a>（<a target="_blank" href="http://www.iis.fraunhofer.de/en/bf/bsy/download/shore.html">实时人脸检测程序</a>）</strong>
+<br>
+<br>来自德国弗劳恩霍夫研究所IIS的演示。展示了用边缘定位匹配的面部跟踪和检测。
+<br>
+<br><strong>31.&nbsp; <a target="_blank" href="http://www.cs.colostate.edu/evalfacerec/index.html">Evaluation of Face Recognition Algorithms</a></strong>
+<br>
+<br>来自科罗拉多州立大学研究人员开发的人脸识别算法，它提供了一套标准的众所周知的算法，并建立实验协议。
+<br>
+<br><strong>32.&nbsp; <a target="_blank" href="http://www.cs.cmu.edu/afs/cs/project/cil/ftp/html/v-source.html">Computer Vision Source Code</a></strong>
+<br>
+<br>实用的图像处理代码集合。
+<br>
+<br><strong>33.&nbsp; <a target="_blank" href="http://www.acsysbiometrics.com/product_sdk.html">Acsys biometrics SDK</a>（<a target="_blank" href="http://www.acsysbiometrics.com/product_sdk.html">ACSYS生物识别SDK</a> ）</strong>
+<br>
+<br>允许第三方开发者用先进的面部生物识别技术来实现自己应用。
+<br>
+<br><strong>34.&nbsp; <a target="_blank" href="http://www.cognitec-systems.de/products-sdk.htm">Cognitec SDK</a></strong>
+<br>
+<br>为世界各地的企业和政府客户开发领先的人脸识别技术和应用。
+<br>
+<br><strong>35.&nbsp; <a target="_blank" href="https://www.keylemon.com/keylemonfacesdk-overview/">KeyLemonFaceSDK</a></strong>
+<br>
+<br>为主要的操作系统提供集成识别技术。
+<br>
+<br><strong>36.&nbsp; FaceIT SDK</strong>
+<br>
+<br><strong>37.&nbsp; <a target="_blank" href="http://www.luxand.com/facesdk/?utm_expid=4075614-16&amp;utm_referrer=http%3A%2F%2Fwww.facedetection.com%2Ffacedetection%2Fsoftware.htm">FaceSDK</a></strong>
+<br>
+<br>人脸识别和基于面部的生物识别功能，易整合。
+<br>
+<br><strong>38.&nbsp; <a target="_blank" href="http://www.neurotechnology.com/vl_sdk.html">Verilook SDK</a></strong>
+<br>
+<br>使用了VeriLook算法，该算法确保快速和可靠的面部识别。
+<br>
+<br><strong>39.&nbsp; <a target="_blank" href="http://www.beyond-reality-face.com/sdk">Beyond Reality Face SDK</a></strong>
+<br>
+<br>在视频流中的一张简单图片上，计算面部位置和3D角度。这些信息可以被用来将三维对象放置到图像上，或通过头部运动控制一个应用程序。
+<br>
+<br><strong>40.&nbsp; <a target="_blank" href="http://www.thirdsight.co/insight/">InSight SDK</a></strong>
+<br>
+<br>通过测量面部肌肉的运动，对人脸进行完全自动化分析，并将这些面部肌肉运动转化为七个普遍的面部表情。
+<br>
+<br><strong>41.&nbsp; <a target="_blank" href="http://www.visagetechnologies.com/products/visagesdk/facedetect/">Visage FaceDetect SDK</a></strong>
+<br>
+<br>以C++软件开发工具包的形式，包含了很多在静止图像中发现脸和五官的有用技术。
+<br>
+<br><strong>42.&nbsp; <a target="_blank" href="http://research.microsoft.com/en-us/projects/facesdk/">Microsoft Research Face SDK Beta</a></strong>
+<br>
+<br>集成了微软研究团队最新的面部识别技术。
+<br>
+<br><strong>43.&nbsp; <a target="_blank" href="http://channel9.msdn.com/coding4fun/kinect/How-To-Kinect-for-Windows-SDK-Face-Recognition-Series">How To: Kinect for Windows SDK Face Recognition</a></strong>
+<br>
+<br><strong>44.&nbsp; <a target="_blank" href="http://www.bayometric.com/products/Face-Recognition-SDK.htm">Bayometric FaceIt Face Recognition SDK</a></strong>
+<br>
+<br>结合了传统的面部皮肤生物识别技术。
+<br>
+<br><strong>45.&nbsp; <a target="_blank" href="http://www.facephi.com/index.php/en/products/sdk">FacePhi FaceRecognition SDK</a> </strong>
+<br>
+<br>包含了一组.NET和Silverlight库
+<br>
+<br><strong>46.&nbsp; <a target="_blank" href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=9&amp;cad=rja&amp;ved=0CJkBEBYwCA&amp;url=http%3A%2F%2F360biometrics.com%2Fface-recognition.php&amp;ei=0wnCUZrIOMqXiAK12IGIAg&amp;usg=AFQjCNHIgP9E92cHzrCYzw816sfNaZz5xw&amp;bvm=bv.48175248,d.cGE">360Biometrics Face SDK</a></strong>
+<br>
+<br>非常先进的脸部识别系统，用来将人脸图像嵌入或链接到已有的数据库中。
+<br>
+<br><strong>47.&nbsp; <a target="_blank" href="http://www.huntersystemsgroup.com/Hunter-Facial-Recognition.html">Hunter TrueID</a></strong>
+<br>
+<br><strong>48.&nbsp; <a target="_blank" href="https://imrsv.com/">IMRSV</a></strong>
+<br>
+<br>现实世界中的实时感知计算软件，用一个基本的摄像头，就可以测量25英尺外，多达25人的性别，年龄，关注点，目光等信息。它也有一个REST API（应用编程接口）
+<br>
+<br><strong>49.&nbsp; <a target="_blank" href="http://idiap.github.io/bob/">Bob</a></strong>
+<br>
+<br>一个信号处理和机器学习工具箱，最初是由IDIAP研究所的生物识别技术团队在瑞士开发的。
+<br>
+<br>原文链接： <a target="_blank" href="http://blog.mashape.com/post/53379410412/list-of-40-face-detection-recognition-apis">mashape</a>&nbsp;&nbsp; 翻译： <a target="_blank" href="http://blog.jobbole.com/">伯乐在线 </a>- <a target="_blank" href="http://blog.jobbole.com/author/jobbole/">伯乐在线读者</a>
+<br>译文链接： <a target="_blank" href="http://blog.jobbole.com/45936/">http://blog.jobbole.com/45936/</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="viewerPlaceHolder" style="width: 717px; height: 700px; display: none; margin: 0 auto;">
+                    </div>
+                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <ul></ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div></div>
+                <span></span>
+                <a></a>
+                <p style="margin: 0; padding: 0;"></p>
+                <p class="clearboth"></p>
+                <div class="bdsharebuttonbox bottombtn bdshare-button-style0-16" data-bd-bind="1482547798321">
+                    <div class="zcommond" style="overflow: visible;">
+                        <a href="javascript:void(0);" class="btn_collect" onclick="SaveArt();wzhitnew(26);">转藏到我的图书馆</a>
+                        <a id="flowimg3" href="javascript:void(0);" class="btn_good" onclick="Showflowerlayer(&#39;sendedLayer1&#39;);wzhitnew(27);">献花（<span id="articleflowernum">0</span>）
+                        <span id="flowernumadd" style="display: none;">+1</span>
+
+                        </a>
+                        <span class="span1 f_left" onclick="setTimeout(function(){$(&#39;.bottombtn .sharelist_new&#39;).slideToggle(0);},10);wzhitnew(33);" onmouseover="this.style.color=&#39;#0f659c&#39;" onmouseout="this.style.color=&#39;&#39;">分享：</span>
+                        <a class="sharewx f_left" href="javascript:void(0);" onclick="shareWeixin();wzhitnew(64);">微信</a>
+                        <div class="s2 f_left" onclick="setTimeout(function(){$(&#39;.bottombtn .sharelist_new&#39;).slideToggle(0);},10);wzhitnew(34);"><span></span></div>
+                    </div>
+                    <div class="sharelist_new" id="fenxiangLayer2">
+                        <a class="slbg1" href="javascript:void(0);" data-cmd="qzone" onclick="wzhitnew(13);">QQ空间</a>
+                        <a class="slbg2" href="javascript:void(0);" data-cmd="sqq" onclick="wzhitnew(7);">QQ好友</a>
+                        <a class="slbg3" href="javascript:void(0);" data-cmd="tsina" onclick="wzhitnew(55);">新浪微博</a>
+                        <a class="slbg4" href="javascript:void(0);" data-cmd="tqq" onclick="wzhitnew(56);">腾讯微博</a>
+                        <a class="slbg5" href="javascript:void(0);" onclick="showdivemail1();wzhitnew(35);">推荐给朋友</a>
+                    </div>
+                </div>
+                <div class="bottom_controler">
+                    <p class="bottom_cleft">
+                        来自：
+                         <span class="a_username" style="width: auto;" onclick="wzhitnew(59)">
+                             <a href="http://www.360doc.com/userhome/9482" id="savernickname2" target="_blank">dinghj</a>
+                         </span>
+                        &gt; 
+                        <span id="cname" class="a_from" onclick="wzhitnew(60)"><a href="http://www.360doc.com/userhome.aspx?userid=9482&amp;cid=16" target="_blank">《算法编程》</a></span>
+                    </p>
+                    <div class="bottom_cright">
+                        <a href="https://www.baidu.com/s?wd=%e4%ba%ba%e8%84%b8+%e8%af%86%e5%88%ab+%e9%9d%a2%e9%83%a8&amp;tn=SE_hldp01010_6r0gix1f" target="_blank" class="a1" onclick="wzhitnew(100);">以文找文</a>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a href="javascript:void(0);" class="a2" onclick="showAlertLayer1();wzhitnew(36);">举报</a>
+                    </div>
+                </div>
+                <div class="prev_next">
+                    <p id="lastart" class="p1" style="display: block;"> 上一篇：<a onclick="wzhitnew(57);" href="http://www.360doc.com/content/13/0816/15/9482_307602826.shtml" target="_blank">JAVA 正则表达式 （超详细）</a></p>
+                    <p id="nextart" class="p2" style="display: block;"> 下一篇：<span style="color:#b0b0b0;">[转]&nbsp;</span><a onclick="wzhitnew(58);" href="http://www.360doc.com/content/06/1130/02/3902_277665.shtml" target="_blank">中医原来如此简单（1—8）</a></p>
+                </div>
+            </div>
+            <p class="clearboth"></p>
+            <div style="width: 676px; float: left;">
+                <div class="str_border" style="border: none; position: relative; z-index: 2;">
+                    <strong>猜你喜欢</strong>
+                </div>
+                <ul class="youlike" style="margin-top: -18px; position: relative; z-index: 1;">
+                    <iframe id="youlikead" style="width: 676px; height: 280px; border: 0;" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/adbaiduyoulike.html"></iframe>
+                </ul>
+                <div class="zcommond" style="padding: 10px 0 20px;">
+                    <div class="bottom_article f_left">
+                        <div class="str_border">
+                            <strong>类似文章</strong>
+                            <a href="http://www.360doc.com/relevant/309992449_more.shtml" target="_blank" class="a_more f_right" onclick="wzhitnew(38)">更多</a>
+                        </div>
+                        <ul class="barticle_list">
+                            
+                                    <li><span><a href="http://www.360doc.com/content/13/0819/13/8772388_308256819.shtml" target="_blank" onclick="wzhitnew(37)">49 款人脸检测/识别的API、库和软件</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/15/0401/20/21412_459901659.shtml" target="_blank" onclick="wzhitnew(37)">SegmentFault专访Face++&nbsp;人脸识...</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/15/0505/09/20625606_468156009.shtml" target="_blank" onclick="wzhitnew(37)">刷爆朋友圈的How-Old 凭啥技术怎么猜出你...</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/15/1223/21/9200790_522624671.shtml" target="_blank" onclick="wzhitnew(37)">图像处理与计算机视觉算法及应用</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/16/0523/07/21698478_561493370.shtml" target="_blank" onclick="wzhitnew(37)">MSRA副院长郭百宁：20+行代码就能写出微...</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/16/0108/00/29483433_526286242.shtml" target="_blank" onclick="wzhitnew(37)">技术 | 50个常用的人工智能和机器学习AP...</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/16/0526/07/2458620_562357192.shtml" target="_blank" onclick="wzhitnew(37)">脸部识别技术引爆刷脸时代</a></span></li>
+                                
+                                    <li><span><a href="http://www.360doc.com/content/15/0404/18/14106735_460609733.shtml" target="_blank" onclick="wzhitnew(37)">人脸识别的技术能判断区分两个双胞胎或者...</a></span></li>
+                                
+                        </ul>
+                    </div>
+                    <div class="bottom_article f_right">
+                        <div class="str_border">
+                            <strong>精选文章</strong>
+                        </div>
+                        <ul class="barticle_list">
+                            
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/13/0602/18/6085160_289868246.shtml" target="_blank">名医忠告：人人都应懂得的救命歌</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/13/1126/17/1520294_332217900.shtml" target="_blank">女人幸福婚姻</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/13/0226/09/7858166_267917006.shtml" target="_blank">2013最新韩国电影 《姐姐》</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/13/0609/19/6260778_291693686.shtml" target="_blank">揭张绍刚等10大名嘴退出主持界隐情</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/14/0401/21/7156043_365448074.shtml" target="_blank">所有女人，请骄傲地活着</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/14/0126/05/7536781_347858515.shtml" target="_blank">美军无人机大盘点?</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/14/1213/17/5654377_432559398.shtml" target="_blank">10个技巧,能让面试官觉得你“靠谱”</a></span></li>
+                                
+                                    <li><span><a onclick="wzhitnew(40);" href="http://www.360doc.com/content/12/1217/21/3558410_254547344.shtml" target="_blank">老年悲歌</a></span></li>
+                                
+                        </ul>
+                    </div>
+                </div>
+                
+                <iframe id="underZcommondAd" style="width: 676px; height: 202px;" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/underzcommond.html"></iframe>
+                <div class="zcommond" style="margin-top: 10px;">
+                    
+                    <div class="f_left" style="width: 300px; height: 90px;">
+                        <iframe id="aboveReflectionAd1" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/aboveReflectionAd1.html"></iframe>
+                    </div>
+                    
+                    <div class="f_left" style="width: 300px; height: 90px; margin-left: 44px;">
+                        <iframe id="aboveReflectionAd2" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/aboveReflectionAd2.html"></iframe>
+                    </div>
+                </div>
+
+                <p></p>
+                <div id="ReflectionPart"><div style="margin: 0px 0px;"><div class="plbox" style="height:auto;"><div class="plmain"><div style="height: 23px;" class="titwx">发表评论：</div><div class="deluwx">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请&nbsp;<span><a onclick="ReflectionLoginform();wzhitnew(45);" href="javascript:void(0);">登录</a></span>&nbsp;或者&nbsp;<span><a onclick="InsertLogData(4);wzhitnew(46);" href="http://www.360doc.com/register.aspx?refer=53&amp;reurl=showweb/0/0/54400091122.aspx" target="_blank">注册</a></span>&nbsp;后再进行评论</div><div class="rt360" style="height: 26px;margin:-22px 170px 0 0;_display:inline;"><span class="dsfwz">社交帐号登录：</span><a class="dsftb sf1" href="javascript:void(0);" onclick="ArtLoginTypeID=13;toSNSLogin(&#39;smb&#39;);wzhitnew(47);_hmt.push([&#39;_trackEvent&#39;,&#39;loginsina&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]);" title="新浪微博"></a><a class="dsftb sf2 " onclick="ArtLoginTypeID=13;toSNSLogin(&#39;qq&#39;);wzhitnew(48);_hmt.push([&#39;_trackEvent&#39;,&#39;loginqq&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]); " href="javascript:void(0);" title="腾讯QQ"></a><a class="dsftb sf3" href="javascript:void(0);" onclick="ArtLoginTypeID=13;toSNSLogin(&#39;wx&#39;);wzhitnew(49);_hmt.push([&#39;_trackEvent&#39;,&#39;loginrenren&#39;,&#39;clicknum&#39;,&#39;wenzhangyeremark&#39;]);" title="微信"></a></div></div></div></div></div>
+                <div style="padding-top: 15px; padding-left: 15px;" id="Reflction"><div id="360docRefTN" class="wenzhang_bt" style="display:none;"></div><div id="360docRefCT"></div><div id="360docRefPB" style="display: none;"></div></div>
+            </div>
+        </div>
+        <div class="a_right">
+            <div class="user_info">
+                <div class="user_photo f_left">
+                    <p class="user_photopic">
+                        <a href="http://www.360doc.com/userhome/9482" id="userphotourl" target="_blank" onclick="wzhitnew(28);">
+                            <img src="./49 款人脸检测_识别的API、库和软件_files/012.gif" id="userphoto" width="58" height="58">
+                        </a>
+                    </p>
+                    <a href="javascript:void(0);" onclick="docTalk();wzhitnew(106);" class="user_talk" title="与TA对话"></a>
+                </div>
+                <div class="user_data f_right">
+                    <div class="user_data_name">
+                        <a href="http://www.360doc.com/userhome/9482" id="nickname" target="_blank" onclick="wzhitnew(29);">dinghj</a>
+                        <img src="./49 款人脸检测_识别的API、库和软件_files/user_name_tag.gif" alt="图书馆">
+                    </div>
+                    <p id="userdegree"><img src="./49 款人脸检测_识别的API、库和软件_files/userstar1.gif"><img src="./49 款人脸检测_识别的API、库和软件_files/userstar1.gif"><img src="./49 款人脸检测_识别的API、库和软件_files/userstar1.gif"><img src="./49 款人脸检测_识别的API、库和软件_files/userstar1.gif"><img src="./49 款人脸检测_识别的API、库和软件_files/userstar2.gif"></p>
+                    <div class="user_data_num">
+                        <a id="spanfollowstatus" class="gz_no"></a>
+                        <script type="text/javascript">isfollow(9482);</script>
+                        <span id="follownum">479</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>馆藏</span>&nbsp;<span id="artnum">5373</span>
+                    </div>
+                </div>
+            </div>
+            <div class="his_her"><ul class="his_her_type"><li class="f_left cur">TA的推荐</li><li class="f_right">TA的最新馆藏</li></ul><div class="his_her_div" style="height:190px;"><ul class="his_her_list"><li><div><span></span><a href="http://www.360doc.com/content/16/0720/19/9482_577099806.shtml" target="_blank" onclick="wzhitnew(51)">邱团长：为什么陆客在台旅游出事这么多？</a></div><div><span></span><a href="http://www.360doc.com/content/16/0417/03/9482_551266535.shtml" target="_blank" onclick="wzhitnew(51)">新手转弯应注意“内轮差”（附转弯技巧分享）</a></div><div><span></span><a href="http://www.360doc.com/content/16/0307/03/9482_540100202.shtml" target="_blank" onclick="wzhitnew(51)">欧洲已死，死在第四次工业革命前夕</a></div><div><span></span><a href="http://www.360doc.com/content/16/0307/00/9482_540093291.shtml" target="_blank" onclick="wzhitnew(51)">白云先生：中国经济的血火奔流六十年</a></div><div><span></span><a href="http://www.360doc.com/content/16/0302/18/9482_538877222.shtml" target="_blank" onclick="wzhitnew(51)">转：中共当年金融战能力之霸气让人赞叹</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/16/0217/00/20041187_535146483.shtml" target="_blank" onclick="wzhitnew(51)">除了知网，还有哪些网站能免费下载论文？</a></div></li><li><div><span></span><a href="http://www.360doc.com/content/16/1123/02/9482_608680762.shtml" target="_blank" onclick="wzhitnew(53)">新加坡是一个专门对中国背后捅刀子的华人国家(转载)</a></div><div><span></span><a href="http://www.360doc.com/content/16/1123/02/9482_608680325.shtml" target="_blank" onclick="wzhitnew(53)">延伸搜索</a></div><div><span style="color:#b0b0b0;">[转]&nbsp;</span><a href="http://www.360doc.com/content/09/0824/15/246311_5214023.shtml" target="_blank" onclick="wzhitnew(53)">短线高手的指标</a></div><div><span></span><a href="http://www.360doc.com/content/16/1121/15/9482_608262859.shtml" target="_blank" onclick="wzhitnew(53)">乔良 ：窥破黑箱</a></div><div><span></span><a href="http://www.360doc.com/content/16/1118/00/9482_607419880.shtml" target="_blank" onclick="wzhitnew(53)">后沙月光：无论谁是美国总统，普京不倒，美俄关系永无春天</a></div><div><span></span><a href="http://www.360doc.com/content/16/1118/00/9482_607418049.shtml" target="_blank" onclick="wzhitnew(53)">白云先生：特朗普经济学，将导致全球性大崩盘</a></div></li></ul></div></div>
+
+
+
+
+
+<div class="both" style="padding-top: 10px; height: 260px;">
+    <iframe id="ifartad1" height="250px" width="300px" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/ad2_300.html"></iframe>
+    <div style="height: 10px;">
+    </div>
+</div>
+
+<div class="his_her" id="recommendArt" style="margin-top: 5px;">
+    <div class="str_border" style="margin: 0;">
+        <span style="font-size: 14px; float: left;">推荐阅读</span>
+        <a style="float: right;" class="a_more" onclick="wzhitnew(32)" href="http://www.360doc.com/readroom.html" target="_blank">更多</a>
+    </div>
+    <div class="his_her_div" style="height: 264px;">
+        <ul class="his_her_list">
+            <li id="recommendArtLists"><div><span></span><a href="http://www.360doc.com/content/13/0819/01/8772388_308256819.shtml" target="_blank" onclick="wzhitnew(31)">49 款人脸检测/识别的API、库和软件</a></div><div><span></span><a href="http://www.360doc.com/content/12/1120/09/9290626_249179192.shtml" target="_blank" onclick="wzhitnew(31)">国内人脸识别研究现状 及 进展</a></div><div><span></span><a href="http://www.360doc.com/content/13/1117/08/9482_330053057.shtml" target="_blank" onclick="wzhitnew(31)">EasyEclipse | Free, open source, easy</a></div><div><span></span><a href="http://www.360doc.com/content/13/1124/01/9482_331684933.shtml" target="_blank" onclick="wzhitnew(31)">Page Rank和它的数学模型</a></div><div><span></span><a href="http://www.360doc.com/content/13/1124/12/9482_331683643.shtml" target="_blank" onclick="wzhitnew(31)">同余运算及其基本性质</a></div><div><span></span><a href="http://www.360doc.com/content/13/1124/02/9482_331688402.shtml" target="_blank" onclick="wzhitnew(31)">哈希(Hash)与加密(Encrypt)的基本原理、区别及工程应用</a></div><div><span></span><a href="http://www.360doc.com/content/13/1124/02/9482_331688489.shtml" target="_blank" onclick="wzhitnew(31)">算法杂货铺——k均值聚类(K</a></div><div><span></span><a href="http://www.360doc.com/content/13/1124/02/9482_331688542.shtml" target="_blank" onclick="wzhitnew(31)">解析Monte</a></div><div><span></span><a href="http://www.360doc.com/content/13/1124/02/9482_331688568.shtml" target="_blank" onclick="wzhitnew(31)">算法时间复杂度分析基础</a></div></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="both" style="padding-top: 10px;">
+    <iframe id="ifartad2" height="250" width="300px" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/ad3_300.html"></iframe>
+</div>
+<br>
+
+
+<iframe id="ifartrightsogou" height="190" width="300px" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/artrightadsogou300.html"></iframe>
+            <div class="clear360doc" id="divad5" style="padding-top: 11px; zoom: 1; width: 300px; position: fixed; top: 55px; left: 1160.5px;">
+                <div id="divad4" style="">
+                    <div>
+                        
+                        <iframe id="ifartad" height="250px" width="300px" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/ad4_300.html"></iframe>
+                    </div>
+                    <div class="ggwz">
+                        <a href="javascript:void(0);" onclick="closead(2);">关闭</a>
+                    </div>
+                    <div style="height: 13px;">
+                    </div>
+                </div>
+                <div style="clear: both;" id="divad6">
+                    <div id="adfloatbaidu">
+                        <iframe id="ifartadfloadbaidu" height="250px" width="250px" frameborder="0" scrolling="no" src="./49 款人脸检测_识别的API、库和软件_files/ad5.html" style="width: 250px; margin: 0px auto;"></iframe>
+                    </div>
+                    <div class="ggwz" style="left: 25px;">
+                        <a href="javascript:void(0);" onclick="closead(3);">关闭</a>
+                    </div>
+                    <div style="height: 13px;">
+                    </div>
+                </div>
+                <div style="height: 75px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="clearboth"></p>
+    <input type="hidden" id="artid" value="309992449">
+    <input type="hidden" id="docarttitle" value="49+%e6%ac%be%e4%ba%ba%e8%84%b8%e6%a3%80%e6%b5%8b%2f%e8%af%86%e5%88%ab%e7%9a%84API%e3%80%81%e5%ba%93%e5%92%8c%e8%bd%af%e4%bb%b6">
+    <input type="hidden" id="firstartid" value="309992449">
+    <input type="hidden" id="subclassid" value="-1">
+    <input type="hidden" id="recommendart1" value="-1">
+    <input type="hidden" id="recommendart2" value="-1">
+    <input type="hidden" id="isowner" value="False">
+    <input type="hidden" id="artreadroomid" value="0">
+    <script src="./49 款人脸检测_识别的API、库和软件_files/StickySystem20160414.js.下载" type="text/javascript" charset="utf-8"></script>
+    <script>GerLookingUserInfo(1,9482,1,0,'-1',-1,10,0);OutputSource('http%3a%2f%2fwww.iteye.com%2fnews%2f28190','');OutputCategory(9482,16,'%e3%80%8a%e7%ae%97%e6%b3%95%e7%bc%96%e7%a8%8b%e3%80%8b');OutputLastNextArt('JAVA+%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f+%ef%bc%88%e8%b6%85%e8%af%a6%e7%bb%86%ef%bc%89','http://www.360doc.com/content/13/0816/15/9482_307602826.shtml',0);OutputLastNextArt('%3cspan+style%3d%22color%3a%23b0b0b0%3b%22%3e%5b%e8%bd%ac%5d%26nbsp%3b%3c%2fspan%3e%e4%b8%ad%e5%8c%bb%e5%8e%9f%e6%9d%a5%e5%a6%82%e6%ad%a4%e7%ae%80%e5%8d%95%ef%bc%881%e2%80%948%ef%bc%89','http://www.360doc.com/content/06/1130/02/3902_277665.shtml',1);</script>
+
+<div id="gj_NavDiv" style="position: fixed; z-index: 2147483640; right: 0px; width: 0px; height: 0px; bottom: 59px; display: block;"><iframe src="./49 款人脸检测_识别的API、库和软件_files/adcpage.html" id="gj_SafeDaohang" frameborder="0" scrolling="0" allowtransparency="true" width="100%" height="100%" noresize="noresize" style="position: fixed; z-index: 2147483640; right: 0px; width: 0px; height: 0px; bottom: 99px; border: 0px none;"></iframe></div><div id="gj_mini" style="right: 10px; bottom: 50px; display: block; position: fixed; z-index: 2147483641; background-image: url(&quot;http://s.pc.qq.com/navigate/adc/v3/hover-ok.png&quot;); background-position: 0px 0px;"></div><div id="gj_shard" style="right: -70px; bottom: -20px; position: fixed; z-index: 2147483643; display: none;"></div><div id="gj_circle" style="position: fixed; z-index: 2147483642;"></div><div id="gj_bar_left" style="right: 60px; bottom: 58px; position: fixed; z-index: 2147483640; width: 0px;"><div id="tipstext" style="white-space:nowrap;font-size: 14px;font-weight: bold;overflow:hidden;">0个广告已降服</div><div id="tipstext" style="color:#CFDFFE;overflow:hidden;padding-top:0px;white-space: nowrap;">可以清爽的上网了~</div></div><div id="goTop2" style="left: 1480.5px;"><div id="goTop"><a href="http://www.360doc.com/content/13/0826/13/9482_309992449.shtml#" id="go_top"></a></div><div id="goTop1"><a href="javascript:void(0);" id="go_top1"></a></div><div></div></div></body></html>

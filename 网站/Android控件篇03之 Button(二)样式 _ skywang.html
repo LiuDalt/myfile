@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://wangkuiwu.github.io/2014/02/03/Button02/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="author" content="skywang">
+    <title>Android控件篇03之 Button(二)样式 | skywang</title>
+    <link rel="shortcut icon" href="http://wangkuiwu.github.io/favicon.ico">
+    <link href="http://wangkuiwu.github.io/feed/" rel="alternate" title="skywang" type="application/atom+xml">
+    <link rel="stylesheet" href="./Android控件篇03之 Button(二)样式 _ skywang_files/style.css">
+    <link rel="stylesheet" href="./Android控件篇03之 Button(二)样式 _ skywang_files/highlight.css">
+    <script type="text/javascript" src="./Android控件篇03之 Button(二)样式 _ skywang_files/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript">
+    function setTimeSpan(){
+    	var date = new Date();
+    	timeSpan.innerText=date.format('yyyy-MM-dd hh:mm:ss');
+    }
+    
+    Date.prototype.format = function(format)
+		{
+    var o =
+    	{
+    	    "M+" : this.getMonth()+1, //month
+    	    "d+" : this.getDate(),    //day
+    	    "h+" : this.getHours(),   //hour
+    	    "m+" : this.getMinutes(), //minute
+    	    "s+" : this.getSeconds(), //second
+    	    "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+    	    "S" : this.getMilliseconds() //millisecond
+    	}
+    	if(/(y+)/.test(format))
+    	format=format.replace(RegExp.$1,(this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    	for(var k in o)
+    	if(new RegExp("("+ k +")").test(format))
+    	format = format.replace(RegExp.$1,RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length));
+    	return format;
+		}
+  </script><script type="text/javascript" async="" src="./Android控件篇03之 Button(二)样式 _ skywang_files/embed.js" charset="UTF-8"></script><script src="./Android控件篇03之 Button(二)样式 _ skywang_files/logger.js"></script><link href="./Android控件篇03之 Button(二)样式 _ skywang_files/bdsstyle.css" rel="stylesheet" type="text/css"><link type="text/css" rel="stylesheet" href="./Android控件篇03之 Button(二)样式 _ skywang_files/embed.default.css"></head>
+  
+  <body onload="setInterval(setTimeSpan,1000);"><iframe frameborder="0" style="display: none;" src="./Android控件篇03之 Button(二)样式 _ skywang_files/saved_resource.html"></iframe><div id="bdshare" style="right: 0px; top: 170px; position: fixed; height: 330px; overflow: hidden;"><img src="./Android控件篇03之 Button(二)样式 _ skywang_files/r4.gif" alt="" style="float:left;margin-top:58px;"><iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0" src="./Android控件篇03之 Button(二)样式 _ skywang_files/saved_resource(1).html"></iframe><div id="bdshare_l" style="display: none; left: 24px;"><div id="bdshare_l_c"><h6>分享到</h6><ul><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_bdysc bdysc">百度云收藏</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_renren rrw">人人网</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_kaixin001 kxw">开心网</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_tqf txpy">腾讯朋友</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_tieba bdtb">百度贴吧</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_douban db">豆瓣网</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_tsohu shwb">搜狐微博</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_bdhome bdhome">百度新首页</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_sqq sqq">QQ好友</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_thx thx">和讯微博</a></li><li><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="bds_more">更多...</a></li></ul><p><a href="http://wangkuiwu.github.io/2014/02/03/Button02/#" class="goWebsite">百度分享</a></p></div></div></div>
+    <div id="container">
+      <div id="main" role="main">
+        <header>
+        <h1>Android控件篇03之 Button(二)样式</h1>
+        </header>
+        <nav>
+        <span><a title="home page" class="" href="http://wangkuiwu.github.io/">首页</a></span>
+        <span><a title="categories" class="" href="http://wangkuiwu.github.io/categories/">博客</a></span>
+        <!-- del by skywang
+        <span><a title="tags" class="" href="/tags/">标签</a></span>
+        -->
+        <span><a title="links" class="" href="http://wangkuiwu.github.io/links/">链接</a></span>
+        <span><a title="about" class="" href="http://wangkuiwu.github.io/about/">关于我</a></span>
+        <span><a title="guestbook" class="" href="http://wangkuiwu.github.io/guestbook/">留言板</a></span>
+        </nav>
+        <article class="content">
+        <section class="post">
+<blockquote><p>本章包含两部分内容：<br>
+<a href="http://wangkuiwu.github.io/2014/02/03/Button02/#anchor1">1. Button样式</a><br>
+<a href="http://wangkuiwu.github.io/2014/02/03/Button02/#anchor2">2. selector和shape</a></p>
+
+<p>点击查看"<a href="https://github.com/wangkuiwu/android_applets/tree/master/api_guide/ui/widgets/Button/ButtonTest">Button示例源码</a>"。</p></blockquote>
+
+<p><a name="anchor1"></a></p>
+
+<h1>1. Button样式</h1>
+
+<p>Button的样式可以分为3类：<br>
+(01) 使用Android系统自带的Button样式。<br>
+(02) 使用jpg/png等图片。<br>
+(03) 自定义shape。</p>
+
+<h2>1.1 使用Android系统自带的Button样式</h2>
+
+<p>在定义Button时，使用android自带的Button样式。如下所示：</p>
+
+<pre><code>&lt;Button
+    android:id="@+id/bt_style"
+    android:layout_width="wrap_content"          
+    android:layout_height="wrap_content"         
+    android:text="@string/bt_style"
+    style="?android:attr/borderlessButtonStyle"  
+    android:textSize="12sp" /&gt;
+</code></pre>
+
+<p>说明：上面是创建一个无边框按钮。当然，也可以去掉style或将style换成其他的值。<br>
+(01) 若去掉的话，则使用Android默认的样式。<br>
+(02) 若要换成其他的值，可以在frameworks/base/core/res/res/values/public.xml中查看Button支持的style样式。</p>
+
+<h2>1.2 使用图片</h2>
+
+<p>首先，在定义Button时，通过"android:background"属性指定Button的背景图。</p>
+
+<pre><code>&lt;Button
+    android:id="@+id/bt_sync"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/bt_sync"
+    android:background="@drawable/button_custom"
+    android:textSize="12sp" /&gt;
+</code></pre>
+
+<p>说明：android:background="@drawable/button_custom"，这意味着按钮的背景是drawable下的button_custom文件。下面是button_custom.xml的内容。</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;selector xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+
+    &lt;!-- Android系统在处理下面的状态时，是按照它们定义的先后顺序进行处理的 --&gt;
+
+    &lt;!-- 按钮按下 --&gt;
+    &lt;item android:drawable="@drawable/ic_sync_red"   
+          android:state_pressed="true" /&gt;
+
+    &lt;!-- 按钮获取焦点 --&gt;
+    &lt;item android:drawable="@drawable/ic_sync_green"
+          android:state_focused="true" /&gt;
+
+    &lt;!-- 默认 --&gt;
+    &lt;item android:drawable="@drawable/ic_sync_grey" /&gt;
+
+&lt;/selector&gt;
+</code></pre>
+
+<p>说明：需要注意的是，系统会根据状态定义的先后顺序对这些状态进行处理！ic_sync_red.png, ic_sync_green.png, ic_sync_grey.png是drawable目录下的三种图片。</p>
+
+<h2>1.3 自定义shape</h2>
+
+<p>关于自定义shape，这里给出3个示例进行介绍。</p>
+
+<h3>shape示例一</h3>
+
+<p>自定义Button背景：未按下的时候是灰色的圆角矩形，按下的时候是深灰色的圆角矩形。</p>
+
+<p>button的定义如下</p>
+
+<pre><code>&lt;Button
+    android:id="@+id/bt_diy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_btn_gray_pressed_dkgray"
+    android:text="shape_01"
+    android:textSize="12sp" /&gt;
+</code></pre>
+
+<p>bg_btn_gray_pressed_dkgray.xml的内容如下</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;selector xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+
+    &lt;item android:state_pressed="false"&gt;
+        &lt;shape android:shape="rectangle"&gt;
+            &lt;corners android:radius="8dip"/&gt;
+            &lt;solid android:color="#ffcccccc"/&gt;
+        &lt;/shape&gt;  
+    &lt;/item&gt;
+
+    &lt;item android:state_pressed="true"&gt;
+        &lt;shape android:shape="rectangle"&gt;
+            &lt;corners android:radius="8dp"/&gt;
+            &lt;solid android:color="#ff666666"/&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+&lt;/selector&gt;
+</code></pre>
+
+<h3>shape示例二</h3>
+
+<p>自定义Button背景：未按下的时候是黑边的透明圆角矩形框，按下的时候是黑边的灰色圆角矩形。</p>
+
+<p>button的定义如下</p>
+
+<pre><code>&lt;Button
+    android:id="@+id/bt_diy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_btn_black_frame"
+    android:text="shape_02"
+    android:textSize="12sp" /&gt;
+</code></pre>
+
+<p>bg_btn_black_frame.xml的内容如下</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;selector xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+
+    &lt;item android:state_pressed="false"&gt;
+        &lt;shape android:shape="rectangle"&gt;
+            &lt;corners android:radius="8dip"/&gt;
+            &lt;stroke android:width="1dip" android:color="#ff000000" /&gt;
+            &lt;solid android:color="#00ffffff"/&gt;
+        &lt;/shape&gt;  
+    &lt;/item&gt;
+
+    &lt;item android:state_pressed="true"&gt;
+        &lt;shape android:shape="rectangle"&gt;
+            &lt;corners android:radius="8dp"/&gt;
+            &lt;stroke android:width="1dip" android:color="#ff000000" /&gt;
+            &lt;solid android:color="#22000000"/&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+&lt;/selector&gt;
+</code></pre>
+
+<h3>shape示例三</h3>
+
+<p>自定义Button背景：红色圆环</p>
+
+<p>button的定义如下</p>
+
+<pre><code>&lt;Button
+    android:id="@+id/bt_diy"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_btn_ring"
+    android:text="shape_03"
+    android:textSize="12sp" /&gt;
+</code></pre>
+
+<p>bg_btn_black_frame.xml的内容如下</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;layer-list xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+    &lt;item&gt;
+        &lt;shape android:shape="rectangle" &gt;
+            &lt;solid android:color="#ffffff" /&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+
+    &lt;item&gt;
+        &lt;!-- 
+             android:innerRadiusRatio="8" 表示"圆环半径=圆环宽度/8"
+             android:thicknessRatio="10" 表示"圆环厚度=圆环宽度/10"
+         --&gt;
+        &lt;shape
+            android:shape="ring"
+            android:innerRadiusRatio="8"
+            android:thicknessRatio="10"
+            android:useLevel="false" &gt;
+            &lt;solid android:color="#660000" /&gt;
+            &lt;size
+                android:height="32dip"
+                android:width="32dip" /&gt;
+        &lt;/shape&gt;
+    &lt;/item&gt;
+&lt;/layer-list&gt;
+</code></pre>
+
+<p><a name="anchor2"></a></p>
+
+<h1>2. selector和shape</h1>
+
+<h2>2.1 selector</h2>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;selector xmlns:android="http://schemas.android.com/apk/res/android" &gt;
+
+    &lt;!-- 按下状态：(01) true表示按下，例如，Button被按下； (02) false表示非按下。 --&gt;
+    &lt;item android:state_pressed="true/false" android:drawable="@drawable/exam01" /&gt;
+
+    &lt;!-- 聚焦状态：(01) true表示获取焦点； (02) false表示非获取焦点。 --&gt;
+    &lt;item android:state_focused="true/false" android:drawable="@drawable/exam01" /&gt;
+
+    &lt;!-- 选中状态：(01) true表示选中，例如，Tab被选中； (02) false表示非选中。 --&gt;
+    &lt;item android:state_selected="true/false" android:drawable="@drawable/exam01" /&gt;
+
+    &lt;!-- 可勾选状态：(01) true表示可勾选； (02) false表示不可勾选。 --&gt;
+    &lt;item android:state_checkable="true/false" android:drawable="@drawable/exam01" /&gt;
+
+    &lt;!-- 选中状态：(01) true表示选中，例如，checkbox被选中； (02) false表示非选中。 --&gt;
+    &lt;item android:state_checked="true/false" android:drawable="@drawable/exam01" /&gt;
+
+    &lt;!-- 使能状态：(01) true表示可用； (02) false表示不可用。 --&gt;
+    &lt;item android:state_enabled="true/false" android:drawable="@drawable/exam01" /&gt;
+
+    &lt;!-- 焦点状态：(01) true表示获取焦点； (02) false表示可获取焦点。 --&gt;
+    &lt;item android:state_window_focused="true/false" android:drawable="@drawable/exam01" /&gt;
+
+&lt;/selector&gt;
+</code></pre>
+
+<h2>2.2 shape</h2>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape=["rectangle" | "oval" | "line" | "ring"] &gt;   --- 默认为rectangle
+    android:innerRadius="dimension"  -- ring专用，内圆环的半径大小。设置innerRadius时，会忽略innerRadiusRatio
+    android:innerRadiusRatio="float" -- ring专用，内圆环的半径比例。例如，比例为10表示"内圆环的半径大小=圆环宽度/10"
+    android:thickness="dimension"    -- ring专用，内圆环的厚度大小。设置thickness时，会忽略thicknessRatio
+    android:thicknessRatio="float"   -- ring专用，内圆环的厚度比例。例如，比例为10表示"内圆环的厚度大小=圆环宽度/10"
+    android:useLevel="true|false"  -- true表示将该形状当作LevelListDrawable
+    &lt;size    -- 大小
+        android:width="dimension"
+        android:height="dimension" /&gt;
+    &lt;gradient  -- 渐变
+        android:type=["linear" | "radial" | "sweep"] -- 渐变类型：线性，径向，扫描
+        android:angle="float"   
+        android:startColor="color"
+        android:centerColor="color"  -- 中心点颜色
+        android:endColor="color"
+        android:centerX="float|fraction"  -- 中心点X坐标
+        android:centerY="float|fraction"  -- 中心点Y坐标
+        android:gradientRadius="float|fraction" -- 径向渐变的半径
+        android:useLevel=["true" | "false"] /&gt;
+    &lt;corners  -- shape=“rectangle”时使用， 
+        android:radius="dimension"  -- 四个角的半径
+        android:topLeftRadius="dimension"
+        android:topRightRadius="dimension"
+        android:bottomLeftRadius="dimension"
+        android:bottomRightRadius="dimension" /&gt;
+    &lt;padding  -- 内容与边框的距离
+        android:left="dimension"
+        android:top="dimension"
+        android:right="dimension"
+        android:bottom="dimension" /&gt;
+    &lt;solid    -- 填充颜色
+        android:color="color" /&gt;
+    &lt;stroke    -- 指定边框
+        android:width="dimension"
+        android:color="color"
+        android:dashWidth="dimension"    -- 虚线宽度
+        android:dashGap="dimension" /&gt;    -- 虚线间隔宽度
+&lt;/shape&gt;
+</code></pre>
+
+</section>
+<section class="meta">
+<span class="time">
+  <time datetime="2014-02-03 09:1200">2014-02-03 09:12:00</time>
+</span>
+<span class="author">
+  by <a href="http://wangkuiwu.github.io/">skywang</a>
+</span>
+<hr>
+<span>
+	<a href="http://wangkuiwu.github.com/2014/02/03/Button/" class="pageNav">Previous</a>
+	&nbsp;&nbsp;&nbsp;
+	<a href="http://wangkuiwu.github.com/2014/02/04/CheckBox/" class="pageNav">Next</a>
+</span>
+<!-- del by skywang
+<span class="license">
+  Published under <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">(CC) BY-NC-SA</a>
+</span>
+
+<span class="categories">
+  in categories
+  
+  <a href="/categories/#android" title="android">android</a>&nbsp;
+  
+</span>
+
+
+<span class="tags">
+  tagged with 
+  
+  <a href="/tags/#android" title="android">android</a>&nbsp;
+  
+</span>
+
+-->
+</section>
+<!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" id="ds-thread"><div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"><span class="ds-highlight">1</span> 人喜欢</span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc">最新</a><a class="ds-order-asc ds-current">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);">0条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post ds-post-placeholder">还没有评论，沙发等你来抢</li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://wangkuiwu.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://wangkuiwu.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://wangkuiwu.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://wangkuiwu.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://wangkuiwu.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://wangkuiwu.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://wangkuiwu.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://wangkuiwu.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./Android控件篇03之 Button(二)样式 _ skywang_files/noavatar_default.png" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="1236023692945785584">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="57a482957f830"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">wangkuiwu正在使用多说</a></p></div></div>
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"wangkuiwu"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+
+<!--
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            
+        url = 'http://wangkuiwu.github.com/2014/02/03/Button/';
+        
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            
+        url = 'http://wangkuiwu.github.com/2014/02/04/CheckBox/';
+        
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+-->
+
+
+        </article>
+      </div>
+
+    <footer>
+        <p><small>Powered by <a href="https://github.com/wangkuiwu">wangkuiwu</a> | Copyright 2012 - 2015 by <a href="https://github.com/wangkuiwu">wangkuiwu</a> | <span class="label label-info" id="timeSpan">2016-08-15 21:02:20</span></small></p>
+    </footer>
+
+    </div>
+
+    <!-- Baidu Button BEGIN -->
+		<script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=4&amp;pos=right&amp;uid=541841" src="./Android控件篇03之 Button(二)样式 _ skywang_files/bds_s_v2.js"></script>
+		
+		<script type="text/javascript">
+		var bds_config={"bdTop":170};
+		document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+		</script>
+		<!-- Baidu Button END -->
+  
+
+</body></html>

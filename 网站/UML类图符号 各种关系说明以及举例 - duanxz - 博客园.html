@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UML类图符号 各种关系说明以及举例 - duanxz - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/bundle-sea.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/bundle-sea-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/duanxz/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/duanxz/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/duanxz/wlwmanifest.xml">
+<script type="text/javascript" src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/encoder.js.下载"></script><script src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'duanxz', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="header">
+	
+<!--done-->
+<div class="header">
+	<div class="headerText">
+		<a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/duanxz/">学无止境</a><br>
+		
+	</div>
+</div>
+
+</div>
+
+<div id="mytopmenu">
+	
+		<div id="mylinks"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a> &nbsp;
+<a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/duanxz/">首页</a> &nbsp;
+<a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a> &nbsp;
+<a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/duanxz">联系</a> &nbsp;
+<a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/duanxz/rss">订阅</a><a id="blog_nav_rss_image" href="http://www.cnblogs.com/duanxz/rss"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/xml.gif" alt="订阅"></a>&nbsp;
+<a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a>
+</div>
+		<div id="mystats"><div id="blog_stats">
+随笔-1772&nbsp;
+评论-46&nbsp;
+文章-4&nbsp;
+<!--trackbacks-0-->
+</div></div>
+	
+</div>
+<div id="centercontent">
+	
+<div id="post_detail">
+<div class="post">
+	<h1 class="postTitle"><a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html">UML类图符号 各种关系说明以及举例</a></h1>
+	<div id="cnblogs_post_body"><p>UML中描述对象和类之间相互关系的方式包括：依赖（Dependency），关联（Association），聚合（Aggregation），组合（Composition），泛化（Generalization），实现（Realization）等。</p>
+<ul>
+<li><strong>依赖</strong><strong>（</strong><strong>Dependency</strong><strong>）</strong>：元素A的变化会影响元素B，但反之不成立，那么B和A的关系是依赖关系，B依赖A；类属关系和实现关系在语义上讲也是依赖关系，但由于其有更特殊的用途，所以被单独描述。uml中用带箭头的虚线表示Dependency关系，箭头指向被依赖元素。</li>
+<li><strong>泛化（</strong><strong>Generalization</strong><strong>）</strong>：通常所说的继承（特殊个体 is kind of 一般个体）关系，不必多解释了。uml中用带空心箭头的实线线表示Generalization关系，箭头指向一般个体。</li>
+<li><strong>实现（</strong><strong>Realize</strong><strong>）</strong>：元素A定义一个约定，元素B实现这个约定，则B和A的关系是Realize，B realize A。这个关系最常用于接口。uml中用空心箭头和虚线表示Realize关系，箭头指向定义约定的元素。</li>
+<li><strong>关联（</strong><strong>Association</strong><strong>）</strong>：元素间的结构化关系，是一种弱关系，被关联的元素间通常可以被独立的考虑。uml中用实线表示Association关系，箭头指向被依赖元素。</li>
+<li><strong>聚合（</strong><strong>Aggregation</strong><strong>）</strong>：关联关系的一种特例，表示部分和整体（整体 has a 部分）的关系。uml中用带空心菱形头的实线表示Aggregation关系，菱形头指向整体。</li>
+<li><strong>组</strong><strong>合（</strong><strong>Composition</strong><strong>）</strong>：组合是聚合关系的变种，表示元素间更强的组合关系。如果是组合关系，如果整体被破坏则个体一定会被破坏，而聚合的个体则可能是被多个整体所共享的，不一定会随着某个整体的破坏而被破坏。uml中用带实心菱形头的实线表示Composition关系，菱形头指向整体。</li>
+</ul>
+<h3>1.1.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 依赖（Dependency）:虚线箭头表示</h3>
+<p>1、依赖关系也是类与类之间的联结<br>2、依赖总是单向的。（#add 注意，要避免双向依赖。一般来说，不应该存在双向依赖。）<br>3、依赖关系在 Java 或 C++ 语言中体现为局部变量、方法的参数或者对静态方法的调用。</p>
+<p>（软件开发中，往往会设计一些公用类，供别的类调用，如果这些公用类出问题了，那调用这些公用类的类都会因此而出问题。 <br>两个元素之间的一种关系，其中一个元素（提供者)的变化将影响另一个元素（客体)，或向它提供所需信息<br>显示一个类引用另一个类）</p>
+<p>方法参数示例：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Person
+{
+    </span><span style="color: #0000ff;">void</span><span style="color: #000000;"> buy(<span style="color: #ff0000;">Car car</span>)
+   {
+       ...
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/285763-20160228232305960-1330516318.jpg" alt=""></p>
+<p><span style="line-height: 1.5;"><strong>表示方法：虚线加箭头</strong></span></p>
+<p><span>特点：当类与类之间有使用关系时就属于依赖关系，不同于关联关系，依赖不具有“拥有关系”，而是一种“相识关系”，只在某个特定地方（比如某个方法体内）才有关系。</span></p>
+<div><strong>依赖关系可以分为以下四类：</strong></div>
+<p>1）&nbsp; 使用依赖（Usage）表示客户使用提供者提供的服务以实现它的行为，包括：</p>
+<ul>
+<li>使用&lt;&lt;use&gt;&gt;--声明使用一个类时需要用到已存在的另一个类。</li>
+<li>调用&lt;&lt;call&gt;&gt;--声明一个类调用其他类的操作的方法。</li>
+<li>参数&lt;&lt;parameter&gt;&gt;--声明一个操作和它的参数之间的关系。</li>
+<li>发送&lt;&lt;send&gt;&gt;--声明信号发送者和信号接收者之间的关系。</li>
+<li>实例化&lt;&lt;instantiate&gt;&gt;--声明用一个类的方法创建了另一个类的实例。</li>
+</ul>
+<p>2）&nbsp; 抽象依赖（Abstraction）表示客户与提供者之间用不同的方法表现同一个概念，通常一个概念更抽象，一个概念更具体。包括：</p>
+<ul>
+<li>跟踪&lt;&lt;trace&gt;&gt;--声明不同模型中的元素之间存在一些连接但不如映射精确。</li>
+<li>精化&lt;&lt;refine&gt;&gt;--声明具有两个不同语义层次上的元素之间的映射。</li>
+<li>派生&lt;&lt;derive&gt;&gt;--声明一个实例可以从另一个实例导出。</li>
+</ul>
+<p>3）&nbsp; 授权依赖（Permission）表达提供者为客户提供某种权限以访问其内容的情形。包括：</p>
+<ul>
+<li>访问&lt;&lt;access&gt;&gt;--允许一个包访问另一个包的内容。</li>
+<li>导入&lt;&lt;import&gt;&gt;--允许一个包访问另一个包的内容并为被访问包的组成部分增加别名。</li>
+<li>友元&lt;&lt;friend&gt;&gt;--允许一个元素访问另一个元素，不管被访问的元素是否具有可见性。</li>
+</ul>
+<p>4）&nbsp; 绑定依赖（Binding）较高级的依赖类型，用于绑定模板以创建新的模型元素，包括：</p>
+<ul>
+<li>绑定&lt;&lt;bind&gt;&gt;--为模板参数指定值，以生成一个新的模型元素。</li>
+</ul>
+<p>&nbsp;</p>
+<h3>1.1.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 关联（Association）：实线箭头表示</h3>
+<p>1、关联关系是类与类之间的联结，它使一个类知道另一个类的属性和方法。<br>2、关联可以是双向的，也可以是单向的（#add还有自身关联）。双向的关联可以有两个箭头或者没有箭头，单向的关联有一个箭头。<br>3、在 Java 或 c++ 中，关联关系是通过使用<strong>成员变量</strong>来实现的。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> 徒弟
+{  
+
+}
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> 唐僧
+{
+     </span><span style="color: #0000ff;">protected</span>: list&lt;徒弟&gt;<span style="color: #000000;"> tdlist;
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><img style="line-height: 1.5;" src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/2012061315034351.jpg" alt=""><span style="line-height: 1.5;">&nbsp;</span></p>
+<p><strong>表示方法：实线箭头</strong></p>
+<p>特征：<span>表示类与类或类与接口之间的依赖关系，表现为“拥有关系”；具体到代码可以用实例变量来表示。（<span style="color: #ff0000;">A类有一个成员变量保存的是B类的一个引用，也就是说由A类可以找到B类</span>）</span></p>
+<h3>1.1.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 聚合（Aggregation）：带空心菱形头表示</h3>
+<p>1、聚合关系是关联关系的一种，是强的关联关系。<br>2、聚合是整体和部分之间的关系，例如汽车由引擎、轮胎以及其它零件组成。<br>3、聚合关系也是通过成员变量来实现的。但是，关联关系所涉及的两个类处在同一个层次上，而聚合关系中，两个类处于不同的层次上，一个代表整体，一个代表部分。<br>4、关联与聚合仅仅从 Java 或 C++ 语法上是无法分辨的，必须考察所涉及的类之间的逻辑关系。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> 引擎
+ {
+
+ }
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> 轮胎
+ {
+
+ }
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> 汽车
+{
+        </span><span style="color: #0000ff;">protected</span><span style="color: #000000;">:引擎 engine;
+        </span><span style="color: #0000ff;">protected</span>:轮胎 tyre[4<span style="color: #000000;">];
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><img style="line-height: 1.5;" src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/2012061315041541.jpg" alt=""><span style="line-height: 1.5;">&nbsp;</span></p>
+<p><strong>表示方法：空心菱形头</strong></p>
+<p><span>特征：属于是关联的特殊情况，体现部分-整体关系，是一种弱拥有关系；整体和部分可以有不一样的生命周期；是一种弱关联；</span></p>
+<h3>1.1.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 组合（Composition）：带实心菱形头的实线表示</h3>
+<p>1、合成关系是关联关系的一种，是比聚合关系还要强的关系。<br>2、它要求普通的聚合关系中代表整体的对象负责代表部分的对象的生命周期。</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">class</span><span style="color: #000000;"> 肢
+ {
+ }
+ </span><span style="color: #0000ff;">class</span><span style="color: #000000;"> 人
+ {
+        </span><span style="color: #0000ff;">protected</span>:  肢   limb[4<span style="color: #000000;">];
+ }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="line-height: 1.5;"><img style="line-height: 1.5;" src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/2012061315044438.jpg" alt=""></span></p>
+<p><strong><span style="line-height: 1.5;">表示方法：一般是实心菱形加实线箭头表示</span></strong></p>
+<p>特征：<span>属于是关联的特殊情况，也体现了体现部分-整体关系，是一种强“拥有关系”；整体与部分有相同的生命周期，是一种强关联；</span></p>
+<h3>1.1.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 泛化（Generalization）：</h3>
+<h3>带空心箭头的实线线表示</h3>
+<p>泛化（下图）表示一个更泛化的元素和一个更具体的元素之间的关系。泛化是用于对继承进行建模的UML元素。在Java中，用<em>extends</em>关键字来直接表示这种关系。</p>
+<p>泛化关系表示类与类之间的继承关系，接口与接口之间的继承关系。如下图：</p>
+<p><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/2012061315050938.gif" alt=""><span style="line-height: 1.5;">&nbsp;</span></p>
+<h3 class="ab" align="left">1.1.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 实现（Realization）：空心箭头和虚线表示</h3>
+<p>实例（<strong>图</strong><strong>I</strong>）关系指定两个实体之间的一个合同。换言之，一个实体定义一个合同，而另一个实体保证履行该合同。对Java应用程序进行建模时，实现关系可直接用<span style="color: #ff0000;"><em>implements</em></span>关键字来表示。表达一种说明元素与实现元素之间的关系；</p>
+<p><img style="line-height: 1.5;" src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/2012061315052227.gif" alt=""></p>
+<p>图I</p>
+<p>&nbsp;</p>
+<h2><strong>二、相互之间的区别</strong></h2>
+<p><em><strong>1.聚合与组合</strong></em></p>
+<p>（1）聚合与组合都是一种结合关系，只是额外具有整体-部分的意涵。</p>
+<p>（2）部件的生命周期不同</p>
+<p>聚合关系中，整件不会拥有部件的生命周期，所以整件删除时，部件不会被删除。再者，多个整件可以共享同一个部件。&nbsp;<br>组合关系中，整件拥有部件的生命周期，所以整件删除时，部件一定会跟着删除。而且，多个整件不可以同时间共享同一个部件。</p>
+<p>（3）聚合关系是“has-a”关系，组合关系是“contains-a”关系。</p>
+<p><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/285763-20160304135602690-2070487434.png" alt=""></p>
+<ul>
+<li>“弱”包含表示如果部门没有了，员工也可以继续存在；</li>
+<li>“强”包含表示如果部门没有了，员工也不再存在；</li>
+
+
+
+
+
+
+</ul>
+<p>在做软件需求时，往往会将所有的包含关系画成“弱”包含，后面发现某些关系可以表示为“强”包含是，才转为实心菱形。</p>
+<p><strong><em>2.关联和聚合</em></strong></p>
+<p>（1）表现在代码层面，和关联关系是一致的，只能从语义级别来区分。</p>
+<p>（2）关联和聚合的区别主要在语义上，关联的两个对象之间一般是平等的，例如你是我的朋友，聚合则一般不是平等的。</p>
+<p>（3）关联是一种结构化的关系，指一种对象和另一种对象有联系。</p>
+<p>（4）关联和聚合是视问题域而定的，例如在关心汽车的领域里，轮胎是一定要组合在汽车类中的，因为它离开了汽车就没有意义了。但是在卖轮胎的店铺业务里，就算轮胎离开了汽车，它也是有意义的，这就可以用聚合了。</p>
+<p><strong><em>3.关联和依赖</em></strong></p>
+<p>（1）关联关系中，体现的是两个类、或者类与接口之间语义级别的一种强依赖关系，比如我和我的朋友；这种关系比依赖更强、不存在依赖关系的偶然性、关系也不是临时性的，一般是长期性的，而且双方的关系一般是平等的。</p>
+<p>（2）依赖关系中，可以简单的理解，就是一个类A使用到了另一个类B，而这种使用关系是具有偶然性的、临时性的、非常弱的，但是B类的变化会影响到A。</p>
+<p><strong><em><strong><em>4.泛化和实现</em></strong></em></strong></p>
+<p><strong>实现</strong>表示类对接口的实现关系，表示方式：用一条带有空心三角箭头的虚线指向接口。</p>
+<p><strong>泛化</strong>表示类与类之间的继承关系、接口与接口之间的继承关系，表示方式一条带有空心三角箭头的实线指向基类（父接口）。</p>
+<p><em id="__mceDel"><strong><em>5.综合比较</em></strong></em></p>
+<p>　　这几种关系都是语义级别的，所以从代码层面并不能完全区分各种关系；但总的来说，后几种关系所表现的强弱程度依次为：</p>
+<p><strong>　　　　　　　　　　组合&gt;聚合&gt;关联&gt;依赖</strong></p>
+<p>　　其中依赖（Dependency）的关系最弱，而关联（Association），聚合（Aggregation），组合（Composition）表示的关系依次增强。换言之关联，聚合，组合都是依赖关系的一种，聚合是表明对象之间的整体与部分关系的关联，而组合是表明整体与部分之间有相同生命周期关系的聚合。</p>
+<p>而关联与依赖的关系用一句话概括下来就是，依赖描述了对象之间的调用关系，而关联描述了对象之间的结构关系。</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/duanxz/category/383840.html" target="_blank">pattern</a>,<a href="http://www.cnblogs.com/duanxz/category/389503.html" target="_blank">UML</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/duanxz/tag/UML/">UML</a>, <a href="http://www.cnblogs.com/duanxz/tag/pattern/">pattern</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2547801,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;380416fe-3256-e011-a53f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/duanxz/" target="_blank"><img src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/u285763.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/duanxz/">duanxz</a><br>
+            <a href="http://home.cnblogs.com/u/duanxz/followees">关注 - 15</a><br>
+            <a href="http://home.cnblogs.com/u/duanxz/followers">粉丝 - 140</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;380416fe-3256-e011-a53f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2547801,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">14</span>
+    </div>
+    <div class="buryit" onclick="votePost(2547801,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547648.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547648.html" title="发布于2012-06-13 13:00">UML用例图总结</a><br><a href="http://www.cnblogs.com/duanxz/archive/2012/06/14/2548891.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/duanxz/archive/2012/06/14/2548891.html" title="发布于2012-06-14 10:18">Open Graph Protocol（开放内容协议）</a><br></div>
+</div>
+
+
+	<div class="postDesc">posted on <span id="post-date">2012-06-13 14:21</span> <a href="http://www.cnblogs.com/duanxz/">duanxz</a> 阅读(<span id="post_view_count">40277</span>) 评论(<span id="post_comment_count">6</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2547801" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#" onclick="AddToWz(2547801);return false;">收藏</a></div>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=86007,cb_entryId=2547801,cb_blogApp=currentBlogApp,cb_blogUserGuid='380416fe-3256-e011-a53f-842b2b196315',cb_entryCreatedDate='2012/6/13 14:21:00';loadViewCount(cb_entryId);</script>
+
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<b>评论:</b>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#2587407" class="layer">#1楼</a><a name="2587407" id="comment_anchor_2587407"></a>
+				 <span class="comment_date">2012-12-27 09:06</span> | <a id="a_comment_author_2587407" href="http://www.cnblogs.com/chenchangwen/" target="_blank">chenchangwen</a> <a href="http://msg.cnblogs.com/send/chenchangwen" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2587407" class="blog_comment_body">很好 mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2587407,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2587407,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#2681228" class="layer">#2楼</a><a name="2681228" id="comment_anchor_2681228"></a>
+				 <span class="comment_date">2013-05-15 16:15</span> | <a id="a_comment_author_2681228" href="http://www.cnblogs.com/damonlan/" target="_blank">随风浪迹天涯</a> <a href="http://msg.cnblogs.com/send/%E9%9A%8F%E9%A3%8E%E6%B5%AA%E8%BF%B9%E5%A4%A9%E6%B6%AF" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2681228" class="blog_comment_body">学习。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2681228,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2681228,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2681228_avatar" style="display:none;">http://pic.cnblogs.com/face/u282564.jpg?id=14170340</span>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#2819210" class="layer">#3楼</a><a name="2819210" id="comment_anchor_2819210"></a>
+				 <span class="comment_date">2013-11-19 10:22</span> | <a id="a_comment_author_2819210" href="http://www.cnblogs.com/jeanschen/" target="_blank">jeans chen</a> <a href="http://msg.cnblogs.com/send/jeans%20chen" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2819210" class="blog_comment_body">陪了夫人又折兵</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2819210,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2819210,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2819210_avatar" style="display:none;">http://pic.cnblogs.com/face/512940/20130709101602.png</span>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#2995520" class="layer">#4楼</a><a name="2995520" id="comment_anchor_2995520"></a>
+				 <span class="comment_date">2014-07-27 23:12</span> | <a id="a_comment_author_2995520" href="http://www.cnblogs.com/huangbichong/" target="_blank">nash</a> <a href="http://msg.cnblogs.com/send/nash" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_2995520" class="blog_comment_body">看来那么多UML文章，这是唯一一篇能把各种关系讲清楚的</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2995520,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2995520,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#3088383" class="layer">#5楼</a><a name="3088383" id="comment_anchor_3088383"></a>
+				 <span class="comment_date">2014-12-17 19:42</span> | <a id="a_comment_author_3088383" href="http://www.cnblogs.com/helong/" target="_blank">helong</a> <a href="http://msg.cnblogs.com/send/helong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3088383" class="blog_comment_body">好文章</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3088383,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3088383,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+			<a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#3132368" class="layer">#6楼</a><a name="3132368" id="comment_anchor_3132368"></a><span id="comment-maxId" style="display:none;">3132368</span><span id="comment-maxDate" style="display:none;">2015/2/27 15:04:57</span>
+				 <span class="comment_date">2015-02-27 15:04</span> | <a id="a_comment_author_3132368" href="http://home.cnblogs.com/u/381311/" target="_blank">Think_Jumper</a> <a href="http://msg.cnblogs.com/send/Think_Jumper" title="发送站内短消息" class="sendMsg2This">&nbsp;</a><br>
+				<div align="left"><div id="comment_body_3132368" class="blog_comment_body">还没怎么大量浏览UML相关的文章，但是这篇文章看起来的确是比较舒服的。博主幸苦了。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3132368,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3132368,&#39;Bury&#39;,this)">反对(0)</a></div>&nbsp;&nbsp;<span class="comment_actions"></span></div>
+			</div>
+			
+			
+		</div>
+	
+
+
+
+<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://click.aliyun.com/m/10467/" target="_blank">【直播】支付宝、微博、阿里云专家联合解读红包浪潮下的核心技术架构</a><br><a href="http://www.rongcloud.cn/" target="_blank">【推荐】融云即时通讯云－豆果美食、Faceu等亿级APP都在用</a><br><a href="https://group.cnblogs.com/topic/76017.html" target="_blank">【活动】一元专享1500元微软智能云Azure</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://click.aliyun.com/m/10467/" target="_blank"><img width="300" height="250" src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/24442-20170215141525175-203290624.jpg" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/563395/" target="_blank">淘宝违反“广告法”？被起诉索赔20万</a><br> ·  <a href="http://news.cnblogs.com/n/563394/" target="_blank">IBM的认知计算能诊断95%的早期青光眼</a><br> ·  <a href="http://news.cnblogs.com/n/563393/" target="_blank">黑客通过控制麦克风窃取超过600GB的数据</a><br> ·  <a href="http://news.cnblogs.com/n/563391/" target="_blank">微信小程序失败了吗？</a><br> ·  <a href="http://news.cnblogs.com/n/563390/" target="_blank">你所不知道的，有关Youtube的10条趣闻</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="http://bbs.h3bpm.com/index.php?m=app&amp;app=product_download&amp;a=reg&amp;utm_source=csdn&amp;utm_medium=pic&amp;utm_campaign=show&amp;utm_content=v10&amp;utm_term=%E5%85%8D%E8%B4%B9%E4%B8%8B%E8%BD%BD" target="_blank"><img width="468" height="60" src="./UML类图符号 各种关系说明以及举例 - duanxz - 博客园_files/24442-20170118152220281-363324784.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/562830/" target="_blank">技术文章如何写作才能有较好的阅读体验</a><br> ·  <a href="http://kb.cnblogs.com/page/554260/" target="_blank">「代码家」的学习过程和学习经验分享</a><br> ·  <a href="http://kb.cnblogs.com/page/556770/" target="_blank">写给未来的程序媛</a><br> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+</div>
+<div id="leftcontent">
+	
+		<div id="leftcontentcontainer">
+			
+<!--done-->
+<div class="newsItem">
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/duanxz/">duanxz</a><br>园龄：<a href="http://home.cnblogs.com/u/duanxz/" title="入园时间：2011-03-25">5年10个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/duanxz/followers/">140</a><br>关注：<a href="http://home.cnblogs.com/u/duanxz/followees/">15</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;380416fe-3256-e011-a53f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/05/01&#39;);return false;">&lt;</a></td><td align="center">2012年6月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/07/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/01.html"><u>1</u></a></td><td class="CalWeekendDay" align="center">2</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/03.html"><u>3</u></a></td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/04.html"><u>4</u></a></td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/05.html"><u>5</u></a></td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td class="CalWeekendDay" align="center">9</td></tr><tr><td class="CalWeekendDay" align="center">10</td><td align="center">11</td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/12.html"><u>12</u></a></td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13.html"><u>13</u></a></td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/14.html"><u>14</u></a></td><td align="center">15</td><td class="CalWeekendDay" align="center">16</td></tr><tr><td class="CalWeekendDay" align="center">17</td><td align="center">18</td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/19.html"><u>19</u></a></td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/20.html"><u>20</u></a></td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/21.html"><u>21</u></a></td><td align="center">22</td><td class="CalWeekendDay" align="center">23</td></tr><tr><td class="CalWeekendDay" align="center">24</td><td align="center">25</td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/26.html"><u>26</u></a></td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/27.html"><u>27</u></a></td><td align="center"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/28.html"><u>28</u></a></td><td align="center">29</td><td class="CalWeekendDay" align="center">30</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script><br>
+			<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/duanxz/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/duanxz/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/duanxz/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/duanxz/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/duanxz/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<h3 class="catListTitle">我的标签</h3>
+<div id="MyTag">
+<ul>
+<li><a href="http://www.cnblogs.com/duanxz/tag/mysql/">mysql</a>(93)</li><li><a href="http://www.cnblogs.com/duanxz/tag/linux%E5%91%BD%E4%BB%A4/">linux命令</a>(83)</li><li><a href="http://www.cnblogs.com/duanxz/tag/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">多线程</a>(81)</li><li><a href="http://www.cnblogs.com/duanxz/tag/spring/">spring</a>(75)</li><li><a href="http://www.cnblogs.com/duanxz/tag/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA/">JVM虚拟机</a>(72)</li><li><a href="http://www.cnblogs.com/duanxz/tag/cache/">cache</a>(58)</li><li><a href="http://www.cnblogs.com/duanxz/tag/linux/">linux</a>(47)</li><li><a href="http://www.cnblogs.com/duanxz/tag/mybatis/">mybatis</a>(43)</li><li><a href="http://www.cnblogs.com/duanxz/tag/android-%E7%95%8C%E9%9D%A2/">android-界面</a>(41)</li><li><a href="http://www.cnblogs.com/duanxz/tag/DB%E5%9F%BA%E7%A1%80/">DB基础</a>(40)</li><li><a href="http://www.cnblogs.com/duanxz/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+		<h3 class="catListTitle">随笔分类</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_0" class="listitem" href="http://www.cnblogs.com/duanxz/category/553816.html"> high-concurrence(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_1" class="listitem" href="http://www.cnblogs.com/duanxz/category/394740.html"> log4j源码分析(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_2" class="listitem" href="http://www.cnblogs.com/duanxz/category/586230.html">alibaba(17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_3" class="listitem" href="http://www.cnblogs.com/duanxz/category/411002.html">Android(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_4" class="listitem" href="http://www.cnblogs.com/duanxz/category/562031.html">android-fragment(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_5" class="listitem" href="http://www.cnblogs.com/duanxz/category/546109.html">android基础(20)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_6" class="listitem" href="http://www.cnblogs.com/duanxz/category/546469.html">android-界面(34)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_7" class="listitem" href="http://www.cnblogs.com/duanxz/category/562359.html">android开源库应用(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_8" class="listitem" href="http://www.cnblogs.com/duanxz/category/562262.html">android事件(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_9" class="listitem" href="http://www.cnblogs.com/duanxz/category/553817.html">android特效(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_10" class="listitem" href="http://www.cnblogs.com/duanxz/category/548212.html">annotation(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_11" class="listitem" href="http://www.cnblogs.com/duanxz/category/418953.html">Application Server(40)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_12" class="listitem" href="http://www.cnblogs.com/duanxz/category/422786.html">app-server管理与优化(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_13" class="listitem" href="http://www.cnblogs.com/duanxz/category/428481.html">Architecture(41)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_14" class="listitem" href="http://www.cnblogs.com/duanxz/category/904378.html">axis2(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_15" class="listitem" href="http://www.cnblogs.com/duanxz/category/585830.html">build(18)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_16" class="listitem" href="http://www.cnblogs.com/duanxz/category/539559.html">cache(61)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_17" class="listitem" href="http://www.cnblogs.com/duanxz/category/568651.html">CXF(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_18" class="listitem" href="http://www.cnblogs.com/duanxz/category/430438.html">db操作(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_19" class="listitem" href="http://www.cnblogs.com/duanxz/category/565418.html">DB基础(25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_20" class="listitem" href="http://www.cnblogs.com/duanxz/category/419580.html">design discipline(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_21" class="listitem" href="http://www.cnblogs.com/duanxz/category/587085.html">distributed(64)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_22" class="listitem" href="http://www.cnblogs.com/duanxz/category/445223.html">doc(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_23" class="listitem" href="http://www.cnblogs.com/duanxz/category/424347.html">dubbo(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_24" class="listitem" href="http://www.cnblogs.com/duanxz/category/418564.html">eclipse(23)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_25" class="listitem" href="http://www.cnblogs.com/duanxz/category/533322.html">effective java笔记(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_26" class="listitem" href="http://www.cnblogs.com/duanxz/category/730429.html">Ehcache(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_27" class="listitem" href="http://www.cnblogs.com/duanxz/category/426762.html">environment(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_28" class="listitem" href="http://www.cnblogs.com/duanxz/category/700824.html">ETL(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_29" class="listitem" href="http://www.cnblogs.com/duanxz/category/779357.html">ftp(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_30" class="listitem" href="http://www.cnblogs.com/duanxz/category/691548.html">hadoop-hbase(15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_31" class="listitem" href="http://www.cnblogs.com/duanxz/category/583517.html">hibernate(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_32" class="listitem" href="http://www.cnblogs.com/duanxz/category/389786.html">HSQLDB(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_33" class="listitem" href="http://www.cnblogs.com/duanxz/category/563920.html">http(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_34" class="listitem" href="http://www.cnblogs.com/duanxz/category/383841.html">interceptor&amp;filter(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_35" class="listitem" href="http://www.cnblogs.com/duanxz/category/427319.html">IT(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_36" class="listitem" href="http://www.cnblogs.com/duanxz/category/488857.html">J2EE(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_37" class="listitem" href="http://www.cnblogs.com/duanxz/category/566190.html">J2EE核心模式(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_38" class="listitem" href="http://www.cnblogs.com/duanxz/category/389226.html">java(43)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_39" class="listitem" href="http://www.cnblogs.com/duanxz/category/561862.html">java8(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_40" class="listitem" href="http://www.cnblogs.com/duanxz/category/434044.html">java-advanced(22)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_41" class="listitem" href="http://www.cnblogs.com/duanxz/category/687976.html">java-annotation(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_42" class="listitem" href="http://www.cnblogs.com/duanxz/category/763020.html">java-basis(15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_43" class="listitem" href="http://www.cnblogs.com/duanxz/category/763713.html">java-collection(27)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_44" class="listitem" href="http://www.cnblogs.com/duanxz/category/763365.html">java-enum&amp;generic(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_45" class="listitem" href="http://www.cnblogs.com/duanxz/category/406694.html">java-exception(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_46" class="listitem" href="http://www.cnblogs.com/duanxz/category/390800.html">javascript(27)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_47" class="listitem" href="http://www.cnblogs.com/duanxz/category/439877.html">java加密与安全(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_48" class="listitem" href="http://www.cnblogs.com/duanxz/category/764012.html">java理论知识(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_49" class="listitem" href="http://www.cnblogs.com/duanxz/category/421781.html">java优化(17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_50" class="listitem" href="http://www.cnblogs.com/duanxz/category/744910.html">jdk命令(20)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_51" class="listitem" href="http://www.cnblogs.com/duanxz/category/490144.html">Jetty(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_52" class="listitem" href="http://www.cnblogs.com/duanxz/category/396276.html">JMS(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_53" class="listitem" href="http://www.cnblogs.com/duanxz/category/689081.html">JMX(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_54" class="listitem" href="http://www.cnblogs.com/duanxz/category/546322.html">JNI(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_55" class="listitem" href="http://www.cnblogs.com/duanxz/category/493797.html">jquery(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_56" class="listitem" href="http://www.cnblogs.com/duanxz/category/410572.html">js+css(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_57" class="listitem" href="http://www.cnblogs.com/duanxz/category/407624.html">JSON(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_58" class="listitem" href="http://www.cnblogs.com/duanxz/category/434096.html">juc(14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_59" class="listitem" href="http://www.cnblogs.com/duanxz/category/405075.html">junit(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_60" class="listitem" href="http://www.cnblogs.com/duanxz/category/422712.html">jvm-monitor(29)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_61" class="listitem" href="http://www.cnblogs.com/duanxz/category/574744.html">JVM虚拟机(75)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_62" class="listitem" href="http://www.cnblogs.com/duanxz/category/706389.html">kafka(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_63" class="listitem" href="http://www.cnblogs.com/duanxz/category/425058.html">linux(58)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_64" class="listitem" href="http://www.cnblogs.com/duanxz/category/435126.html">linux tool(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_65" class="listitem" href="http://www.cnblogs.com/duanxz/category/764445.html">linux命令(78)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_66" class="listitem" href="http://www.cnblogs.com/duanxz/category/765902.html">linux文件和目录管理(18)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_67" class="listitem" href="http://www.cnblogs.com/duanxz/category/765446.html">linux系统配置(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_68" class="listitem" href="http://www.cnblogs.com/duanxz/category/426521.html">linux性能分析(21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_69" class="listitem" href="http://www.cnblogs.com/duanxz/category/434841.html">load-balance(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_70" class="listitem" href="http://www.cnblogs.com/duanxz/category/424348.html">lock(22)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_71" class="listitem" href="http://www.cnblogs.com/duanxz/category/433547.html">log4j(14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_72" class="listitem" href="http://www.cnblogs.com/duanxz/category/782705.html">message-queue(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_73" class="listitem" href="http://www.cnblogs.com/duanxz/category/810816.html">middleware(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_74" class="listitem" href="http://www.cnblogs.com/duanxz/category/583357.html">monitor(32)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_75" class="listitem" href="http://www.cnblogs.com/duanxz/category/582548.html">mybatis(44)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_76" class="listitem" href="http://www.cnblogs.com/duanxz/category/383842.html">mysql(96)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_77" class="listitem" href="http://www.cnblogs.com/duanxz/category/901174.html">mysqlSQL应用(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_78" class="listitem" href="http://www.cnblogs.com/duanxz/category/901169.html">mysql安全</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_79" class="listitem" href="http://www.cnblogs.com/duanxz/category/901168.html">mysql触发器(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_80" class="listitem" href="http://www.cnblogs.com/duanxz/category/901167.html">mysql存储过程函数事件(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_81" class="listitem" href="http://www.cnblogs.com/duanxz/category/901170.html">mysql分区(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_82" class="listitem" href="http://www.cnblogs.com/duanxz/category/775158.html">mysql关键字(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_83" class="listitem" href="http://www.cnblogs.com/duanxz/category/720478.html">mysql函数(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_84" class="listitem" href="http://www.cnblogs.com/duanxz/category/901157.html">mysql环境与运维(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_85" class="listitem" href="http://www.cnblogs.com/duanxz/category/900470.html">mysql基础(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_86" class="listitem" href="http://www.cnblogs.com/duanxz/category/901172.html">mysql架构(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_87" class="listitem" href="http://www.cnblogs.com/duanxz/category/901693.html">mysql配置及管理(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_88" class="listitem" href="http://www.cnblogs.com/duanxz/category/901171.html">mysql日志(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_89" class="listitem" href="http://www.cnblogs.com/duanxz/category/901166.html">mysql事物和锁(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_90" class="listitem" href="http://www.cnblogs.com/duanxz/category/901164.html">mysql索引(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_91" class="listitem" href="http://www.cnblogs.com/duanxz/category/901177.html">mysql优化(22)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_92" class="listitem" href="http://www.cnblogs.com/duanxz/category/611538.html">nginx(33)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_93" class="listitem" href="http://www.cnblogs.com/duanxz/category/725883.html">NoSQL(17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_94" class="listitem" href="http://www.cnblogs.com/duanxz/category/671211.html">OAUTH2.0(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_95" class="listitem" href="http://www.cnblogs.com/duanxz/category/490111.html">offheap(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_96" class="listitem" href="http://www.cnblogs.com/duanxz/category/418346.html">open source(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_97" class="listitem" href="http://www.cnblogs.com/duanxz/category/762508.html">operation(30)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_98" class="listitem" href="http://www.cnblogs.com/duanxz/category/540078.html">optimize(32)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_99" class="listitem" href="http://www.cnblogs.com/duanxz/category/570602.html">oracle(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_100" class="listitem" href="http://www.cnblogs.com/duanxz/category/383840.html">pattern(38)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_101" class="listitem" href="http://www.cnblogs.com/duanxz/category/538542.html">php(13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_102" class="listitem" href="http://www.cnblogs.com/duanxz/category/539474.html">phpMVC,Yii(20)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_103" class="listitem" href="http://www.cnblogs.com/duanxz/category/675326.html">powerdesigner(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_104" class="listitem" href="http://www.cnblogs.com/duanxz/category/835341.html">realtimecomputation(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_105" class="listitem" href="http://www.cnblogs.com/duanxz/category/729142.html">RESTful(16)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_106" class="listitem" href="http://www.cnblogs.com/duanxz/category/904368.html">restlet(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_107" class="listitem" href="http://www.cnblogs.com/duanxz/category/428127.html">rpc(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_108" class="listitem" href="http://www.cnblogs.com/duanxz/category/777616.html">scala(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_109" class="listitem" href="http://www.cnblogs.com/duanxz/category/817962.html">script(14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_110" class="listitem" href="http://www.cnblogs.com/duanxz/category/789781.html">search(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_111" class="listitem" href="http://www.cnblogs.com/duanxz/category/428420.html">serialization(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_112" class="listitem" href="http://www.cnblogs.com/duanxz/category/453106.html">servlet(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_113" class="listitem" href="http://www.cnblogs.com/duanxz/category/691664.html">SOA(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_114" class="listitem" href="http://www.cnblogs.com/duanxz/category/574610.html">socket(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_115" class="listitem" href="http://www.cnblogs.com/duanxz/category/557466.html">spark(27)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_116" class="listitem" href="http://www.cnblogs.com/duanxz/category/538227.html">spring(34)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_117" class="listitem" href="http://www.cnblogs.com/duanxz/category/791482.html">spring aop(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_118" class="listitem" href="http://www.cnblogs.com/duanxz/category/583247.html">springMVC(13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_119" class="listitem" href="http://www.cnblogs.com/duanxz/category/434763.html">spring学习笔记(14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_120" class="listitem" href="http://www.cnblogs.com/duanxz/category/583306.html">spring原理(13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_121" class="listitem" href="http://www.cnblogs.com/duanxz/category/399047.html">SQL(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_122" class="listitem" href="http://www.cnblogs.com/duanxz/category/775667.html">sql优化(18)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_123" class="listitem" href="http://www.cnblogs.com/duanxz/category/937688.html">Sqoop</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_124" class="listitem" href="http://www.cnblogs.com/duanxz/category/719326.html">Storm(14)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_125" class="listitem" href="http://www.cnblogs.com/duanxz/category/399636.html">struts1(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_126" class="listitem" href="http://www.cnblogs.com/duanxz/category/492853.html">struts2(10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_127" class="listitem" href="http://www.cnblogs.com/duanxz/category/389539.html">temp(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_128" class="listitem" href="http://www.cnblogs.com/duanxz/category/585751.html">testing(17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_129" class="listitem" href="http://www.cnblogs.com/duanxz/category/447302.html">threadpool(8)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_130" class="listitem" href="http://www.cnblogs.com/duanxz/category/585130.html">tomcat(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_131" class="listitem" href="http://www.cnblogs.com/duanxz/category/453442.html">tools(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_132" class="listitem" href="http://www.cnblogs.com/duanxz/category/834321.html">ubuntu(13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_133" class="listitem" href="http://www.cnblogs.com/duanxz/category/389503.html">UML(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_134" class="listitem" href="http://www.cnblogs.com/duanxz/category/763343.html">validator(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_135" class="listitem" href="http://www.cnblogs.com/duanxz/category/388210.html">web(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_136" class="listitem" href="http://www.cnblogs.com/duanxz/category/562029.html">webService(15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_137" class="listitem" href="http://www.cnblogs.com/duanxz/category/433184.html">work(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_138" class="listitem" href="http://www.cnblogs.com/duanxz/category/397348.html">xml解析(12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_139" class="listitem" href="http://www.cnblogs.com/duanxz/category/404604.html">xml解析 jdom</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_140" class="listitem" href="http://www.cnblogs.com/duanxz/category/586905.html">zookeeper(18)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_141" class="listitem" href="http://www.cnblogs.com/duanxz/category/585133.html">安全(31)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_142" class="listitem" href="http://www.cnblogs.com/duanxz/category/585323.html">大数据(15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_143" class="listitem" href="http://www.cnblogs.com/duanxz/category/585749.html">调试技巧(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_144" class="listitem" href="http://www.cnblogs.com/duanxz/category/402590.html">多线程(81)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_145" class="listitem" href="http://www.cnblogs.com/duanxz/category/715325.html">分布式事务(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_146" class="listitem" href="http://www.cnblogs.com/duanxz/category/423885.html">工具类库(19)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_147" class="listitem" href="http://www.cnblogs.com/duanxz/category/419729.html">关注经济(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_148" class="listitem" href="http://www.cnblogs.com/duanxz/category/405783.html">函数式编程(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_149" class="listitem" href="http://www.cnblogs.com/duanxz/category/428802.html">集群-架构(19)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_150" class="listitem" href="http://www.cnblogs.com/duanxz/category/453308.html">建模(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_151" class="listitem" href="http://www.cnblogs.com/duanxz/category/586888.html">开源包使用(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_152" class="listitem" href="http://www.cnblogs.com/duanxz/category/569157.html">开源组件(25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_153" class="listitem" href="http://www.cnblogs.com/duanxz/category/720292.html">面试题(26)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_154" class="listitem" href="http://www.cnblogs.com/duanxz/category/779584.html">日志(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_155" class="listitem" href="http://www.cnblogs.com/duanxz/category/428129.html">软件质量(9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_156" class="listitem" href="http://www.cnblogs.com/duanxz/category/394618.html">设计开发(2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_157" class="listitem" href="http://www.cnblogs.com/duanxz/category/548017.html">事件定时器(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_158" class="listitem" href="http://www.cnblogs.com/duanxz/category/764458.html">算法(11)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_159" class="listitem" href="http://www.cnblogs.com/duanxz/category/795258.html">索引(6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_160" class="listitem" href="http://www.cnblogs.com/duanxz/category/780658.html">网络编程(20)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_161" class="listitem" href="http://www.cnblogs.com/duanxz/category/777429.html">网络通信(25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_162" class="listitem" href="http://www.cnblogs.com/duanxz/category/668923.html">微信(5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_163" class="listitem" href="http://www.cnblogs.com/duanxz/category/636079.html">项目管理(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_164" class="listitem" href="http://www.cnblogs.com/duanxz/category/422467.html">性能分析及调优(17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_165" class="listitem" href="http://www.cnblogs.com/duanxz/category/688873.html">序列化框架(7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_166" class="listitem" href="http://www.cnblogs.com/duanxz/category/419027.html">移动开发(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_167" class="listitem" href="http://www.cnblogs.com/duanxz/category/450888.html">源码(4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_168" class="listitem" href="http://www.cnblogs.com/duanxz/category/440403.html">孕妇营养(3)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_0_Link_169" class="listitem" href="http://www.cnblogs.com/duanxz/category/446873.html">杂七杂八(2)</a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">随笔档案</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_0" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2017/02.html">2017年2月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_1" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2017/01.html">2017年1月 (21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_2" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/12.html">2016年12月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_3" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/11.html">2016年11月 (60)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_4" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/10.html">2016年10月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_5" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/09.html">2016年9月 (1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_6" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/08.html">2016年8月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_7" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/06.html">2016年6月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_8" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/05.html">2016年5月 (25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_9" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/04.html">2016年4月 (53)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_10" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/03.html">2016年3月 (37)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_11" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/02.html">2016年2月 (39)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_12" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2016/01.html">2016年1月 (141)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_13" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/12.html">2015年12月 (98)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_14" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/11.html">2015年11月 (35)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_15" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/10.html">2015年10月 (73)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_16" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/09.html">2015年9月 (12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_17" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/08.html">2015年8月 (107)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_18" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/07.html">2015年7月 (28)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_19" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/06.html">2015年6月 (7)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_20" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/05.html">2015年5月 (75)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_21" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/04.html">2015年4月 (51)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_22" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/03.html">2015年3月 (32)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_23" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/02.html">2015年2月 (12)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_24" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2015/01.html">2015年1月 (10)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_25" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/12.html">2014年12月 (4)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_26" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/11.html">2014年11月 (19)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_27" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/10.html">2014年10月 (9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_28" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/09.html">2014年9月 (25)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_29" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/08.html">2014年8月 (2)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_30" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/06.html">2014年6月 (60)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_31" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/05.html">2014年5月 (36)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_32" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/04.html">2014年4月 (21)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_33" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/03.html">2014年3月 (54)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_34" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/02.html">2014年2月 (49)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_35" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2014/01.html">2014年1月 (48)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_36" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/12.html">2013年12月 (57)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_37" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/11.html">2013年11月 (26)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_38" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/10.html">2013年10月 (9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_39" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/09.html">2013年9月 (5)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_40" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/08.html">2013年8月 (6)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_41" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/07.html">2013年7月 (19)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_42" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/06.html">2013年6月 (32)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_43" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/05.html">2013年5月 (15)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_44" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/04.html">2013年4月 (9)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_45" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/03.html">2013年3月 (13)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_46" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/02.html">2013年2月 (17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_47" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2013/01.html">2013年1月 (35)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_48" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2012/12.html">2012年12月 (39)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_49" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2012/11.html">2012年11月 (45)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_50" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2012/10.html">2012年10月 (55)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_51" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2012/09.html">2012年9月 (17)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_52" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2012/08.html">2012年8月 (45)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_53" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2012/07.html">2012年7月 (29)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_54" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2012/06.html">2012年6月 (19)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_1_Link_55" class="listitem" href="http://www.cnblogs.com/duanxz/archive/2012/05.html">2012年5月 (9)</a></li>
+			
+				</ul>
+			
+	
+		<h3 class="catListTitle">文章分类</h3>
+		
+				<ul class="catList">
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_0" class="listitem" href="http://www.cnblogs.com/duanxz/category/383843.html">cloud(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_1" class="listitem" href="http://www.cnblogs.com/duanxz/category/383844.html">mysql(1)</a></li>
+			
+				<li class="catListItem"> <a id="CatList_LinkList_2_Link_2" class="listitem" href="http://www.cnblogs.com/duanxz/category/384550.html">web(1)</a></li>
+			
+				</ul>
+			
+	
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<h3 class="catListTitle">最新评论</h3>
+<div class="RecentComment" id="RecentComments">
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/archive/2013/03/11/2954376.html#3612438">1. Re:Jenkins</a></li>
+        <li class="recent_comment_body">加入CCNET/Jenkins自动构建部署QQ群一起讨论吧： 190402937</li>
+        <li class="recent_comment_author">--EasonJim</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3792723.html#3606563">2. Re:powerdesigner中将表的name在生成建表sql时生成注释</a></li>
+        <li class="recent_comment_body">您好，看了您写的有点不明白，可以请教下您吗？</li>
+        <li class="recent_comment_author">--xiakang</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/6275185.html#3603692">3. Re:MYSQL一次性能优化实战经历[转]</a></li>
+        <li class="recent_comment_body">mark</li>
+        <li class="recent_comment_author">--幻空城</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3518489.html#3576139">4. Re:Android ListView从网络获取图片及文字显示</a></li>
+        <li class="recent_comment_body">你好，我想请问下<a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html" target="_blank"></a>？如果是的话是怎么弄出来的呀</li>
+        <li class="recent_comment_author">--Nicolellu</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/archive/2013/01/23/2872708.html#3571187">5. Re:java多线程</a></li>
+        <li class="recent_comment_body">那个。。大神 我能问一下如果不用static怎么样把所共享吗</li>
+        <li class="recent_comment_author">--CheNbXxx</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3539198.html#3529399">6. Re:WebView介绍</a></li>
+        <li class="recent_comment_body">你好， 问一下，使用webView进行自动登录时存在问题。请教一下，需要做什么设置吗？<br></li>
+        <li class="recent_comment_author">--问知</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/archive/2013/01/18/2866024.html#3515659">7. Re:log4j不同级别日志分不同文件记录</a></li>
+        <li class="recent_comment_body">我用log4j.properties配置时,重写了RollingFileAppender的isAsSevereAsThreshold方法，是可以输出指定级别的日志，不过显得不太方便。</li>
+        <li class="recent_comment_author">--java小飞侠</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/4672708.html#3496376">8. Re:XA事务处理</a></li>
+        <li class="recent_comment_body">XA Transactions</li>
+        <li class="recent_comment_author">--Angkor--:--</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/archive/2012/07/19/2598726.html#3493915">9. Re:java8 集合流式操作</a></li>
+        <li class="recent_comment_body">前辈，您好，想问您个问题，希望您空闲的时候能回答一下。filter()方法在Stream接口里面，它没有方法体，只是传了一个函数式接口的参数，那个函数式接口要实现test()方法，该方法返回一个boo......</li>
+        <li class="recent_comment_author">--naadp</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/4204126.html#3462074">10. Re:Nginx、SSL双向认证、PHP、SOAP、Webservice、https</a></li>
+        <li class="recent_comment_body">您好，SSL双向认证有没有demo可以参考？</li>
+        <li class="recent_comment_author">--wng</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/5194438.html#3445335">11. Re:消息推送技术</a></li>
+        <li class="recent_comment_body">web实时推送技术使用越来越广泛，但是自己开发又太麻烦了，我觉得没有那个必要，GoEasy就挺不错的，服务器稳定，代码简洁易懂；官网: <a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html" target="_blank"></a></li>
+        <li class="recent_comment_author">--EmmaGong</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3334660.html#3435639">12. Re:eclipse中svn插件的安装与使用</a></li>
+        <li class="recent_comment_body">Mark，:)</li>
+        <li class="recent_comment_author">--xiaochou</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/4706351.html#3424858">13. Re:memcache分布式部署的原理分析</a></li>
+        <li class="recent_comment_body">@duanxz谢谢，我在网上找了一下，.Net方面的客户端，找到一个sourceforge.net的memcacheddotnetclient 似乎不是很全，比如群聚似乎没有一致性哈希，已经我想动态的......</li>
+        <li class="recent_comment_author">--profangong</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/4706351.html#3422191">14. Re:memcache分布式部署的原理分析</a></li>
+        <li class="recent_comment_body">@profangong严格说是memcache客户端内部实现的，业务代码可以不用关注节点路由相关的事情。...</li>
+        <li class="recent_comment_author">--duanxz</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/4706351.html#3422174">15. Re:memcache分布式部署的原理分析</a></li>
+        <li class="recent_comment_body">请问个问题，set('tokyo'，data); 这句是memcache是根据自己的算法来定位到某个服务器节点上的吗？ 我意思是计算key得到哈希值，然后根据哈希值来定位服务器节点。。。这个过程是me......</li>
+        <li class="recent_comment_author">--profangong</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/4912827.html#3402962">16. Re:几种ESB（企业服务总线）介绍</a></li>
+        <li class="recent_comment_body">请问哪几种流行一些？？或者使用范围是什么呢？</li>
+        <li class="recent_comment_author">--愤怒的辣椒</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3426025.html#3393795">17. Re:Checked Exception与Runtime Exception 的区别</a></li>
+        <li class="recent_comment_body">写的还可以</li>
+        <li class="recent_comment_author">--fairy1674</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/4919124.html#3391657">18. Re:Nginx 反向代理、负载均衡、页面缓存、URL重写及读写分离详解</a></li>
+        <li class="recent_comment_body">写的挺好,可是<br>图片都挂了....</li>
+        <li class="recent_comment_author">--蚕豆</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3469425.html#3205170">19. Re:Yii 实现MySQL多库和读写分离</a></li>
+        <li class="recent_comment_body">谁然看的不是很懂，但是还是很赞！！</li>
+        <li class="recent_comment_author">--miketwais</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3143548.html#3163912">20. Re:三、深入Jetty源码分析</a></li>
+        <li class="recent_comment_body">你好！请教下我准备搭建Java Web应用程序的开发环境，安装了JDK, Eclipse和JBoss,我还需要安装Jetty吗？如何安装配置呢？</li>
+        <li class="recent_comment_author">--风影极光</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#3132368">21. Re:UML类图符号 各种关系说明以及举例</a></li>
+        <li class="recent_comment_body">还没怎么大量浏览UML相关的文章，但是这篇文章看起来的确是比较舒服的。博主幸苦了。</li>
+        <li class="recent_comment_author">--Think_Jumper</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3713773.html#3130051">22. Re:使用Visual VM监控运行时的项目</a></li>
+        <li class="recent_comment_body">这么好的文章居然没有人顶。<br><br>好文章一定要赞！</li>
+        <li class="recent_comment_author">--友人M</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html#3088383">23. Re:UML类图符号 各种关系说明以及举例</a></li>
+        <li class="recent_comment_body">好文章</li>
+        <li class="recent_comment_author">--helong</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3508231.html#3067540">24. Re:【Android】Handler应用（三）：从服务器端分页加载更新ListView</a></li>
+        <li class="recent_comment_body">d百度搜索d商务轻骑兵营销软件d网商d必备d工具d</li>
+        <li class="recent_comment_author">--vxagqz0968</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/duanxz/p/3508231.html#3065521">25. Re:【Android】Handler应用（三）：从服务器端分页加载更新ListView</a></li>
+        <li class="recent_comment_body">p百度搜索p商务轻骑兵营销软件p网商p必备p工具p</li>
+        <li class="recent_comment_author">--vxagqz0968</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<h3 class="catListTitle">阅读排行榜</h3>
+<div class="RecentComment" id="TopViewPosts"> 
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html">1. UML类图符号 各种关系说明以及举例(40277)</a></li><li><a href="http://www.cnblogs.com/duanxz/archive/2012/08/24/2654361.html">2. JSONArray数据转换成java List(23800)</a></li><li><a href="http://www.cnblogs.com/duanxz/p/3334660.html">3. eclipse中svn插件的安装与使用(6883)</a></li><li><a href="http://www.cnblogs.com/duanxz/archive/2012/10/30/2746658.html">4. 常用 Java 静态代码分析工具的分析与比较(5256)</a></li><li><a href="http://www.cnblogs.com/duanxz/archive/2012/10/26/2740576.html">5. 远程监控JVM之二、  八、jdk工具之JvisualVM之三--可视化监控及LINUX服务器与客户端配置方法）、  远程监控Tomcat、Jstatd(4335)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<h3 class="catListTitle">评论排行榜</h3>
+<div class="RecentComment" id="TopCommentsPosts">
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html">1. UML类图符号 各种关系说明以及举例(6)</a></li><li><a href="http://www.cnblogs.com/duanxz/p/4706351.html">2. memcache分布式部署的原理分析(3)</a></li><li><a href="http://www.cnblogs.com/duanxz/p/3152574.html">3. 单例---被废弃的DCL双重检查加锁(3)</a></li><li><a href="http://www.cnblogs.com/duanxz/p/3508231.html">4. mysql show processlist命令 详解(2)</a></li><li><a href="http://www.cnblogs.com/duanxz/p/3477095.html">5. yii 操作session和cookie(2)</a></li></ul></div>
+</div></div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div class="RecentComment">
+	<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/duanxz/archive/2012/06/13/2547801.html">1. UML类图符号 各种关系说明以及举例(14)</a></li><li><a href="http://www.cnblogs.com/duanxz/archive/2012/07/10/2584825.html">2. log4j源码分析(3)</a></li><li><a href="http://www.cnblogs.com/duanxz/p/3334660.html">3. eclipse中svn插件的安装与使用(3)</a></li><li><a href="http://www.cnblogs.com/duanxz/p/3334503.html">4. Eclipse中如何修改SVN的地址(1)</a></li><li><a href="http://www.cnblogs.com/duanxz/p/3334234.html">5. ERROR 1146 (42S02): Table 'mysql.slow_log' doesn't exist(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script></div>
+	
+</div>
+
+<!--done-->
+<div class="footer">
+	Powered by: <a href="http://www.cnblogs.com/">博客园</a>	模板提供：<a href="http://blog.hjenglish.com/">沪江博客</a>
+	Copyright ©2017 duanxz
+</div>
+
+
+
+
+
+</body></html>

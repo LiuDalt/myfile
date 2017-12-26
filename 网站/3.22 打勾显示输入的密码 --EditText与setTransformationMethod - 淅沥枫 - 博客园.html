@@ -1,0 +1,825 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0063)http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645189.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/blog-common.css">
+<link type="text/css" rel="stylesheet" href="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/118048.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/xilifeng/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/xilifeng/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/xilifeng/wlwmanifest.xml">
+<script async="" src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/analytics.js"></script><script src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'xilifeng', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/xilifeng/"><img id="blogLogo" src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/xilifeng/"></a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li></li>
+<li></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/%E6%B7%85%E6%B2%A5%E6%9E%AB">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/xilifeng/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/xilifeng/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			
+<span id="stats_post_count">随笔 - 295&nbsp; </span>
+<span id="stats_article_count">文章 - 1&nbsp; </span>
+<span id="stats-comment_count">评论 - 35</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645189.html">3.22 打勾显示输入的密码 --EditText与setTransformationMethod</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h5 class="jd-tagtitle">实现目标:</h5>
+<p><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/2012081810514582.png" alt="" data-pinit="registered"></p>
+<p>实现原理:</p>
+<p>为CheckBox添加一个监听器事件;</p>
+<p><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/2012081810534488.jpg" alt="" data-pinit="registered"></p>
+<p>实现的源码:</p>
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>ZH-CN</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="59" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style><!--
+/* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520092929 1073786111 9 0 415 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:宋体;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-family:"Calibri","sans-serif";
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.5pt;
+	mso-bidi-font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+<div class="WordSection1" style="layout-grid: 15.6pt;">
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">package</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> edu.cquptzx.showPassword;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; mso-font-kerning: 0pt;" lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">import</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> android.app.Activity;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">import</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> android.os.Bundle;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">import</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> android.text.method.HideReturnsTransformationMethod;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">import</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> android.text.method.PasswordTransformationMethod;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">import</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> android.widget.CheckBox;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">import</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> android.widget.CompoundButton;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">import</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> android.widget.EditText;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; mso-font-kerning: 0pt;" lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">public</span></strong><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">class</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> ShowPasswordActivity </span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">extends</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> Activity {</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp; </span></span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">private</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> EditText </span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">edittext</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">;</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp; </span></span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">private</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> CheckBox </span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">checkbox</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">;<span style="mso-tab-count: 1;">&nbsp; </span></span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #3f5fbf; mso-font-kerning: 0pt;" lang="EN-US">/** Called when the activity is first created. */</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span></span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">public</span></strong><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">void</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> <span style="text-decoration: underline;">onCreate</span>(Bundle savedInstanceState) {</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">super</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">.onCreate(savedInstanceState);</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>setContentView(R.layout.</span><em><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">main</span></em><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">);</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #3f7f5f; mso-font-kerning: 0pt;" lang="EN-US">/*find the object by IDs .*/</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">edittext</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> = (EditText) findViewById(R.id.</span><em><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">et</span></em><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">);</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">checkbox</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> = (CheckBox) findViewById(R.id.</span><em><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">cb</span></em><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">);</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #3f7f5f; mso-font-kerning: 0pt;" lang="EN-US">/* add a listener to the CheckBox */</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">checkbox</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">.setOnCheckedChangeListener(</span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">new</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> CheckBox.OnCheckedChangeListener()</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">public</span></strong><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">void</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> onCheckedChanged(CompoundButton buttonView,</span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">boolean</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"> isChecked)</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">if</span></strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">(</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">checkbox</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">.isChecked())</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 5;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #3f7f5f; mso-font-kerning: 0pt;" lang="EN-US">/* show the password*/</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">edittext</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">.setTransformationMethod(HideReturnsTransformationMethod.<em>getInstance</em>());</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><strong><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #7f0055; mso-font-kerning: 0pt;" lang="EN-US">else</span></strong></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 5;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #3f7f5f; mso-font-kerning: 0pt;" lang="EN-US">/* hide the password */</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 5;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: #0000c0; mso-font-kerning: 0pt;" lang="EN-US">edittext</span><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">.setTransformationMethod(PasswordTransformationMethod.<em>getInstance</em>());<span style="mso-tab-count: 1;">&nbsp;&nbsp;&nbsp; </span></span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 4;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<span style="mso-tab-count: 3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-tab-count: 3;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>});</span></p>
+<p class="MsoNormal" style="text-align: left; mso-layout-grid-align: none; text-autospace: none;" align="left"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US"><span style="mso-spacerun: yes;">&nbsp;&nbsp;&nbsp; </span>}</span></p>
+<p class="MsoNormal"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">}</span></p>
+<p class="MsoNormal"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">相关知识:</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/2012081811002720.jpg" alt="" data-pinit="registered"></p>
+<p>&nbsp;</p>
+<p class="MsoNormal">&nbsp;</p>
+<p><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/2012081811003949.jpg" alt="" data-pinit="registered"></p>
+<p class="MsoNormal"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">最后实现效果:</span></p>
+<p class="MsoNormal">&nbsp;</p>
+<p><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/2012081810571523.png" alt="" data-pinit="registered"></p>
+<p><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/2012081810572556.png" alt="" data-pinit="registered"></p>
+<p class="MsoNormal"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">&nbsp;</span></p>
+<p class="MsoNormal"><span style="font-size: 10.0pt; font-family: &#39;Courier New&#39;; color: black; mso-font-kerning: 0pt;" lang="EN-US">&nbsp;</span></p>
+</div></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/xilifeng/category/401702.html">android基础</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/xilifeng/tag/checkBox/">checkBox</a>, <a href="http://www.cnblogs.com/xilifeng/tag/password/">password</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2645189,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;d044aa26-7955-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/xilifeng/" target="_blank"><img src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/20130329155230.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/xilifeng/">淅沥枫</a><br>
+            <a href="http://home.cnblogs.com/u/xilifeng/followees">关注 - 6</a><br>
+            <a href="http://home.cnblogs.com/u/xilifeng/followers">粉丝 - 12</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;d044aa26-7955-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2645189,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(2645189,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645097.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645097.html" title="发布于2012-08-18 09:47">3.20 今晚到哪儿打牙祭--具有选择功能的对话框</a><br><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645468.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645468.html" title="发布于2012-08-18 15:05">3.23andorid多语言支持--系统架构</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2012-08-18 10:58</span> <a href="http://www.cnblogs.com/xilifeng/">淅沥枫</a> 阅读(<span id="post_view_count">5153</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2645189" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645189.html#" onclick="AddToWz(2645189);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=118048,cb_entryId=2645189,cb_blogApp=currentBlogApp,cb_blogUserGuid='d044aa26-7955-e111-aa3f-842b2b196315',cb_entryCreatedDate='2012/8/18 10:58:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645189.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645189.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://www.rongcloud.cn/active/live" target="_blank">【链接】融云阿里云大咖面对面 ：教你玩转直播风口</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br><a href="http://cn.iforex.com/landing_pages/br1/zhns/Testimonials8/?content=Testimonials8&amp;SID=445058" target="_blank">【推荐】一个月仅用630元赚取15000元，学会投资</a><br><a href="http://netease.im/?&amp;hmsr=bky8&amp;from=bky8" target="_blank">【推荐】网易云信-一天开发一个微信，独创1对1技术顾问让开发加速</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://gold.xitu.io/welcome/?utm_source=cnblogs&amp;utm_medium=banner&amp;utm_content=gaoshou&amp;utm_campaign=q3_website" target="_blank"><img width="300" height="250" src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/24442-20160805112458981-1554012564.jpg" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/551632/" target="_blank">中国邮政战略投资滴滴出行，打车顺便送快递？</a><br> ·  <a href="http://news.cnblogs.com/n/551631/" target="_blank">程序员不可不知的职业风险——蹲大牢</a><br> ·  <a href="http://news.cnblogs.com/n/551630/" target="_blank">谷歌眼镜新专利曝光 或采用可更换电池设计</a><br> ·  <a href="http://news.cnblogs.com/n/551629/" target="_blank">酷派发布双摄COOL1售价1099元起</a><br> ·  <a href="http://news.cnblogs.com/n/551628/" target="_blank">《商业周刊》深度揭秘：Oculus究竟是如何打动扎克伯格的？</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice/?from=cnblogs01" target="_blank"><img width="468" height="60" src="./3.22 打勾显示输入的密码 --EditText与setTransformationMethod - 淅沥枫 - 博客园_files/24442-20160803181056012-1919505484.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/550625/" target="_blank">程序猿媳妇儿注意事项</a><br> ·  <a href="http://kb.cnblogs.com/page/540529/" target="_blank">可是姑娘，你为什么要编程呢？</a><br> ·  <a href="http://kb.cnblogs.com/page/549631/" target="_blank">知其所以然（以算法学习为例）</a><br> ·  <a href="http://kb.cnblogs.com/page/548394/" target="_blank">如何给变量取个简短且无歧义的名字</a><br> ·  <a href="http://kb.cnblogs.com/page/549080/" target="_blank">编程的智慧</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/07/01&#39;);return false;">&lt;</a></td><td align="center">2012年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2012/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/04.html"><u>4</u></a></td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/05.html"><u>5</u></a></td><td align="center">6</td><td align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/07.html"><u>7</u></a></td><td align="center">8</td><td align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/09.html"><u>9</u></a></td><td align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/10.html"><u>10</u></a></td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/11.html"><u>11</u></a></td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/12.html"><u>12</u></a></td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18.html"><u>18</u></a></td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/19.html"><u>19</u></a></td><td align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/20.html"><u>20</u></a></td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/24.html"><u>24</u></a></td><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/25.html"><u>25</u></a></td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/26.html"><u>26</u></a></td><td align="center">27</td><td align="center">28</td><td align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/29.html"><u>29</u></a></td><td align="center"><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/30.html"><u>30</u></a></td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/xilifeng/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/xilifeng/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/xilifeng/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/xilifeng/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/xilifeng/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645189.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/xilifeng/tag/iOS/">iOS</a>(9)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/matplotlib/">matplotlib</a>(6)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/Django/">Django</a>(4)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/swift/">swift</a>(3)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/%E4%B8%B2%E5%8F%A3/">串口</a>(3)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/checkBox/">checkBox</a>(3)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/cp/">cp</a>(2)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/EM310/">EM310</a>(2)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/mysql/">mysql</a>(2)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/%E9%9D%A2%E8%AF%95/">面试</a>(2)</li><li><a href="http://www.cnblogs.com/xilifeng/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(276)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/xilifeng/category/411596.html">Android4.0网络编程详解(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/xilifeng/category/401702.html">android基础(28)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/xilifeng/category/610039.html">Django(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/xilifeng/category/839057.html">electron</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/xilifeng/category/418068.html">Github(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/xilifeng/category/704809.html">iOS(58)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/xilifeng/category/398198.html">java基础(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/xilifeng/category/390890.html">Linux基础(蓝点中文)(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/xilifeng/category/387513.html">matlab(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/xilifeng/category/604673.html">matlotlib(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/xilifeng/category/835124.html">NODE(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/xilifeng/category/839056.html">NodeJS</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/xilifeng/category/408364.html">office使用问题(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/xilifeng/category/473517.html">protel_DXP_2004(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/xilifeng/category/763407.html">swift(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/xilifeng/category/704867.html">tips4mac(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/xilifeng/category/464169.html">ZigBee(42)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/xilifeng/category/468097.html">单片机ARM基础(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/xilifeng/category/406440.html">谷歌浏览器插件开发(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/xilifeng/category/393117.html">集团数据专线维护(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/xilifeng/category/408340.html">计算机操作知识(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/xilifeng/category/387512.html">计算机网络问题(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/xilifeng/category/390891.html">简历(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/xilifeng/category/416692.html">阶段总结(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/xilifeng/category/411269.html">礼仪(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/xilifeng/category/474930.html">生活点滴(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/xilifeng/category/417939.html">数据结构-java(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/xilifeng/category/420129.html">数据库(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/xilifeng/category/406384.html">移动通信(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/xilifeng/category/471021.html">阅读(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/xilifeng/category/470523.html">站点(2)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(295)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/xilifeng/archive/2016/06.html">2016年6月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/xilifeng/archive/2016/05.html">2016年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/xilifeng/archive/2016/04.html">2016年4月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/xilifeng/archive/2016/03.html">2016年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/xilifeng/archive/2016/02.html">2016年2月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/xilifeng/archive/2016/01.html">2016年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/xilifeng/archive/2015/12.html">2015年12月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/xilifeng/archive/2015/11.html">2015年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/xilifeng/archive/2015/10.html">2015年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/xilifeng/archive/2015/09.html">2015年9月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/xilifeng/archive/2015/08.html">2015年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/xilifeng/archive/2015/07.html">2015年7月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/xilifeng/archive/2015/06.html">2015年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/xilifeng/archive/2014/09.html">2014年9月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/xilifeng/archive/2014/08.html">2014年8月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/xilifeng/archive/2014/03.html">2014年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/xilifeng/archive/2013/10.html">2013年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/xilifeng/archive/2013/09.html">2013年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/xilifeng/archive/2013/08.html">2013年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/xilifeng/archive/2013/07.html">2013年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/xilifeng/archive/2013/06.html">2013年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/xilifeng/archive/2013/05.html">2013年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/xilifeng/archive/2013/04.html">2013年4月 (61)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/xilifeng/archive/2013/03.html">2013年3月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/xilifeng/archive/2012/12.html">2012年12月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/xilifeng/archive/2012/11.html">2012年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/xilifeng/archive/2012/10.html">2012年10月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/xilifeng/archive/2012/09.html">2012年9月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/xilifeng/archive/2012/08.html">2012年8月 (34)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/xilifeng/archive/2012/07.html">2012年7月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/xilifeng/archive/2012/06.html">2012年6月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/xilifeng/archive/2012/05.html">2012年5月 (4)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlearchive" class="catListArticleArchive sidebar-block">
+<h3 class="catListTitle">文章档案<span style="font-size:11px;font-weight:normal">(1)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/xilifeng/archives/2015/08.html" rel="nofollow">2015年8月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/xilifeng/archive/2012/06/03/2532474.html">1. 使用PS保存PDF为图片(JPG)(4)</a></li><li><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2644924.html">2. 更改apk安装包对android系统等级要求(4)</a></li><li><a href="http://www.cnblogs.com/xilifeng/p/4818952.html">3. mac上校验文件的 md5 sha-1(3)</a></li><li><a href="http://www.cnblogs.com/xilifeng/archive/2013/04/17/3026785.html">4. 硬件原理图和实物对比理解_zigbee模块(2)</a></li><li><a href="http://www.cnblogs.com/xilifeng/p/5225666.html">5. Git克隆部分文件(2)</a></li><li><a href="http://www.cnblogs.com/xilifeng/archive/2013/03/15/2961456.html">6. adb 乱码显示解决方法(2)</a></li><li><a href="http://www.cnblogs.com/xilifeng/archive/2012/06/10/2544302.html">7. F问题3-7：以太网使用载波监听多点接入碰撞检测协议CSMA/CD。频分复用FDM才使用载波。以太网有没有使用频分复用？(2)</a></li><li><a href="http://www.cnblogs.com/xilifeng/archive/2012/10/14/2723167.html">8. mysql基本语句(2)</a></li><li><a href="http://www.cnblogs.com/xilifeng/archive/2012/08/18/2645783.html">9. Android ViewPager多页面滑动切换以及动画效果(2)</a></li><li><a href="http://www.cnblogs.com/xilifeng/p/5243986.html">10. Objective的宏到swift中该怎么办?(1)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 淅沥枫
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

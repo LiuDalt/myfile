@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://www.cnblogs.com/soaringEveryday/p/4495221.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Android WebView使用深入浅出 - soaringEveryday - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/bundle-BlackLowKey.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/soaringEveryday/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/soaringEveryday/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/soaringEveryday/wlwmanifest.xml">
+<script type="text/javascript" src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/encoder.js"></script><script src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'soaringEveryday', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/soaringEveryday/"><img id="blogLogo" src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/soaringEveryday/">soaringEveryday</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/soaringEveryday/">首页</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/soaringEveryday">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/soaringEveryday/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/soaringEveryday/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			
+<span id="stats_post_count">随笔 - 62&nbsp; </span>
+<span id="stats_article_count">文章 - 58&nbsp; </span>
+<span id="stats-comment_count">评论 - 106</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/soaringEveryday/p/4495221.html">Android WebView使用深入浅出</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>目前很多android app都内置了可以显示web页面的界面，会发现这个界面一般都是由一个叫做WebView的组件渲染出来的，学习该组件可以为你的app开发提升扩展性。</p>
+<p>先说下WebView的一些优点：</p>
+<ul>
+<li>可以直接显示和渲染web页面，直接显示网页</li>
+<li>webview可以直接用html文件（网络上或本地assets中）作布局</li>
+<li>和JavaScript交互调用</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>一、基本使用</strong></p>
+<p>首先layout中即为一个基本的简单控件：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">WebView
+        </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/webView1"</span><span style="color: #ff0000;">
+        android:layout_width</span><span style="color: #0000ff;">="fill_parent"</span><span style="color: #ff0000;">
+        android:layout_height</span><span style="color: #0000ff;">="fill_parent"</span><span style="color: #ff0000;">
+        android:layout_marginTop</span><span style="color: #0000ff;">="10dp"</span> <span style="color: #0000ff;">/&gt;</span></pre>
+</div>
+<p>同时，因为要房访问网络，所以manifest中必须要加uses-permission：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">uses-permission </span><span style="color: #ff0000;">android:name</span><span style="color: #0000ff;">="android.permission.INTERNET"</span><span style="color: #0000ff;">/&gt;</span></pre>
+</div>
+<p>在activity中即可获得webview的引用，同时load一个网址：</p>
+<div class="cnblogs_code">
+<pre>webview =<span style="color: #000000;"> (WebView) findViewById(R.id.webView1);
+webview.loadUrl(</span>"http://www.baidu.com/");<br>//webview.reload();// reload page</pre>
+</div>
+<p>这个时候发现一个问题，启动应用后，自动的打开了系统内置的浏览器，解决这个问题需要为webview设置&nbsp;WebViewClient，并重写方法：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>webview.setWebViewClient(<span style="color: #0000ff;">new</span><span style="color: #000000;"> WebViewClient(){
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            }
+        });</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>若自己定义了一个页面加载进度的progressbar，需要展示给用户的时候，可以通过如下方式获取webview内页面的加载进度：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>webview.setWebChromeClient(<span style="color: #0000ff;">new</span><span style="color: #000000;"> WebChromeClient(){
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onProgressChanged(WebView view, <span style="color: #0000ff;">int</span><span style="color: #000000;"> newProgress) {
+                </span><span style="color: #008000;">//</span><span style="color: #008000;">get the newProgress and refresh progress bar</span>
+<span style="color: #000000;">            }
+        });</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>每个页面，都有一个标题，比如www.baidu.com这个页面的title即“百度一下，你就知道”，那么如何知道当前webview正在加载的页面的title呢：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>webview.setWebChromeClient(<span style="color: #0000ff;">new</span><span style="color: #000000;"> WebChromeClient(){
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onReceivedTitle(WebView view, String title) {
+                titleview.setText(title);</span><span style="color: #008000;">//</span><span style="color: #008000;">a textview</span>
+<span style="color: #000000;">            }
+        });</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>二、通过webview控件下载文件</strong></p>
+<p>通常webview渲染的界面中含有可以下载文件的链接，点击该链接后，应该开始执行下载的操作并保存文件到本地中。webview来下载页面中的文件通常有两种方式：</p>
+<p>1. 自己通过一个线程写java io的代码来下载和保存文件（可控性好）</p>
+<p>2. 调用系统download的模块（代码简单）</p>
+<p>&nbsp;</p>
+<p>方法一：</p>
+<p>首先要写一个下载并保存文件的线程类</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> HttpThread <span style="color: #0000ff;">extends</span><span style="color: #000000;"> Thread {
+
+
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> String mUrl;
+
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> HttpThread(String mUrl) {
+        </span><span style="color: #0000ff;">this</span>.mUrl =<span style="color: #000000;"> mUrl;
+    }
+    
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> run() {
+        URL url;
+        </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> {
+            url </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> URL(mUrl);
+            HttpURLConnection conn </span>=<span style="color: #000000;"> (HttpURLConnection) url.openConnection();
+            conn.setDoInput(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);
+            conn.setDoOutput(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);
+            InputStream in </span>=<span style="color: #000000;"> conn.getInputStream();
+            
+            File downloadFile;
+            File sdFile;
+            FileOutputStream out </span>= <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+            </span><span style="color: #0000ff;">if</span><span style="color: #000000;">(Environment.getExternalStorageState().equals(Environment.MEDIA_UNMOUNTED)){
+                downloadFile </span>=<span style="color: #000000;"> Environment.getExternalStorageDirectory();
+                sdFile </span>= <span style="color: #0000ff;">new</span> File(downloadFile, "test.file"<span style="color: #000000;">);
+                out </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> FileOutputStream(sdFile);
+            }
+            
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">buffer 4k</span>
+            <span style="color: #0000ff;">byte</span>[] buffer = <span style="color: #0000ff;">new</span> <span style="color: #0000ff;">byte</span>[1024 * 4<span style="color: #000000;">];
+            </span><span style="color: #0000ff;">int</span> len = 0<span style="color: #000000;">;
+            </span><span style="color: #0000ff;">while</span>((len = in.read(buffer)) != -1<span style="color: #000000;">){
+                </span><span style="color: #0000ff;">if</span>(out != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+                    out.write(buffer, </span>0<span style="color: #000000;">, len);
+            }
+            
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">close resource</span>
+            <span style="color: #0000ff;">if</span>(out != <span style="color: #0000ff;">null</span><span style="color: #000000;">)
+                out.close();
+            
+            </span><span style="color: #0000ff;">if</span>(in != <span style="color: #0000ff;">null</span><span style="color: #000000;">){
+                in.close();
+            }
+            
+            
+            
+        } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (IOException e) {
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO Auto-generated catch block</span>
+<span style="color: #000000;">            e.printStackTrace();
+        }
+    }
+    
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><br>随后要实现一个DownloadListener接口，这个接口实现方法OnDownloadStart()，当用户点击一个可以下载的链接时，该回调方法被调用同时传进来该链接的URL，随后即可以对该URL塞入HttpThread进行下载操作：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">//</span><span style="color: #008000;">创建DownloadListener (webkit包)</span>
+<span style="color: #0000ff;">class</span> MyDownloadListenter <span style="color: #0000ff;">implements</span><span style="color: #000000;"> DownloadListener{
+
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onDownloadStart(String url, String userAgent,
+                String contentDisposition, String mimetype, </span><span style="color: #0000ff;">long</span><span style="color: #000000;"> contentLength) {
+            System.out.println(</span>"url ==== &gt;" +<span style="color: #000000;"> url);
+            </span><span style="color: #0000ff;">new</span><span style="color: #000000;"> HttpThread(url).start();
+        }
+        
+    }
+
+</span><span style="color: #008000;">//</span><span style="color: #008000;">给webview加入监听</span>
+webview.setDownloadListener(<span style="color: #0000ff;">new</span> MyDownloadListenter());</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><br>方法二：</p>
+<p>直接发送一个action_view的intent即可：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">class</span> MyDownloadListenter <span style="color: #0000ff;">implements</span><span style="color: #000000;"> DownloadListener{
+
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onDownloadStart(String url, String userAgent,
+                String contentDisposition, String mimetype, </span><span style="color: #0000ff;">long</span><span style="color: #000000;"> contentLength) {
+            System.out.println(</span>"url ==== &gt;" +<span style="color: #000000;"> url);
+            </span><span style="color: #008000;">//</span><span style="color: #008000;">new HttpThread(url).start();</span>
+<span style="color: #000000;">            
+            Uri uri </span>=<span style="color: #000000;"> Uri.parse(url);
+            Intent intent </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
+        
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><strong>三、错误处理</strong></p>
+<p>当我们使用浏览器的时候，通常因为加载的页面的服务器的各种原因导致各种出错的情况，最平常的比如404错误，通常情况下浏览器会提示一个错误提示页面。事实上这个错误提示页面是浏览器在加载了本地的一个页面，用来提示用户目前已经出错了。</p>
+<p>但是当我们的app里面使用webview控件的时候遇到了诸如404这类的错误的时候，若也显示浏览器里面的那种错误提示页面就显得很丑陋了，那么这个时候我们的app就需要加载一个本地的错误提示页面，即webview如何加载一个本地的页面。</p>
+<p>1. 首先我们需要些一个html文件，比如error_handle.html，这个文件里面就是当出错的时候需要展示给用户看的一个错误提示页面，尽量做的精美一些。然后将该文件放置到代码根目录的assets文件夹下。</p>
+<p>2. 随后我们需要复写WebViewClient的onRecievedError方法，该方法传回了错误码，根据错误类型可以进行不同的错误分类处理</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>webview.setWebViewClient(<span style="color: #0000ff;">new</span><span style="color: #000000;"> WebViewClient(){
+</span><span style="color: #000000;">       
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> onReceivedError(WebView view, <span style="color: #0000ff;">int</span><span style="color: #000000;"> errorCode,
+                    String description, String failingUrl) {
+                </span><span style="color: #0000ff;">switch</span><span style="color: #000000;">(errorCode)
+                {
+                </span><span style="color: #0000ff;">case</span><span style="color: #000000;"> HttpStatus.SC_NOT_FOUND:
+                    view.loadUrl(</span>"file:///android_assets/error_handle.html"<span style="color: #000000;">);
+                    </span><span style="color: #0000ff;">break</span><span style="color: #000000;">;
+                }
+            }
+        });</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>其实，当出错的时候，我们可以选择隐藏掉webview，而显示native的错误处理控件，这个时候只需要在onReceivedError里面显示出错误处理的native控件同时隐藏掉webview即可。</p>
+<p>&nbsp;</p>
+<p><strong>四、webview同步cookies</strong></p>
+<p>cookies是服务器用来保存每个客户的常用信息的，下次客户进入一个诸如登陆的页面时服务器会检测cookie信息，如果通过则直接进入登陆后的页面。</p>
+<p>在webview中，如果之前已经登陆过了，那么下次再进入同样的登陆界面时，若需要再次登陆的话，一定会很恼人，所以这里提供一个webview同步cookies的方法。</p>
+<p>&nbsp;</p>
+<p>1.首先，我们假设某个网站的登陆界面需要提供两个参数，一个是name，一个是pwd，那么要是对这个页面进行登陆，那么必须给与这两个信息。我们假设服务器已经注册了name为jason，pwd为123456这个账号。</p>
+<p>2.下面，写一个Thread用来将name和pwd自动的登入，在服务器返回的response中获得cookie信息，稍后对这个cookie进行保存，这里先给出这个Thread的代码：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> HttpCookie <span style="color: #0000ff;">extends</span><span style="color: #000000;"> Thread {
+
+    </span><span style="color: #0000ff;">private</span><span style="color: #000000;"> Handler mHandler;
+
+    </span><span style="color: #0000ff;">public</span><span style="color: #000000;"> HttpCookie(Handler mHandler) {
+        </span><span style="color: #0000ff;">this</span>.mHandler =<span style="color: #000000;"> mHandler;
+    }
+    
+    @Override
+    </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> run() {
+        HttpClient client </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> DefaultHttpClient();
+        HttpPost post </span>= <span style="color: #0000ff;">new</span> HttpPost("");<span style="color: #008000;">//</span><span style="color: #008000;">this place should add the login address</span>
+<span style="color: #000000;">        
+        List</span>&lt;NameValuePair&gt; list = <span style="color: #0000ff;">new</span> ArrayList&lt;NameValuePair&gt;<span style="color: #000000;">();
+        list.add(</span><span style="color: #0000ff;">new</span> BasicNameValuePair("name", "jason"<span style="color: #000000;">));
+        list.add(</span><span style="color: #0000ff;">new</span> BasicNameValuePair("pwd", "123456"<span style="color: #000000;">));
+        
+        </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> {
+            post.setEntity(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> UrlEncodedFormEntity(list));
+            HttpResponse reponse </span>=<span style="color: #000000;"> client.execute(post);
+            </span><span style="color: #0000ff;">if</span>(reponse.getStatusLine().getStatusCode() ==<span style="color: #000000;"> HttpStatus.SC_OK){
+                AbstractHttpClient absClient </span>=<span style="color: #000000;"> (AbstractHttpClient) client;
+                List</span>&lt;Cookie&gt; cookies =<span style="color: #000000;"> absClient.getCookieStore().getCookies();
+                
+                </span><span style="color: #0000ff;">for</span><span style="color: #000000;">(Cookie cookie:cookies){
+                    </span><span style="color: #0000ff;">if</span>(cookie != <span style="color: #0000ff;">null</span><span style="color: #000000;">){
+                        </span><span style="color: #008000;">//</span><span style="color: #008000;">TODO
+                        </span><span style="color: #008000;">//</span><span style="color: #008000;">this place would get the cookies</span>
+<span style="color: #000000;">                    }
+                }
+            }
+            
+        } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (UnsupportedEncodingException e) {
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO Auto-generated catch block</span>
+<span style="color: #000000;">            e.printStackTrace();
+        } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (ClientProtocolException e) {
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO Auto-generated catch block</span>
+<span style="color: #000000;">            e.printStackTrace();
+        } </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (IOException e) {
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> TODO Auto-generated catch block</span>
+<span style="color: #000000;">            e.printStackTrace();
+        }
+    }
+    
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>由于这是一个子线程，所以需要在主线程中创建并执行。</p>
+<p>同时，因为其实子线程，那么里面必须含有一个handler的元素，用来当成功获取cookie后通知主线程进行同步和保存。初始化这个子线程的时候需要将主线程上的handler给传过来，随后在以上代码的TODO中发送消息，让主线程记录cookie，发送的这个消息需要将cookie信息包含进去：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">if</span>(cookie != <span style="color: #0000ff;">null</span><span style="color: #000000;">){
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">TODO
+    </span><span style="color: #008000;">//</span><span style="color: #008000;">this place would get the cookies</span>
+    Message msg = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Message();
+    msg.obj </span>=<span style="color: #000000;"> cookie;
+    </span><span style="color: #0000ff;">if</span>(mHandler != <span style="color: #0000ff;">null</span><span style="color: #000000;">){
+        mHandler.sendMessage(msg);
+        </span><span style="color: #0000ff;">return</span><span style="color: #000000;">;
+    }
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>随后在主线程中（webview加载登陆界面前），在handler中将会获取到cookie信息，下面将对该cookie进行保存和同步：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>    <span style="color: #0000ff;">private</span> Handler mHandler = <span style="color: #0000ff;">new</span><span style="color: #000000;"> Handler(){
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> handleMessage(android.os.Message msg) 
+        {
+            
+            CookieSyncManager.createInstance(MainActivity.</span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+            CookieManager cookieMgr </span>=<span style="color: #000000;"> CookieManager.getInstance();
+            cookieMgr.setAcceptCookie(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);
+            cookieMgr.setCookie(</span>"", msg.obj.toString());<span style="color: #008000;">//</span><span style="color: #008000;"> this place should add the login host address(not the login index address)</span>
+<span style="color: #000000;">            CookieSyncManager.getInstance().sync();
+            
+            webview.loadUrl(</span>"");<span style="color: #008000;">//</span><span style="color: #008000;"> login index address</span>
+<span style="color: #000000;">        };
+    };</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>这个时候发现webview加载的login index页面中可以自动的登陆了并显示登陆后的界面。</p>
+<p>&nbsp;</p>
+<p><strong>五、&nbsp;WebView与JavaScript的交互</strong></p>
+<p>1. webview调用js</p>
+<div class="cnblogs_code">
+<pre>mWebView.loadUrl("javascript:do()");</pre>
+</div>
+<p>以上是webview在调用js中的一个叫做do的方法，该js所在的html文件大致如下：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">script </span><span style="color: #ff0000;">language</span><span style="color: #0000ff;">="javascript"</span><span style="color: #0000ff;">&gt;</span>
+        <span style="background-color: #f5f5f5; color: #008000;">/*</span><span style="background-color: #f5f5f5; color: #008000;"> This function is invoked by the webview</span><span style="background-color: #f5f5f5; color: #008000;">*/</span>
+        <span style="background-color: #f5f5f5; color: #0000ff;">function</span> <span style="background-color: #f5f5f5; color: #0000ff;">do</span><span style="background-color: #f5f5f5; color: #000000;">() {
+            alert(</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">1</span><span style="background-color: #f5f5f5; color: #000000;">"</span><span style="background-color: #f5f5f5; color: #000000;">);
+        }
+    </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">script</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">a </span><span style="color: #ff0000;">onClick</span><span style="color: #0000ff;">="window.demo.clickOnAndroid()"</span><span style="color: #0000ff;">&gt;&lt;</span><span style="color: #800000;">div </span><span style="color: #ff0000;">style</span><span style="color: #0000ff;">="width:80px;
+            margin:0px auto;
+            padding:10px;
+            text-align:center;
+            border:2px solid #111111;"</span> <span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">img </span><span style="color: #ff0000;">id</span><span style="color: #0000ff;">="droid"</span><span style="color: #ff0000;"> src</span><span style="color: #0000ff;">="xx.png"</span><span style="color: #0000ff;">/&gt;&lt;</span><span style="color: #800000;">br</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                Click me!
+        </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">div</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">a</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><br>2. js调用webview</p>
+<p>我们假设下列的本地类是要给js调用的：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">package com.test.webview;<br>class</span><span style="color: #000000;"> DemoJavaScriptInterface {
+
+        DemoJavaScriptInterface() {
+        }
+
+        </span><span style="color: #008000;">/**</span><span style="color: #008000;">
+         * This is not called on the UI thread. Post a runnable to invoke
+         * loadUrl on the UI thread.
+         </span><span style="color: #008000;">*/</span>
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> clickOnAndroid() {
+            mHandler.post(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> Runnable() {
+                </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> run() {
+                    </span><span style="color: #008000;">//</span><span style="color: #008000;">TODO</span>
+<span style="color: #000000;">                }
+            });
+
+        }
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>首先给webview设置：</p>
+<div class="cnblogs_code">
+<pre>mWebview.setJavaScriptEnabled(<span style="color: #0000ff;">true</span>);</pre>
+</div>
+<p>随后将本地的类（被js调用的）映射出去：</p>
+<div class="cnblogs_code">
+<pre>mWebView.addJavascriptInterface(<span style="color: #0000ff;">new</span> DemoJavaScriptInterface(), "demo");</pre>
+</div>
+<p>“demo”这个名字就是公布出去给JS调用的，那么js久可以直接用下列代码调用本地的DemoJavaScriptInterface类中的方法了：</p>
+<div class="cnblogs_code">
+<pre>&lt;body onload="javascript:demo.clickOnAndroid()"&gt;<span style="color: #000000;">  
+    ...
+</span>&lt;/body&gt;</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>六、WebView与JavaScript相互调用混淆问题</strong></p>
+<p>若webview中的js调用了本地的方法，正常情况下发布的debug包js调用的时候是没有问题的，但是通常发布商业版本的apk都是要经过混淆的步骤，这个时候会发现之前调用正常的js却无法正常调用本地方法了。</p>
+<p>这是因为混淆的时候已经把本地的代码的引用给打乱了，导致js中的代码找不到本地的方法的地址。</p>
+<p>解决这个问题很简单，即在proguard.cfg文件中加上一些代码，声明本地中被js调用的代码不被混淆。下面举例说明：</p>
+<p>第五节中被js调用的那个类DemoJavaScriptInterface的包名为com.test.webview，那么就要在proguard.cfg文件中加入：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">-keep public class com.test.webview.DemoJavaScriptInterface{
+    public </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">methods</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">;
+}</span></pre>
+</div>
+<p>若是内部类，则大致写成如下形式：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">-keep public class com.test.webview.DemoJavaScriptInterface$InnerClass{
+    public <span style="color: #0000ff;">&lt;<span style="color: #800000;">methods<span style="color: #0000ff;">&gt;<span style="color: #000000;">;
+}</span></span></span></span></span></pre>
+</div>
+<p>若android版本比较新，可能还需要添加上下列代码：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #000000;">-keepattributes *Annotation*  
+-keepattributes *JavascriptInterface*</span></pre>
+</div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/soaringEveryday/category/581536.html">Android SDK</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/soaringEveryday/tag/android/">android</a>, <a href="http://www.cnblogs.com/soaringEveryday/tag/webview/">webview</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(4495221,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;f7f424b2-c67c-e311-8d02-90b11c0b17d6&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/soaringEveryday/" target="_blank"><img src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/20150411223534.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/soaringEveryday/">soaringEveryday</a><br>
+            <a href="http://home.cnblogs.com/u/soaringEveryday/followees">关注 - 8</a><br>
+            <a href="http://home.cnblogs.com/u/soaringEveryday/followers">粉丝 - 32</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;f7f424b2-c67c-e311-8d02-90b11c0b17d6&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(4495221,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">2</span>
+    </div>
+    <div class="buryit" onclick="votePost(4495221,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/soaringEveryday/p/4479079.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/soaringEveryday/p/4479079.html" title="发布于2015-05-05 14:35">dp和px转换</a><br><a href="http://www.cnblogs.com/soaringEveryday/p/4598179.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/soaringEveryday/p/4598179.html" title="发布于2015-06-24 17:13">EventBus框架在Android多Pane(Fragment)中的应用</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2015-05-12 16:27</span> <a href="http://www.cnblogs.com/soaringEveryday/">soaringEveryday</a> 阅读(<span id="post_view_count">5047</span>) 评论(<span id="post_comment_count">1</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=4495221" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/soaringEveryday/p/4495221.html#" onclick="AddToWz(4495221);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=174330,cb_entryId=4495221,cb_blogApp=currentBlogApp,cb_blogUserGuid='f7f424b2-c67c-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2015/5/12 16:27:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/soaringEveryday/p/4495221.html#3403494" class="layer">#1楼</a><a name="3403494" id="comment_anchor_3403494"></a><span id="comment-maxId" style="display:none;">3403494</span><span id="comment-maxDate" style="display:none;">2016/4/8 16:37:09</span>  <span class="comment_date">2016-04-08 16:37</span> <a id="a_comment_author_3403494" href="http://home.cnblogs.com/u/931779/" target="_blank">扬，</a> <a href="http://msg.cnblogs.com/send/%E6%89%AC%EF%BC%8C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3403494" class="blog_comment_body">学习了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3403494,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3403494,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/soaringEveryday/p/4495221.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/soaringEveryday/p/4495221.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://www.rongcloud.cn/" target="_blank">【推荐】融云即时通讯云－豆果美食、Faceu等亿级APP都在用</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br><a href="http://cn.iforex.com/landing_pages/br1/zhns/Testimonials8/?content=Testimonials8&amp;SID=445058" target="_blank">【推荐】一个月仅用630元赚取15000元，学会投资</a><br><a href="http://click.aliyun.com/m/5646/" target="_blank">【推荐】阿里舆情首次开放，69元限量秒杀</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://gold.xitu.io/welcome/?utm_source=cnblogs&amp;utm_medium=banner&amp;utm_content=gaoshou&amp;utm_campaign=q3_website" target="_blank"><img width="300" height="250" src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/24442-20160805112458981-1554012564.jpg" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/551305/" target="_blank">《福布斯》最新科技富豪榜：盖茨居首 内地19人上榜</a><br> ·  <a href="http://news.cnblogs.com/n/551304/" target="_blank">微信订购汽车票落地浙江 全国274城市已覆盖</a><br> ·  <a href="http://news.cnblogs.com/n/551303/" target="_blank">宝马：是时候让智能语音助手控制汽车了</a><br> ·  <a href="http://news.cnblogs.com/n/551302/" target="_blank">阿里云的新LOGO为什么是动态的？</a><br> ·  <a href="http://news.cnblogs.com/n/551301/" target="_blank">内容开发者如何选择VR平台？VR界Netflix手把手教你</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice/?from=cnblogs01" target="_blank"><img width="468" height="60" src="./Android WebView使用深入浅出 - soaringEveryday - 博客园_files/24442-20160803181056012-1919505484.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/540529/" target="_blank">可是姑娘，你为什么要编程呢？</a><br> ·  <a href="http://kb.cnblogs.com/page/549631/" target="_blank">知其所以然（以算法学习为例）</a><br> ·  <a href="http://kb.cnblogs.com/page/548394/" target="_blank">如何给变量取个简短且无歧义的名字</a><br> ·  <a href="http://kb.cnblogs.com/page/549080/" target="_blank">编程的智慧</a><br> ·  <a href="http://kb.cnblogs.com/page/549049/" target="_blank">写给初学前端工程师的一封信</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/soaringEveryday/">soaringEveryday</a><br>园龄：<a href="http://home.cnblogs.com/u/soaringEveryday/" title="入园时间：2014-01-14">2年6个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/soaringEveryday/followers/">32</a><br>关注：<a href="http://home.cnblogs.com/u/soaringEveryday/followees/">8</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;f7f424b2-c67c-e311-8d02-90b11c0b17d6&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/07/01&#39;);return false;">&lt;</a></td><td align="center">2016年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalTodayDay" align="center">11</td><td align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/soaringEveryday/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/soaringEveryday/p/4495221.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/soaringEveryday/tag/android/">android</a>(8)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/JNI/">JNI</a>(4)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/Java/">Java</a>(3)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/Thread/">Thread</a>(3)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/">内存泄漏</a>(2)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%BC%80%E5%8F%91/">响应式开发</a>(2)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/%E5%86%85%E5%AD%98/">内存</a>(2)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/listview/">listview</a>(2)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/Handler/">Handler</a>(2)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">android性能优化</a>(2)</li><li><a href="http://www.cnblogs.com/soaringEveryday/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/soaringEveryday/category/581536.html">Android SDK(40)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/soaringEveryday/category/581537.html">Android Source(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/soaringEveryday/category/625669.html">Hadoop(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/soaringEveryday/category/657758.html">Java(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/soaringEveryday/category/719629.html">Project Management(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/soaringEveryday/category/766811.html">Python(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/soaringEveryday/category/655948.html">server(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/soaringEveryday/category/599303.html">Skill(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/soaringEveryday/category/548984.html">Unix/Linux(12)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/soaringEveryday/archive/2016/07.html">2016年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/soaringEveryday/archive/2016/06.html">2016年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/soaringEveryday/archive/2016/05.html">2016年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/soaringEveryday/archive/2016/04.html">2016年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/soaringEveryday/archive/2016/03.html">2016年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/soaringEveryday/archive/2016/01.html">2016年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/soaringEveryday/archive/2015/12.html">2015年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/soaringEveryday/archive/2015/11.html">2015年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/soaringEveryday/archive/2015/09.html">2015年9月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/soaringEveryday/archive/2015/08.html">2015年8月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/soaringEveryday/archive/2015/07.html">2015年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/soaringEveryday/archive/2015/06.html">2015年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/soaringEveryday/archive/2015/05.html">2015年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/soaringEveryday/archive/2015/04.html">2015年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/soaringEveryday/archive/2015/03.html">2015年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/soaringEveryday/archive/2015/02.html">2015年2月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/soaringEveryday/archive/2014/10.html">2014年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/soaringEveryday/archive/2014/09.html">2014年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/soaringEveryday/archive/2014/07.html">2014年7月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/soaringEveryday/archive/2014/05.html">2014年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/soaringEveryday/archive/2014/01.html">2014年1月 (5)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlecategory" class="catListArticleCategory sidebar-block">
+<h3 class="catListTitle">文章分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/soaringEveryday/category/632399.html">Android basic(30)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/soaringEveryday/category/660018.html">Android source(3)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/soaringEveryday/category/666317.html">C/C++(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/soaringEveryday/category/663064.html">general skills(1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/soaringEveryday/category/660019.html">Java(8)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/soaringEveryday/category/662985.html">JNI&amp;NDK(4)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_6" href="http://www.cnblogs.com/soaringEveryday/category/660020.html">Linux</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_7" href="http://www.cnblogs.com/soaringEveryday/category/660021.html">设计模式和重构(4)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/soaringEveryday/p/5592193.html#3453669">1. Re:用Dart&amp;Henson玩转Activity跳转</a></li>
+        <li class="recent_comment_body">学习了。。</li>
+        <li class="recent_comment_author">--tt_Vincen</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/soaringEveryday/p/5578921.html#3450776">2. Re:用RxJava处理复杂表单验证问题</a></li>
+        <li class="recent_comment_body">传说中的响应式编程？！</li>
+        <li class="recent_comment_author">--大萝卜控</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/soaringEveryday/p/5548633.html#3443741">3. Re:用RxJava处理嵌套请求</a></li>
+        <li class="recent_comment_body">对对对</li>
+        <li class="recent_comment_author">--huluobo123</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/soaringEveryday/p/5465136.html#3430372">4. Re:技术与业务的抉择————论程序员的“瓶颈”问题</a></li>
+        <li class="recent_comment_body">絕大多數的企業、公司都是業務導向的，<br>畢竟本質還是營利組織，賺錢才是他們的天職</li>
+        <li class="recent_comment_author">--吉格艾諾</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/soaringEveryday/p/5465136.html#3428753">5. Re:技术与业务的抉择————论程序员的“瓶颈”问题</a></li>
+        <li class="recent_comment_body">@风浪强烈支持，我是应届到这家公司的，结果今年给我特调了，还比从其他行业新来的，只比我多一年经验的妹子低，果断走了。...</li>
+        <li class="recent_comment_author">--努力的小叶子</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/soaringEveryday/p/4991563.html">1. 告别编译运行 ---- Android Studio 2.0 Preview发布Instant Run功能(6695)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/4495221.html">2. Android WebView使用深入浅出(5047)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/4607438.html">3. Android Studio上方便使用butterknife注解框架的偷懒插件Android Butterknife Zelezny(4885)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/5465136.html">4. 技术与业务的抉择————论程序员的“瓶颈”问题(3679)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/4835839.html">5. 最清晰的Android多屏幕适配方案(2793)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/soaringEveryday/p/5465136.html">1. 技术与业务的抉择————论程序员的“瓶颈”问题(30)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/4991563.html">2. 告别编译运行 ---- Android Studio 2.0 Preview发布Instant Run功能(28)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/4825286.html">3. 用SugarORM快速开发需要同步和保存大量数据的Android互联网客户端(10)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/4950088.html">4. 用node-webkit(NW.js)创建桌面程序(9)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/4765962.html">5. 单例模式的内存泄漏陷阱(7)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/soaringEveryday/p/5465136.html">1. 技术与业务的抉择————论程序员的“瓶颈”问题(24)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/5461970.html">2. Android Studio单元测试入门(5)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/5368540.html">3. Android一键多渠道分发打包实战和解析(3)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/5711545.html">4. CoordinatorLayout自定义Bahavior特效及其源码分析(3)</a></li><li><a href="http://www.cnblogs.com/soaringEveryday/p/5604487.html">5. 更便捷的Android多渠道打包方式(3)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 soaringEveryday
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

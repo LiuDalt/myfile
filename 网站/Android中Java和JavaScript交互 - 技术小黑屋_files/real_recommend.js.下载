@@ -1,0 +1,98 @@
+var realRecommends = [];
+
+function Item(description, linkUrl, imageUrl) {
+	this.description = description + '_real';
+	this.linkUrl = linkUrl;
+	this.imageUrl = imageUrl;
+}
+
+
+function appendRecommend(description, linkUrl, imageUrl, count) {
+	var item = new Item(description, linkUrl, imageUrl);
+	if (count == undefined) {
+		count = 1;
+	}
+	for (var i=0; i < count; i++) {
+		realRecommends.push(item);
+	}
+	
+}
+
+function makeRealRecommendData() {
+    appendRecommend("代码整洁之道",
+    'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEwZSHloUBSJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQMTAFAaWhIdS0IJRmtCYkBuXQFYbWJTTyBeH2ZXWlsJcARTDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhELFQNTGlMRBxsDZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsUAxUCVBpcCltXWwg%3D',
+     'http://7jpolu.com1.z0.glb.clouddn.com/daima_zhengjie_zhidao_treated.jpg', 2);
+
+
+     appendRecommend('重构_改善既有代码的设计',
+      'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgFWEl0QAyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIUBFwdXhQdS0IJRmtwRWRiA2MncWIbHTJBHUgCbkZRQhhlDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhELFQ5SGlMTAhoHZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBBEOUx5aCltXWwg%3D',
+      'http://7jpolu.com1.z0.glb.clouddn.com/refactor(%E5%B7%B2%E5%8E%BB%E5%BA%95).jpg', 3);
+
+    appendRecommend('HeadFirst设计模式',
+    'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEwdUGlgXBSJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQMSBlQYWRIdS0IJRmtwVFRmNV8%2FaWB3WyMTAhJCR0ALeTJTDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhELFQ5SEl4XCxsHZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsUAhMGVhlcCltXWwg%3D',
+    'http://7xqzcv.com1.z0.glb.clouddn.com/head_first_design_pattern(%E5%B7%B2%E5%8E%BB%E5%BA%95).jpg', 2);
+
+	appendRecommend(
+		'Java编程思想', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgVVG1wQBiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIQB1UcXhEdS0IJRmsRUVMCI3ocd2dAR1NGJBYAV1EUQR1DDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhELFAVdEl0dBhYBZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVABIHUh5fCltXWwg%3D',
+		'http://7xqzcv.com1.z0.glb.clouddn.com/thinking_in_java(%E5%B7%B2%E5%8E%BB%E5%BA%95).jpg',2);
+	
+	appendRecommend('Effective_java', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEwZRElMUASJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQMTA1wTWhYdS0IJRmsRABB0PUMsFmBWHS5oXRZET1IHZCtTDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhELFAJUG18WAxMGZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsUAxYOXRpYCltXWwg%3D', 'http://7xqzcv.com1.z0.glb.clouddn.com/effective_java(%E5%B7%B2%E5%8E%BB%E5%BA%95).jpg', 2);
+	
+	
+	appendRecommend('Java虚拟机规范','http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgVSH18SAiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIQAFEfXBUdS0IJRmtLBHVUEAVFEWBEWwNaGgsLZlkFXRxTDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhEKEwZXH18TBRMBZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVABUDURxbCltXWwg%3D','http://img11.360buyimg.com/n1/g15/M00/19/13/rBEhWVKcKTUIAAAAAAbn4n5wJ9kAAGNgwHLPA4ABuf6933.jpg', 1);
+	
+	appendRecommend('Java核心技术（卷2）', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgVQH10WAiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIQAlEdWBUdS0IJRmtvVxJwXEwcYmAbUz1NWGZ2UQ4rYT11Dh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhEKEwZQGFkcBhAFZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVABcDUxhbCltXWwg%3D', 'http://7xqzcv.com1.z0.glb.clouddn.com/java_hexin_jishujuan.jpg', 2);
+	
+	appendRecommend('深入理解Java虚拟机：JVM高级特性与最佳实践（第2版）', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgRRGF0TCyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIRA1YdXRwdS0IJRmtLGExDERoCF2FnBDdQCGN1bR0sHhN1Dh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhEKEwZRHlMQBRoHZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVARYEUx1SCltXWwg%3D', 'http://img13.360buyimg.com/n1/g12/M00/0D/11/rBEQYFGsb1UIAAAAAAOWsjOfTaEAACpKQBilzYAA5bK952.jpg', 1);
+	
+	appendRecommend('Head first Java', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEwdUGlsdAyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQMSBlQbUxQdS0IJRmttYQhSDhgSEGFxBD1%2BKHJmU2MGRUFTDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhEKEwJQHF8SARcDZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsUAhMGVRNaCltXWwg%3D', 'http://img3x9.ddimg.cn/56/36/9265169-1_w.jpg', 1);
+	
+	appendRecommend('鸟哥的Linux私房菜', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEwZSHl4WCiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQMTAFAeWB0dS0IJRmteWmlkPW4iS2B6RzETPgtfalgBeQ9lDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhEKEwJSGFkXCxUHZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsUAxUCUBhTCltXWwg%3D', 'http://7xqzcv.com1.z0.glb.clouddn.com/linux_sifangcai.jpg');
+	
+	appendRecommend('数据结构与算法分析：Java语言描述', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEwZREl4UBiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQMTA1weWhEdS0IJRmtwdU94HUdfQmIbfTBFKGBJbWErHyJTDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhEKEwBWHF0SABsHZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsUAxYOUBpfCltXWwg%3D', 'http://7xqzcv.com1.z0.glb.clouddn.com/shujujiegou_yusuanfa(%E5%B7%B2%E5%8E%BB%E5%BA%95).jpg');
+	
+	appendRecommend('数学之美', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgNTGFoRASJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIWAVYaXxYdS0IJRmsUZWFaE1IvYGJ5RzITAHEAeXI9bRh1Dh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhEKFgdTH1IWCxoHZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBhQEVB9YCltXWwg%3D', 'http://7xqzcv.com1.z0.glb.clouddn.com/shuxuezhimei(%E5%B7%B2%E5%8E%BB%E5%BA%95).jpg');
+
+	appendRecommend("Java并发编程实战", "http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEw9WGFgRAyJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQMaBFYYXxQdS0IJRmsVV3AdExsObGBNYTcZHk1dU3AOTSJlDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhEKFQNQGVIcAxEAZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsUChEEVh9aCltXWwg%3D", "http://img3x5.ddimg.cn/86/20/22606835-1_w_1.jpg");
+
+	appendRecommend("岛上书店+解忧杂货店", "http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgFTGFMUAiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIUAVYTWhUdS0IJRmtTGFd3CF07HWdwTwt%2BX28YdHwtGj5lDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhIBFAZRG1sRABYCZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBBQEXRpbCltXWwg%3D", "http://7xqzcv.com1.z0.glb.clouddn.com/jieyouzahuodian.jpg");
+	
+	appendRecommend("岛上书店+解忧杂货店", "http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgFTGFMUAiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIUAVYTWhUdS0IJRmtTGFd3CF07HWdwTwt%2BX28YdHwtGj5lDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhIBFAZRG1sRABYCZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBBQEXRpbCltXWwg%3D", "http://7xqzcv.com1.z0.glb.clouddn.com/jieyou.jpg");
+	
+	appendRecommend('煮酒探西游', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEg5cG1ITASJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIbDlUSXRYdS0IJRmtyfXdyMVlBUWJXcQJNIHEBGlkoEgZ1Dh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhABXRhdFwEbAGUbXhIGGg9dH1IdCxQAZRw%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVCxsHXB1YCltXWwg%3D', 'http://7jpolu.com1.z0.glb.clouddn.com/zhujiutanxiyou.jpg', 2);
+
+	appendRecommend('断舍离', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgRRElMcAiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIRA1wTUhUdS0IJRmtcUFB0JW4ObWJVBDZsIUwHYHIWH1h1Dh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhcEUx9eEgMWA2UbXhMCEw9dHloRAhUHZRxrRV1HRAtDDl1GRjdl&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVARYOXRJbCltXWwg%3D', 'http://7jpolu.com1.z0.glb.clouddn.com/duansheli.jpg', 3);
+
+	appendRecommend('褚时健传', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEg5UGFwSBiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIbBlYcXBEdS0IJRmtqcBUZK1xFD2FHAF1bRVQHblMNZDxTDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhcEUx9eEgMWA2UbXhMAEgBWG1kUCxMOZRxrRV1HRAtDDl1GRjdl&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVCxMEUhxfCltXWwg%3D', 'http://7jpolu.com1.z0.glb.clouddn.com/chushijian.jpg', 3);
+
+	appendRecommend('罗马人的故事', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEw9XGFkcAiJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQMaBVYZUhUdS0IJRmtmA2d6KHkYHGBgUy5EJn52QlU3GV1TDh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhcEUx9eEgMWA2UbXhwDEAJVHlsQABoBZRxrRV1HRAtDDl1GRjdl&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsUChAEVxJbCltXWwg%3D', 'http://7jpolu.com1.z0.glb.clouddn.com/luomarendegushi.jpg', 3);
+
+	appendRecommend('硅谷百年史', 'http://union.click.jd.com/jdc?e=&p=AyIHZR5aEQISA1AYUyUCEgJXGF8TASJDCkMFSjJLQhBaUAscSkIBR0ROVw1VC0dFFQIXBVYfXRYdS0IJRmtrfxFdBh4YbGBmUwh5U0xAWXcpfTB1Dh43Vx1TFgQSBFQaaxcAEgdcH1sUByI3NGlrR2zKsePD%2FqQexq3aztOCMhcEUx9eEgMWA2UbXhMEFwJWE1wVAxoCZRxrRV1HRAtDDl1GRjdl&t=W1dCFBBFC1pXUwkEAEAdQFkJBVsVBxAEUR1YCltXWwg%3D', 'http://7jpolu.com1.z0.glb.clouddn.com/guigubainianshi_removed.jpg', 2);
+}
+
+function shouldDisplayRealRecommend() {
+    return true;
+}
+
+function display() {
+    if (shouldDisplayRealRecommend()) {
+        realRecommends = shuffleArray(realRecommends);
+
+    }
+}
+
+
+if (shouldDisplayRealRecommend()) {
+    makeRealRecommendData();
+    realRecommends = shuffleArray(realRecommends);
+    var item = realRecommends[0];
+    var outputHtml = "<a  href='%href%' title='%text%' width='285' class='real_recommend'><img class='no_boarder_class' src='%imgLink%' style='border: 0;'></a>";
+    outputHtml = replaceAll(outputHtml, "%href%", item.linkUrl);
+    outputHtml = replaceAll(outputHtml, "%text%", item.description);
+    outputHtml = replaceAll(outputHtml, "%imgLink%", item.imageUrl);
+    document.write(outputHtml);
+}
+
+
+
+

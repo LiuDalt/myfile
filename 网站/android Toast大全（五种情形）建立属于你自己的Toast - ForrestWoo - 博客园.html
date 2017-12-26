@@ -1,0 +1,828 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0060)http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/bundle-coffee.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/salam/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/salam/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/salam/wlwmanifest.xml">
+<script src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'salam', cb_enable_mathjax=false;</script>
+<script src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/salam/"><img id="blogLogo" src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/salam/">ForrestWoo</a></h1>
+<h2>既然青春留不住，so继续coding</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/salam/">首页</a></li>
+	<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/ForrestWoo">联系</a></li>
+	<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/salam/rss">订阅</a>
+	<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/salam/rss"><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/xml.gif" alt="订阅"></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				
+<!--done-->
+随笔- 245&nbsp;
+文章- 0&nbsp;
+评论- 630&nbsp;
+
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html">android Toast大全（五种情形）建立属于你自己的Toast</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>&nbsp;　　<span style="font-size: 10pt;">Toast用于向用户显示一些帮助/提示。下面我做了5中效果，来说明<span style="font-size: 10pt;">Toast的强大，定义一个属于你自己的<span style="font-size: 10pt;">Toast。</span></span></span></p>
+<p>1.默认效果</p>
+<p><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/2010111012412040.png" alt=""></p>
+<p>代码</p>
+<p><span style="font-size: 10pt;">Toast.makeText(getApplicationContext(), "默认Toast样式",</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.LENGTH_SHORT).show();</span></p>
+<p>&nbsp;</p>
+<p>2.自定义显示位置效果</p>
+<p><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/2010111012422291.png" alt=""></p>
+<p>代码</p>
+<p><span style="font-size: 10pt;">toast = Toast.makeText(getApplicationContext(),</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"自定义位置Toast", Toast.LENGTH_LONG);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast.setGravity(Gravity.CENTER, 0, 0);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast.show();</span></p>
+<p>&nbsp;</p>
+<p>3.带图片效果</p>
+<p><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/2010111012443645.png" alt=""></p>
+<p>&nbsp;</p>
+<p>代码</p>
+<p><span style="font-size: 10pt;">toast = Toast.makeText(getApplicationContext(),</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"带图片的Toast", Toast.LENGTH_LONG);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast.setGravity(Gravity.CENTER, 0, 0);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;LinearLayout toastView = (LinearLayout) toast.getView();</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;ImageView imageCodeProject = new ImageView(getApplicationContext());</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;imageCodeProject.setImageResource(R.drawable.icon);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toastView.addView(imageCodeProject, 0);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast.show();</span></p>
+<p>&nbsp;</p>
+<p>4.完全自定义效果</p>
+<p><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/2010111012464850.png" alt=""></p>
+<p>代码</p>
+<p><span style="font-size: 10pt;">LayoutInflater inflater = getLayoutInflater();</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;View layout = inflater.inflate(R.layout.custom,</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ViewGroup) findViewById(R.id.llToast));</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;ImageView image = (ImageView) layout</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.findViewById(R.id.tvImageToast);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;image.setImageResource(R.drawable.icon);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;TextView title = (TextView) layout.findViewById(R.id.tvTitleToast);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;title.setText("Attention");</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;TextView text = (TextView) layout.findViewById(R.id.tvTextToast);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;text.setText("完全自定义Toast");</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast = new Toast(getApplicationContext());</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast.setGravity(Gravity.RIGHT | Gravity.TOP, 12, 40);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast.setDuration(Toast.LENGTH_LONG);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast.setView(layout);</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;toast.show();</span></p>
+<p>&nbsp;</p>
+<p>5.其他线程</p>
+<p><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/2010111012474341.png" alt=""></p>
+<p>&nbsp;代码</p>
+<p><span style="font-size: 10pt;">new Thread(new Runnable() {</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;public void run() {</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showToast();</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;}</span><br><span style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;}).start();</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>完整代码</p>
+<p>1.Main,java</p>
+<p><span style="font-size: 8pt;">package com.wjq.toast;</span></p>
+<p><span style="font-size: 8pt;">import android.app.Activity;</span><br><span style="font-size: 8pt;">import android.os.Bundle;</span><br><span style="font-size: 8pt;">import android.os.Handler;</span><br><span style="font-size: 8pt;">import android.view.Gravity;</span><br><span style="font-size: 8pt;">import android.view.LayoutInflater;</span><br><span style="font-size: 8pt;">import android.view.View;</span><br><span style="font-size: 8pt;">import android.view.ViewGroup;</span><br><span style="font-size: 8pt;">import android.view.View.OnClickListener;</span><br><span style="font-size: 8pt;">import android.widget.ImageView;</span><br><span style="font-size: 8pt;">import android.widget.LinearLayout;</span><br><span style="font-size: 8pt;">import android.widget.TextView;</span><br><span style="font-size: 8pt;">import android.widget.Toast;</span></p>
+<p><span style="font-size: 8pt;">public class Main extends Activity implements OnClickListener {</span><br><span style="font-size: 8pt;">&nbsp;Handler handler = new Handler();</span></p>
+<p><span style="font-size: 8pt;">&nbsp;@Override</span><br><span style="font-size: 8pt;">&nbsp;public void onCreate(Bundle savedInstanceState) {</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;super.onCreate(savedInstanceState);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;setContentView(R.layout.main);</span></p>
+<p><span style="font-size: 8pt;">&nbsp;&nbsp;findViewById(R.id.btnSimpleToast).setOnClickListener(this);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;findViewById(R.id.btnSimpleToastWithCustomPosition).setOnClickListener(</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;this);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;findViewById(R.id.btnSimpleToastWithImage).setOnClickListener(this);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;findViewById(R.id.btnCustomToast).setOnClickListener(this);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;findViewById(R.id.btnRunToastFromOtherThread).setOnClickListener(this);</span></p>
+<p><span style="font-size: 8pt;">&nbsp;}</span></p>
+<p><span style="font-size: 8pt;">&nbsp;public void showToast() {</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;handler.post(new Runnable() {</span></p>
+<p><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;@Override</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;public void run() {</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;Toast.makeText(getApplicationContext(), "我来自其他线程！",</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.LENGTH_SHORT).show();</span></p>
+<p><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;}</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;});</span><br><span style="font-size: 8pt;">&nbsp;}</span></p>
+<p><span style="font-size: 8pt;">&nbsp;@Override</span><br><span style="font-size: 8pt;">&nbsp;public void onClick(View v) {</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;Toast toast = null;</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;switch (v.getId()) {</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;case R.id.btnSimpleToast:</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;Toast.makeText(getApplicationContext(), "默认Toast样式",</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toast.LENGTH_SHORT).show();</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;break;</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;case R.id.btnSimpleToastWithCustomPosition:</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast = Toast.makeText(getApplicationContext(),</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"自定义位置Toast", Toast.LENGTH_LONG);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast.setGravity(Gravity.CENTER, 0, 0);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast.show();</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;break;</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;case R.id.btnSimpleToastWithImage:</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast = Toast.makeText(getApplicationContext(),</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"带图片的Toast", Toast.LENGTH_LONG);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast.setGravity(Gravity.CENTER, 0, 0);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;LinearLayout toastView = (LinearLayout) toast.getView();</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;ImageView imageCodeProject = new ImageView(getApplicationContext());</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;imageCodeProject.setImageResource(R.drawable.icon);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toastView.addView(imageCodeProject, 0);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast.show();</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;break;</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;case R.id.btnCustomToast:</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;LayoutInflater inflater = getLayoutInflater();</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;View layout = inflater.inflate(R.layout.custom,</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ViewGroup) findViewById(R.id.llToast));</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;ImageView image = (ImageView) layout</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.findViewById(R.id.tvImageToast);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;image.setImageResource(R.drawable.icon);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;TextView title = (TextView) layout.findViewById(R.id.tvTitleToast);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;title.setText("Attention");</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;TextView text = (TextView) layout.findViewById(R.id.tvTextToast);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;text.setText("完全自定义Toast");</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast = new Toast(getApplicationContext());</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast.setGravity(Gravity.RIGHT | Gravity.TOP, 12, 40);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast.setDuration(Toast.LENGTH_LONG);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast.setView(layout);</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;toast.show();</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;break;</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;case R.id.btnRunToastFromOtherThread:</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;new Thread(new Runnable() {</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;public void run() {</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showToast();</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;&nbsp;}</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;}).start();</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;break;</span></p>
+<p><span style="font-size: 8pt;">&nbsp;&nbsp;}</span></p>
+<p><span style="font-size: 8pt;">&nbsp;}</span><br><span style="font-size: 8pt;">}</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 12pt;">2.main,xml</span></p>
+<p><span style="font-size: 8pt;">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span style="font-size: 8pt;">&lt;LinearLayout xmlns:android="<a href="http://schemas.android.com/apk/res/android">http://schemas.android.com/apk/res/android</a>"</span><br><span style="font-size: 8pt;">&nbsp;android:orientation="vertical" android:layout_width="fill_parent"</span><br><span style="font-size: 8pt;">&nbsp;android:layout_height="fill_parent" android:padding="5dip" android:gravity="center"&gt;</span><br><span style="font-size: 8pt;">&nbsp;&lt;Button android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_width="fill_parent" android:id="@+id/btnSimpleToast"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:text="默认"&gt;&lt;/Button&gt;</span><br><span style="font-size: 8pt;">&nbsp;&lt;Button android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_width="fill_parent" android:text="自定义显示位置"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:id="@+id/btnSimpleToastWithCustomPosition"&gt;&lt;/Button&gt;</span><br><span style="font-size: 8pt;">&nbsp;&lt;Button android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_width="fill_parent" android:id="@+id/btnSimpleToastWithImage"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:text="带图片"&gt;&lt;/Button&gt;</span><br><span style="font-size: 8pt;">&nbsp;&lt;Button android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_width="fill_parent" android:text="完全自定义"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:id="@+id/btnCustomToast"&gt;&lt;/Button&gt;</span><br><span style="font-size: 8pt;">&nbsp;&lt;Button android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_width="fill_parent" android:text="其他线程"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:id="@+id/btnRunToastFromOtherThread"&gt;&lt;/Button&gt;</span></p>
+<p><span style="font-size: 8pt;">&lt;/LinearLayout&gt;</span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 12pt;">3.custom.xml</span></p>
+<p><span style="font-size: 8pt;">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span style="font-size: 8pt;">&lt;LinearLayout</span><br><span style="font-size: 8pt;">&nbsp;xmlns:android="<a href="http://schemas.android.com/apk/res/android">http://schemas.android.com/apk/res/android</a>"</span><br><span style="font-size: 8pt;">&nbsp;android:layout_height="wrap_content" android:layout_width="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;android:background="#ffffffff" android:orientation="vertical"</span><br><span style="font-size: 8pt;">&nbsp;android:id="@+id/llToast" &gt;</span><br><span style="font-size: 8pt;">&nbsp;&lt;TextView</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_margin="1dip"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:textColor="#ffffffff"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_width="fill_parent"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:gravity="center"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:background="#bb000000"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:id="@+id/tvTitleToast" /&gt;</span><br><span style="font-size: 8pt;">&nbsp;&lt;LinearLayout</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:orientation="vertical"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:id="@+id/llToastContent"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_marginLeft="1dip"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_marginRight="1dip"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_marginBottom="1dip"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:layout_width="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:padding="15dip"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;android:background="#44000000" &gt;</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&lt;ImageView</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:layout_gravity="center"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:layout_width="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:id="@+id/tvImageToast" /&gt;</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&lt;TextView</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:layout_height="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:paddingRight="10dip"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:paddingLeft="10dip"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:layout_width="wrap_content"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:gravity="center"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:textColor="#ff000000"</span><br><span style="font-size: 8pt;">&nbsp;&nbsp;&nbsp;android:id="@+id/tvTextToast" /&gt;</span><br><span style="font-size: 8pt;">&nbsp;&lt;/LinearLayout&gt;</span><br><span style="font-size: 8pt;">&lt;/LinearLayout&gt;</span></p>
+<p>&nbsp;</p>
+<p><a href="http://files.cnblogs.com/salam/CustomToast.rar">&nbsp;源码下载</a></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/salam/tag/Android2.2/">Android2.2</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(1873654,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow();" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/salam/" target="_blank"><img src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/u133128.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/salam/">ForrestWoo</a><br>
+            <a href="http://home.cnblogs.com/u/salam/followees">关注 - 4</a><br>
+            <a href="http://home.cnblogs.com/u/salam/followers">粉丝 - 745</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow();return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(1873654,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">39</span>
+    </div>
+    <div class="buryit" onclick="votePost(1873654,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+            (请您对文章做出评价)
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873437.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873437.html" title="发布于2010-11-10 11:51">通过创建一个位图的XY Chart来学习Android绘图类Rect,Paint,Bitmap,Canvas（附源码）</a><br><a href="http://www.cnblogs.com/salam/archive/2010/11/12/1875946.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/salam/archive/2010/11/12/1875946.html" title="发布于2010-11-12 18:10">Android资源总结(开发工具/环境搭建/教程/论坛/博客/反编译工具)</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2010-11-10 13:07</span> <a href="http://www.cnblogs.com/salam/">ForrestWoo</a> 阅读(<span id="post_view_count">176643</span>) 评论(<span id="post_comment_count">28</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=1873654" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#" onclick="AddToWz(1873654);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=70656,cb_entryId=1873654,cb_blogApp=currentBlogApp,cb_blogUserGuid='8b0e5123-0c5f-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2010/11/10 13:07:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<!--done-->
+<br>
+<div class="feedback_area_title">评论</div>
+<div class="feedbackNoItems"></div>
+	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#1957890" class="layer">#1楼</a><a name="1957890" id="comment_anchor_1957890"></a> <span class="comment_date">2010-11-10 22:48</span> | <a id="a_comment_author_1957890" href="http://www.cnblogs.com/Youhei/" target="_blank">杨平</a> <a href="http://msg.cnblogs.com/send/%E6%9D%A8%E5%B9%B3" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1957890" class="blog_comment_body">很好，用了这么久还真没好好总结了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1957890,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1957890,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1957890_avatar" style="display:none;">http://pic.cnblogs.com/face/u110750.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#1959113" class="layer">#2楼</a><a name="1959113" id="comment_anchor_1959113"></a> <span class="comment_date">2010-11-12 12:42</span> | <a id="a_comment_author_1959113" href="http://www.cnblogs.com/over140/" target="_blank">农民伯伯</a> <a href="http://msg.cnblogs.com/send/%E5%86%9C%E6%B0%91%E4%BC%AF%E4%BC%AF" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_1959113" class="blog_comment_body">翻译组Toast引用了你这篇文章 :)</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(1959113,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(1959113,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_1959113_avatar" style="display:none;">http://pic.cnblogs.com/face/u25060.png?id=26205926</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2030287" class="layer">#3楼</a><a name="2030287" id="comment_anchor_2030287"></a> <span class="comment_date">2011-02-21 13:25</span> | <a id="a_comment_author_2030287" href="http://home.cnblogs.com/u/215139/" target="_blank">江浸月</a> <a href="http://msg.cnblogs.com/send/%E6%B1%9F%E6%B5%B8%E6%9C%88" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2030287" class="blog_comment_body">好文章，要顶！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2030287,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2030287,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2076008" class="layer">#4楼</a><a name="2076008" id="comment_anchor_2076008"></a> <span class="comment_date">2011-04-20 14:37</span> | <a id="a_comment_author_2076008" href="http://www.cnblogs.com/wellsoho/" target="_blank">coder狼</a> <a href="http://msg.cnblogs.com/send/coder%E7%8B%BC" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2076008" class="blog_comment_body">显示时间有2种，其中的LENGTH_LONG 时间也短，怎么自定义设置时间长度啊？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2076008,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2076008,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2076008_avatar" style="display:none;">http://pic.cnblogs.com/face/u76223.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2090957" class="layer">#5楼</a><a name="2090957" id="comment_anchor_2090957"></a> <span class="comment_date">2011-05-09 16:40</span> | <a id="a_comment_author_2090957" href="http://home.cnblogs.com/u/217552/" target="_blank">南极</a> <a href="http://msg.cnblogs.com/send/%E5%8D%97%E6%9E%81" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2090957" class="blog_comment_body">总结的这么好 谢谢分享</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2090957,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2090957,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2098707" class="layer">#6楼</a><a name="2098707" id="comment_anchor_2098707"></a> <span class="comment_date">2011-05-17 09:44</span> | <a id="ctl00_CommentList_NameLink_5" title="未注册用户" target="_blank">零度火云</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2098707" class="blog_comment_body">非常好啊，受用了</div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2131248" class="layer">#7楼</a><a name="2131248" id="comment_anchor_2131248"></a> <span class="comment_date">2011-06-21 17:56</span> | <a id="a_comment_author_2131248" href="http://www.cnblogs.com/likebeta/" target="_blank">likebeta</a> <a href="http://msg.cnblogs.com/send/likebeta" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2131248" class="blog_comment_body">不顶感觉对不起良心</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2131248,&#39;Digg&#39;,this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2131248,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2131248_avatar" style="display:none;">http://pic.cnblogs.com/face/168241/20131208181538.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2137183" class="layer">#8楼</a><a name="2137183" id="comment_anchor_2137183"></a> <span class="comment_date">2011-06-28 11:52</span> | <a id="a_comment_author_2137183" href="http://www.cnblogs.com/youlingcao/" target="_blank">幽灵草</a> <a href="http://msg.cnblogs.com/send/%E5%B9%BD%E7%81%B5%E8%8D%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2137183" class="blog_comment_body">好厉害。。。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2137183,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2137183,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2137183_avatar" style="display:none;">http://pic.cnblogs.com/face/262594/20130124223823.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2190341" class="layer">#9楼</a><a name="2190341" id="comment_anchor_2190341"></a> <span class="comment_date">2011-09-01 10:24</span> | <a id="a_comment_author_2190341" href="http://home.cnblogs.com/u/328624/" target="_blank">wei_dong_xue</a> <a href="http://msg.cnblogs.com/send/wei_dong_xue" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2190341" class="blog_comment_body">好东西……很受用！！！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2190341,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2190341,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2190448" class="layer">#10楼</a><a name="2190448" id="comment_anchor_2190448"></a> <span class="comment_date">2011-09-01 12:34</span> | <a id="a_comment_author_2190448" href="http://home.cnblogs.com/u/328674/" target="_blank">zhangxpower</a> <a href="http://msg.cnblogs.com/send/zhangxpower" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2190448" class="blog_comment_body">best power .....</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2190448,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2190448,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2267896" class="layer">#11楼</a><a name="2267896" id="comment_anchor_2267896"></a> <span class="comment_date">2011-12-12 11:53</span> | <a id="ctl00_CommentList_NameLink_10" title="未注册用户" target="_blank">似水流云</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2267896" class="blog_comment_body">十分感谢~~</div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2279457" class="layer">#12楼</a><a name="2279457" id="comment_anchor_2279457"></a> <span class="comment_date">2011-12-26 11:57</span> | <a id="a_comment_author_2279457" href="http://home.cnblogs.com/u/143873/" target="_blank">井底青蛙</a> <a href="http://msg.cnblogs.com/send/%E4%BA%95%E5%BA%95%E9%9D%92%E8%9B%99" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2279457" class="blog_comment_body">我是来想LZ致意的~~~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2279457,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2279457,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2285552" class="layer">#13楼</a><a name="2285552" id="comment_anchor_2285552"></a> <span class="comment_date">2012-01-03 15:21</span> | <a id="a_comment_author_2285552" href="http://www.cnblogs.com/Tiny339/" target="_blank">Tiny339</a> <a href="http://msg.cnblogs.com/send/Tiny339" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2285552" class="blog_comment_body">很好！学习了！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2285552,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2285552,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2285552_avatar" style="display:none;">http://pic.cnblogs.com/face/u363716.jpg?id=08221443</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2321617" class="layer">#14楼</a><a name="2321617" id="comment_anchor_2321617"></a> <span class="comment_date">2012-03-02 20:04</span> | <a id="a_comment_author_2321617" href="http://home.cnblogs.com/u/381437/" target="_blank">flyinsky923</a> <a href="http://msg.cnblogs.com/send/flyinsky923" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2321617" class="blog_comment_body">很全面，谢谢</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2321617,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2321617,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2338015" class="layer">#15楼</a><a name="2338015" id="comment_anchor_2338015"></a> <span class="comment_date">2012-03-23 10:53</span> | <a id="a_comment_author_2338015" href="http://www.cnblogs.com/LiuSiyuan/" target="_blank">Liu Siyuan</a> <a href="http://msg.cnblogs.com/send/Liu%20Siyuan" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2338015" class="blog_comment_body">非常感谢楼主的奉献！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2338015,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2338015,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2390550" class="layer">#16楼</a><a name="2390550" id="comment_anchor_2390550"></a> <span class="comment_date">2012-05-31 18:39</span> | <a id="a_comment_author_2390550" href="http://www.cnblogs.com/ansonz/" target="_blank">强巴拉</a> <a href="http://msg.cnblogs.com/send/%E5%BC%BA%E5%B7%B4%E6%8B%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2390550" class="blog_comment_body">漂亮</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2390550,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2390550,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2390550_avatar" style="display:none;">http://pic.cnblogs.com/face/u369991.jpg?id=17001736</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2461255" class="layer">#17楼</a><a name="2461255" id="comment_anchor_2461255"></a> <span class="comment_date">2012-08-31 21:39</span> | <a id="a_comment_author_2461255" href="http://www.cnblogs.com/winxiang/" target="_blank">池塘里的大象</a> <a href="http://msg.cnblogs.com/send/%E6%B1%A0%E5%A1%98%E9%87%8C%E7%9A%84%E5%A4%A7%E8%B1%A1" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2461255" class="blog_comment_body">果断收藏</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2461255,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2461255,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2461255_avatar" style="display:none;">http://pic.cnblogs.com/face/u285445.jpg?id=04170330</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2466549" class="layer">#18楼</a><a name="2466549" id="comment_anchor_2466549"></a> <span class="comment_date">2012-09-07 12:22</span> | <a id="a_comment_author_2466549" href="http://www.cnblogs.com/babynight/" target="_blank">风月飘飘雨</a> <a href="http://msg.cnblogs.com/send/%E9%A3%8E%E6%9C%88%E9%A3%98%E9%A3%98%E9%9B%A8" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2466549" class="blog_comment_body">全面</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2466549,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2466549,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2466549_avatar" style="display:none;">http://pic.cnblogs.com/face/u439389.jpg?id=20154715</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2479302" class="layer">#19楼</a><a name="2479302" id="comment_anchor_2479302"></a> <span class="comment_date">2012-09-23 10:23</span> | <a id="a_comment_author_2479302" href="http://www.cnblogs.com/622698abc/" target="_blank">编程小爬虫</a> <a href="http://msg.cnblogs.com/send/%E7%BC%96%E7%A8%8B%E5%B0%8F%E7%88%AC%E8%99%AB" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2479302" class="blog_comment_body">好东西啊</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2479302,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2479302,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2618746" class="layer">#20楼</a><a name="2618746" id="comment_anchor_2618746"></a> <span class="comment_date">2013-02-19 11:58</span> | <a id="a_comment_author_2618746" href="http://www.cnblogs.com/lankang/" target="_blank">心中那一片天</a> <a href="http://msg.cnblogs.com/send/%E5%BF%83%E4%B8%AD%E9%82%A3%E4%B8%80%E7%89%87%E5%A4%A9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2618746" class="blog_comment_body">学习了、、、</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2618746,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2618746,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2621516" class="layer">#21楼</a><a name="2621516" id="comment_anchor_2621516"></a> <span class="comment_date">2013-02-22 16:42</span> | <a id="a_comment_author_2621516" href="http://www.cnblogs.com/migu/" target="_blank">米谷mg</a> <a href="http://msg.cnblogs.com/send/%E7%B1%B3%E8%B0%B7mg" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2621516" class="blog_comment_body">楼主好样的。学习啦。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2621516,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2621516,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2634844" class="layer">#22楼</a><a name="2634844" id="comment_anchor_2634844"></a> <span class="comment_date">2013-03-14 16:20</span> | <a id="a_comment_author_2634844" href="http://home.cnblogs.com/u/412221/" target="_blank">pimkle</a> <a href="http://msg.cnblogs.com/send/pimkle" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2634844" class="blog_comment_body">谢谢楼主分享, 共享的源代码没能完全调成功, 不过调出来的前三个也已经够我用的了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2634844,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2634844,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2712011" class="layer">#23楼</a><a name="2712011" id="comment_anchor_2712011"></a> <span class="comment_date">2013-06-24 11:08</span> | <a id="a_comment_author_2712011" href="http://home.cnblogs.com/u/400556/" target="_blank">conceptcon</a> <a href="http://msg.cnblogs.com/send/conceptcon" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2712011" class="blog_comment_body">goood...................</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2712011,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2712011,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2738955" class="layer">#24楼</a><a name="2738955" id="comment_anchor_2738955"></a> <span class="comment_date">2013-07-30 14:06</span> | <a id="a_comment_author_2738955" href="http://www.cnblogs.com/axinno1/" target="_blank">aXinNo1</a> <a href="http://msg.cnblogs.com/send/aXinNo1" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2738955" class="blog_comment_body">very good.....</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2738955,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2738955,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2738955_avatar" style="display:none;">http://pic.cnblogs.com/face/u106602.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2964607" class="layer">#25楼</a><a name="2964607" id="comment_anchor_2964607"></a> <span class="comment_date">2014-06-16 00:04</span> | <a id="a_comment_author_2964607" href="http://home.cnblogs.com/u/450795/" target="_blank">wffger</a> <a href="http://msg.cnblogs.com/send/wffger" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2964607" class="blog_comment_body">有无只有点击才消失的toast</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2964607,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2964607,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2993959" class="layer">#26楼</a><a name="2993959" id="comment_anchor_2993959"></a> <span class="comment_date">2014-07-24 17:29</span> | <a id="a_comment_author_2993959" href="http://home.cnblogs.com/u/628630/" target="_blank">吾是锋子</a> <a href="http://msg.cnblogs.com/send/%E5%90%BE%E6%98%AF%E9%94%8B%E5%AD%90" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2993959" class="blog_comment_body"><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#2964607" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,2964607);">@</a>
+wffger<br>那不就是对话框么？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2993959,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2993959,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#3011555" class="layer">#27楼</a><a name="3011555" id="comment_anchor_3011555"></a> <span class="comment_date">2014-08-19 20:10</span> | <a id="a_comment_author_3011555" href="http://www.cnblogs.com/zjutlitao/" target="_blank">beautifulzzzz</a> <a href="http://msg.cnblogs.com/send/beautifulzzzz" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3011555" class="blog_comment_body">总结的很好，收藏先~</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3011555,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3011555,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3011555_avatar" style="display:none;">http://pic.cnblogs.com/face/506370/20130319092539.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#3089634" class="layer">#28楼</a><a name="3089634" id="comment_anchor_3089634"></a><span id="comment-maxId" style="display:none;">3089634</span><span id="comment-maxDate" style="display:none;">2014/12/19 10:48:28</span> <span class="comment_date">2014-12-19 10:48</span> | <a id="a_comment_author_3089634" href="http://www.cnblogs.com/xiaofeiying/" target="_blank">小飞鹰</a> <a href="http://msg.cnblogs.com/send/%E5%B0%8F%E9%A3%9E%E9%B9%B0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3089634" class="blog_comment_body">谢谢啦，已学习</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3089634,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3089634,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3089634_avatar" style="display:none;">http://pic.cnblogs.com/face/624053/20140827175254.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://www.rongcloud.cn/" target="_blank">【推荐】融云即时通讯云－豆果美食、Faceu等亿级APP都在用</a><br><a href="http://www.gcpowertools.com.cn/products/activereports_overview.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=AR&amp;utm_campaign=community" target="_blank">【推荐】报表开发有捷径：快速设计轻松集成，数据可视化和交互</a><br><a href="http://cn.iforex.com/landing_pages/br1/zhns/Testimonials8/?content=Testimonials8&amp;SID=445058" target="_blank">【推荐】一个月仅用630元赚取15000元，学会投资</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://gold.xitu.io/welcome/?utm_source=cnblogs&amp;utm_medium=banner&amp;utm_content=gaoshou&amp;utm_campaign=q3_website" target="_blank"><img width="300" height="250" src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/24442-20160805112458981-1554012564.jpg" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/550956/" target="_blank">阿里否认收购Netflix：没准备进行任何投资</a><br> ·  <a href="http://news.cnblogs.com/n/550955/" target="_blank">“致敬”Snapchat？Instagram推新功能Instagram Stories</a><br> ·  <a href="http://news.cnblogs.com/n/550954/" target="_blank">Mozilla宣布$585000用于奖励9个开源项目</a><br> ·  <a href="http://news.cnblogs.com/n/550953/" target="_blank">Uber与滴滴和解后的第一件事，和优步中国同事“绝交”</a><br> ·  <a href="http://news.cnblogs.com/n/550952/" target="_blank">测试代码时你会犯的11个错误</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice/?from=cnblogs01" target="_blank"><img width="468" height="60" src="./android Toast大全（五种情形）建立属于你自己的Toast - ForrestWoo - 博客园_files/24442-20160803181056012-1919505484.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/540529/" target="_blank">可是姑娘，你为什么要编程呢？</a><br> ·  <a href="http://kb.cnblogs.com/page/549631/" target="_blank">知其所以然（以算法学习为例）</a><br> ·  <a href="http://kb.cnblogs.com/page/548394/" target="_blank">如何给变量取个简短且无歧义的名字</a><br> ·  <a href="http://kb.cnblogs.com/page/549080/" target="_blank">编程的智慧</a><br> ·  <a href="http://kb.cnblogs.com/page/549049/" target="_blank">写给初学前端工程师的一封信</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);    
+});
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/salam/">ForrestWoo</a><br>园龄：<a href="http://home.cnblogs.com/u/salam/" title="入园时间：2010-05-14">6年2个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/salam/followers/">745</a><br>关注：<a href="http://home.cnblogs.com/u/salam/followees/">4</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;8b0e5123-0c5f-df11-ba8f-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="日历">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2010/10/01&#39;);return false;">&lt;</a></td><td align="center">2010年11月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2010/12/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center"><a href="http://www.cnblogs.com/salam/archive/2010/11/05.html"><u>5</u></a></td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center"><a href="http://www.cnblogs.com/salam/archive/2010/11/10.html"><u>10</u></a></td><td align="center">11</td><td align="center"><a href="http://www.cnblogs.com/salam/archive/2010/11/12.html"><u>12</u></a></td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center"><a href="http://www.cnblogs.com/salam/archive/2010/11/15.html"><u>15</u></a></td><td align="center"><a href="http://www.cnblogs.com/salam/archive/2010/11/16.html"><u>16</u></a></td><td align="center">17</td><td align="center">18</td><td align="center"><a href="http://www.cnblogs.com/salam/archive/2010/11/19.html"><u>19</u></a></td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center"><a href="http://www.cnblogs.com/salam/archive/2010/11/30.html"><u>30</u></a></td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td></tr><tr><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td><td class="CalOtherMonthDay" align="center">11</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/salam/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/salam/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/salam/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/salam/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/salam/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass(&#39;itemListLink&#39;, &#39;itemListLin_con&#39;);return false;" href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/salam/p/5525664.html">1. Android与Swift iOS开发：语言与框架对比</a></li><li><a href="http://www.cnblogs.com/salam/p/5484231.html">2. 【Swift学习】Swift编程之旅---扩展（二十四）</a></li><li><a href="http://www.cnblogs.com/salam/p/5484228.html">3. 【Swift学习】Swift编程之旅---可选链（二十一）</a></li><li><a href="http://www.cnblogs.com/salam/p/5465317.html">4. 【Swift学习】Swift编程之旅---ARC（二十）</a></li><li><a href="http://www.cnblogs.com/salam/p/5480101.html">5. Swift 3.0首个开发者预览版将在5月12日释出</a></li><li><a href="http://www.cnblogs.com/salam/p/5465170.html">6. 【Swift学习】Swift编程之旅---析构方法（十九）</a></li><li><a href="http://www.cnblogs.com/salam/p/5463140.html">7. 【Swift学习】Swift编程之旅---构造方法（十八）</a></li><li><a href="http://www.cnblogs.com/salam/p/5450339.html">8. 【Swift学习】Swift编程之旅---继承（十七）</a></li><li><a href="http://www.cnblogs.com/salam/p/5462947.html">9. swift3.0的改变</a></li><li><a href="http://www.cnblogs.com/salam/p/5444969.html">10. 【Swift学习】Swift编程之旅---方法（十五）</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/salam/tag/IOS/">IOS</a>(104)</li><li><a href="http://www.cnblogs.com/salam/tag/Silverlight4.0/">Silverlight4.0</a>(49)</li><li><a href="http://www.cnblogs.com/salam/tag/Android2.2/">Android2.2</a>(40)</li><li><a href="http://www.cnblogs.com/salam/tag/OpenGL%20ES%203.0/">OpenGL ES 3.0</a>(37)</li><li><a href="http://www.cnblogs.com/salam/tag/Swift/">Swift</a>(31)</li><li><a href="http://www.cnblogs.com/salam/tag/GPUImage/">GPUImage</a>(24)</li><li><a href="http://www.cnblogs.com/salam/tag/Windows%20Phone%207/">Windows Phone 7</a>(22)</li><li><a href="http://www.cnblogs.com/salam/tag/%E7%BE%8E%E5%9B%BE%E7%A7%80%E7%A7%80%E8%AE%BE%E8%AE%A1/">美图秀秀设计</a>(20)</li><li><a href="http://www.cnblogs.com/salam/tag/BingMap/">BingMap</a>(7)</li><li><a href="http://www.cnblogs.com/salam/tag/%E6%BB%A4%E9%95%9C/">滤镜</a>(6)</li><li><a href="http://www.cnblogs.com/salam/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(245)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/salam/archive/2016/05.html">2016年5月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/salam/archive/2016/04.html">2016年4月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/salam/archive/2016/03.html">2016年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/salam/archive/2016/02.html">2016年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/salam/archive/2016/01.html">2016年1月 (26)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/salam/archive/2015/12.html">2015年12月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/salam/archive/2015/11.html">2015年11月 (29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/salam/archive/2015/03.html">2015年3月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/salam/archive/2013/05.html">2013年5月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/salam/archive/2013/04.html">2013年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/salam/archive/2013/01.html">2013年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/salam/archive/2012/12.html">2012年12月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/salam/archive/2012/06.html">2012年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/salam/archive/2012/05.html">2012年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/salam/archive/2011/04.html">2011年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/salam/archive/2011/02.html">2011年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/salam/archive/2011/01.html">2011年1月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/salam/archive/2010/12.html">2010年12月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/salam/archive/2010/11.html">2010年11月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/salam/archive/2010/10.html">2010年10月 (29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/salam/archive/2010/09.html">2010年9月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/salam/archive/2010/08.html">2010年8月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/salam/archive/2010/07.html">2010年7月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/salam/archive/2010/05.html">2010年5月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	249568
+	</li><li class="liRank">
+		排名 -	577
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5192576.html#3480800">1. Re:UICollectionView使用以及与UITableView的区别</a></li>
+        <li class="recent_comment_body">感谢分享,学习了</li>
+        <li class="recent_comment_author">--着魔</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5004846.html#3479855">2. Re:基于VM10+Win7安装Mac OSX10.11 El Capitan</a></li>
+        <li class="recent_comment_body">支持楼主！  补充一下，在VM11上安装MAC OS 10.11， 需要选择VM10的磁盘格式和10.9的MAC OS版本才不会出现cpu错误。</li>
+        <li class="recent_comment_author">--YTYT2002YTYT</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5004846.html#3479823">3. Re:基于VM10+Win7安装Mac OSX10.11 El Capitan</a></li>
+        <li class="recent_comment_body">@晓冰引用我按照楼主的已经装好了Mac10.11 感谢楼主 唯一不同的就是mac补丁中只有mac 10.9 并非图中的10.10 其他一模一样。10.11怎么弄 可以告诉我下吗 谢谢...</li>
+        <li class="recent_comment_author">--欲丶</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/archive/2010/10/19/1855511.html#3476243">4. Re:Android控件之SlidingDrawer（滑动式抽屉）详解与实例</a></li>
+        <li class="recent_comment_body">楼主，怎么让SlidingDrawer的Content默认显示一部分</li>
+        <li class="recent_comment_author">--a553440</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/4937617.html#3470765">5. Re:OpenGL ES 3.0之顶点缓冲</a></li>
+        <li class="recent_comment_body">楼主在吗？我试了画不出三角形呀，是不是代码不全呀？邮箱：1808390820@qq.com</li>
+        <li class="recent_comment_author">--栋森</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5004846.html#3463333">6. Re:基于VM10+Win7安装Mac OSX10.11 El Capitan</a></li>
+        <li class="recent_comment_body">我的安装过程都对啊，但怎么识别不了Tools呢？全屏不了，，，，</li>
+        <li class="recent_comment_author">--初雪无痕</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5004846.html#3461584">7. Re:基于VM10+Win7安装Mac OSX10.11 El Capitan</a></li>
+        <li class="recent_comment_body">专门注册帐号来点赞的。<br>Win8下试过装EI Captain，成功<br>但是没有Mac OSX 10.9,用Mac OSX 10.9<br>主要是CDR这个东西给力</li>
+        <li class="recent_comment_author">--__win32</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5004846.html#3457769">8. Re:基于VM10+Win7安装Mac OSX10.11 El Capitan</a></li>
+        <li class="recent_comment_body">专门注册帐号来点赞的。tools很好用。楼主好人一生平安</li>
+        <li class="recent_comment_author">--yess</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5004846.html#3449113">9. Re:基于VM10+Win7安装Mac OSX10.11 El Capitan</a></li>
+        <li class="recent_comment_body">我按照楼主的已经装好了Mac10.11  感谢楼主  唯一不同的就是mac补丁中只有mac 10.9 并非图中的10.10 其他一模一样。</li>
+        <li class="recent_comment_author">--晓冰</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5126053.html#3440251">10. Re:【推荐】iOS汉字转拼音第三方库</a></li>
+        <li class="recent_comment_body">不知道为什么，真机测试感觉慢了很多。</li>
+        <li class="recent_comment_author">--jiangsi_Blog</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5150106.html#3440010">11. Re:iOS实现图像素描效果</a></li>
+        <li class="recent_comment_body">楼主 做出素颜效果 能不依赖gpuimage滤镜吗</li>
+        <li class="recent_comment_author">--小辉辉+</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5295176.html#3438685">12. Re:这是我看过最精彩的回答</a></li>
+        <li class="recent_comment_body">宝宝树，有兴趣的话可以联系我，微信：15849364774</li>
+        <li class="recent_comment_author">--NSKevin</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5450339.html#3424240">13. Re:【Swift学习】Swift编程之旅---继承（十七）</a></li>
+        <li class="recent_comment_body">@Coolicer练习项目...</li>
+        <li class="recent_comment_author">--ForrestWoo</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5450339.html#3424035">14. Re:【Swift学习】Swift编程之旅---继承（十七）</a></li>
+        <li class="recent_comment_body">楼主，我看完swift语法，然后下一步是什么？</li>
+        <li class="recent_comment_author">--Coolicer</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/archive/2010/09/22/1833004.html#3423846">15. Re:Android学习笔记之开发环境搭建（Eclipse和NetBeans）</a></li>
+        <li class="recent_comment_body">图片看不了，什么鬼</li>
+        <li class="recent_comment_author">--林天宝诗词曲贼</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5444969.html#3421488">16. Re:Swift学习】Swift编程之旅---方法（十五）</a></li>
+        <li class="recent_comment_body">楼主是传说中的android与ios的集大成者。</li>
+        <li class="recent_comment_author">--老三的古代</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5429166.html#3416852">17. Re:【Swift学习】Swift编程之旅---枚举（十二）</a></li>
+        <li class="recent_comment_body">我想问这些源码都能免费复制吗？我想用在网站上面提高网站速度</li>
+        <li class="recent_comment_author">--复合肥批发哪家强？</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/archive/2010/10/19/1855511.html#3412772">18. Re:Android控件之SlidingDrawer（滑动式抽屉）详解与实例</a></li>
+        <li class="recent_comment_body">楼主太帅了 <br>以后希望能多多分享你的东西让大家学到更多东西</li>
+        <li class="recent_comment_author">--辉弟</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5404978.html#3411777">19. Re:Swift的期待</a></li>
+        <li class="recent_comment_body">good good up</li>
+        <li class="recent_comment_author">--强大大</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5125836.html#3411437">20. Re:iOS二十种超酷时尚艺术滤镜汇总【附源码】</a></li>
+        <li class="recent_comment_body">仔细读完再要源码</li>
+        <li class="recent_comment_author">--ForrestWoo</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5404978.html#3411402">21. Re:Swift的期待</a></li>
+        <li class="recent_comment_body">确实不能显示</li>
+        <li class="recent_comment_author">--zsea</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5404978.html#3411349">22. Re:Swift的期待</a></li>
+        <li class="recent_comment_body">您好，文中的第1张图片不能显示，麻烦上传一下图片</li>
+        <li class="recent_comment_author">--博客园团队</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5125836.html#3411054">23. Re:iOS二十种超酷时尚艺术滤镜汇总【附源码】</a></li>
+        <li class="recent_comment_body">楼主，能分享下代码吗？3066902228@qq.com  好人一生平安！！！！</li>
+        <li class="recent_comment_author">--临水葬花人</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5397538.html#3410467">24. Re:【Swift学习】Swift编程之旅---集合类型之Sets（七）</a></li>
+        <li class="recent_comment_body">引用intersect(_:)创意一个包含两set对象共有的数据的新的Set对象创意 －&gt; 创建...</li>
+        <li class="recent_comment_author">--Terry_Huang</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5125836.html#3408277">25. Re:iOS二十种超酷时尚艺术滤镜汇总【附源码】</a></li>
+        <li class="recent_comment_body">楼主，我照写你上面给的例子，然后想简单测试下效果，就在VIewController上这样写了。- (void)viewDidLoad { [super viewDidLoad]; self......</li>
+        <li class="recent_comment_author">--veraTK</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5004846.html#3404805">26. Re:基于VM10+Win7安装Mac OSX10.11 El Capitan</a></li>
+        <li class="recent_comment_body">安装mac补丁不会跳是怎么回事   楼主测试下  谢谢</li>
+        <li class="recent_comment_author">--贱精先生丶</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5351314.html#3403046">27. Re:【Swift学习】Swift编程之旅（一）</a></li>
+        <li class="recent_comment_body">@书写流逝的月光短时间不会，因为有些老项目要维护。...</li>
+        <li class="recent_comment_author">--smallsunshine</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5351314.html#3403010">28. Re:【Swift学习】Swift编程之旅（一）</a></li>
+        <li class="recent_comment_body">你说会不会oc被淘汰了？</li>
+        <li class="recent_comment_author">--书写流逝的月光</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/archive/2010/10/19/1855511.html#3400282">29. Re:Android控件之SlidingDrawer（滑动式抽屉）详解与实例</a></li>
+        <li class="recent_comment_body">@cheetah747因为布局问题。RelativeLayout相对布局设置起来比较简单。如果用LinearLayout左右上下对齐会造成控件布局问题。...</li>
+        <li class="recent_comment_author">--cw5559266</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5004846.html#3394896">30. Re:基于VM10+Win7安装Mac OSX10.11 El Capitan</a></li>
+        <li class="recent_comment_body">您好，非常感谢您的无私分享。已经成功地在win10系统下运行了OSX 10.11。但是我碰到一个奇怪的问题：我要使用的一个数据分析软件（这个软件是基于java的）打开文件时，无法打开第二层的文件夹。比......</li>
+        <li class="recent_comment_author">--hcp4715</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5249131.html#3390454">31. Re:iOS实现书架布局样式【一些电子书的首页】</a></li>
+        <li class="recent_comment_body">楼主  求demo  谢谢  271650409@qq.com</li>
+        <li class="recent_comment_author">--PLwales</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5125836.html#3388860">32. Re:iOS二十种超酷时尚艺术滤镜汇总【附源码】</a></li>
+        <li class="recent_comment_body">楼主求帮忙啊....   急救.... Opengles,GLKit</li>
+        <li class="recent_comment_author">--神魂颠倒</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5295176.html#3388352">33. Re:这是我看过最精彩的回答</a></li>
+        <li class="recent_comment_body">要找什么工作，来我们公司看看</li>
+        <li class="recent_comment_author">--神魂颠倒</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5125836.html#3388339">34. Re:iOS二十种超酷时尚艺术滤镜汇总【附源码】</a></li>
+        <li class="recent_comment_body">楼主求加马赛克和加文字的代码！万分感谢！</li>
+        <li class="recent_comment_author">--chfight</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5113572.html#3388304">35. Re:一篇通俗易懂的讲解OpenGL ES的文章</a></li>
+        <li class="recent_comment_body">你好，能请教下 iOS Opengles 的相关问题吗，请指教啊... 项目真急，加下Q：531003271</li>
+        <li class="recent_comment_author">--神魂颠倒</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5295176.html#3386735">36. Re:这是我看过最精彩的回答</a></li>
+        <li class="recent_comment_body">嗯，我是来看评论的</li>
+        <li class="recent_comment_author">--火子青春</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5295176.html#3385475">37. Re:这是我看过最精彩的回答</a></li>
+        <li class="recent_comment_body">看完了，不知所云不知所谓……这就是高大上的文章？还是我档次太低……</li>
+        <li class="recent_comment_author">--陌上青青草</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5295176.html#3385457">38. Re:这是我看过最精彩的回答</a></li>
+        <li class="recent_comment_body">不善于表达的人有时候真的很吃亏的。</li>
+        <li class="recent_comment_author">--焦振超</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5283699.html#3385055">39. Re:Main.storyboard中使用navigationController</a></li>
+        <li class="recent_comment_body">您好，能问几个关于 IOS opengles3.0 的问题么，加我Q:531003271,谢谢啊</li>
+        <li class="recent_comment_author">--神魂颠倒</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/salam/p/5125836.html#3381341">40. Re:iOS二十种超酷时尚艺术滤镜汇总【附源码】</a></li>
+        <li class="recent_comment_body">@AirZilong请问能分享下吗？谢谢...</li>
+        <li class="recent_comment_author">--Alex_aolianna</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/salam/archive/2010/11/15/1877512.html">1. Android 对话框(Dialog)大全 建立你自己的对话框(248797)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844703.html">2. Android 控件之ProgressBar进度条(180549)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html">3. android Toast大全（五种情形）建立属于你自己的Toast(176643)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/04/04/2005329.html">4. Android 菜单(OptionMenu)大全 建立你自己的菜单(135720)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/20/1856793.html">5. Android布局控件之LinearLayout详解(111436)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844660.html">6. Android 控件之ImageSwitcher图片切换器(72713)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/26/1861779.html">7. Android开源项目源码下载（不断更新中）(65972)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/19/1855511.html">8. Android控件之SlidingDrawer（滑动式抽屉）详解与实例(59612)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844564.html">9. Android 控件之Gallery图片集(54046)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/30/1892143.html">10. Android 应用程序窗体显示状态操作（requestWindowFeature()的应用）(52641)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/27/1862730.html">11. Android之Bundle传递数据详解与实例及Bundle与SharedPreferences的区别(51714)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/24/1833818.html">12. Android学习笔记之反编译工具介绍及下载（Class文件反编译，xml文件反编译整理）(48096)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2013/04/30/iOS_gesture.html">13. iOS开发之手势gesture详解（一）(32966)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844596.html">14. Android 控件之GridView(31044)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/07/1844980.html">15. Android 控件之Spinner(27500)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/07/1845036.html">16. Android 控件之TabHost Tab页(27347)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/05/1844392.html">17. Android版手风琴(ExpandableListView)(25723)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/25/1860623.html">18. android控件之VideoView建立自己的播放器(24076)</a></li><li><a href="http://www.cnblogs.com/salam/p/4344680.html">19. 从头来之【图解针对虚拟机iOS开发环境搭建】(19364)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/22/1833080.html">20. Android学习笔记之AndroidManifest.xml文件解析(18162)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/05/1842935.html">21. Android动画详细探究(18136)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844741.html">22. Android 控件之RatingBar评分条(18114)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/21/1857724.html">23. Android简单数据存储类SharedPreferences详解及实例（通过“记住密码”功能学习SharedPreferences）(16254)</a></li><li><a href="http://www.cnblogs.com/salam/p/5004846.html">24. 基于VM10+Win7安装Mac OSX10.11 El Capitan(15714)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/19/1881697.html">25. Android游戏开发教程汇总(15348)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/08/1845830.html">26. Android程序员必看之Android六大优势(12074)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/08/05/1792720.html">27. 上百例Silverlight网站及演示汇总，供友参考(11765)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/25/1860460.html">28. Android控件之ZoomControls缩放控件(11389)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/01/09/1931241.html">29. Android新增API之AudioEffect中文API与应用实例(11286)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/08/31/1813583.html">30. Silverlight的十几种图片展示炫酷效果(附源码)(10873)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/05/30/1747518.html">31. C#之泛型集合类(Ilist,IDictionary)的使用(10125)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873437.html">32. 通过创建一个位图的XY Chart来学习Android绘图类Rect,Paint,Bitmap,Canvas（附源码）(10023)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/29/1864246.html">33. "Windows Phone 7程序设计”完全版电子书可以免费下载了(9298)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2013/05/03/iOS_gesture2.html">34. iOS开发之手势gesture详解（二）(8909)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/07/1845089.html">35. Android 控件之WebView(8658)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/25/1860531.html">36. Android控件之ZoomButton缩放按钮(7701)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2012/05/30/IOS.html">37. 介绍几个IOS开发资料和开源代码（不断更新ING）(7432)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/01/11/1933153.html">38. Android学习点点滴滴之获取正在运行的进程(7401)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/05/1844330.html">39. Android 控件之DatePicker,TimePicker,Calender(7379)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/05/1844232.html">40. Android控件之Chronometer(定时器)(7337)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/salam/archive/2010/09/01/1814747.html">1. 一个Silverlight超炫网站反编译后（附源代码）(45)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/04/04/2005329.html">2. Android 菜单(OptionMenu)大全 建立你自己的菜单(37)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html">3. android Toast大全（五种情形）建立属于你自己的Toast(28)</a></li><li><a href="http://www.cnblogs.com/salam/p/4344680.html">4. 从头来之【图解针对虚拟机iOS开发环境搭建】(27)</a></li><li><a href="http://www.cnblogs.com/salam/p/5076301.html">5. 心里话(26)</a></li><li><a href="http://www.cnblogs.com/salam/p/5125836.html">6. iOS二十种超酷时尚艺术滤镜汇总【附源码】(25)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/21/1857724.html">7. Android简单数据存储类SharedPreferences详解及实例（通过“记住密码”功能学习SharedPreferences）(22)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/08/31/1813583.html">8. Silverlight的十几种图片展示炫酷效果(附源码)(21)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/15/1877512.html">9. Android 对话框(Dialog)大全 建立你自己的对话框(19)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/29/1864246.html">10. "Windows Phone 7程序设计”完全版电子书可以免费下载了(18)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844660.html">11. Android 控件之ImageSwitcher图片切换器(16)</a></li><li><a href="http://www.cnblogs.com/salam/p/5004846.html">12. 基于VM10+Win7安装Mac OSX10.11 El Capitan(16)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/30/1892143.html">13. Android 应用程序窗体显示状态操作（requestWindowFeature()的应用）(12)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/19/1881697.html">14. Android游戏开发教程汇总(12)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844564.html">15. Android 控件之Gallery图片集(11)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/02/13/1953831.html">16. SilverlightQQDemo反编译（提供源代码）(9)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/01/23/1942430.html">17. Windows Phone 7开发环境的一点问题(9)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/26/1861779.html">18. Android开源项目源码下载（不断更新中）(9)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844703.html">19. Android 控件之ProgressBar进度条(8)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/24/1833818.html">20. Android学习笔记之反编译工具介绍及下载（Class文件反编译，xml文件反编译整理）(8)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/22/1833080.html">21. Android学习笔记之AndroidManifest.xml文件解析(8)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/10/1823531.html">22. Silverlight的扩展对话框（带有窗体图标）(6)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/25/1860623.html">23. android控件之VideoView建立自己的播放器(6)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/19/1855511.html">24. Android控件之SlidingDrawer（滑动式抽屉）详解与实例(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/14/1851630.html">25. Android学习资料分享(不断更新中)(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/08/1845830.html">26. Android程序员必看之Android六大优势(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/07/1844980.html">27. Android 控件之Spinner(5)</a></li><li><a href="http://www.cnblogs.com/salam/p/5295176.html">28. 这是我看过最精彩的回答(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/05/1842935.html">29. Android动画详细探究(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/19/1831242.html">30. Silverlight反编译系列一（PPLIVESilverlight网站反编译示例）(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/05/1844392.html">31. Android版手风琴(ExpandableListView)(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/05/30/1747571.html">32. WinForm中的窗体间传值(委托在窗体应用程序的运用)(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/08/05/1792720.html">33. 上百例Silverlight网站及演示汇总，供友参考(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/07/23/1784045.html">34. Silverlight学习笔记十六自定义控件之一个漂亮的Gauge(仪表盘)(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/08/23/1806319.html">35. Silverlight学习笔记十七BingMap（七）之检索地理位置(GeocodeService服务)(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/12/21/1913258.html">36. 图文并茂讲解BingMap在WP7中的使用(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/12/26/1917481.html">37. 新浪微博客户端提供源代码下载(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/16/1878526.html">38. Silverlight 5 开发者的声音(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873437.html">39. 通过创建一个位图的XY Chart来学习Android绘图类Rect,Paint,Bitmap,Canvas（附源码）(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/01/13/1934441.html">40. UnauthorizedAccessException Invaild cross-thread access(4)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/salam/archive/2010/11/10/1873654.html">1. android Toast大全（五种情形）建立属于你自己的Toast(39)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/15/1877512.html">2. Android 对话框(Dialog)大全 建立你自己的对话框(30)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/04/04/2005329.html">3. Android 菜单(OptionMenu)大全 建立你自己的菜单(19)</a></li><li><a href="http://www.cnblogs.com/salam/p/4344680.html">4. 从头来之【图解针对虚拟机iOS开发环境搭建】(13)</a></li><li><a href="http://www.cnblogs.com/salam/p/5004846.html">5. 基于VM10+Win7安装Mac OSX10.11 El Capitan(9)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844660.html">6. Android 控件之ImageSwitcher图片切换器(7)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/29/1864246.html">7. "Windows Phone 7程序设计”完全版电子书可以免费下载了(6)</a></li><li><a href="http://www.cnblogs.com/salam/p/5076301.html">8. 心里话(6)</a></li><li><a href="http://www.cnblogs.com/salam/p/5071738.html">9. 美图秀秀首页界面设计（一）(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/11/30/1892143.html">10. Android 应用程序窗体显示状态操作（requestWindowFeature()的应用）(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844703.html">11. Android 控件之ProgressBar进度条(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/24/1833818.html">12. Android学习笔记之反编译工具介绍及下载（Class文件反编译，xml文件反编译整理）(5)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/22/1833080.html">13. Android学习笔记之AndroidManifest.xml文件解析(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844564.html">14. Android 控件之Gallery图片集(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/05/1844392.html">15. Android版手风琴(ExpandableListView)(4)</a></li><li><a href="http://www.cnblogs.com/salam/p/5111653.html">16. 美图秀秀美化图片之【边框】界面设计【重大更新】(4)</a></li><li><a href="http://www.cnblogs.com/salam/p/5208508.html">17. 关于苹果开发的知识总结(4)</a></li><li><a href="http://www.cnblogs.com/salam/p/5192576.html">18. UICollectionView使用以及与UITableView的区别(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/26/1861779.html">19. Android开源项目源码下载（不断更新中）(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/19/1855511.html">20. Android控件之SlidingDrawer（滑动式抽屉）详解与实例(4)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2013/04/30/iOS_gesture.html">21. iOS开发之手势gesture详解（一）(4)</a></li><li><a href="http://www.cnblogs.com/salam/p/4981276.html">22. GPUImage简单滤镜使用（二）(3)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/14/1851630.html">23. Android学习资料分享(不断更新中)(3)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/27/1862730.html">24. Android之Bundle传递数据详解与实例及Bundle与SharedPreferences的区别(3)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/30/1865302.html">25. Windows Phone 7学习资料包囊（开发工具/教程/论坛/博客）(3)</a></li><li><a href="http://www.cnblogs.com/salam/p/5404978.html">26. Swift的期待(3)</a></li><li><a href="http://www.cnblogs.com/salam/p/5295176.html">27. 这是我看过最精彩的回答(3)</a></li><li><a href="http://www.cnblogs.com/salam/p/5249131.html">28. iOS实现书架布局样式【一些电子书的首页】(3)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/17/1829126.html">29. 动画类DoubleAnimationUsingKeyFrames、ObjectAnimationUsingKeyFrames、TransformGroup,VisualStateManager的实际应用(3)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/08/05/1792720.html">30. 上百例Silverlight网站及演示汇总，供友参考(3)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/08/31/1813583.html">31. Silverlight的十几种图片展示炫酷效果(附源码)(3)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/10/1823531.html">32. Silverlight的扩展对话框（带有窗体图标）(2)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/08/1821338.html">33. 上百例Silverlight网站及演示汇总，供友参考(续一)(2)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2011/01/03/1925057.html">34. Windows Phone 7 SDK学习之Microsoft.Phone.Tasks中的各项Task(2)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/12/31/1922631.html">35. Windows Phone 7项目实战之记事本（二）(2)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/06/1844596.html">36. Android 控件之GridView(2)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/12/22/1914167.html">37. Windows Phone 7触摸屏事件Manipulation的使用(2)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/05/30/1747518.html">38. C#之泛型集合类(Ilist,IDictionary)的使用(2)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/09/19/1831242.html">39. Silverlight反编译系列一（PPLIVESilverlight网站反编译示例）(2)</a></li><li><a href="http://www.cnblogs.com/salam/archive/2010/10/05/1842935.html">40. Android动画详细探究(2)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 ForrestWoo
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

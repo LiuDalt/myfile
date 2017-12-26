@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.cnblogs.com/mengdd/p/3569127.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/hm.js"></script><script async="" src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/analytics.js"></script><script src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/ca-pub-4210569241504288.js"></script><script type="text/javascript" src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/encoder.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Android PopupWindow的使用和分析 - 圣骑士wind - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/bundle-BlueSky.css">
+<link id="mobile-style" media="only screen and (max-device-width: 980px)" type="text/css" rel="stylesheet" href="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/bundle-BlueSky-mobile.css">
+<link type="text/css" rel="stylesheet" href="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/122894.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/mengdd/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/mengdd/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/mengdd/wlwmanifest.xml">
+<script src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'mengdd', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<div id="page_begin_html">
+
+
+
+</div><script>load_page_begin_html();</script>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/mengdd/"><img id="blogLogo" src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/mengdd/">圣骑士Wind的博客</a></h1>
+<h2>技术让生活更美好。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/mengdd/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%9C%A3%E9%AA%91%E5%A3%ABwind">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/mengdd/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/mengdd/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 388&nbsp; </span>
+<span id="stats_article_count">文章 - 8&nbsp; </span>
+<span id="stats-comment_count">评论 - 478</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/mengdd/p/3569127.html">Android PopupWindow的使用和分析</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h1 style="text-align: center;">&nbsp;</h1>
+<h1 style="text-align: center;"><span style="font-size: 18pt; color: #000080;">Android PopupWindow的使用和分析</span></h1>
+<p>&nbsp;</p>
+<h2><span style="font-size: 18pt; color: #3366ff;">PopupWindow使用</span></h2>
+<p><span style="font-size: 15px;">&nbsp; &nbsp; &nbsp; &nbsp;PopupWindow这个类用来实现一个弹出框，<span style="color: #ff0000;"><strong>可以使用任意布局的View作为其内容</strong></span>，这个弹出框是悬浮在当前activity之上的。</span></p>
+<p>&nbsp;</p>
+<h2><span style="font-size: 18pt; color: #3366ff;">PopupWindow使用Demo</span></h2>
+<p><span style="font-size: 15px;">　　这个类的使用，不再过多解释，直接上代码吧。</span></p>
+<p><span style="font-size: 15px;">　　比如弹出框的布局：</span></p>
+<div class="cnblogs_code" onclick="cnblogs_code_show(&#39;5e463c2b-d443-4204-b0d2-61d441217c81&#39;)"><img id="code_img_closed_5e463c2b-d443-4204-b0d2-61d441217c81" class="code_img_closed" src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/ContractedBlock.gif" alt="" style="display: none;"><img id="code_img_opened_5e463c2b-d443-4204-b0d2-61d441217c81" class="code_img_opened" style="" onclick="cnblogs_code_hide(&#39;5e463c2b-d443-4204-b0d2-61d441217c81&#39;,event)" src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/ExpandedBlockStart.gif" alt="">
+<div id="cnblogs_code_open_5e463c2b-d443-4204-b0d2-61d441217c81" class="cnblogs_code_hide" style="display: block;"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0" encoding="utf-8"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">LinearLayout </span><span style="color: #ff0000;">xmlns:android</span><span style="color: #0000ff;">="http://schemas.android.com/apk/res/android"</span><span style="color: #ff0000;">
+    android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+    android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+    android:background</span><span style="color: #0000ff;">="#FFBBFFBB"</span><span style="color: #ff0000;">
+    android:orientation</span><span style="color: #0000ff;">="vertical"</span> <span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">TextView
+        </span><span style="color: #ff0000;">android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+        android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:padding</span><span style="color: #0000ff;">="10dp"</span><span style="color: #ff0000;">
+        android:text</span><span style="color: #0000ff;">="Hello My Window"</span><span style="color: #ff0000;">
+        android:textSize</span><span style="color: #0000ff;">="20sp"</span> <span style="color: #0000ff;">/&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">Button
+        </span><span style="color: #ff0000;">android:id</span><span style="color: #0000ff;">="@+id/button1"</span><span style="color: #ff0000;">
+        android:layout_width</span><span style="color: #0000ff;">="match_parent"</span><span style="color: #ff0000;">
+        android:layout_height</span><span style="color: #0000ff;">="wrap_content"</span><span style="color: #ff0000;">
+        android:padding</span><span style="color: #0000ff;">="10dp"</span><span style="color: #ff0000;">
+        android:text</span><span style="color: #0000ff;">="Button"</span><span style="color: #ff0000;">
+        android:textSize</span><span style="color: #0000ff;">="20sp"</span> <span style="color: #0000ff;">/&gt;</span>
+
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">LinearLayout</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<span class="cnblogs_code_collapse" style="display: none;">弹出框布局</span></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px;">　　Activity的布局中只有一个按钮，按下后会弹出框，Activity代码如下：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">package</span><span style="color: #000000;"> com.example.hellopopupwindow;
+
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.os.Bundle;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.app.Activity;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.content.Context;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.util.Log;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.LayoutInflater;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.MotionEvent;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View.OnClickListener;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.View.OnTouchListener;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.view.ViewGroup.LayoutParams;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.widget.Button;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.widget.PopupWindow;
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> android.widget.Toast;
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> MainActivity <span style="color: #0000ff;">extends</span><span style="color: #000000;"> Activity {
+
+    </span><span style="color: #0000ff;">private</span> Context mContext = <span style="color: #0000ff;">null</span><span style="color: #000000;">;
+
+    @Override
+    </span><span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onCreate(Bundle savedInstanceState) {
+        </span><span style="color: #0000ff;">super</span><span style="color: #000000;">.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mContext </span>= <span style="color: #0000ff;">this</span><span style="color: #000000;">;
+
+        Button button </span>=<span style="color: #000000;"> (Button) findViewById(R.id.button);
+        button.setOnClickListener(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> View.OnClickListener() {
+
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onClick(View view) {
+
+                showPopupWindow(view);
+            }
+        });
+    }
+
+    </span><span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> showPopupWindow(View view) {
+
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 一个自定义的布局，作为显示的内容</span>
+        View contentView =<span style="color: #000000;"> LayoutInflater.from(mContext).inflate(
+                R.layout.pop_window, </span><span style="color: #0000ff;">null</span><span style="color: #000000;">);
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 设置按钮的点击事件</span>
+        Button button =<span style="color: #000000;"> (Button) contentView.findViewById(R.id.button1);
+        button.setOnClickListener(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> OnClickListener() {
+
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> onClick(View v) {
+                Toast.makeText(mContext, </span>"button is pressed"<span style="color: #000000;">,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        </span><span style="color: #0000ff;">final</span> PopupWindow popupWindow = <span style="color: #0000ff;">new</span><span style="color: #000000;"> PopupWindow(contentView,
+                LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, </span><span style="color: #0000ff;">true</span><span style="color: #000000;">);
+
+        popupWindow.setTouchable(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);
+
+        popupWindow.setTouchInterceptor(</span><span style="color: #0000ff;">new</span><span style="color: #000000;"> OnTouchListener() {
+
+            @Override
+            </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> onTouch(View v, MotionEvent event) {
+
+                Log.i(</span>"mengdd", "onTouch : "<span style="color: #000000;">);
+
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">false</span><span style="color: #000000;">;
+                </span><span style="color: #008000;">//</span><span style="color: #008000;"> 这里如果返回true的话，touch事件将被拦截
+                </span><span style="color: #008000;">//</span><span style="color: #008000;"> 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss</span>
+<span style="color: #000000;">            }
+        });
+
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 我觉得这里是API的一个bug</span>
+<span style="color: #000000;">        popupWindow.setBackgroundDrawable(getResources().getDrawable(
+                R.drawable.selectmenu_bg_downward));
+
+        </span><span style="color: #008000;">//</span><span style="color: #008000;"> 设置好参数之后再show</span>
+<span style="color: #000000;">        popupWindow.showAsDropDown(view);
+
+    }
+
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px;">　　弹出框的布局中有一个TextView和一个Button，Button点击后显示Toast，如图：</span></p>
+<p><span style="font-size: 15px;"><img style="display: block; margin-left: auto; margin-right: auto;" src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/261326393323914.png" alt="" width="219" height="390"></span></p>
+<p><span style="font-size: 15px;">&nbsp;</span></p>
+<p><span style="font-size: 15px;">&nbsp;</span></p>
+<p><span style="font-size: 15px;">　　第一次实现的时候遇到了问题，就是弹出框不会在按下Back键的时候消失，点击弹框外区域也没有正常消失，搜索了一下，都说只要设置背景就好了。</span></p>
+<p><span style="font-size: 15px;">　　然后我就找了个图片，果然弹框能正常dismiss了(见注释)。</span></p>
+<p>&nbsp;</p>
+<h2><span style="font-size: 18pt; color: #3366ff;">PopupWindow源码分析</span></h2>
+<p><span style="font-size: 15px;">　　为了解答一下上面的问题，看看源码(<span style="color: #ff0000;"><strong>最新API Level 19，Android 4.4.2</strong></span>)。</span></p>
+<p><span style="background-color: #ffff00; font-size: 14pt;"><strong>1.显示方法</strong></span></p>
+<p><span style="font-size: 15px;">　　显示提供了两种形式：</span></p>
+<p><span style="font-size: 15px;">　　showAtLocation()显示在指定位置，有两个方法重载：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> showAtLocation(View parent, <span style="color: #0000ff;">int</span> gravity, <span style="color: #0000ff;">int</span> x, <span style="color: #0000ff;">int</span><span style="color: #000000;"> y)
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> showAtLocation(IBinder token, <span style="color: #0000ff;">int</span> gravity, <span style="color: #0000ff;">int</span> x, <span style="color: #0000ff;">int</span> y)</pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px;">　　showAsDropDown()显示在一个参照物View的周围，有三个方法重载：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> showAsDropDown(View anchor)
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> showAsDropDown(View anchor, <span style="color: #0000ff;">int</span> xoff, <span style="color: #0000ff;">int</span><span style="color: #000000;"> yoff)
+
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span> showAsDropDown(View anchor, <span style="color: #0000ff;">int</span> xoff, <span style="color: #0000ff;">int</span> yoff, <span style="color: #0000ff;">int</span> gravity)</pre>
+</div>
+<p><span style="font-size: 15px;">　　最后一种带Gravity参数的方法是API 19新引入的。</span></p>
+<p><span style="font-size: 15px;">&nbsp;</span></p>
+<p><span style="font-size: 15px;">　　弹出的方法中首先需要<span style="color: #ff0000;"><strong>preparePopup()</strong></span>，最后再<span style="color: #ff0000;"><strong>invokePopup()</strong></span>。</span></p>
+<p><span style="font-size: 15px;">　　prepare的方法中可以看到有无背景的分别：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>   <span style="color: #008000;">/**</span><span style="color: #008000;">
+     * &lt;p&gt;Prepare the popup by embedding in into a new ViewGroup if the
+     * background drawable is not null. If embedding is required, the layout
+     * parameters' height is mnodified to take into account the background's
+     * padding.&lt;/p&gt;
+     *
+     * </span><span style="color: #808080;">@param</span><span style="color: #008000;"> p the layout parameters of the popup's content view
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">private</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> preparePopup(WindowManager.LayoutParams p) {
+        </span><span style="color: #0000ff;">if</span> (mContentView == <span style="color: #0000ff;">null</span> || mContext == <span style="color: #0000ff;">null</span> || mWindowManager == <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+            </span><span style="color: #0000ff;">throw</span> <span style="color: #0000ff;">new</span> IllegalStateException("You must specify a valid content view by "
+                    + "calling setContentView() before attempting to show the popup."<span style="color: #000000;">);
+        }
+
+        </span><span style="color: #0000ff;">if</span> (mBackground != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+            </span><span style="color: #0000ff;">final</span> ViewGroup.LayoutParams layoutParams =<span style="color: #000000;"> mContentView.getLayoutParams();
+            </span><span style="color: #0000ff;">int</span> height =<span style="color: #000000;"> ViewGroup.LayoutParams.MATCH_PARENT;
+            </span><span style="color: #0000ff;">if</span> (layoutParams != <span style="color: #0000ff;">null</span> &amp;&amp;<span style="color: #000000;">
+                    layoutParams.height </span>==<span style="color: #000000;"> ViewGroup.LayoutParams.WRAP_CONTENT) {
+                height </span>=<span style="color: #000000;"> ViewGroup.LayoutParams.WRAP_CONTENT;
+            }
+
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> when a background is available, we embed the content view
+            </span><span style="color: #008000;">//</span><span style="color: #008000;"> within another view that owns the background drawable</span>
+            PopupViewContainer popupViewContainer = <span style="color: #0000ff;">new</span><span style="color: #000000;"> PopupViewContainer(mContext);
+            PopupViewContainer.LayoutParams listParams </span>= <span style="color: #0000ff;">new</span><span style="color: #000000;"> PopupViewContainer.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, height
+            );
+            popupViewContainer.setBackgroundDrawable(mBackground);
+            popupViewContainer.addView(mContentView, listParams);
+
+            mPopupView </span>=<span style="color: #000000;"> popupViewContainer;
+        } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+            mPopupView </span>=<span style="color: #000000;"> mContentView;
+        }
+        mPopupViewInitialLayoutDirectionInherited </span>=<span style="color: #000000;">
+                (mPopupView.getRawLayoutDirection() </span>==<span style="color: #000000;"> View.LAYOUT_DIRECTION_INHERIT);
+        mPopupWidth </span>=<span style="color: #000000;"> p.width;
+        mPopupHeight </span>=<span style="color: #000000;"> p.height;
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span style="background-color: #ffff00; font-size: 14pt;"><strong>2.背景是否为空对Touch事件的影响</strong></span></p>
+<p><span style="font-size: 15px;">　　如果有背景，则会在contentView外面包一层<span style="color: #ff0000;"><strong>PopupViewContainer</strong></span>之后作为mPopupView，如果没有背景，则直接用contentView作为mPopupView。</span></p>
+<p><span style="font-size: 15px;">　　而这个<span style="color: #ff0000;"><strong>PopupViewContainer</strong></span>是一个内部私有类，它继承了FrameLayout，在其中重写了Key和Touch事件的分发处理：</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;"> @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> dispatchKeyEvent(KeyEvent event) {
+            </span><span style="color: #0000ff;">if</span> (event.getKeyCode() ==<span style="color: #000000;"> KeyEvent.KEYCODE_BACK) {
+                </span><span style="color: #0000ff;">if</span> (getKeyDispatcherState() == <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">super</span><span style="color: #000000;">.dispatchKeyEvent(event);
+                }
+
+                </span><span style="color: #0000ff;">if</span> (event.getAction() ==<span style="color: #000000;"> KeyEvent.ACTION_DOWN
+                        </span>&amp;&amp; event.getRepeatCount() == 0<span style="color: #000000;">) {
+                    KeyEvent.DispatcherState state </span>=<span style="color: #000000;"> getKeyDispatcherState();
+                    </span><span style="color: #0000ff;">if</span> (state != <span style="color: #0000ff;">null</span><span style="color: #000000;">) {
+                        state.startTracking(event, </span><span style="color: #0000ff;">this</span><span style="color: #000000;">);
+                    }
+                    </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+                } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (event.getAction() ==<span style="color: #000000;"> KeyEvent.ACTION_UP) {
+                    KeyEvent.DispatcherState state </span>=<span style="color: #000000;"> getKeyDispatcherState();
+                    </span><span style="color: #0000ff;">if</span> (state != <span style="color: #0000ff;">null</span> &amp;&amp; state.isTracking(event) &amp;&amp; !<span style="color: #000000;">event.isCanceled()) {
+                        dismiss();
+                        </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+                    }
+                }
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">super</span><span style="color: #000000;">.dispatchKeyEvent(event);
+            } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">super</span><span style="color: #000000;">.dispatchKeyEvent(event);
+            }
+        }
+
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> dispatchTouchEvent(MotionEvent ev) {
+            </span><span style="color: #0000ff;">if</span> (mTouchInterceptor != <span style="color: #0000ff;">null</span> &amp;&amp; mTouchInterceptor.onTouch(<span style="color: #0000ff;">this</span><span style="color: #000000;">, ev)) {
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            }
+            </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">super</span><span style="color: #000000;">.dispatchTouchEvent(ev);
+        }
+
+        @Override
+        </span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">boolean</span><span style="color: #000000;"> onTouchEvent(MotionEvent event) {
+            </span><span style="color: #0000ff;">final</span> <span style="color: #0000ff;">int</span> x = (<span style="color: #0000ff;">int</span><span style="color: #000000;">) event.getX();
+            </span><span style="color: #0000ff;">final</span> <span style="color: #0000ff;">int</span> y = (<span style="color: #0000ff;">int</span><span style="color: #000000;">) event.getY();
+            
+            </span><span style="color: #0000ff;">if</span> ((event.getAction() ==<span style="color: #000000;"> MotionEvent.ACTION_DOWN)
+                    </span>&amp;&amp; ((x &lt; 0) || (x &gt;= getWidth()) || (y &lt; 0) || (y &gt;=<span style="color: #000000;"> getHeight()))) {
+                dismiss();
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            } </span><span style="color: #0000ff;">else</span> <span style="color: #0000ff;">if</span> (event.getAction() ==<span style="color: #000000;"> MotionEvent.ACTION_OUTSIDE) {
+                dismiss();
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">true</span><span style="color: #000000;">;
+            } </span><span style="color: #0000ff;">else</span><span style="color: #000000;"> {
+                </span><span style="color: #0000ff;">return</span> <span style="color: #0000ff;">super</span><span style="color: #000000;">.onTouchEvent(event);
+            }
+        }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px;">　　<span style="color: #ff0000;"><strong>由于PopupView本身并没有重写Key和Touch事件的处理，所以如果没有包这个外层容器类，点击Back键或者外部区域是不会导致弹框消失的。</strong></span></span></p>
+<p><span style="font-size: 15px;">&nbsp;</span></p>
+<p><span style="color: #3366ff;"><strong><span style="font-size: 18pt;">补充Case: 弹窗不消失,但是事件向下传递</span></strong></span></p>
+<p><span style="font-size: 15px;">　　如上所述:</span></p>
+<p><span style="font-size: 15px;">　　<strong>设置了PopupWindow的background,点击Back键或者点击弹窗的外部区域,弹窗就会dismiss.</strong></span></p>
+<p><span style="font-size: 15px;">　　<strong>相反,如果不设置PopupWindow的background,那么点击back键和点击弹窗的外部区域,弹窗是不会消失的.</strong></span></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px;">　　那么,如果我想要一个效果,<span style="color: #ff0000;"><strong>点击外部区域,弹窗不消失,但是点击事件会向下面的activity传递</strong></span>,比如下面是一个WebView,我想点击里面的链接等.</span>&nbsp;</p>
+<div>
+<div><span style="font-size: 15px;">　　研究了半天，说是要给Window设置一个Flag，</span></div>
+<div align="left"><span style="color: #8146a2; font-family: Consolas; font-size: 15px;">　　<strong><span style="background-color: #ffff00;">WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL</span></strong></span></div>
+<div><span style="font-size: 15px;">　　</span></div>
+<div><span style="font-size: 15px;">　　看了源码，这个Flag的设置与否是由一个叫<span style="color: #e30000;">mNotTouchModal</span>的字段控制，但是设置该字段的set方法被标记为<span style="color: #ff0000;">@hide</span>。</span></div>
+<div><span style="font-size: 15px;">　　所以要通过反射的方法调用：</span></div>
+</div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> 　　<span style="color: #008000;">/**</span><span style="color: #008000;">
+     * Set whether this window is touch modal or if outside touches will be sent
+     * to
+     * other windows behind it.
+     *
+     </span><span style="color: #008000;">*/</span>
+    <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> setPopupWindowTouchModal(PopupWindow popupWindow,
+            </span><span style="color: #0000ff;">boolean</span><span style="color: #000000;"> touchModal) {
+        </span><span style="color: #0000ff;">if</span> (<span style="color: #0000ff;">null</span> ==<span style="color: #000000;"> popupWindow) {
+            </span><span style="color: #0000ff;">return</span><span style="color: #000000;">;
+        }
+        Method method;
+        </span><span style="color: #0000ff;">try</span><span style="color: #000000;"> {
+
+            method </span>= PopupWindow.<span style="color: #0000ff;">class</span>.getDeclaredMethod("setTouchModal"<span style="color: #000000;">,
+                    </span><span style="color: #0000ff;">boolean</span>.<span style="color: #0000ff;">class</span><span style="color: #000000;">);
+            method.setAccessible(</span><span style="color: #0000ff;">true</span><span style="color: #000000;">);
+            method.invoke(popupWindow, touchModal);
+
+        }
+        </span><span style="color: #0000ff;">catch</span><span style="color: #000000;"> (Exception e) {
+            e.printStackTrace();
+        }
+
+    }</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px;">　　然后在程序中：</span><span style="font-size: 15px;">　　</span></p>
+<div class="cnblogs_code">
+<pre>UIUtils.setPopupWindowTouchModal(popupWindow, <span style="color: #0000ff;">false</span>);</pre>
+</div>
+<p><span style="font-size: 15px;">　　该popupWindow外部的事件就可以传递给下面的Activity了。</span></p>
+<p>&nbsp;</p>
+<h2><span style="font-size: 18pt; color: #3366ff;">Reference</span></h2>
+<p><span style="font-size: 15px;">　　<a href="http://developer.android.com/reference/android/widget/PopupWindow.html">http://developer.android.com/reference/android/widget/PopupWindow.html</a></span></p>
+<p><span style="font-size: 15px;">&nbsp;</span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/mengdd/category/397120.html" target="_blank">Android</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/mengdd/tag/Android/">Android</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3569127,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;6ef3479d-7ccc-e011-8ee0-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/mengdd/" target="_blank"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/u325852.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/mengdd/">圣骑士wind</a><br>
+            <a href="http://home.cnblogs.com/u/mengdd/followees">关注 - 67</a><br>
+            <a href="http://home.cnblogs.com/u/mengdd/followers">粉丝 - 1102</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;6ef3479d-7ccc-e011-8ee0-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(3569127,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">12</span>
+    </div>
+    <div class="buryit" onclick="votePost(3569127,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">1</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/mengdd/p/3565213.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/mengdd/p/3565213.html" title="发布于2014-02-24 19:27">Android Contextual Menus之二：contextual action mode</a><br><a href="http://www.cnblogs.com/mengdd/p/3572316.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/mengdd/p/3572316.html" title="发布于2014-02-27 20:39">Android中的复制粘贴</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2014-02-26 13:52</span> <a href="http://www.cnblogs.com/mengdd/">圣骑士wind</a> 阅读(<span id="post_view_count">161214</span>) 评论(<span id="post_comment_count">9</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=3569127" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/mengdd/p/3569127.html#" onclick="AddToWz(3569127);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=122894,cb_entryId=3569127,cb_blogApp=currentBlogApp,cb_blogUserGuid='6ef3479d-7ccc-e011-8ee0-842b2b196315',cb_entryCreatedDate='2014/2/26 13:52:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#2884518" class="layer">#1楼</a><a name="2884518" id="comment_anchor_2884518"></a>  <span class="comment_date">2014-02-27 19:43</span> <a id="a_comment_author_2884518" href="http://home.cnblogs.com/u/608102/" target="_blank">IT世界Number One</a> <a href="http://msg.cnblogs.com/send/IT%E4%B8%96%E7%95%8CNumber%20One" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2884518" class="blog_comment_body">顶一个</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2884518,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2884518,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#3053992" class="layer">#2楼</a><a name="3053992" id="comment_anchor_3053992"></a>  <span class="comment_date">2014-10-30 11:24</span> <a id="a_comment_author_3053992" href="http://home.cnblogs.com/u/673417/" target="_blank">OxVersion</a> <a href="http://msg.cnblogs.com/send/OxVersion" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3053992" class="blog_comment_body">楼主，“该popupWindow外部的事件就可以传递给下面的Activity了。”<br>最后这一段真是及时雨啊！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3053992,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3053992,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#3123129" class="layer">#3楼</a><a name="3123129" id="comment_anchor_3123129"></a>  <span class="comment_date">2015-02-04 11:04</span> <a id="a_comment_author_3123129" href="http://home.cnblogs.com/u/646754/" target="_blank">bone_kl</a> <a href="http://msg.cnblogs.com/send/bone_kl" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3123129" class="blog_comment_body">反射好牛</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3123129,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3123129,&#39;Bury&#39;,this)">反对(1)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#3238079" class="layer">#4楼</a><a name="3238079" id="comment_anchor_3238079"></a>  <span class="comment_date">2015-07-30 11:46</span> <a id="a_comment_author_3238079" href="http://home.cnblogs.com/u/792102/" target="_blank">Wayne_min</a> <a href="http://msg.cnblogs.com/send/Wayne_min" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3238079" class="blog_comment_body">设置了背景图片依然不可以自动dismiss，和楼主的实现方式不同的是，我是在一个fragment里弹出的popupWindow。不知道楼主有没有遇到这种情况。后来找到原因了，在popupWindow的button添加监听，dismiss该window</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3238079,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3238079,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#3250546" class="layer">#5楼</a><a name="3250546" id="comment_anchor_3250546"></a>  <span class="comment_date">2015-08-19 20:41</span> <a id="a_comment_author_3250546" href="http://home.cnblogs.com/u/800352/" target="_blank">且随疾风前行</a> <a href="http://msg.cnblogs.com/send/%E4%B8%94%E9%9A%8F%E7%96%BE%E9%A3%8E%E5%89%8D%E8%A1%8C" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3250546" class="blog_comment_body">精简的博客，收藏！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3250546,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3250546,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#3460137" class="layer">#6楼</a><a name="3460137" id="comment_anchor_3460137"></a>  <span class="comment_date">2016-06-28 14:31</span> <a id="a_comment_author_3460137" href="http://home.cnblogs.com/u/983988/" target="_blank">隔世不语的梦</a> <a href="http://msg.cnblogs.com/send/%E9%9A%94%E4%B8%96%E4%B8%8D%E8%AF%AD%E7%9A%84%E6%A2%A6" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3460137" class="blog_comment_body">写得太好了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3460137,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3460137,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#3481671" class="layer">#7楼</a><a name="3481671" id="comment_anchor_3481671"></a>  <span class="comment_date">2016-08-02 19:42</span> <a id="a_comment_author_3481671" href="http://www.cnblogs.com/yzjT-mac/" target="_blank">麦子TMAC</a> <a href="http://msg.cnblogs.com/send/%E9%BA%A6%E5%AD%90TMAC" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3481671" class="blog_comment_body">楼主研究的很深刻，受教了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3481671,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3481671,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#3498918" class="layer">#8楼</a><a name="3498918" id="comment_anchor_3498918"></a>  <span class="comment_date">2016-08-29 16:57</span> <a id="a_comment_author_3498918" href="http://home.cnblogs.com/u/1014025/" target="_blank">cx037</a> <a href="http://msg.cnblogs.com/send/cx037" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3498918" class="blog_comment_body">当activity里有listview，pop弹出，listview是可以滑动，但是不能点击，这怎么办</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3498918,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3498918,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/mengdd/p/3569127.html#3531411" class="layer">#9楼</a><a name="3531411" id="comment_anchor_3531411"></a><span id="comment-maxId" style="display:none;">3531411</span><span id="comment-maxDate" style="display:none;">2016/10/14 15:42:29</span>  <span class="comment_date">2016-10-14 15:42</span> <a id="a_comment_author_3531411" href="http://home.cnblogs.com/u/1042693/" target="_blank">JanHe</a> <a href="http://msg.cnblogs.com/send/JanHe" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3531411" class="blog_comment_body">请问一下，你popuwindow里面那个阴影边框是怎样设置？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3531411,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3531411,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/mengdd/p/3569127.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/mengdd/p/3569127.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://group.cnblogs.com/topic/75389.html" target="_blank">【活动】优达学城正式发布“无人驾驶车工程师”课程</a><br><a href="http://www.rongcloud.cn/live" target="_blank">【推荐】移动直播百强八成都在用融云即时通讯云</a><br><a href="http://www.gcpowertools.com.cn/products/componentone_studio_enterprise.htm?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=C1&amp;utm_campaign=community" target="_blank">【推荐】别再闷头写代码！找对工具，事半功倍，全能开发工具包用起来</a><br><a href="http://netease.im/promotion/1013?hmsr=bky10&amp;from=bky10" target="_blank">【福利】网易云信1周年接入开发者突破10万，送红包活动火热开展中</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block">     <ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-4210569241504288" data-ad-slot="5457903683" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/saved_resource.html"></iframe></ins></ins></ins></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/555493/" target="_blank">IBM每周部署1300台Mac，每台技术支持费比PC省270美元</a><br> ·  <a href="http://news.cnblogs.com/n/555492/" target="_blank">英特尔将研发无人车CPU 性能将是服务器级别</a><br> ·  <a href="http://news.cnblogs.com/n/555491/" target="_blank">离开冥王星 “新视野”号探测器前往下一个目标</a><br> ·  <a href="http://news.cnblogs.com/n/555490/" target="_blank">Google现在想告诉你，什么时候买机票最便宜</a><br> ·  <a href="http://news.cnblogs.com/n/555489/" target="_blank">途家创始人发内部信宣布并购携程、去哪儿公寓民宿业务</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice/?from=cnblogs01" target="_blank"><img width="468" height="60" src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/24442-20161011141820868-1378717477.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/553682/" target="_blank">陈皓：什么是工程师文化？</a><br> ·  <a href="http://kb.cnblogs.com/page/551422/" target="_blank">没那么难，谈CSS的设计模式</a><br> ·  <a href="http://kb.cnblogs.com/page/550625/" target="_blank">程序猿媳妇儿注意事项</a><br> ·  <a href="http://kb.cnblogs.com/page/540529/" target="_blank">可是姑娘，你为什么要编程呢？</a><br> ·  <a href="http://kb.cnblogs.com/page/549631/" target="_blank">知其所以然（以算法学习为例）</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news">
+
+
+
+
+
+
+<h2>欢迎来到圣骑士Wind的博客！</h2>
+<div class="github-card user-card"><div class="header User"></div><a class="avatar" href="https://github.com/mengdd" target="_top"><img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/3823345" alt="Dandan Meng"></a><div class="content"><h1>Dandan Meng</h1><ul class="status"><li><a href="https://github.com/mengdd?tab=repositories" target="_top">Repos</a></li><li><a href="https://gist.github.com/mengdd" target="_top">Gists</a></li><li><a href="https://github.com/mengdd/followers" target="_top">Followers</a></li></ul></div></div>
+<h2><a href="http://mengdd.github.io/" style="background: yellow" target="_blank">我的github pages</a><br>
+</h2><h2><a href="http://talentprince.github.io/" style="background: yellow" target="_blank">友情推广技术博客: WeYoung</a><br>
+</h2>
+<h2>微信公众号: 圣骑士Wind: 分享最新Android开发资讯</h2>
+<div>
+<img src="./Android PopupWindow的使用和分析 - 圣骑士wind - 博客园_files/o_qrcode_196.png" height="196" width="196" alt="微信公众号二维码">
+</div>
+<h2>Links：</h2>
+<p>
+<a href="https://github.com/" target="_blank">github</a><br>
+<a href="http://developer.android.com/guide/components/index.html" target="_blank">Android API Guides</a><br>
+<a href="http://grepcode.com/search/?query=google+android&amp;entity=project" target="_blank">GrepCode Android</a><br>
+
+
+</p><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/mengdd/">圣骑士wind</a><br>园龄：<a href="http://home.cnblogs.com/u/mengdd/" title="入园时间：2011-08-22">5年1个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/mengdd/followers/">1102</a><br>关注：<a href="http://home.cnblogs.com/u/mengdd/followees/">67</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;6ef3479d-7ccc-e011-8ee0-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/09/01&#39;);return false;">&lt;</a></td><td align="center">2016年10月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/11/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">25</td><td class="CalOtherMonthDay" align="center">26</td><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalWeekendDay" align="center">1</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/mengdd/archive/2016/10/02.html"><u>2</u></a></td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td class="CalWeekendDay" align="center">8</td></tr><tr><td class="CalWeekendDay" align="center"><a href="http://www.cnblogs.com/mengdd/archive/2016/10/09.html"><u>9</u></a></td><td align="center">10</td><td align="center">11</td><td align="center"><a href="http://www.cnblogs.com/mengdd/archive/2016/10/12.html"><u>12</u></a></td><td align="center">13</td><td align="center">14</td><td class="CalWeekendDay" align="center">15</td></tr><tr><td class="CalWeekendDay" align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalTodayDay" align="center">20</td><td align="center">21</td><td class="CalWeekendDay" align="center">22</td></tr><tr><td class="CalWeekendDay" align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td class="CalWeekendDay" align="center">29</td></tr><tr><td class="CalWeekendDay" align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/mengdd/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/mengdd/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/mengdd/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/mengdd/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/mengdd/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/mengdd/p/5953931.html">1. Android Weekly Notes Issue #226</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5941710.html">2. Android Weekly Notes Issue #225</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5927390.html">3. Android Weekly Notes Issue #224</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5897454.html">4. Android Weekly Notes Issue #223</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5875163.html">5. Android Weekly Notes Issue #222</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5856161.html">6. Android Weekly Notes Issue #221</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5849201.html">7. 取代SharedPreferences的多进程解决方案</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5829870.html">8. Android Weekly Notes Issue #220</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5827045.html">9. commit(), commitNow()和commitAllowingStateLoss()</a></li><li><a href="http://www.cnblogs.com/mengdd/p/5819114.html">10. Android 7.0 Nougat牛轧糖 发布啦</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/mengdd/tag/Android/">Android</a>(135)</li><li><a href="http://www.cnblogs.com/mengdd/tag/Java/">Java</a>(83)</li><li><a href="http://www.cnblogs.com/mengdd/tag/Web/">Web</a>(38)</li><li><a href="http://www.cnblogs.com/mengdd/tag/JavaScript/">JavaScript</a>(29)</li><li><a href="http://www.cnblogs.com/mengdd/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>(29)</li><li><a href="http://www.cnblogs.com/mengdd/tag/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">数据结构和算法</a>(17)</li><li><a href="http://www.cnblogs.com/mengdd/tag/JSP/">JSP</a>(15)</li><li><a href="http://www.cnblogs.com/mengdd/tag/Servlet/">Servlet</a>(14)</li><li><a href="http://www.cnblogs.com/mengdd/tag/JUnit/">JUnit</a>(13)</li><li><a href="http://www.cnblogs.com/mengdd/tag/XML/">XML</a>(12)</li><li><a href="http://www.cnblogs.com/mengdd/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(463)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/mengdd/category/397111.html">3D基础(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/mengdd/category/397120.html">Android(100)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/mengdd/category/514665.html">Android Animation(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/mengdd/category/494269.html">Android Testing(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/mengdd/category/869520.html">Android Weekly(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/mengdd/category/518886.html">Android 进阶(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/mengdd/category/838283.html">Android开发相关类库(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/mengdd/category/397113.html">C#(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/mengdd/category/397112.html">C++(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/mengdd/category/397121.html">CMake(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/mengdd/category/505303.html">DirectX(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/mengdd/category/466308.html">Git(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/mengdd/category/397119.html">GPU(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/mengdd/category/397114.html">Java(82)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/mengdd/category/455641.html">JavaScript(24)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/mengdd/category/478092.html">JNI(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/mengdd/category/651519.html">jQuery(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/mengdd/category/464078.html">JUnit(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/mengdd/category/838260.html">JVM(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/mengdd/category/546662.html">Linux(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/mengdd/category/492314.html">MySQL(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/mengdd/category/397115.html">OpenCV(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/mengdd/category/397116.html">OpenGL(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/mengdd/category/476567.html">OpenGL ES(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/mengdd/category/496026.html">Python(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/mengdd/category/677202.html">Testing(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/mengdd/category/533744.html">UX(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/mengdd/category/482223.html">Web(28)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/mengdd/category/403050.html">Windows(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/mengdd/category/483818.html">XML(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/mengdd/category/397118.html">XNA(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/mengdd/category/433526.html">笔试面试(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/mengdd/category/410551.html">编程调试(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/mengdd/category/488646.html">服务器(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/mengdd/category/432170.html">科研什么的(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/mengdd/category/457711.html">每天一个算法题(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/mengdd/category/546057.html">软件工具(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/mengdd/category/426388.html">设计模式(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/mengdd/category/423360.html">数据结构和算法(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_39" href="http://www.cnblogs.com/mengdd/category/473166.html">数据库基础(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_40" href="http://www.cnblogs.com/mengdd/category/421443.html">图形图像(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_41" href="http://www.cnblogs.com/mengdd/category/397109.html">图形学(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_42" href="http://www.cnblogs.com/mengdd/category/458354.html">网络(13)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(387)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/mengdd/archive/2016/10.html">2016年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/mengdd/archive/2016/09.html">2016年9月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/mengdd/archive/2016/08.html">2016年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/mengdd/archive/2016/07.html">2016年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/mengdd/archive/2016/06.html">2016年6月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/mengdd/archive/2016/05.html">2016年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/mengdd/archive/2016/03.html">2016年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/mengdd/archive/2015/10.html">2015年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/mengdd/archive/2015/06.html">2015年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/mengdd/archive/2015/05.html">2015年5月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/mengdd/archive/2015/04.html">2015年4月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/mengdd/archive/2015/03.html">2015年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/mengdd/archive/2015/02.html">2015年2月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/mengdd/archive/2015/01.html">2015年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/mengdd/archive/2014/12.html">2014年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/mengdd/archive/2014/09.html">2014年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/mengdd/archive/2014/07.html">2014年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/mengdd/archive/2014/06.html">2014年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/mengdd/archive/2014/05.html">2014年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/mengdd/archive/2014/04.html">2014年4月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/mengdd/archive/2014/03.html">2014年3月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/mengdd/archive/2014/02.html">2014年2月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/mengdd/archive/2014/01.html">2014年1月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/mengdd/archive/2013/12.html">2013年12月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/mengdd/archive/2013/11.html">2013年11月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/mengdd/archive/2013/10.html">2013年10月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/mengdd/archive/2013/09.html">2013年9月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/mengdd/archive/2013/08.html">2013年8月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/mengdd/archive/2013/07.html">2013年7月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/mengdd/archive/2013/06.html">2013年6月 (34)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/mengdd/archive/2013/05.html">2013年5月 (26)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/mengdd/archive/2013/04.html">2013年4月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/mengdd/archive/2013/03.html">2013年3月 (38)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/mengdd/archive/2013/02.html">2013年2月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/mengdd/archive/2013/01.html">2013年1月 (38)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/mengdd/archive/2012/12.html">2012年12月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/mengdd/archive/2012/11.html">2012年11月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/mengdd/archive/2012/10.html">2012年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/mengdd/archive/2012/09.html">2012年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_39" href="http://www.cnblogs.com/mengdd/archive/2012/08.html">2012年8月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_40" href="http://www.cnblogs.com/mengdd/archive/2012/07.html">2012年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_41" href="http://www.cnblogs.com/mengdd/archive/2012/05.html">2012年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_42" href="http://www.cnblogs.com/mengdd/archive/2012/04.html">2012年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_43" href="http://www.cnblogs.com/mengdd/archive/2011/08.html">2011年8月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlearchive" class="catListArticleArchive sidebar-block">
+<h3 class="catListTitle">文章档案<span style="font-size:11px;font-weight:normal">(8)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/mengdd/archives/2015/04.html" rel="nofollow">2015年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/mengdd/archives/2015/01.html" rel="nofollow">2015年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/mengdd/archives/2013/12.html" rel="nofollow">2013年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/mengdd/archives/2013/08.html" rel="nofollow">2013年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="http://www.cnblogs.com/mengdd/archives/2013/03.html" rel="nofollow">2013年3月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_5" href="http://www.cnblogs.com/mengdd/archives/2012/11.html" rel="nofollow">2012年11月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links511234" class="catList sidebar-block">
+<h3 class="catListTitle">Android学习</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://grepcode.com/project/repository.grepcode.com/java/ext/com.google.android/android/" rel="nofollow">Android源码查看</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_1" href="https://android.googlesource.com/" rel="nofollow">Android源码项目git</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_2" href="http://blog.csdn.net/Luoshengyang/" rel="nofollow">老罗的Android之旅</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_各种官方文档" class="catList各种官方文档 sidebar-block">
+<h3 class="catListTitle">官方文档</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_4_Link_0" href="http://developer.android.com/index.html" rel="nofollow">Android 官网</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_1" href="http://gitref.org/" rel="nofollow">Git Reference</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_2" href="http://www.python.org/" rel="nofollow">Python</a> </li>
+<li class="c_b_p_link_desc">Python官网</li>
+</ul>
+
+</div>
+
+<div id="sidebar_开源社区，开源软件分享" class="catList开源社区，开源软件分享 sidebar-block">
+<h3 class="catListTitle">开源社区</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_5_Link_0" href="https://github.com/" rel="nofollow">GitHub</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_1" href="http://code.google.com/intl/zh-CN/" rel="nofollow">Google Code</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links496540" class="catList sidebar-block">
+<h3 class="catListTitle">学习链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_6_Link_0" href="http://zhgdg.gitcafe.com/static/doc/byte_of_python.html" rel="nofollow">A Byte of Python</a> </li>
+
+<li><a id="CatList_LinkList_6_Link_1" href="http://lucida.me/" rel="nofollow">某G家程序员</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	751105
+	</li>
+	<li class="liRank">
+		排名 -	97
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/mengdd/archive/2013/02/20/2917966.html#3536481">1. Re:Java 多线程（八） 线程状态图</a></li>
+        <li class="recent_comment_body">这图很好</li>
+        <li class="recent_comment_author">--小峰Coconut</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/mengdd/p/3569127.html#3531411">2. Re:Android PopupWindow的使用和分析</a></li>
+        <li class="recent_comment_body">请问一下，你popuwindow里面那个阴影边框是怎样设置？</li>
+        <li class="recent_comment_author">--JanHe</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/mengdd/p/5590634.html#3524161">3. Re:Android Fragment使用(四) Toolbar使用及Fragment中的Toolbar处理</a></li>
+        <li class="recent_comment_body">好棒................</li>
+        <li class="recent_comment_author">--m122469119</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/mengdd/p/4191941.html#3522961">4. Re:AJAX初探,XMLHttpRequest介绍</a></li>
+        <li class="recent_comment_body">先判断 ie5 6 的做法是行不通的，因为一直到 IE10，都是支持 window.ActiveXObject 对象的。</li>
+        <li class="recent_comment_author">--最爱左手</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/mengdd/p/4463485.html#3522223">5. Re:Material Design 概念,环境和基本属性</a></li>
+        <li class="recent_comment_body">翻译的不错</li>
+        <li class="recent_comment_author">--chefish</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/mengdd/p/3569127.html">1. Android PopupWindow的使用和分析(161204)</a></li><li><a href="http://www.cnblogs.com/mengdd/archive/2013/01/08/2851368.html">2. Android Fragment 基本介绍(113572)</a></li><li><a href="http://www.cnblogs.com/mengdd/p/3213378.html">3. Android 抽屉效果的导航菜单实现(105844)</a></li><li><a href="http://www.cnblogs.com/mengdd/archive/2013/01/11/2856374.html">4. Android Fragment和Activity(102574)</a></li><li><a href="http://www.cnblogs.com/mengdd/archive/2013/03/01/2938295.html">5. Android WebView使用基础(93926)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/mengdd/archive/2013/01/01/2841390.html">1. Google Maps Android API V2的使用及问题解决(151)</a></li><li><a href="http://www.cnblogs.com/mengdd/archive/2012/08/01/2619043.html">2. OpenCV实现人脸检测(14)</a></li><li><a href="http://www.cnblogs.com/mengdd/archive/2013/02/20/2917956.html">3. Java 多线程（七） 线程间的通信(14)</a></li><li><a href="http://www.cnblogs.com/mengdd/p/3213378.html">4. Android 抽屉效果的导航菜单实现(13)</a></li><li><a href="http://www.cnblogs.com/mengdd/p/3142442.html">5. Android HTTP实例 使用GET方法和POST方法发送请求(13)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/mengdd/archive/2013/02/16/2913806.html">1. Java 多线程（六） synchronized关键字详解(17)</a></li><li><a href="http://www.cnblogs.com/mengdd/archive/2013/01/08/2851368.html">2. Android Fragment 基本介绍(15)</a></li><li><a href="http://www.cnblogs.com/mengdd/p/3569127.html">3. Android PopupWindow的使用和分析(12)</a></li><li><a href="http://www.cnblogs.com/mengdd/p/3213378.html">4. Android 抽屉效果的导航菜单实现(12)</a></li><li><a href="http://www.cnblogs.com/mengdd/archive/2013/01/01/2841390.html">5. Google Maps Android API V2的使用及问题解决(11)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 圣骑士wind
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

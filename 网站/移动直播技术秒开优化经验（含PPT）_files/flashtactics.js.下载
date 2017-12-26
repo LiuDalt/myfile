@@ -1,0 +1,38 @@
+// flash js 执行模板
+(function () {
+   
+	/**
+	 * isFlashOn 这个方法确定用户是否会需要加载flash
+	 * @param  {String}  uid 用户uid
+	 * @return {Boolean} 是否用户会执行flash
+	 */
+	function isFlashOn (uid) {
+		var tmp_uid = parseInt((uid % 100)/10);
+		if(tmp_uid == 4 || tmp_uid == 5 || tmp_uid == 6 || tmp_uid == 7)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * 返回flash的html模版
+	 * @return {String} flash的html模版
+	 */
+
+	function flashTemplate () {
+		 return '<embed allowscriptaccess="always" height="500" pluginspage="http://get.adobe.com/cn/flashplayer/" flashvars="list=p2ptest" allowfullscreen="true" width="480" height="480" quality="high" src="http://js.t.sinajs.cn/t5/album/static/swf/video/dorking.swf?v11" type="application/x-shockwave-flash" wmode="transparent">';
+	}
+	
+	var uid = window.$CONFIG ? window.$CONFIG.uid : ($topParams ? $topParams.uid : '');
+	window.__addFlashForP2P(isFlashOn(uid), flashTemplate());
+
+	}()
+);
+
+
+
+                         

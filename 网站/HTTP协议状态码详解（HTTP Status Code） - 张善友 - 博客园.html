@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/blog-common.css">
+<link type="text/css" rel="stylesheet" href="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/782.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/bundle-BlueSky-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/shanyou/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/shanyou/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/shanyou/wlwmanifest.xml">
+<script src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/jquery.js.下载" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'shanyou', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+<!--PageBeginHtml Block Begin-->
+<style type="text/css">     
+    .First
+    {
+        margin: 10px 0;
+        font-family: 'Microsoft Yahei';
+        text-align: left;
+        padding: 6px 20px;
+        color:#fff;
+        background: #888888;
+        font-size: 20px;
+        border-radius: 4px;
+        clear: both;
+    }
+   .Second
+    {
+        margin: 10px 0;
+        font-family: 'Microsoft Yahei';
+        padding: 6px 20px;
+        background: #999999;
+        color: #fff;
+        font-size: 18px;
+        border-radius: 4px;
+        clear: both;
+    }
+        
+        
+    .Third
+    {
+        margin: 10px 0;
+        padding: 6px 20px;
+        font-family: 'Microsoft Yahei';
+        margin: 15px 0;
+        font-size: 16px;
+        color: fff;
+        background: #CCCCCC;
+        border-radius: 4px;
+        clear: both;
+    }
+    .note
+    {
+        margin: 10px 0;
+        padding: 15px 20px 15px 60px;
+        font-size: 15px;
+        font-family: 'Microsoft Yahei';
+        box-shadow: 0 0 8px #aaa;
+        clear: both;
+    }
+</style>
+<a href="https://github.com/geffzhang"><img style="position: absolute; top: 0; right: 0; border: 0;" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<!--PageBeginHtml Block End-->
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/shanyou/"><img id="blogLogo" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/shanyou/">自由、创新、研究、探索</a></h1>
+<h2>Linux/Windows Mono/DotNet
+             [ Open Source .NET Development/
+使用开源工具进行DotNet软件开发]</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/shanyou/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%BC%A0%E5%96%84%E5%8F%8B">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/shanyou/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/shanyou/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 1596&nbsp; </span>
+<span id="stats_article_count">文章 - 57&nbsp; </span>
+<span id="stats-comment_count">评论 - 6983</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html">HTTP协议状态码详解（HTTP Status Code）</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>使用ASP.NET/PHP/JSP 或者javascript都会用到http的不同状态，一些常见的状态码为：   <br>200 – 服务器成功返回网页 404 – 请求的网页不存在 503 – 服务不可用    <br>1xx（临时响应）    <br>表示临时响应并需要请求者继续执行操作的状态代码。</p>  <p>代码&nbsp;&nbsp; 说明   <br>100&nbsp;&nbsp; （继续） 请求者应当继续提出请求。 服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。&nbsp; <br>101&nbsp;&nbsp; （切换协议） 请求者已要求服务器切换协议，服务器已确认并准备切换。</p>  <p>2xx （成功）   <br>表示成功处理了请求的状态代码。</p>  <p>代码&nbsp;&nbsp; 说明   <br>200&nbsp;&nbsp; （成功）&nbsp; 服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。    <br>201&nbsp;&nbsp; （已创建）&nbsp; 请求成功并且服务器创建了新的资源。    <br>202&nbsp;&nbsp; （已接受）&nbsp; 服务器已接受请求，但尚未处理。    <br>203&nbsp;&nbsp; （非授权信息）&nbsp; 服务器已成功处理了请求，但返回的信息可能来自另一来源。    <br>204&nbsp;&nbsp; （无内容）&nbsp; 服务器成功处理了请求，但没有返回任何内容。    <br>205&nbsp;&nbsp; （重置内容） 服务器成功处理了请求，但没有返回任何内容。    <br>206&nbsp;&nbsp; （部分内容）&nbsp; 服务器成功处理了部分 GET 请求。</p>  <p>3xx （重定向）   <br>表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。</p>  <p>代码&nbsp;&nbsp; 说明   <br>300&nbsp;&nbsp; （多种选择）&nbsp; 针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。    <br>301&nbsp;&nbsp; （永久移动）&nbsp; 请求的网页已永久移动到新位置。 服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。    <br>302&nbsp;&nbsp; （临时移动）&nbsp; 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。    <br>303&nbsp;&nbsp; （查看其他位置） 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。    <br>304&nbsp;&nbsp; （未修改） 自从上次请求后，请求的网页未修改过。 服务器返回此响应时，不会返回网页内容。    <br>305&nbsp;&nbsp; （使用代理） 请求者只能使用代理访问请求的网页。 如果服务器返回此响应，还表示请求者应使用代理。    <br>307&nbsp;&nbsp; （临时重定向）&nbsp; 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>  <p>4xx（请求错误）   <br>这些状态代码表示请求可能出错，妨碍了服务器的处理。</p>  <p>代码&nbsp;&nbsp; 说明   <br>400&nbsp;&nbsp; （错误请求） 服务器不理解请求的语法。    <br>401&nbsp;&nbsp; （未授权） 请求要求身份验证。 对于需要登录的网页，服务器可能返回此响应。    <br>403&nbsp;&nbsp; （禁止） 服务器拒绝请求。    <br>404&nbsp;&nbsp; （未找到） 服务器找不到请求的网页。    <br>405&nbsp;&nbsp; （方法禁用） 禁用请求中指定的方法。    <br>406&nbsp;&nbsp; （不接受） 无法使用请求的内容特性响应请求的网页。    <br>407&nbsp;&nbsp; （需要代理授权） 此状态代码与 401（未授权）类似，但指定请求者应当授权使用代理。    <br>408&nbsp;&nbsp; （请求超时）&nbsp; 服务器等候请求时发生超时。    <br>409&nbsp;&nbsp; （冲突）&nbsp; 服务器在完成请求时发生冲突。 服务器必须在响应中包含有关冲突的信息。    <br>410&nbsp;&nbsp; （已删除）&nbsp; 如果请求的资源已永久删除，服务器就会返回此响应。    <br>411&nbsp;&nbsp; （需要有效长度） 服务器不接受不含有效内容长度标头字段的请求。    <br>412&nbsp;&nbsp; （未满足前提条件） 服务器未满足请求者在请求中设置的其中一个前提条件。    <br>413&nbsp;&nbsp; （请求实体过大） 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。    <br>414&nbsp;&nbsp; （请求的 URI 过长） 请求的 URI（通常为网址）过长，服务器无法处理。    <br>415&nbsp;&nbsp; （不支持的媒体类型） 请求的格式不受请求页面的支持。    <br>416&nbsp;&nbsp; （请求范围不符合要求） 如果页面无法提供请求的范围，则服务器会返回此状态代码。    <br>417&nbsp;&nbsp; （未满足期望值） 服务器未满足”期望”请求标头字段的要求。</p>  <p>5xx（服务器错误）   <br>这些状态代码表示服务器在尝试处理请求时发生内部错误。 这些错误可能是服务器本身的错误，而不是请求出错。</p>  <p>代码&nbsp;&nbsp; 说明   <br>500&nbsp;&nbsp; （服务器内部错误）&nbsp; 服务器遇到错误，无法完成请求。    <br>501&nbsp;&nbsp; （尚未实施） 服务器不具备完成请求的功能。 例如，服务器无法识别请求方法时可能会返回此代码。    <br>502&nbsp;&nbsp; （错误网关） 服务器作为网关或代理，从上游服务器收到无效响应。    <br>503&nbsp;&nbsp; （服务不可用） 服务器目前无法使用（由于超载或停机维护）。 通常，这只是暂时状态。    <br>504&nbsp;&nbsp; （网关超时）&nbsp; 服务器作为网关或代理，但是没有及时从上游服务器收到请求。    <br>505&nbsp;&nbsp; （HTTP 版本不受支持） 服务器不支持请求中所用的 HTTP 协议版本。</p>  <p>&nbsp;</p>  <p><a href="http://tools.ietf.org/html/rfc6585">RFC 6585</a> 最近刚刚发布，该文档描述了 4 个新的 HTTP 状态码。</p>  <p>HTTP 协议还在变化？是的，HTTP 协议一直在演变，新的状态码对于开发 REST 服务或者说是基于 HTTP 的服务非常有用，下面我们为你详细介绍这四个新的状态码以及是否应该使用。</p>  <h5>428 Precondition Required (要求先决条件)</h5>  <p>先决条件是客户端发送 HTTP 请求时，如果想要请求能成功必须满足一些预设的条件。</p>  <p>一个好的例子就是 If-None-Match 头，经常在 GET 请求中使用，如果指定了 If-None-Match ，那么客户端只在响应中的 ETag 改变后才会重新接收回应。</p>  <p>先决条件的另外一个例子就是 If-Match 头，这个一般用在 PUT 请求上用于指示只更新没被改变的资源，这在多个客户端使用 HTTP 服务时用来防止彼此间不会覆盖相同内容。</p>  <p>当服务器端使用 <a href="http://tools.ietf.org/html/rfc6585#section-3">428 Precondition Required</a> 状态码时，表示客户端必须发送上述的请求头才能执行请求，这个方法为服务器提供一种有效的方法来阻止 'lost update' 问题。</p>  <h5>429 Too Many Requests (太多请求)</h5>  <p>当你需要限制客户端请求某个服务数量时，该状态码就很有用，也就是请求速度限制。</p>  <p>在此之前，有一些类似的状态码，例如 '509 Bandwidth Limit Exceeded'. <a href="https://dev.twitter.com/docs/error-codes-responses">Twitter 使用 420</a> （这不是HTTP定义的状态码）</p>  <p>如果你希望限制客户端对服务的请求数，可使用 429 状态码，同时包含一个 Retry-After 响应头用于告诉客户端多长时间后可以再次请求服务。</p>  <h5>431 Request Header Fields Too Large (请求头字段太大)</h5>  <p>某些情况下，客户端发送 HTTP 请求头会变得很大，那么服务器可发送 <a href="http://tools.ietf.org/html/rfc6585#section-5">431 Request Header Fields Too Large</a> 来指明该问题。</p>  <p>我不太清楚为什么没有 430 状态码，而是直接从 429 跳到 431，我尝试搜索但没有结果。唯一的猜测是 430 Forbidden 跟 403 Forbidden 太像了，为了避免混淆才这么做的，天知道！</p>  <h5>511 Network Authentication Required (要求网络认证)</h5>  <p>对我来说这个状态码很有趣，如果你在开发一个 HTTP 服务器，你不一定需要处理该状态码，但如果你在编写 HTTP 客户端，那这个状态码就非常重要。</p>  <p>如果你频繁使用笔记本和智能手机，你可能会注意到大量的公用 WIFI 服务要求你必须接受一些协议或者必须登录后才能使用。</p>  <p>这是通过拦截HTTP流量，当用户试图访问网络返回一个重定向和登录，这很讨厌，但是实际情况就是这样的。</p>  <p>使用这些“拦截”客户端，会有一些讨厌的副作用。在 RFC 中有提到这两个的例子：</p>  <ul>   <li>如果你在登录WIFI前访问某个网站，网络设备将会拦截首个请求，这些设备往往也有自己的网站图标 ‘favicon.ico'。登录后您会发现，有一段时间内你访问的网站图标一直是WIFI登录网站的图标。 </li>    <li>如果客户端使用HTTP请求来查找文档（可能是JSON），网络将会响应一个登录页，这样你的客户端就会解析错误并导致客户端运行异常，在现实中这种问题非常常见。</li> </ul>  <p>因此 511 状态码的提出就是为了解决这个问题。</p>  <p>如果你正在编写 HTTP 的客户端，你最好还是检查 511 状态码以确认是否需要认证后才能访问。</p>  <p><a href="http://www.rooftopsolutions.nl/blog/new-http-status-codes">英文原文</a></p></div><div id="MySignature" style="display: block;"><p>欢迎大家关注微信号opendotnet，微信公众号名称：dotNET跨平台。扫下面的二维码或者收藏下面的二维码关注吧（长按下面的二维码图片、并选择识别图中的二维码）</p> 
+<p><img src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/o_qrcode_for_cnblog.jpg" alt=""></p>
+<!--
+
+
+<div id="MicrosoftTranslatorWidget" style="width: 360px; min-height: 57px; border-color: #3A5770; background-color: #78ADD0;"><noscript><a href="http://www.microsofttranslator.com/bv.aspx?a=http%3a%2f%2fshanyou.cnblogs.com%2f">翻译此页</a><br />提供商 <a href="http://www.bing.com/translator">Microsoft? Translator</a></noscript></div> 
+--></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/shanyou/category/307401.html" target="_blank">ASP.NET Web API</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(2486134,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;007f310b-63cf-dd11-9e4d-001cf0cd104b&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/shanyou/" target="_blank"><img src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/u510.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/shanyou/">张善友</a><br>
+            <a href="http://home.cnblogs.com/u/shanyou/followees">关注 - 626</a><br>
+            <a href="http://home.cnblogs.com/u/shanyou/followers">粉丝 - 5661</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor">荣誉：<a href="http://www.cnblogs.com/expert/" target="_blank">推荐博客</a></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;007f310b-63cf-dd11-9e4d-001cf0cd104b&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(2486134,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">5</span>
+    </div>
+    <div class="buryit" onclick="votePost(2486134,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/shanyou/archive/2012/05/01/2478245.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/shanyou/archive/2012/05/01/2478245.html" title="发布于2012-05-01 22:10">Hammock for REST</a><br><a href="http://www.cnblogs.com/shanyou/archive/2012/05/11/2495326.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/shanyou/archive/2012/05/11/2495326.html" title="发布于2012-05-11 07:37">一个基于asp.net2.0空间的webproxy程序：ASProxy</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2012-05-06 17:21</span> <a href="http://www.cnblogs.com/shanyou/">张善友</a> 阅读(<span id="post_view_count">39867</span>) 评论(<span id="post_comment_count">3</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=2486134" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html#" onclick="AddToWz(2486134);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=782,cb_entryId=2486134,cb_blogApp=currentBlogApp,cb_blogUserGuid='007f310b-63cf-dd11-9e4d-001cf0cd104b',cb_entryCreatedDate='2012/5/6 17:21:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html#2992974" class="layer">#1楼</a><a name="2992974" id="comment_anchor_2992974"></a>  <span class="comment_date">2014-07-23 12:21</span> <a id="a_comment_author_2992974" href="http://www.cnblogs.com/Joans/" target="_blank">Joans</a> <a href="http://msg.cnblogs.com/send/Joans" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_2992974" class="blog_comment_body">转一个，收藏</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(2992974,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(2992974,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_2992974_avatar" style="display:none;">http://pic.cnblogs.com/face/u136834.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html#3296808" class="layer">#2楼</a><a name="3296808" id="comment_anchor_3296808"></a>  <span class="comment_date">2015-11-02 10:56</span> <a id="a_comment_author_3296808" href="http://www.cnblogs.com/purplecows/" target="_blank">囧月言炎</a> <a href="http://msg.cnblogs.com/send/%E5%9B%A7%E6%9C%88%E8%A8%80%E7%82%8E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3296808" class="blog_comment_body">mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3296808,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3296808,&#39;Bury&#39;,this)">反对(0)</a></div><span id="comment_3296808_avatar" style="display:none;">http://pic.cnblogs.com/face/509118/20130804143859.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html#3454147" class="layer">#3楼</a><a name="3454147" id="comment_anchor_3454147"></a><span id="comment-maxId" style="display:none;">3454147</span><span id="comment-maxDate" style="display:none;">2016/6/17 15:28:32</span>  <span class="comment_date">2016-06-17 15:28</span> <a id="a_comment_author_3454147" href="http://home.cnblogs.com/u/264452/" target="_blank">猫儿苏</a> <a href="http://msg.cnblogs.com/send/%E7%8C%AB%E5%84%BF%E8%8B%8F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3454147" class="blog_comment_body">收藏</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3454147,&#39;Digg&#39;,this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3454147,&#39;Bury&#39;,this)">反对(0)</a></div>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank">【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="http://vcloud.163.com/?adchannel=bp_cnblogs2" target="_blank">【推荐】用1%的研发投入，搭载3倍性能的网易视频云技术</a><br><a href="http://rongcloud.cn/reports/journal2" target="_blank">【推荐】融云发布 App 社交化白皮书 IM 提升活跃超 8 倍</a><br><a href="http://group.cnblogs.com/topic/75805.html" target="_blank">【红包】阿里云双11红包：答题抽奖，100%中，赢10元~1111元红包</a><br></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"><a href="http://wijmo.gcpowertools.com.cn/microsoft-dynamics-adds-mobile-controls-powered-by-wijmo-5/?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=wijmo&amp;utm_campaign=community" target="_blank"><img width="300" height="250" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/24442-20161031104659986-254946751.jpg" alt=""></a></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/556905/" target="_blank">顺丰双十一出奇招：包下高铁送快递</a><br> ·  <a href="http://news.cnblogs.com/n/556904/" target="_blank">Chrome用户想哭：因重大缺陷成黑客取款机</a><br> ·  <a href="http://news.cnblogs.com/n/556903/" target="_blank">支付宝：双11用花呗完成第1亿笔付款 全年免单！</a><br> ·  <a href="http://news.cnblogs.com/n/556902/" target="_blank">腾讯18岁了！马化腾首次直播：发9888元超大红包</a><br> ·  <a href="http://news.cnblogs.com/n/556901/" target="_blank">微软Macbook抵价换Surface产品活动延长至11月23日</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"><a href="https://www.jiguang.cn/devservice/?from=cnblogs01" target="_blank"><img width="468" height="60" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/24442-20161011141820868-1378717477.jpg" alt=""></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br> ·  <a href="http://kb.cnblogs.com/page/553682/" target="_blank">陈皓：什么是工程师文化？</a><br> ·  <a href="http://kb.cnblogs.com/page/551422/" target="_blank">没那么难，谈CSS的设计模式</a><br> ·  <a href="http://kb.cnblogs.com/page/550625/" target="_blank">程序猿媳妇儿注意事项</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><p>欢迎大家扫下面的二维码关注微信号opendotnet，微信公众号名称：dotNET跨平台</p>
+<p><img src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/o_qrcode_for_cnblog.jpg" width="170"></p>
+<p>
+</p><hr>
+<p></p>
+<p>欢迎来这里讨论，共同进步，不断学习才能不断进步。<br>姓名: 张善友<br>职业: 软件工程师<br>毕业于: <a href="http://www.lzu.edu.cn/" target="_blank">兰州大学2001</a><br>目前居住于: 中国深圳<br>目前就职于：腾讯科技<br>关注前沿技术，热爱开源<br>2006年度微软最有价值专家<br>2007年度微软最有价值专家<br>2008年度微软最有价值专家<br>2009年度微软最有价值专家<br>2010年度微软最有价值专家<br>2011年度微软最有价值专家<br>2012年度微软最有价值专家<br>2013年度微软最有价值专家<br>2014年度微软最有价值专家<br>2015年度微软最有价值专家<br>2016年度微软最有价值专家<br><a href="https://mvp.microsoft.com/zh-cn/mvp/Shanyou%20Zhang-33797" target="_blank">张善友简介</a> 
+<br>
+<a style="line-height: 1.5;" href="http://blog.51cto.com/contest2012/363653" target="_blank"><img alt="" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/jcbk50.gif"></a>
+<a style="line-height: 1.5;" href="http://blog.51cto.com/contest2013/363653" target="_blank"><img alt="" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/top10.png"></a> 
+<br><img alt="" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/r_mvpLogo.jpg" width="170"> 
+
+<br>
+<a href="http://www.webweb.com/index.asp?upline=geffzhang"><img src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/aff_banner2.gif" border="0"></a></p><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/shanyou/">张善友</a><br>园龄：<a href="http://home.cnblogs.com/u/shanyou/" title="入园时间：2004-03-24">12年7个月</a><br>荣誉：<a href="http://www.cnblogs.com/expert/">推荐博客</a><br>粉丝：<a href="http://home.cnblogs.com/u/shanyou/followers/">5661</a><br>关注：<a href="http://home.cnblogs.com/u/shanyou/followees/">626</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;007f310b-63cf-dd11-9e4d-001cf0cd104b&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类<span style="font-size:11px;font-weight:normal">(2435)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/shanyou/category/40892.html">.net framework(200)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/shanyou/category/264189.html">Andriod(21)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/shanyou/category/76249.html">AOP(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/shanyou/category/58014.html">ASP.NET(85)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/shanyou/category/799822.html">ASP.NET Core(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/shanyou/category/112942.html">ASP.NET MVC (88)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/shanyou/category/307401.html">ASP.NET Web API(62)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/shanyou/category/232884.html">Autofac(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/shanyou/category/383501.html">BigData(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/shanyou/category/66178.html">BPM&amp;WF(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/shanyou/category/72908.html">CardSpace(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/shanyou/category/38430.html">Castle&amp;IBatisNet(32)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/shanyou/category/54185.html">Database(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/shanyou/category/544770.html">Disruptor-NET(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/shanyou/category/829129.html">dotNETCore(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/shanyou/category/77165.html">English Everyday(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/shanyou/category/137508.html">Enterprise Library (13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/shanyou/category/120796.html">Entity Framework(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/shanyou/category/234051.html">Erlang(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/shanyou/category/92825.html">Expression Studio(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/shanyou/category/660538.html">GoLang(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/shanyou/category/421831.html">Html5(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/shanyou/category/628908.html">IOT(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/shanyou/category/92762.html">IronPython(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/shanyou/category/92761.html">IronRuby(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/shanyou/category/34493.html">IT生活(109)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/shanyou/category/223269.html">jQuery(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/shanyou/category/183250.html">K2 blackpearl(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/shanyou/category/120545.html">LINQ(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/shanyou/category/43483.html">Linux/Mono(235)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/shanyou/category/99656.html">LJMM(65)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/shanyou/category/281783.html">Mac开发(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/shanyou/category/181850.html">Microsoft Azure(28)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/shanyou/category/569691.html">Nancy(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/shanyou/category/234906.html">No SQL(47)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/shanyou/category/401285.html">NodeJS(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/shanyou/category/31793.html">ORM(27)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/shanyou/category/76303.html">PHP(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_38" href="http://www.cnblogs.com/shanyou/category/499491.html">PostgreSQL(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_39" href="http://www.cnblogs.com/shanyou/category/196511.html">Powershell (7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_40" href="http://www.cnblogs.com/shanyou/category/102991.html">Quartz.net(25)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_41" href="http://www.cnblogs.com/shanyou/category/504749.html">Reactive Extensions(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_42" href="http://www.cnblogs.com/shanyou/category/62502.html">Sharepoint(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_43" href="http://www.cnblogs.com/shanyou/category/372091.html">SignalR(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_44" href="http://www.cnblogs.com/shanyou/category/90828.html">SilverLight (72)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_45" href="http://www.cnblogs.com/shanyou/category/132323.html">SOA(11)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_46" href="http://www.cnblogs.com/shanyou/category/159023.html">SQL Server (57)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_47" href="http://www.cnblogs.com/shanyou/category/112948.html">Sync Framework(7)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_48" href="http://www.cnblogs.com/shanyou/category/126800.html">Unity (12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_49" href="http://www.cnblogs.com/shanyou/category/111625.html">Visual Studio 2008(22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_50" href="http://www.cnblogs.com/shanyou/category/192282.html">Visual Studio 2010(46)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_51" href="http://www.cnblogs.com/shanyou/category/405841.html">Visual Studio 2012(15)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_52" href="http://www.cnblogs.com/shanyou/category/525915.html">Visual Studio 2013(9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_53" href="http://www.cnblogs.com/shanyou/category/658426.html">Visual Studio 2015(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_54" href="http://www.cnblogs.com/shanyou/category/745238.html">Visual Studio Code(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_55" href="http://www.cnblogs.com/shanyou/category/72906.html">WCF(73)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_56" href="http://www.cnblogs.com/shanyou/category/240225.html">WCF Data Service(16)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_57" href="http://www.cnblogs.com/shanyou/category/187291.html">Windows 7(20)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_58" href="http://www.cnblogs.com/shanyou/category/323246.html">Windows 8(18)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_59" href="http://www.cnblogs.com/shanyou/category/254773.html">Windows AppFabric (9)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_60" href="http://www.cnblogs.com/shanyou/category/237850.html">Windows Phone 7 (22)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_61" href="http://www.cnblogs.com/shanyou/category/438698.html">Windows Phone 8 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_62" href="http://www.cnblogs.com/shanyou/category/142790.html">Windows Server 2008 R2(39)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_63" href="http://www.cnblogs.com/shanyou/category/387029.html">Windows Server 2012(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_64" href="http://www.cnblogs.com/shanyou/category/725986.html">Windows Server 2016(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_65" href="http://www.cnblogs.com/shanyou/category/369052.html">WinRT(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_66" href="http://www.cnblogs.com/shanyou/category/167184.html">WiX(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_67" href="http://www.cnblogs.com/shanyou/category/72905.html">WPF(17)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_68" href="http://www.cnblogs.com/shanyou/category/465445.html">Xamarin (13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_69" href="http://www.cnblogs.com/shanyou/category/262009.html">复合事件处理(CEP)(14)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_70" href="http://www.cnblogs.com/shanyou/category/77247.html">工具箱(124)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_71" href="http://www.cnblogs.com/shanyou/category/76424.html">互联网 (36)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_72" href="http://www.cnblogs.com/shanyou/category/56530.html">脚本语言(29)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_73" href="http://www.cnblogs.com/shanyou/category/32025.html">开源项目(279)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_74" href="http://www.cnblogs.com/shanyou/category/99637.html">敏捷开发(12)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_75" href="http://www.cnblogs.com/shanyou/category/84569.html">企业解决方案(62)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_76" href="http://www.cnblogs.com/shanyou/category/431765.html">算法(Algorithm)(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_77" href="http://www.cnblogs.com/shanyou/category/295740.html">腾讯开放社区(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_78" href="http://www.cnblogs.com/shanyou/category/33184.html">网络安全(19)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_79" href="http://www.cnblogs.com/shanyou/category/76300.html">应用服务器(47)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案<span style="font-size:11px;font-weight:normal">(1597)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/shanyou/archive/2016/11.html">2016年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/shanyou/archive/2016/10.html">2016年10月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/shanyou/archive/2016/09.html">2016年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/shanyou/archive/2016/08.html">2016年8月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/shanyou/archive/2016/07.html">2016年7月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/shanyou/archive/2016/06.html">2016年6月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/shanyou/archive/2016/05.html">2016年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/shanyou/archive/2016/04.html">2016年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_8" href="http://www.cnblogs.com/shanyou/archive/2016/03.html">2016年3月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_9" href="http://www.cnblogs.com/shanyou/archive/2016/02.html">2016年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_10" href="http://www.cnblogs.com/shanyou/archive/2016/01.html">2016年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_11" href="http://www.cnblogs.com/shanyou/archive/2015/12.html">2015年12月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_12" href="http://www.cnblogs.com/shanyou/archive/2015/11.html">2015年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_13" href="http://www.cnblogs.com/shanyou/archive/2015/10.html">2015年10月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_14" href="http://www.cnblogs.com/shanyou/archive/2015/09.html">2015年9月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_15" href="http://www.cnblogs.com/shanyou/archive/2015/08.html">2015年8月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_16" href="http://www.cnblogs.com/shanyou/archive/2015/07.html">2015年7月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_17" href="http://www.cnblogs.com/shanyou/archive/2015/06.html">2015年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_18" href="http://www.cnblogs.com/shanyou/archive/2015/05.html">2015年5月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_19" href="http://www.cnblogs.com/shanyou/archive/2015/03.html">2015年3月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_20" href="http://www.cnblogs.com/shanyou/archive/2015/02.html">2015年2月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_21" href="http://www.cnblogs.com/shanyou/archive/2015/01.html">2015年1月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_22" href="http://www.cnblogs.com/shanyou/archive/2014/12.html">2014年12月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_23" href="http://www.cnblogs.com/shanyou/archive/2014/11.html">2014年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_24" href="http://www.cnblogs.com/shanyou/archive/2014/10.html">2014年10月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_25" href="http://www.cnblogs.com/shanyou/archive/2014/09.html">2014年9月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_26" href="http://www.cnblogs.com/shanyou/archive/2014/08.html">2014年8月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_27" href="http://www.cnblogs.com/shanyou/archive/2014/07.html">2014年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_28" href="http://www.cnblogs.com/shanyou/archive/2014/06.html">2014年6月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_29" href="http://www.cnblogs.com/shanyou/archive/2014/05.html">2014年5月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_30" href="http://www.cnblogs.com/shanyou/archive/2014/04.html">2014年4月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_31" href="http://www.cnblogs.com/shanyou/archive/2014/03.html">2014年3月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_32" href="http://www.cnblogs.com/shanyou/archive/2014/02.html">2014年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_33" href="http://www.cnblogs.com/shanyou/archive/2014/01.html">2014年1月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_34" href="http://www.cnblogs.com/shanyou/archive/2013/12.html">2013年12月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_35" href="http://www.cnblogs.com/shanyou/archive/2013/11.html">2013年11月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_36" href="http://www.cnblogs.com/shanyou/archive/2013/10.html">2013年10月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_37" href="http://www.cnblogs.com/shanyou/archive/2013/09.html">2013年9月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_38" href="http://www.cnblogs.com/shanyou/archive/2013/08.html">2013年8月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_39" href="http://www.cnblogs.com/shanyou/archive/2013/07.html">2013年7月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_40" href="http://www.cnblogs.com/shanyou/archive/2013/06.html">2013年6月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_41" href="http://www.cnblogs.com/shanyou/archive/2013/05.html">2013年5月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_42" href="http://www.cnblogs.com/shanyou/archive/2013/04.html">2013年4月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_43" href="http://www.cnblogs.com/shanyou/archive/2013/03.html">2013年3月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_44" href="http://www.cnblogs.com/shanyou/archive/2013/02.html">2013年2月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_45" href="http://www.cnblogs.com/shanyou/archive/2013/01.html">2013年1月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_46" href="http://www.cnblogs.com/shanyou/archive/2012/12.html">2012年12月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_47" href="http://www.cnblogs.com/shanyou/archive/2012/11.html">2012年11月 (25)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_48" href="http://www.cnblogs.com/shanyou/archive/2012/10.html">2012年10月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_49" href="http://www.cnblogs.com/shanyou/archive/2012/09.html">2012年9月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_50" href="http://www.cnblogs.com/shanyou/archive/2012/08.html">2012年8月 (30)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_51" href="http://www.cnblogs.com/shanyou/archive/2012/07.html">2012年7月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_52" href="http://www.cnblogs.com/shanyou/archive/2012/06.html">2012年6月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_53" href="http://www.cnblogs.com/shanyou/archive/2012/05.html">2012年5月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_54" href="http://www.cnblogs.com/shanyou/archive/2012/04.html">2012年4月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_55" href="http://www.cnblogs.com/shanyou/archive/2012/03.html">2012年3月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_56" href="http://www.cnblogs.com/shanyou/archive/2012/02.html">2012年2月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_57" href="http://www.cnblogs.com/shanyou/archive/2012/01.html">2012年1月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_58" href="http://www.cnblogs.com/shanyou/archive/2011/12.html">2011年12月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_59" href="http://www.cnblogs.com/shanyou/archive/2011/11.html">2011年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_60" href="http://www.cnblogs.com/shanyou/archive/2011/10.html">2011年10月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_61" href="http://www.cnblogs.com/shanyou/archive/2011/09.html">2011年9月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_62" href="http://www.cnblogs.com/shanyou/archive/2011/08.html">2011年8月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_63" href="http://www.cnblogs.com/shanyou/archive/2011/07.html">2011年7月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_64" href="http://www.cnblogs.com/shanyou/archive/2011/06.html">2011年6月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_65" href="http://www.cnblogs.com/shanyou/archive/2011/05.html">2011年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_66" href="http://www.cnblogs.com/shanyou/archive/2011/04.html">2011年4月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_67" href="http://www.cnblogs.com/shanyou/archive/2011/03.html">2011年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_68" href="http://www.cnblogs.com/shanyou/archive/2011/02.html">2011年2月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_69" href="http://www.cnblogs.com/shanyou/archive/2011/01.html">2011年1月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_70" href="http://www.cnblogs.com/shanyou/archive/2010/12.html">2010年12月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_71" href="http://www.cnblogs.com/shanyou/archive/2010/11.html">2010年11月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_72" href="http://www.cnblogs.com/shanyou/archive/2010/10.html">2010年10月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_73" href="http://www.cnblogs.com/shanyou/archive/2010/09.html">2010年9月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_74" href="http://www.cnblogs.com/shanyou/archive/2010/08.html">2010年8月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_75" href="http://www.cnblogs.com/shanyou/archive/2010/07.html">2010年7月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_76" href="http://www.cnblogs.com/shanyou/archive/2010/06.html">2010年6月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_77" href="http://www.cnblogs.com/shanyou/archive/2010/05.html">2010年5月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_78" href="http://www.cnblogs.com/shanyou/archive/2010/04.html">2010年4月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_79" href="http://www.cnblogs.com/shanyou/archive/2010/03.html">2010年3月 (34)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_80" href="http://www.cnblogs.com/shanyou/archive/2010/02.html">2010年2月 (17)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_81" href="http://www.cnblogs.com/shanyou/archive/2010/01.html">2010年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_82" href="http://www.cnblogs.com/shanyou/archive/2009/12.html">2009年12月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_83" href="http://www.cnblogs.com/shanyou/archive/2009/11.html">2009年11月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_84" href="http://www.cnblogs.com/shanyou/archive/2009/10.html">2009年10月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_85" href="http://www.cnblogs.com/shanyou/archive/2009/09.html">2009年9月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_86" href="http://www.cnblogs.com/shanyou/archive/2009/08.html">2009年8月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_87" href="http://www.cnblogs.com/shanyou/archive/2009/07.html">2009年7月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_88" href="http://www.cnblogs.com/shanyou/archive/2009/06.html">2009年6月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_89" href="http://www.cnblogs.com/shanyou/archive/2009/05.html">2009年5月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_90" href="http://www.cnblogs.com/shanyou/archive/2009/04.html">2009年4月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_91" href="http://www.cnblogs.com/shanyou/archive/2009/03.html">2009年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_92" href="http://www.cnblogs.com/shanyou/archive/2009/02.html">2009年2月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_93" href="http://www.cnblogs.com/shanyou/archive/2009/01.html">2009年1月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_94" href="http://www.cnblogs.com/shanyou/archive/2008/12.html">2008年12月 (29)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_95" href="http://www.cnblogs.com/shanyou/archive/2008/11.html">2008年11月 (20)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_96" href="http://www.cnblogs.com/shanyou/archive/2008/10.html">2008年10月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_97" href="http://www.cnblogs.com/shanyou/archive/2008/09.html">2008年9月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_98" href="http://www.cnblogs.com/shanyou/archive/2008/08.html">2008年8月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_99" href="http://www.cnblogs.com/shanyou/archive/2008/07.html">2008年7月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_100" href="http://www.cnblogs.com/shanyou/archive/2008/06.html">2008年6月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_101" href="http://www.cnblogs.com/shanyou/archive/2008/05.html">2008年5月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_102" href="http://www.cnblogs.com/shanyou/archive/2008/04.html">2008年4月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_103" href="http://www.cnblogs.com/shanyou/archive/2008/03.html">2008年3月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_104" href="http://www.cnblogs.com/shanyou/archive/2008/02.html">2008年2月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_105" href="http://www.cnblogs.com/shanyou/archive/2008/01.html">2008年1月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_106" href="http://www.cnblogs.com/shanyou/archive/2007/12.html">2007年12月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_107" href="http://www.cnblogs.com/shanyou/archive/2007/11.html">2007年11月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_108" href="http://www.cnblogs.com/shanyou/archive/2007/10.html">2007年10月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_109" href="http://www.cnblogs.com/shanyou/archive/2007/09.html">2007年9月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_110" href="http://www.cnblogs.com/shanyou/archive/2007/08.html">2007年8月 (21)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_111" href="http://www.cnblogs.com/shanyou/archive/2007/07.html">2007年7月 (14)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_112" href="http://www.cnblogs.com/shanyou/archive/2007/06.html">2007年6月 (22)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_113" href="http://www.cnblogs.com/shanyou/archive/2007/05.html">2007年5月 (31)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_114" href="http://www.cnblogs.com/shanyou/archive/2007/04.html">2007年4月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_115" href="http://www.cnblogs.com/shanyou/archive/2007/03.html">2007年3月 (13)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_116" href="http://www.cnblogs.com/shanyou/archive/2007/02.html">2007年2月 (24)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_117" href="http://www.cnblogs.com/shanyou/archive/2007/01.html">2007年1月 (16)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_118" href="http://www.cnblogs.com/shanyou/archive/2006/12.html">2006年12月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_119" href="http://www.cnblogs.com/shanyou/archive/2006/11.html">2006年11月 (19)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_120" href="http://www.cnblogs.com/shanyou/archive/2006/10.html">2006年10月 (27)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_121" href="http://www.cnblogs.com/shanyou/archive/2006/09.html">2006年9月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_122" href="http://www.cnblogs.com/shanyou/archive/2006/08.html">2006年8月 (15)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_123" href="http://www.cnblogs.com/shanyou/archive/2006/07.html">2006年7月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_124" href="http://www.cnblogs.com/shanyou/archive/2006/06.html">2006年6月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_125" href="http://www.cnblogs.com/shanyou/archive/2006/05.html">2006年5月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_126" href="http://www.cnblogs.com/shanyou/archive/2006/04.html">2006年4月 (12)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_127" href="http://www.cnblogs.com/shanyou/archive/2006/03.html">2006年3月 (10)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_128" href="http://www.cnblogs.com/shanyou/archive/2006/02.html">2006年2月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_129" href="http://www.cnblogs.com/shanyou/archive/2006/01.html">2006年1月 (9)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_130" href="http://www.cnblogs.com/shanyou/archive/2005/12.html">2005年12月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_131" href="http://www.cnblogs.com/shanyou/archive/2005/11.html">2005年11月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_132" href="http://www.cnblogs.com/shanyou/archive/2005/10.html">2005年10月 (18)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_133" href="http://www.cnblogs.com/shanyou/archive/2005/09.html">2005年9月 (11)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_134" href="http://www.cnblogs.com/shanyou/archive/2005/08.html">2005年8月 (11)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_newscategory" class="catListNewsCategory sidebar-block">
+<h3 class="catListTitle">新闻分类<span style="font-size:11px;font-weight:normal">(173)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="http://www.cnblogs.com/shanyou/category/151250.html">Windows 7(4)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.cnblogs.com/shanyou/category/133609.html">互联网(9)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="http://www.cnblogs.com/shanyou/category/89849.html">开源新闻(73)</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://www.cnblogs.com/shanyou/category/89850.html">微软相关新闻(87)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links31537" class="catList sidebar-block">
+<h3 class="catListTitle">Link</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_3_Link_0" href="http://www.ayende.com/Blog/" rel="nofollow" target="_blank">Ayende @ Blog </a> </li>
+
+<li><a id="CatList_LinkList_3_Link_1" href="http://www.bitethebullet.co.uk/" rel="nofollow" target="_blank">bitethebullet.co.uk</a> </li>
+<li class="c_b_p_link_desc">spider</li>
+<li><a id="CatList_LinkList_3_Link_2" href="http://www.example-code.com/csharp/" rel="nofollow" target="_blank">C# Examples </a> </li>
+
+<li><a id="CatList_LinkList_3_Link_3" href="http://www.castleproject.org/" rel="nofollow">castle项目网站</a> </li>
+<li class="c_b_p_link_desc">Castle aspires to simplify the development of enterprise and web applications</li>
+<li><a id="CatList_LinkList_3_Link_4" href="http://www.conceptdevelopment.net/" rel="nofollow" target="_blank">Concept Development</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_5" href="http://www.opengarden.org/" rel="nofollow" target="_blank">DekiWiki &amp; Dream</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_6" href="http://blogs.msdn.com/dmitryr/default.aspx" rel="nofollow" target="_blank">dmitryr's blog</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_7" href="http://www.dotnetboom.net/" rel="nofollow" target="_blank">DotNetBoom community </a> </li>
+
+<li><a id="CatList_LinkList_3_Link_8" href="http://www.dotneti18n.com/" rel="nofollow" target="_blank">dotnet国际化</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_9" href="http://blogs.iis.net/" rel="nofollow" target="_blank">IIS 7.0 项目组Blog</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_10" href="http://www.linux-watch.com/" rel="nofollow" target="_blank">keeping an eye on the penguin</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_11" href="http://www.lupaworld.com/" rel="nofollow" target="_blank">LUPA,开源社区</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_12" href="http://www.mscui.net/Blog/Default.aspx" rel="nofollow" target="_blank">Microsoft Health CUI Team</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_13" href="http://www.mono-project.com/" rel="nofollow" target="_blank">Mono Project</a> </li>
+<li class="c_b_p_link_desc">Mono项目将提供能够自由进行应用程序开发或提供Web服务的工具，从而Linux用户也能够享受到.NET平台的巨大好处</li>
+<li><a id="CatList_LinkList_3_Link_14" href="http://go-mono.com/monologue/" rel="nofollow" target="_blank">Mono 博客</a> </li>
+<li class="c_b_p_link_desc">版本控制工具</li>
+<li><a id="CatList_LinkList_3_Link_15" href="http://www.monodevelop.com/" rel="nofollow" target="_blank">monodevelop网站</a> </li>
+<li class="c_b_p_link_desc">Linux平台的dotnet IDE工具</li>
+<li><a id="CatList_LinkList_3_Link_16" href="http://social.microsoft.com/Forums/zh-CN/categories/" rel="nofollow" target="_blank">Msdn forums</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_17" href="http://msdn.microsoft.com/zh-cn/magazine/default.aspx" rel="nofollow" target="_blank">MSDN 杂志</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_18" href="http://nhforge.org/" rel="nofollow">NHibernate for .NET</a> </li>
+<li class="c_b_p_link_desc">ORM工具</li>
+<li><a id="CatList_LinkList_3_Link_19" href="http://cn.opensuse.org/" rel="nofollow" target="_blank">OpenSUSE计划的中文网站</a> </li>
+<li class="c_b_p_link_desc">面向中国的全球Linux产品唯一完全本地化的计划</li>
+<li><a id="CatList_LinkList_3_Link_20" href="http://community.sharpdevelop.net/" rel="nofollow" target="_blank">SharpDevelop Community</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_21" href="http://www.mybatis.org/" rel="nofollow" target="_blank">SQL Map工具ibatis</a> </li>
+<li class="c_b_p_link_desc">数据访问组件IBatis</li>
+<li><a id="CatList_LinkList_3_Link_22" href="http://www.sqldbatips.com/" rel="nofollow" target="_blank">sqldbatips</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_23" href="http://blogs.msdn.com/webdevtools/" rel="nofollow" target="_blank">Web Development Tools </a> </li>
+<li class="c_b_p_link_desc">  This is the team that builds all the great Web related tooling for Visual Studio and the Visual Web Developer Express product. </li>
+<li><a id="CatList_LinkList_3_Link_24" href="http://msdn2.microsoft.com/zh-cn/arcjournal/default.aspx" rel="nofollow" target="_blank">架构师杂志</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_25" href="http://goxia.maytide.net/index.php" rel="nofollow" target="_blank">苏繁 Blog</a> </li>
+<li class="c_b_p_link_desc">gOxiA=苏繁=SuFan's Blog</li>
+<li><a id="CatList_LinkList_3_Link_26" href="http://www.codeplex.com/" rel="nofollow" target="_blank">微软支持的开源网站</a> </li>
+
+<li><a id="CatList_LinkList_3_Link_27" href="http://www.engkoo.com/" rel="nofollow" target="_blank">英库(Engkoo)</a> </li>
+<li class="c_b_p_link_desc">英库在线英语工具（www.engkoo.com）本质上是一个帮助中国人学习英语的垂直搜索引擎</li>
+</ul>
+
+</div>
+
+<div id="sidebar_links62864" class="catList sidebar-block">
+<h3 class="catListTitle">SharePoint Bloggers</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_4_Link_0" href="http://blog.spsclerics.com/" rel="nofollow" target="_blank">Stramit's SharePoint Blog</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_1" href="http://ms.mblogger.cn/tedteng/" rel="nofollow" target="_blank">Ted's SharePoint</a> </li>
+
+<li><a id="CatList_LinkList_4_Link_2" href="http://www.msiw.net/default.aspx" rel="nofollow" target="_blank">微软信息工作者网络 </a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links57191" class="catList sidebar-block">
+<h3 class="catListTitle">个人链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_5_Link_0" href="http://shanyou.blog.51cto.com/" rel="nofollow" target="_blank">51cto blog</a> </li>
+
+<li><a id="CatList_LinkList_5_Link_1" href="http://blog.csdn.net/shanyou" rel="nofollow" target="_blank">Csdn blog</a> </li>
+<li class="c_b_p_link_desc">我最早的blog </li>
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	3474862
+	</li>
+	<li class="liRank">
+		排名 -	7
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/5915056.html#3553687">1. Re:C# 在腾讯的发展</a></li>
+        <li class="recent_comment_body">文章,评论都看完了<a href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html" target="_blank">.</a></li>
+        <li class="recent_comment_author">--yuqicook</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553683">2. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">如果开始做程序员的时候选择的是Linux、C/C++、Java、Python，就没那么多破事了。</li>
+        <li class="recent_comment_author">--flyingelephant</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553679">3. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">支持并持续关注<a href="http://www.cnblogs.com/shanyou/archive/2012/05/06/2486134.html" target="_blank">.</a></li>
+        <li class="recent_comment_author">--yuqicook</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553657">4. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">支持并持续关注</li>
+        <li class="recent_comment_author">--Fonour</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553648">5. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">虽然环境恶劣，还是要坚持</li>
+        <li class="recent_comment_author">--大树老周</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553642">6. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">好文支持</li>
+        <li class="recent_comment_author">--魏琼东</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553640">7. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">新手学习中</li>
+        <li class="recent_comment_author">--Roman-li</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553625">8. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">赞！</li>
+        <li class="recent_comment_author">--月涯</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553561">9. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">有大神带，一定会好好的学习的，希望多来点实例干货</li>
+        <li class="recent_comment_author">--坚持的孤独</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/shanyou/p/6049630.html#3553548">10. Re:.net core快速上手</a></li>
+        <li class="recent_comment_body">路过，学习！</li>
+        <li class="recent_comment_author">--郑明</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/shanyou/archive/2012/01/28/2330451.html">1. Redis 起步(180257)</a></li><li><a href="http://www.cnblogs.com/shanyou/p/3221990.html">2. Windows安装和使用zookeeper(71847)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2011/02/09/1950404.html">3. Windows远程桌面连接Mac OS X(69539)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/02/05/2338797.html">4. QQ互联OAuth2.0 .NET SDK 发布以及网站QQ登陆示例代码(68483)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/05/12/2496959.html">5. REST 入门介绍(63724)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2011/07/11/2103422.html">6. jQuery操作Select(63015)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2009/08/30/1556659.html">7. 采用CAS原理构建单点登录(61809)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/09/04/2670972.html">8. Redis应用场景(60016)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2011/05/20/2052354.html">9. MongoDB 客户端 MongoVue(51328)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/07/01/2572273.html">10. iis7 发布mvc 遇到的HTTP错误 403.14-Forbidden Web 服务器被配置为不列出此目录的内容(46358)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/shanyou/p/5915056.html">1. C# 在腾讯的发展(182)</a></li><li><a href="http://www.cnblogs.com/shanyou/p/4510396.html">2. 10年微软MVP路（如何成为一个MVP？）(83)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/07/28/2612919.html">3. 国内 Mono 相关文章汇总(81)</a></li><li><a href="http://www.cnblogs.com/shanyou/p/5500188.html">4. 微软.NET Core RC2正式发布，横跨所有平台(77)</a></li><li><a href="http://www.cnblogs.com/shanyou/p/Jexus_Kestrel.html">5. 结合Jexus + Kestrel 部署 asp.net core 生产环境(72)</a></li><li><a href="http://www.cnblogs.com/shanyou/p/4093983.html">6. 微软开放.NET框架源代码和Mono(49)</a></li><li><a href="http://www.cnblogs.com/shanyou/p/3870984.html">7. 混搭.NET技术(43)</a></li><li><a href="http://www.cnblogs.com/shanyou/p/5145018.html">8. ASP.NET 5 改名 ASP.NET Core 1.0(39)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2012/01/28/2330451.html">9. Redis 起步(34)</a></li><li><a href="http://www.cnblogs.com/shanyou/archive/2013/05/18/3084963.html">10. 对C# 程序员来说现在是到目前为止最好的时代(33)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 张善友
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+<!--PageEndHtml Block Begin-->
+<script charset="gbk" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/ex"></script><script charset="utf-8" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/tanxssp.js.下载"></script><a style="display:none;" id="tanx-a-mm_10008835_128899_13114429"></a>
+
+<script src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/urchin.js.下载" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-887470-1";
+urchinTracker();
+</script>
+
+<script type="text/javascript" src="./HTTP协议状态码详解（HTTP Status Code） - 张善友 - 博客园_files/stats" charset="UTF-8"></script>
+<!--PageEndHtml Block End-->
+
+
+</body></html>

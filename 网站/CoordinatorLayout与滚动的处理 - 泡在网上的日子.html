@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script type="text/javascript" async="" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/tcwm"></script><script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/shares.php" charset="utf-8"></script><script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/id.php" charset="utf-8"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoordinatorLayout与滚动的处理 - 泡在网上的日子</title>
+<meta name="keywords" content="CoordinatorLayout">
+<meta name="description" content="这篇文章专门讲解和CoordinatorLayout相关的知识点，这也是Design Support Library中最重要与最难的部分。 概览 CoordinatorLayout 实现了多种Material Design中提">
+<link href="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/new.css" rel="stylesheet" type="text/css">
+<script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/ca-pub-8583773779396897.js.下载"></script><script language="javascript" type="text/javascript" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/jquery-1.7.1.min.js.下载"></script>
+<link href="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/github-v2.min.css" rel="stylesheet">
+<script language="javascript" type="text/javascript" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myajax.js.下载"></script>
+<script language="javascript" type="text/javascript">
+	function CheckLogin(){
+	    var taget_obj = document.getElementById('login_info');
+	    myajax = new MyAjax(taget_obj,false,false,'','','');
+	    myajax.SendGet2("/member/ajax_loginsta.php");
+	    DedeXHTTP = null;
+	}
+	function checkSubmit(){
+		if(document.feedback.msg.value!='') document.feedback.submit();
+		else alert("评论内容不能为空！");
+	}		
+
+	function postBadGood(ftype,fid)
+	{
+		var taget_obj = document.getElementById(ftype+fid);
+		var saveid = GetCookie('badgoodid');
+		if(saveid != null)
+		{
+			var saveids = saveid.split(',');
+			var hasid = false;
+			saveid = '';
+			j = 1;
+			for(i=saveids.length-1;i>=0;i--)
+			{
+				if(saveids[i]==fid && hasid) continue;
+				else {
+					if(saveids[i]==fid && !hasid) hasid = true;
+					saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+					j++;
+					if(j==10 && hasid) break;
+					if(j==9 && !hasid) break;
+				}
+			}
+			if(hasid) { alert('您刚才已表决过了喔！'); return false;}
+			else saveid += ','+fid;
+			SetCookie('badgoodid',saveid,1);
+		}
+		else
+		{
+			SetCookie('badgoodid',fid,1);
+		}
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/feedback.php?aid="+fid+"&action="+ftype+"&fid="+fid);
+	}
+	function postStow(aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+ 
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/stow.php?aid="+aid);
+	}
+	function postDigg(ftype,aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+		var saveid = GetCookie('diggid');
+		if(saveid != null)
+		{
+			var saveids = saveid.split(',');
+			var hasid = false;
+			saveid = '';
+			j = 1;
+			for(i=saveids.length-1;i>=0;i--)
+			{
+				if(saveids[i]==aid && hasid) continue;
+				else {
+					if(saveids[i]==aid && !hasid) hasid = true;
+					saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+					j++;
+					if(j==20 && hasid) break;
+					if(j==19 && !hasid) break;
+				}
+			}
+			if(hasid) { alert("您已经顶过该帖，请不要重复顶帖 ！"); return; }
+			else saveid += ','+aid;
+			SetCookie('diggid',saveid,1);
+		}
+		else
+		{
+			SetCookie('diggid',aid,1);
+		}
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		var url = "/plus/digg_ajax.php?action="+ftype+"&id="+aid;
+		myajax.SendGet2(url);
+	}
+	function getDigg(aid)
+	{
+		var taget_obj = document.getElementById('newdigg');
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/digg_ajax.php?id="+aid);
+		DedeXHTTP = null;
+	} 
+	function getcollectionuser(aid)
+	{
+		var taget_obj = document.getElementById('collection-users-list');
+		myajax = new MyAjax(taget_obj,false,false,'','','');
+		myajax.SendGet2("/plus/collection_user_ajax.php?id="+aid);
+		DedeXHTTP = null;
+	} 	
+	jQuery(document).ready(function($) {
+		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+	    prettyPrint();
+	
+	    //注意最后的@me必须要加两重引号，不然js语法会出错
+	    var htmlstr =  '';
+	    $(".arc_body").prepend(htmlstr); 
+	});
+			
+</script>
+
+<style type="text/css">#gj_mini{background-image:url(http://s.pc.qq.com/navigate/adc/v3/hover-ok.png);background-repeat:no-repeat;display:block;width:58px;height:58px;background-position:0 0}#gj_shard{background-image:url(http://s.pc.qq.com/navigate/adc/v3/suipian.png);background-repeat:no-repeat;display:none;width:200px;height:200px;background-position:0 0}#gj_circle{background-image:url(http://s.pc.qq.com/navigate/adc/v3/guangquan.png);background-repeat:no-repeat;display:none;width:58px;height:58px;background-position:0 0}#gj_bar_left{background: url(http://s.pc.qq.com/navigate/adc/v3/zuo.png) no-repeat; height:42px; width :0px; font-family: "Microsoft YaHei" ! important;overflow:hidden; display:block;}#gj_bar_left #tipstext{line-height:normal;padding-left: 20px;padding-top: 3px;font-size: 12px;padding-right: 10px;color: #fff;overflow:hidden;}#gj_bar_left span{font-size: 14px;font-weight: bold;overflow:hidden;}#gj_bar_right{background: url(http://s.pc.qq.com/navigate/adc/v3/you.png) no-repeat; height:42px; width :0px; font-family: "Microsoft YaHei" ! important;overflow:hidden; display:block;}#gj_bar_right #tipstext{line-height:normal;padding-left: 20px;padding-top: 3px;font-size: 12px;padding-right: 10px;color: #fff;overflow:hidden;}#gj_bar_right span{font-size: 14px;font-weight: bold;overflow:hidden;}</style></head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><link href="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/jiathis_counter.css" rel="stylesheet" type="text/css"><link href="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/jiathis_share.css" rel="stylesheet" type="text/css"><iframe frameborder="0" style="position: absolute; display: none; opacity: 0;" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/saved_resource.html"></iframe><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; top: 50%; left: 50%; overflow: auto;"></div><div class="jiathis_style" style="position: absolute; z-index: 1000000000; display: none; overflow: auto;"></div><iframe frameborder="0" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/jiathis_utility.html" style="display: none;"></iframe>
+
+<div class="header">  
+	<div class="headercon container clearfix">
+        <div class="row">
+            <div class="col-md-12">
+            	<!-- 导航部分 -->
+                <a class="logo-t" href="http://www.jcodecraeer.com/"><img width="181" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/logo.png"></a>
+                <ul class="nav-ul">
+                	<li id="nav-index"><a href="http://www.jcodecraeer.com/">首页</a></li>
+                    <li id="nav-code"><a href="http://www.jcodecraeer.com/plus/list.php?tid=31">代码</a></li>
+                    <li id="nav-feed"><a class="" href="http://www.jcodecraeer.com/plus/freelist.php?lid=12">话题</a></li>
+                    <li id="nav-ask"><a class="" href="http://www.jcodecraeer.com/ask">问答</a></li>
+                    <li id="nav-tag"><a href="http://www.jcodecraeer.com/tags.php" class="trigger">标签</a></li>
+                    <li><a href="http://www.jcodecraeer.com/about.html" class="">关于</a></li>
+                </ul>
+                <!-- 导航部分 end -->
+                
+                <!-- 搜索-下拉 -->
+                <div class="header_right">
+                	<div class="search_start">
+                         <div class="search_cont">
+                            <form action="http://www.jcodecraeer.com/plus/search.php" method="get">
+                            	<input type="hidden" name="kwtype" value="0">
+                                <input type="text" name="q" class="in_search" autocomplete="off" value="搜索">
+                                <input type="submit" class="in_submit">
+        						<span class="glyphicon glyphicon-search icon-search"></span>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- 消息下拉 -->
+                    <div class="header_right_msg z">  
+                        <!-- 登录 -->
+                        <div class="right_login" id="login_info">
+                            <a class="l" href="http://www.jcodecraeer.com/member/login.php">登录</a>
+                            <a href="http://www.jcodecraeer.com/member/reg_new.php">注册</a>
+                        </div>
+                        <!-- 登录 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript">CheckLogin();</script>
+<script language="javascript" type="text/javascript">
+  $(function(){
+	
+	$(".in_search").click(function(){
+		$(".search_cont").addClass('ser').animate({
+			width:200,
+		},200);
+		if($(this).val() == '搜索'){
+			$(".in_search").val('');
+		}
+	})
+	$(".in_search").blur(function(){
+		if($(this).val() !== ''){
+			return false;
+		}
+		$(".search_cont").removeClass('ser').animate({
+			width:90,
+		},200);
+		$(".in_search").val('搜索');
+	});
+	
+});
+</script>
+
+
+<div class="container main">
+	<div class="row">
+		<div>
+			<div style="display:inline;float:left">
+				<script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/fuckblok.php" language="javascript"></script><script async="" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/adsbygoogle.js.下载"></script>
+<!-- 超大横幅 -->
+<ins class="adsbygoogle" style="display:inline-block;width:970px;height:250px" data-ad-client="ca-pub-8583773779396897" data-ad-slot="3361054319" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:970px;background-color:transparent"><iframe width="970" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/saved_resource(1).html"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+			</div>
+			
+		</div>	
+	</div>
+	<div class="row">	
+        <div class="col-md-9">
+			<div class="arc_position">
+				  <a href="http://www.jcodecraeer.com/">首页</a>&nbsp;&#8250;&nbsp;<a href="http://www.jcodecraeer.com/plus/list.php?tid=16">安卓开发</a>&nbsp;&#8250;&nbsp;<a href="http://www.jcodecraeer.com/plus/list.php?tid=18">android开发</a>
+			</div>	
+					
+            <div class="articlecon clearfix">
+				<h1 class="title">CoordinatorLayout与滚动的处理</h1>
+			
+				<div class="subinfo clearfix">              
+					<span>泡在网上的日子 / 文</span>
+					<span> 发表于2015-07-17 17:10</span>   
+					<span>第<script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/count.php" type="text/javascript" language="javascript"></script>50996次阅读
+					</span>
+					<span class="tags" id="arc_tags">                            
+						<a href="http://www.jcodecraeer.com/tags.php?/CoordinatorLayout/" class="tag">CoordinatorLayout</a>
+					 </span>
+					<script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/is_admin.php" type="text/javascript" language="javascript"> </script>  
+				</div>
+				<!-- JiaThis Button BEGIN -->
+				<div class="jiathis_style" style=" height:30px; width:180px; margin:auto;text-align:center;">
+					<a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+					<a class="jiathis_button_tsina" title="分享到微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+					<a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a>
+					<a class="jiathis_button_weixin" title="分享到微信"><span class="jiathis_txt jtico jtico_weixin"></span></a>
+					<a class="jiathis_button_renren" title="分享到人人网"><span class="jiathis_txt jtico jtico_renren"></span></a>
+					<a class="jiathis_button_xiaoyou" title="分享到朋友网"><span class="jiathis_txt jtico jtico_xiaoyou"></span></a>
+					<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+					<a class="jiathis_counter_style"><span class="jiathis_button_expanded jiathis_counter jiathis_bubble_style" id="jiathis_counter_21" title="累计分享9次">9</span></a>
+				</div>
+				<script type="text/javascript" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/jia.js.下载" charset="utf-8"></script><script type="text/javascript" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/plugin.client.js.下载" charset="utf-8"></script>
+				<!-- JiaThis Button END -->
+             
+				<div class="arc_body"> 
+					 <p style="margin-top:10px">
+						<script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/fuckblok(1).php" language="javascript"></script><strong>编辑推荐：</strong><a href="http://gold.xitu.io/">稀土掘金</a>，这是一个针对技术开发者的一个应用，你可以在掘金上获取最新最优质的技术干货，不仅仅是Android知识、前端、后端以至于产品和设计都有涉猎，想成为全栈工程师的朋友不要错过！
+					</p>
+					 <style> .runtimead{  text-align:center ;}</style>
+<p>英文原文：<a href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout" _src="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout">https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout</a>&nbsp;</p><p>这篇文章专门讲解和CoordinatorLayout相关的知识点，这也是Design Support Library中最重要与最难的部分。</p><h2>概览</h2><p><a href="https://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html">CoordinatorLayout</a>&nbsp;实现了多种Material Design中提到的<a href="http://www.google.com/design/spec/patterns/scrolling-techniques.html" target="_self" textvalue="滚动效果">滚动效果</a>。目前这个框架提供了几种不用写动画代码就能工作的方法，这些效果包括：</p><ul style="box-sizing: border-box; margin-bottom: 16px; padding-left: 2em; color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, &#39;Segoe UI&#39;, Arial, freesans, sans-serif; line-height: 25.6000003814697px; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2"><li><p>让浮动操作按钮上下滑动，为Snackbar留出空间。<br></p> <p class="runtimead"><script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/fuckblok(2).php" language="javascript"></script></p>  </li></ul><p><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1G0543932-0.gif" width="350" style="box-sizing: border-box; border: 0px; vertical-align: middle; max-width: 100%;"></p><ul style="box-sizing: border-box; margin-bottom: 16px; padding-left: 2em; color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, &#39;Segoe UI&#39;, Arial, freesans, sans-serif; line-height: 25.6000003814697px; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2"><li><p>扩展或者缩小Toolbar或者头部，让主内容区域有更多的空间。<br></p></li></ul><p><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1G0543025-1.gif" width="350" style="box-sizing: border-box; border: 0px; vertical-align: middle; max-width: 100%;"></p><ul style="box-sizing: border-box; margin-bottom: 16px; padding-left: 2em; color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, &#39;Segoe UI&#39;, Arial, freesans, sans-serif; line-height: 25.6000003814697px; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2"><li><p>控制哪个view应该扩展还是收缩，以及其显示大小比例，包括<a href="https://ihatetomatoes.net/demos/parallax-scroll-effect/" target="_self" textvalue="视差滚动效果">视差滚动效果</a>动画。<br></p></li></ul><p><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1G0542Y3-2.gif" style="box-sizing: border-box; border: 0px; vertical-align: middle; max-width: 100%;"></p><h2><a id="setup" href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout#setup"></a>设置</h2><p>首先确保遵循了<a href="https://guides.codepath.com/android/Design-Support-Library">Design Support Library</a>的使用说明。<br></p><h2><a id="floating-action-buttons-and-snackbars" href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout#floating-action-buttons-and-snackbars"></a>浮动操作按钮与Snackbar</h2><p>CoordinatorLayout可以用来配合浮动操作按钮的&nbsp;layout_anchor&nbsp;和&nbsp;layout_gravity属性创造出浮动效果，详情请参见<a href="https://guides.codepath.com/android/Floating-Action-Buttons" target="_self" textvalue="浮动操作按钮">浮动操作按钮</a>指南。<br></p><p>当<a href="https://guides.codepath.com/android/Displaying-the-Snackbar">Snackbar</a>在显示的时候，往往出现在屏幕的底部。为了给Snackbar留出空间，浮动操作按钮需要向上移动。<br></p><p><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1G0543932-0.gif" width="350" style="box-sizing: border-box; border: 0px; vertical-align: middle; max-width: 100%;"></p><p>只要使用CoordinatorLayout作为基本布局，将自动产生向上移动的动画。浮动操作按钮有一个&nbsp;<a href="https://developer.android.com/reference/android/support/design/widget/FloatingActionButton.Behavior.html" target="_self" textvalue="默认的 behavior">默认的 behavior</a>来检测Snackbar的添加并让按钮在Snackbar之上呈现上移与Snackbar等高的动画。</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">&nbsp;</span><span class="tag">&lt;android.support.design.widget.CoordinatorLayout</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/main_content"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">xmlns:android</span><span class="pun">=</span><span class="atv">"http://schemas.android.com/apk/res/android"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">xmlns:app</span><span class="pun">=</span><span class="atv">"http://schemas.android.com/apk/res-auto"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"match_parent"</span><span class="tag">&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;android.support.v7.widget.RecyclerView</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/rvToDoList"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"match_parent"</span><span class="tag">&gt;</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;/android.support.v7.widget.RecyclerView&gt;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;android.support.design.widget.FloatingActionButton</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_gravity</span><span class="pun">=</span><span class="atv">"bottom|right"</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_margin</span><span class="pun">=</span><span class="atv">"16dp"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:src</span><span class="pun">=</span><span class="atv">"@mipmap/ic_launcher"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_anchor</span><span class="pun">=</span><span class="atv">"@id/rvToDoList"</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_anchorGravity</span><span class="pun">=</span><span class="atv">"bottom|right|end"</span><span class="tag">/&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span><span class="tag">&lt;/android.support.design.widget.CoordinatorLayout&gt;</span></li></ol></pre><h2>Toolbar的扩展与收缩</h2><p><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1G0543025-1.gif" width="350" style="box-sizing: border-box; border: 0px; vertical-align: middle; max-width: 100%;"></p><p>首先需要确保你不是使用已经过时的ActionBar。务必遵循&nbsp;<a href="http://guides.codepath.com/android/Defining-The-ActionBar#using-toolbar-as-actionbar" target="_self" textvalue="使用ToolBar作为actionbar">使用ToolBar作为actionbar</a>这篇文章的指南。同样，这里也需要CoordinatorLayout作为主布局容器。<br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;android.support.design.widget.CoordinatorLayout</span><span class="pln">&nbsp;</span><span class="atn">xmlns:android</span><span class="pun">=</span><span class="atv">"http://schemas.android.com/apk/res/android"</span></li><li class="L1"><span class="pln">&nbsp;</span><span class="atn">xmlns:app</span><span class="pun">=</span><span class="atv">"http://schemas.android.com/apk/res-auto"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/main_content"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:fitsSystemWindows</span><span class="pun">=</span><span class="atv">"true"</span><span class="tag">&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;android.support.v7.widget.Toolbar</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/toolbar"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"?attr/actionBarSize"</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:popupTheme</span><span class="pun">=</span><span class="atv">"@style/ThemeOverlay.AppCompat.Light"</span><span class="pln">&nbsp;</span><span class="tag">/&gt;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="tag">&lt;/android.support.design.widget.CoordinatorLayout&gt;</span></li></ol></pre><h3><a id="responding-to-scroll-events" href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout#responding-to-scroll-events"></a>响应滚动事件</h3><p>接下来，我们必须使用一个容器布局：<a href="http://developer.android.com/reference/android/support/design/widget/AppBarLayout.html">AppBarLayout</a>来让Toolbar响应滚动事件。<br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;android.support.design.widget.AppBarLayout</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/appbar"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"@dimen/detail_backdrop_height"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:theme</span><span class="pun">=</span><span class="atv">"@style/ThemeOverlay.AppCompat.Dark.ActionBar"</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:fitsSystemWindows</span><span class="pun">=</span><span class="atv">"true"</span><span class="tag">&gt;</span></li><li class="L6"><span class="pln">&nbsp;</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;android.support.v7.widget.Toolbar</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/toolbar"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"?attr/actionBarSize"</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:popupTheme</span><span class="pun">=</span><span class="atv">"@style/ThemeOverlay.AppCompat.Light"</span><span class="pln">&nbsp;</span><span class="tag">/&gt;</span></li><li class="L2"><span class="pln">&nbsp;</span></li><li class="L3"><span class="pln">&nbsp;</span><span class="tag">&lt;/android.support.design.widget.AppBarLayout&gt;</span></li></ol></pre><p>注意：根据官方的<a href="http://developer.android.com/reference/android/support/design/widget/AppBarLayout.html" target="_self" textvalue="谷歌文档">谷歌文档</a>，AppBarLayout目前必须是第一个嵌套在CoordinatorLayout里面的子view（现在貌似不是这样子，正确的理解是：AppBarLayout必须是CoordinatorLayout的直接子View）。<br></p><p>然后，我们需要定义AppBarLayout与滚动视图之间的联系。在RecyclerView或者任意支持嵌套滚动的view比如<a href="http://stackoverflow.com/questions/25136481/what-are-the-new-nested-scrolling-apis-for-android-l">NestedScrollView</a>上添加app:layout_behavior。support library包含了一个特殊的字符串资源@string/appbar_scrolling_view_behavior，它和<a href="https://developer.android.com/reference/android/support/design/widget/AppBarLayout.ScrollingViewBehavior.html">AppBarLayout.ScrollingViewBehavior</a>相匹配，用来通知AppBarLayout 这个特殊的view何时发生了滚动事件，这个behavior需要设置在触发事件（滚动）的view之上。<br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;android.support.v7.widget.RecyclerView</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/rvToDoList"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_behavior</span><span class="pun">=</span><span class="atv">"@string/appbar_scrolling_view_behavior"</span><span class="tag">&gt;</span></li></ol></pre><p>当CoordinatorLayout发现RecyclerView中定义了这个属性，它会搜索自己所包含的其他view，看看是否有view与这个behavior相关联。AppBarLayout.ScrollingViewBehavior描述了RecyclerView与AppBarLayout之间的依赖关系。RecyclerView的任意滚动事件都将触发AppBarLayout或者AppBarLayout里面view的改变。<br></p><p>AppBarLayout里面定义的view只要设置了app:layout_scrollFlags属性，就可以在RecyclerView滚动事件发生的时候被触发：</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">&nbsp;</span><span class="tag">&lt;android.support.design.widget.AppBarLayout</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:fitsSystemWindows</span><span class="pun">=</span><span class="atv">"true"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:theme</span><span class="pun">=</span><span class="atv">"@style/ThemeOverlay.AppCompat.Dark.ActionBar"</span><span class="tag">&gt;</span></li><li class="L5"><span class="pln">&nbsp;</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;android.support.v7.widget.Toolbar</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/toolbar"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"?attr/actionBarSize"</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_scrollFlags</span><span class="pun">=</span><span class="atv">"scroll|enterAlways"</span><span class="tag">/&gt;</span></li><li class="L1"><span class="pln">&nbsp;</span></li><li class="L2"><span class="pln">&nbsp;</span><span class="tag">&lt;/android.support.design.widget.AppBarLayout&gt;</span></li></ol></pre><p>app:layout_scrollFlags属性里面必须至少启用scroll这个flag，这样这个view才会滚动出屏幕，否则它将一直固定在顶部。可以使用的其他flag有：<br></p><ul style="box-sizing: border-box; margin-bottom: 16px; padding-left: 2em; color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, &#39;Segoe UI&#39;, Arial, freesans, sans-serif; line-height: 25.6000003814697px; white-space: normal; background-color: rgb(255, 255, 255);" class=" list-paddingleft-2"><li><p>enterAlways: 一旦向上滚动这个view就可见。</p></li><li><p>enterAlwaysCollapsed: <span style="color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, &#39;Segoe UI&#39;, Arial, freesans, sans-serif; line-height: 25.6000003814697px; background-color: rgb(255, 255, 255);">顾名思义，这个flag定义的是何时进入（已经消失之后何时再次显示）。假设你定义了一个最小高度（<span style="color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, &#39;Segoe UI&#39;, Arial, freesans, sans-serif; line-height: 25.6000003814697px; background-color: rgb(255, 255, 255);">minHeight</span>）同时<span style="color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, &#39;Segoe UI&#39;, Arial, freesans, sans-serif; line-height: 25.6000003814697px; background-color: rgb(255, 255, 255);">enterAlways也定义了，那么view将在到达这个最小高度的时候开始显示，并且从这个时候开始慢慢展开，当滚动到顶部的时候展开完。</span></span></p></li><li><p>exitUntilCollapsed: 同样顾名思义，这个flag时定义何时退出，当你定义了一个<span style="color: rgb(51, 51, 51); font-family: &#39;Helvetica Neue&#39;, Helvetica, &#39;Segoe UI&#39;, Arial, freesans, sans-serif; line-height: 25.6000003814697px; background-color: rgb(255, 255, 255);">minHeight，这个view将在滚动到达这个最小高度的时候消失。</span></p></li></ul><p>记住，要把带有scroll flag的view放在前面，这样收回的view才能让正常退出，而固定的view继续留在顶部。</p><p>此时，你应该注意到我们的Toolbar能够响应滚动事件了。<br></p><p><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1G054F13-5.gif" width="350" style="box-sizing: border-box; border: 0px; vertical-align: middle; max-width: 100%;"></p><h3><a id="creating-collapsing-effects" href="https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout#creating-collapsing-effects"></a>制造折叠效果</h3><p>如果想制造toolbar的折叠效果，我们必须把Toolbar放在CollapsingToolbarLayout中：<br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="tag">&lt;android.support.design.widget.CollapsingToolbarLayout</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/collapsing_toolbar"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:fitsSystemWindows</span><span class="pun">=</span><span class="atv">"true"</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:contentScrim</span><span class="pun">=</span><span class="atv">"?attr/colorPrimary"</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:expandedTitleMarginEnd</span><span class="pun">=</span><span class="atv">"64dp"</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:expandedTitleMarginStart</span><span class="pun">=</span><span class="atv">"48dp"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_scrollFlags</span><span class="pun">=</span><span class="atv">"scroll|exitUntilCollapsed"</span><span class="tag">&gt;</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;android.support.v7.widget.Toolbar</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/toolbar"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"?attr/actionBarSize"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_scrollFlags</span><span class="pun">=</span><span class="atv">"scroll|enterAlways"</span><span class="tag">&gt;&lt;/android.support.v7.widget.Toolbar&gt;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;/android.support.design.widget.CollapsingToolbarLayout&gt;</span></li></ol></pre><p>现在效果就成了：<br></p><p><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1G0543025-1.gif" width="350" style="box-sizing: border-box; border: 0px; vertical-align: middle; max-width: 100%;"></p><p>通常，我们我们都是设置Toolbar的title，而现在，我们需要把title设置在CollapsingToolBarLayout上，而不是Toolbar。<br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">&nbsp;</span><span class="typ">CollapsingToolbarLayout</span><span class="pln">&nbsp;collapsingToolbar&nbsp;</span><span class="pun">=</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">(</span><span class="typ">CollapsingToolbarLayout</span><span class="pun">)</span><span class="pln">&nbsp;findViewById</span><span class="pun">(</span><span class="pln">R</span><span class="pun">.</span><span class="pln">id</span><span class="pun">.</span><span class="pln">collapsing_toolbar</span><span class="pun">);</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;collapsingToolbar</span><span class="pun">.</span><span class="pln">setTitle</span><span class="pun">(</span><span class="str">"Title"</span><span class="pun">);</span></li></ol></pre><h3>制造视差效果</h3><p>CollapsingToolbarLayout还能让我们做出更高级的动画，比如在里面放一个ImageView，然后在它折叠的时候渐渐淡出。同时在用户滚动的时候title的高度也会随着改变。<br></p><p><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1G0541510-7.gif" width="350" style="box-sizing: border-box; border: 0px; vertical-align: middle; max-width: 100%;"></p><p>为了制造出这种效果，我们添加一个定义了app:layout_collapseMode="parallax"&nbsp;属性的ImageView。</p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="pln">&nbsp;&nbsp;</span><span class="tag">&lt;android.support.design.widget.CollapsingToolbarLayout</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/collapsing_toolbar"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:fitsSystemWindows</span><span class="pun">=</span><span class="atv">"true"</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:contentScrim</span><span class="pun">=</span><span class="atv">"?attr/colorPrimary"</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:expandedTitleMarginEnd</span><span class="pun">=</span><span class="atv">"64dp"</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:expandedTitleMarginStart</span><span class="pun">=</span><span class="atv">"48dp"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_scrollFlags</span><span class="pun">=</span><span class="atv">"scroll|exitUntilCollapsed"</span><span class="tag">&gt;</span></li><li class="L9"><span class="pln">&nbsp;</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;android.support.v7.widget.Toolbar</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:id</span><span class="pun">=</span><span class="atv">"@+id/toolbar"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"match_parent"</span></li><li class="L3"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"?attr/actionBarSize"</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_scrollFlags</span><span class="pun">=</span><span class="atv">"scroll|enterAlways"</span><span class="tag">&gt;&lt;/android.support.v7.widget.Toolbar&gt;</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;ImageView</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:src</span><span class="pun">=</span><span class="atv">"@drawable/cheese_1"</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_scrollFlags</span><span class="pun">=</span><span class="atv">"scroll|enterAlways|enterAlwaysCollapsed"</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_width</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:layout_height</span><span class="pun">=</span><span class="atv">"wrap_content"</span></li><li class="L0"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:scaleType</span><span class="pun">=</span><span class="atv">"centerCrop"</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">app:layout_collapseMode</span><span class="pun">=</span><span class="atv">"parallax"</span></li><li class="L2"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="atn">android:minHeight</span><span class="pun">=</span><span class="atv">"100dp"</span><span class="tag">/&gt;</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="tag">&lt;/android.support.design.widget.CollapsingToolbarLayout&gt;</span></li></ol></pre><h2>自定义Behavior</h2><p>在<a href="http://guides.codepath.com/android/Floating-Action-Buttons#using-coordinatorlayout" target="_self" textvalue="CoordinatorLayout 与浮动操作按钮">CoordinatorLayout 与浮动操作按钮</a>中我们讨论了一个自定义behavior的例子。注： 译文<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0718/3197.html" _src="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0718/3197.html">http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0718/3197.html</a>&nbsp; 。<br></p><p>CoordinatorLayout的工作原理是搜索定义了<a href="http://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior.html">CoordinatorLayout Behavior</a>&nbsp;的子view，不管是通过在xml中使用app:layout_behavior标签还是通过在代码中对view类使用@DefaultBehavior修饰符来添加注解。当滚动发生的时候，CoordinatorLayout会尝试触发那些声明了依赖的子view。<br></p><p>要自己定义CoordinatorLayout&nbsp;Behavior，你需要实现layoutDependsOn() 和onDependentViewChanged()两个方法。比如AppBarLayout.Behavior 就定义了这两个关键方法。这个behavior用于当滚动发生的时候让AppBarLayout发生改变。<br></p><pre class="brush:js;toolbar:false prettyprint linenums prettyprinted" style="overflow: auto;"><ol class="linenums"><li class="L0"><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">boolean</span><span class="pln">&nbsp;layoutDependsOn</span><span class="pun">(</span><span class="typ">CoordinatorLayout</span><span class="pln">&nbsp;parent</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">View</span><span class="pln">&nbsp;child</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">View</span><span class="pln">&nbsp;dependency</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L1"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">return</span><span class="pln">&nbsp;dependency&nbsp;</span><span class="kwd">instanceof</span><span class="pln">&nbsp;</span><span class="typ">AppBarLayout</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li><li class="L3"><span class="pln">&nbsp;</span></li><li class="L4"><span class="kwd">public</span><span class="pln">&nbsp;</span><span class="kwd">boolean</span><span class="pln">&nbsp;onDependentViewChanged</span><span class="pun">(</span><span class="typ">CoordinatorLayout</span><span class="pln">&nbsp;parent</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">View</span><span class="pln">&nbsp;child</span><span class="pun">,</span><span class="pln">&nbsp;</span><span class="typ">View</span><span class="pln">&nbsp;dependency</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L5"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//&nbsp;check&nbsp;the&nbsp;behavior&nbsp;triggered</span></li><li class="L6"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;android</span><span class="pun">.</span><span class="pln">support</span><span class="pun">.</span><span class="pln">design</span><span class="pun">.</span><span class="pln">widget</span><span class="pun">.</span><span class="typ">CoordinatorLayout</span><span class="pun">.</span><span class="typ">Behavior</span><span class="pln">&nbsp;behavior&nbsp;</span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="pun">((</span><span class="pln">android</span><span class="pun">.</span><span class="pln">support</span><span class="pun">.</span><span class="pln">design</span><span class="pun">.</span><span class="pln">widget</span><span class="pun">.</span><span class="typ">CoordinatorLayout</span><span class="pun">.</span><span class="typ">LayoutParams</span><span class="pun">)</span><span class="pln">&nbsp;dependency</span><span class="pun">.</span><span class="pln">getLayoutParams</span><span class="pun">()).</span><span class="pln">getBehavior</span><span class="pun">();</span></li><li class="L7"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="kwd">if</span><span class="pln">&nbsp;</span><span class="pun">(</span><span class="pln">behavior&nbsp;</span><span class="kwd">instanceof</span><span class="pln">&nbsp;</span><span class="typ">AppBarLayout</span><span class="pun">.</span><span class="typ">Behavior</span><span class="pun">)</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L8"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="com">//&nbsp;do&nbsp;stuff&nbsp;here</span></li><li class="L9"><span class="pln">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="pun">}</span></li><li class="L0"><span class="pun">}</span></li></ol></pre><p>理解如何实现这些自定义behavior的最好途径是研究AppBarLayout.Behavior 和&nbsp;FloatingActionButtion.Behavior。虽然这些源代码还没有放出来，但是你可以使用Android Studio 1.2集成的反编译器来查看。</p><p><br></p><p>参考：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/developer/2015/0531/2958.html" target="_self" textvalue="Android的材料设计兼容库（Design Support Library）">Android的材料设计兼容库（Design Support Library）</a>&nbsp;</p>
+				</div>
+			 
+				<div class="pageActive clearfix" id="newdigg"><a href="javascript:void(0)" class="pageActive-item" onclick="postStow(3196)"><span><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/collection.png"></span>收藏(32)</a>
+			<a href="javascript:void(0)" class="pageActive-item" onclick="postDigg(&#39;good&#39;,3196)"> <span><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/approve.png"></span>赞(59)</a>
+			<a href="javascript:void(0)" class="pageActive-item" onclick="postDigg(&#39;bad&#39;,3196)"> <span><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/disapprove.png"></span>踩(6)</a>
+          							
+				</div>				
+				<div id="collection-users-list" class="mgt60"><div class="sub-title">他们收藏了这篇文章</div><ul class="users-list clearfix"><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C2%E4%CF%BC%B9%C2%F0%CD"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface.jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D8%ED%B6%F9%B8%E7"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index.php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=CtrlSpace"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(1).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=tzizi5566"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(1).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=mnb123jhg"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(2).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=SilverLining"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(2).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Start"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(3).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=emotiona"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(4).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=wander"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(5).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=Erosin"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(6).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=willchun"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(7).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C2%C0%CC%B4%CF%AA"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(3).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=helloworld33"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(4).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B1%B4%B1%B4%CF%C2%D1%A9%C1%CB"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(8).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D3%CE%B1%E9%CA%C0%BD%E7%B5%C4%C3%CE%CF%EB%BE%FD"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(5).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=wateryi1992"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(9).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BE%C5%D2%DA%C9%D9%C5%AE%B5%C4%C3%CE"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(10).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BA%A3%D6%D0%B7%C9%D3%F0"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(11).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B0%CD%C8%FB%C2%DE%C4%C7"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(12).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=jlwen1989"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(13).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=layman"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(14).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=issaclam"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(15).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=alvince"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(6).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%C3%CE%A1%A2%B6%C0%D5%E5"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(7).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D0%C2%BB%F0%C1%C7%DC%AB"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(16).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%BD%F8%BB%F7%B5%C4%C2%EB%C5%A9"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(17).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B5%B0%B5%B0%B5%B0%D2%AA%C6%C6%C1%CB"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(18).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=ccloudmi"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(8).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=liuhuining"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(9).jpg">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B3%C8%D7%D3%D7%CF%C1%CB"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(19).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=saarland"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(20).php">  </a></li><li class="users-list-item"><a href="http://www.jcodecraeer.com/member/index.php?uid=dongzhaohe"> <img class="avatar" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(10).jpg">  </a></li></ul>
+				</div>			
+				<div class="related_arc">
+					<div class="sub-title">相关文章</div>
+					<div class="rearc_list clearfix">
+						<ul>   
+						<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0913/3447.html" target="_blank">自定义CoordinatorLayout的Behavior实现知乎和简书快速返回效果</a>  <span class="pull-right"> 2015-09-13 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0707/3149.html" target="_blank">Android Support Design 中 CoordinatorLayout 与 Behaviors 初探</a>  <span class="pull-right"> 2015-07-07 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/1201/3738.html" target="_blank">关于CoordinatorLayout与Behavior的一点分析</a>  <span class="pull-right"> 2015-12-01 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0818/3315.html" target="_blank">CoordinatorLayout与快速返回的实现</a>  <span class="pull-right"> 2015-08-18 </span></li>
+<li>
+							 <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0224/3991.html" target="_blank">拦截一切的CoordinatorLayout Behavior</a>  <span class="pull-right"> 2016-02-24 </span></li>
+
+						    
+						</ul>
+			   
+					</div>  						
+				</div>	
+				<ul>				 
+					<li style="margin-top:10px"><script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/fuckblok(3).php" language="javascript"></script><script type="text/javascript">
+    /*847*96 创建于 2016/11/23*/
+    var cpro_id = "u2825543";
+</script>
+<script type="text/javascript" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2825543_0"><iframe id="iframeu2825543_0" src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/tcwm.html" width="847" height="96" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div>
+</li>			
+				</ul>										
+            </div>				
+             
+            <div style="width:680px;"></div> 
+
+            <div class="wrapper"> 
+                <div class="pre_next">
+					<div class="div_button">上一篇：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0716/3194.html">浮动操作按钮的选择</a> <div>浮动操作按钮，现在可选的方案很多，design库中也有，目前来说在考虑实现浮动操作按钮的时候，有以下几种常用方案： 官方的： android.support.design.widget.FloatingActionButton 优点是可以与snackbar配合 第三方的 FAB 项目地址： https://github.com/sh</div></div>
+					<div class="div_button">下一篇：<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0718/3197.html">codepath教程：浮动操作按钮详解</a> <div>这篇文章将讲解浮动操作按钮，从官方的和第三方的两方面讲解，同时还讲到了如何自定义CoordinatorLayout Behavior</div></div>
+                </div>
+            </div>
+            <div class="dede_comment_post">
+				
+<div class="comments_body">
+	<form action="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#" method="post" name="feedback" onsubmit="return false;">
+		<input type="hidden" name="dopost" value="send">
+		<input type="hidden" name="comtype" value="comments">
+		<input type="hidden" name="arcauthor" value="1 ">
+		<input type="hidden" name="aid" value="3196">
+		<input type="hidden" name="fid" id="feedbackfid" value="0">
+		<div class="post_box clearfix">
+            <div class="wrapper">
+                <textarea cols="60" name="msg" id="cm_content" rows="5" class="ipt-txt"></textarea>
+            </div>		
+            <div class="post_act">
+            	<button type="button clearfix" onclick="PostComment()">发表评论</button>
+            </div>
+		</div>
+		
+		
+    </form>	
+</div>
+
+
+<!-- //评论表单区结束 -->
+<!-- //评论内容区 -->
+<a name="commettop"></a>
+
+<div id="commetcontentNew">
+
+</div>
+<div id="commetcontent">		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=%B1%CA%BC%E2%CF%C2%B5%C4%C8%D5%D7%D3" class="plpic"><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface.png" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B1%CA%BC%E2%CF%C2%B5%C4%C8%D5%D7%D3">笔尖下的日子</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-10-29</span>
+					</div>
+					<div class="post_content">
+						学习了！					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb5934"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#goodfb5934" onclick="postBadGood(&#39;goodfb&#39;,5934);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb5934"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#badfb5934" onclick="postBadGood(&#39;badfb&#39;,5934);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(5934,5934,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_5934"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=%B3%F5%D1%A7android%B5%C4%B4%D0%B4%D0" class="plpic"><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(21).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=%B3%F5%D1%A7android%B5%C4%B4%D0%B4%D0">初学android的葱葱</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-06-28</span>
+					</div>
+					<div class="post_content">
+						我想在CollapsingToolbarLayout放一个imageView，让imageView在向上滚动的时候同时缩小，在向下滑出的时候放大。这个可以用自定义behavior来实现么？还是有系统的behavior？					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb5562"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#goodfb5562" onclick="postBadGood(&#39;goodfb&#39;,5562);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>1 </span>
+							<span class="action-item" id="badfb5562"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#badfb5562" onclick="postBadGood(&#39;badfb&#39;,5562);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(5562,5562,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_5562"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#" class="plpic"><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(22).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#">网友171.214.151.53</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2016-05-26</span>
+					</div>
+					<div class="post_content">
+						写的真的很好					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb5286"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#goodfb5286" onclick="postBadGood(&#39;goodfb&#39;,5286);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>1 </span>
+							<span class="action-item" id="badfb5286"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#badfb5286" onclick="postBadGood(&#39;badfb&#39;,5286);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(5286,5286,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_5286"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#" class="plpic"><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(22).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#">网友180.169.59.253</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-07-23</span>
+					</div>
+					<div class="post_content">
+						请问你的动态效果图是怎么做的？					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb2399"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#goodfb2399" onclick="postBadGood(&#39;goodfb&#39;,2399);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb2399"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#badfb2399" onclick="postBadGood(&#39;badfb&#39;,2399);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>1 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(2399,2399,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_2399"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#" class="plpic"><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(22).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#">网友117.136.49.26</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-07-19</span>
+					</div>
+					<div class="post_content">
+						<div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">泡在网上的日子 的原帖：</span></div><div class="decmt-content"><div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">网友117.136.49.47 的原帖：</span></div><div class="decmt-content">我试着做了，但是有个Bug，就是当CoordinatorLayout下面的控件没占满全部空间的时候，就是出现一个很奇怪的bug</div></div>恩，这个bug确实存在。即使不能滚动上面的视图也会跟着跑，确实奇葩。</div></div>嗯，不知道啥时候能修复这个bug					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb2354"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#goodfb2354" onclick="postBadGood(&#39;goodfb&#39;,2354);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>1 </span>
+							<span class="action-item" id="badfb2354"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#badfb2354" onclick="postBadGood(&#39;badfb&#39;,2354);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(2354,2354,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_2354"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie" class="plpic"><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/myface(11).png" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=jianghejie">泡在网上的日子</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-07-17</span>
+					</div>
+					<div class="post_content">
+						<div class="decmt-box"><div class="decmt-ti&lt;x&gt;tle"><span class="username">网友117.136.49.47 的原帖：</span></div><div class="decmt-content">我试着做了，但是有个Bug，就是当CoordinatorLayout下面的控件没占满全部空间的时候，就是出现一个很奇怪的bug</div></div>恩，这个bug确实存在。即使不能滚动上面的视图也会跟着跑，确实奇葩。					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb2347"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#goodfb2347" onclick="postBadGood(&#39;goodfb&#39;,2347);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>1 </span>
+							<span class="action-item" id="badfb2347"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#badfb2347" onclick="postBadGood(&#39;badfb&#39;,2347);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>1 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(2347,2347,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_2347"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#" class="plpic"><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(22).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#">网友117.136.49.47</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-07-17</span>
+					</div>
+					<div class="post_content">
+						我试着做了，但是有个Bug，就是当CoordinatorLayout下面的控件没占满全部空间的时候，就是出现一个很奇怪的bug					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb2346"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#goodfb2346" onclick="postBadGood(&#39;goodfb&#39;,2346);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>1 </span>
+							<span class="action-item" id="badfb2346"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#badfb2346" onclick="postBadGood(&#39;badfb&#39;,2346);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>0 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(2346,2346,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_2346"></div>
+		</div>
+		<div class="commnet-box">
+		  <ul>
+			<li class="clearfix"> 
+				<div class="avatar">
+					<a href="http://www.jcodecraeer.com/member/index.php?uid=%D5%C5%CF%BA%B0%BA" class="plpic"><img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/index(23).php" height="40" width="40"></a>
+				</div>
+				<div class="post_body">
+					<div class="post_header">
+						<span class="title"><a href="http://www.jcodecraeer.com/member/index.php?uid=%D5%C5%CF%BA%B0%BA">张虾昂</a></span>
+						<span class="bullet" aria-hidden="true">.</span>
+						<span class="fl">2015-07-17</span>
+					</div>
+					<div class="post_content">
+						这个不错，先mark					</div>
+				   <div class="post_footer">
+						<span class="fr">
+							<span class="action-item" id="goodfb2343"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#goodfb2343" onclick="postBadGood(&#39;goodfb&#39;,2343);"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></a>0 </span>
+							<span class="action-item" id="badfb2343"> <a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0717/3196.html#badfb2343" onclick="postBadGood(&#39;badfb&#39;,2343);"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a>2 </span>
+							<span class="quote action-item"><a href="javascript:ajaxFeedback(2343,2343,&quot;quote&quot;);"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 回复</a> </span>
+						</span>
+						
+					</div>     
+				</div>
+				
+			</li>
+		  </ul>
+		  <div id="ajaxfeedback_2343"></div>
+		</div>
+</div>
+<!--
+//由于评论载入时使用异步传输，因此必须在最后一步加载（DIGG和评论框须放在评论内容前面）
+//如果一定需要提前的把myajax.SendGet改为myajax.SendGet2，但可能会引起页面阻滞
+-->
+<script language="javascript">
+function LoadCommets(page)
+{
+		var taget_obj = document.getElementById('commetcontent');
+		var waithtml = "<div style='line-height:50px'><img src='/images/loadinglit.gif' />评论加载中...</div>";
+		var myajax = new MyAjax(taget_obj, true, true, '', 'x', waithtml);
+		myajax.SendGet2("/plus/feedback_ajax.php?dopost=getlist&aid=3196&page="+page);
+		DedeXHTTP = null;
+}
+function updatetag(){
+	var tags = $DE("tags").value;
+	var nfeedbacktype = 'feedback';
+	var taget_obj = $DE('tag_response');
+	var myajax = new MyAjax(taget_obj, false, true, '', '', "...");
+	myajax.sendlang = 'gb2312';
+	myajax.AddKeyN('dopost', 'send');
+	myajax.AddKeyN('id', '3196');
+	myajax.AddKeyN('tags', tags);
+	myajax.SendPost2('/action/update_tags.php');	
+}
+function PostComment()
+{
+		var f = document.feedback;
+		var msg = $DE("cm_content").value;
+		var nface = '6';
+		var nfeedbacktype = 'feedback';
+		var nvalidate = '';
+		var nnotuser = '';
+		var nusername = '';
+		var npwd = '';
+		var taget_obj = $DE('commetcontentNew');
+		var waithtml = "<div style='line-height:30px'><img src='/images/loadinglit.gif' />正在发送中...</div>";
+		if(msg=='')
+		{
+			alert("评论内容不能为空！");
+			return;
+		}
+		if(f.validate)
+		{
+			if(f.validate.value=='') {
+				alert("请填写验证码！");
+				return;
+			}
+			else {
+				nvalidate = f.validate.value;
+			}
+		}
+		if(msg.length > 500)
+		{
+			alert("你的评论是不是太长了？请填写500字以内的评论。");
+			return;
+		}
+		if(f.feedbacktype) {
+			for(var i=0; i < f.feedbacktype.length; i++)
+				if(f.feedbacktype[i].checked) nfeedbacktype = f.feedbacktype[i].value;
+		}
+		/*
+		if(f.face) {
+			for(var j=0; j < f.face.length; j++)
+				if(f.face[j].checked) nface = f.face[j].value;
+		}
+		*/
+
+		
+		var myajax = new MyAjax(taget_obj, false, true, '', '', waithtml);
+		myajax.sendlang = 'gb2312';
+		myajax.AddKeyN('dopost', 'send');
+		myajax.AddKeyN('aid', '3196');
+		myajax.AddKeyN('fid', f.fid.value);
+		myajax.AddKeyN('face', nface);
+		myajax.AddKeyN('feedbacktype', nfeedbacktype);
+		myajax.AddKeyN('validate', nvalidate);
+		myajax.AddKeyN('notuser', nnotuser);
+		myajax.AddKeyN('username', nusername);
+		myajax.AddKeyN('pwd', npwd);
+		myajax.AddKeyN('msg', msg);
+		myajax.AddKeyN('arcauthor', f.arcauthor.value);
+
+		myajax.SendPost2('/plus/feedback_ajax.php');
+		//msg = '';
+		CKEDITOR.instances.msg.setData('');
+		//taget_obj.removeAttribute('id');
+		f.fid.value = 0;
+		if(f.validate)
+		{
+			if($DE('validateimg')) $DE('validateimg').src = "/include/vdimgck.php?"+f.validate.value;
+			f.validate.value = '';
+		}
+		
+}
+function quoteCommet(fid)
+{
+	    document.feedback.fid.value = fid;
+}
+  
+function ajaxFeedback(aid, fid, type)
+{
+	var taget_obj = $DE('ajaxfeedback_'+fid);
+	if(taget_obj.innerHTML == '')
+	{
+		var myajax = new MyAjax(taget_obj, true, true, '', 'x');
+		myajax.SendGet2("/plus/feedback.php?aid="+aid+"&fid="+fid+"&action=quote&type=ajax");
+		eval('var result = typeof CKEDITOR.instances.msg_'+fid);
+		if(result != 'undefined')
+		{
+			// 删除实例
+			eval('var edit = CKEDITOR.instances.msg_'+fid);
+			CKEDITOR.remove(edit);
+		}
+		CKEDITOR.replace(document.getElementById('msg_'+fid) , CKEDITOR.instances.msg.config);
+		scroll(0, taget_obj.offsetTop - 120);
+		var formname = 'f = document.ajaxfeedback_'+fid;
+		eval(formname);
+		if(f.validate)
+		{
+			if($DE('vdimg_'+fid)) $DE('vdimg_'+fid).src = "/include/vdimgck.php?"+f.validate.value;
+			f.validate.value = '';
+		}
+		
+		DedeXHTTP = null;
+	}else{
+		taget_obj.innerHTML = '';
+	}
+}
+
+function postBadGood(ftype,fid)
+{
+	var taget_obj = document.getElementById(ftype+fid);
+	var saveid = GetCookie('badgoodid');
+	if(saveid != null)
+	{
+		var saveids = saveid.split(',');
+		var hasid = false;
+		saveid = '';
+		j = 1;
+		for(i=saveids.length-1;i>=0;i--)
+		{
+			if(saveids[i]==fid && hasid) continue;
+			else {
+				if(saveids[i]==fid && !hasid) hasid = true;
+				saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+				j++;
+				if(j==10 && hasid) break;
+				if(j==9 && !hasid) break;
+			}
+		}
+		if(hasid) { alert('您刚才已表决过了喔！'); return false;}
+		else saveid += ','+fid;
+		SetCookie('badgoodid',saveid,1);
+	}
+	else
+	{
+		SetCookie('badgoodid',fid,1);
+	}
+	myajax = new MyAjax(taget_obj,false,false,'','','');
+	myajax.SendGet2("/plus/feedback.php?aid="+fid+"&action="+ftype+"&fid="+fid);
+}
+
+function ajaxQuotePost(fid)
+{
+	var formname = 'f = document.ajaxfeedback_'+fid;
+	eval(formname);
+	//var f = document.formname;
+	//var f = f[0];
+	var nvalidate = '';
+	var nnotuser = '';
+	var nusername = '';
+	var npwd = '';
+	var taget_obj = $DE('commetcontentNew');
+	var waithtml = "<div style='line-height:30px'><img src='/images/loadinglit.gif' />正在发送中...</div>";
+	eval('var msg = $DE("msg_'+fid+'").value');
+	if(f.validate)
+	{
+		if(f.validate.value=='') {
+			alert("请填写验证码！");
+			return;
+		}
+		else {
+			nvalidate = f.validate.value;
+		}
+	}
+	var myajax = new MyAjax(taget_obj, false, true, '', '', waithtml);
+	
+
+	
+	myajax.sendlang = 'gb2312';
+	myajax.AddKeyN('dopost', 'send');
+	myajax.AddKeyN('aid', '3196');
+	myajax.AddKeyN('fid', f.fid.value);
+	myajax.AddKeyN('type', 'ajax');
+	myajax.AddKeyN('comtype', f.comtype.value);
+	myajax.AddKeyN('isconfirm','yes');
+	
+	myajax.AddKeyN('typeid', f.typeid.value);
+	myajax.AddKeyN('quotemsg', f.quotemsg.value);
+	myajax.AddKeyN('validate', nvalidate);
+	myajax.AddKeyN('notuser', nnotuser);
+	myajax.AddKeyN('username', nusername);
+	myajax.AddKeyN('pwd', npwd);
+	myajax.AddKeyN('msg', msg);
+	myajax.SendPost2('/plus/feedback_ajax.php');
+	//alert(f.quotemsg.value);
+	if($DE('ajaxfeedback_'+fid).innerHTML != null)
+	{
+		$DE('ajaxfeedback_'+fid).innerHTML = '';
+	}
+	scroll(0, taget_obj.offsetTop);
+}
+LoadCommets(1);
+</script>
+<!-- //评论内容区结束 -->
+
+ 			</div>  
+ 
+                                   
+        </div>  
+        <!-- end  of  content -->
+
+        <div class="col-md-3">  
+ 
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h3 class="panel-title">推荐文章</h3>
+			  </div>
+			  <div class="panel-body">
+				<ul class="sidearticle_c clearfix">                     
+					<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0112/3861.html" target="_blank">AndroidFlux一览</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0822/3349.html" target="_blank">ItemTouchHelper之SwipeDismiss</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0603/4331.html" target="_blank">嘿！让我们来手动编译安卓项目吧</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/1120/3705.html" target="_blank"> RecyclerView添加Header的正确方式</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0428/2810.html" target="_blank">Instagram是如何提升TextView渲染性能的</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0822/3342.html" target="_blank">Android NestedScrolling 实战</a></li>
+
+				</ul>				 
+			  </div>
+			</div>            
+			<div class="co_member-box">
+			  <div class="co_member-heading">
+				<h3 class="co_member-title">赞助商</h3>
+			  </div>
+			  <div class="co_member-body">
+				<div class="divider"></div>
+			  </div>
+			</div>	
+                                                               
+            <div style="height: 101px;"></div><div id="floatbox" style="top: 0px; position: fixed; width: 263px;">  
+				<script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/fuckblok(4).php" language="javascript"></script><a href="http://www.qiniu.com/pricing?utm_campaign=https&amp;utm_source=codecraeer" target="_blank"> <img src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/1_1717156671.jpg"> </a><a>	
+         	</a></div><a>
+            
+        </a></div><a>        
+    
+        <div style="clear:both;"></div>
+	</a></div><a> 	
+</a></div><a> 
+<script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/jcodecraeer.js.下载"></script>
+<!-- 返回顶部 -->
+<div id="gotop" style="display: block;"></div>
+
+<script type="text/javascript">
+	backTop=function (btnId){
+		var btn=document.getElementById(btnId);
+		var d=document.documentElement;
+		var b=document.body;
+		window.onscroll=set;
+		btn.onclick=function (){
+			btn.style.display="none";
+			window.onscroll=null;
+			this.timer=setInterval(function(){
+				d.scrollTop-=Math.ceil((d.scrollTop+b.scrollTop)*0.1);
+				b.scrollTop-=Math.ceil((d.scrollTop+b.scrollTop)*0.1);
+				if((d.scrollTop+b.scrollTop)==0) clearInterval(btn.timer,window.onscroll=set);
+			},10);
+		};
+		function set(){
+			btn.style.display=(d.scrollTop+b.scrollTop>100)?'block':"none";
+		}
+	};
+	backTop('gotop');
+	
+	(new SidebarFollow()).init({
+		element: jQuery('#floatbox'),
+		distanceToTop: 0
+	});	
+	
+</script>
+
+
+<!-- 返回顶部END -->
+<style>
+#gotop {
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEMAAAANAgMAAACP9jv8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlMAQObYZgAAAGhJREFUeF49zsEJwCAMBdBvoRfvWaJTOEIPZp+O4lEyZcn/RIl+SMJDAG2gTlfc7+k8H8Pm6cRiuFfjip3RphXUV4ghJIaQjVZQoCfkLDI7C7kgiAuRDK+YvJwLQnBPhovRw7ER5of3DyPbFp8RB9axAAAAAElFTkSuQmCC") no-repeat scroll 18px 21px #000000;
+    bottom: 200px;
+    cursor: pointer;
+    display: block;
+    height: 60px;
+    opacity: 0.5;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in 0s, opacity 0.3s ease-out 0s;
+     right: 10px;
+    position: fixed;
+    top: auto;
+    width: 60px;
+    z-index: 999;
+}
+</style>
+</a><div class="footer"><a>
+	</a><div class="container"><a>	
+		</a><div class="row clearfix"><a>
+			</a><div class="col-md-12"><a>
+				<div class="copyright z">
+					<p>Copyright  2011 - 2016 jcodecraeer.com All Rights Reversed.</p>
+					<p>蜀ICP备12021840号-1</p>
+					<p>本站文章用于学习交流</p>
+				</div>
+				</a><div class="footer-nav y"><a>	
+					</a><ul class="clearfix"><a>
+						</a><li><a></a><a href="http://weibo.com/u/2711441293" target="_blank">新浪微博</a></li>
+						<li>qq群一161644793</li>
+						<li>qq群二98711210</li> 
+					</ul>
+					<ul class="clearfix">
+						<li><a href="http://www.jcodecraeer.com/sitemap/" target="_blank">网站地图</a></li>	
+						<li>				
+						<script type="text/javascript">
+						var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+						document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2f2ac530df20294f718580cea710780e' type='text/javascript'%3E%3C/script%3E"));
+						</script><script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/h.js.下载" type="text/javascript"></script><a href="http://tongji.baidu.com/hm-web/welcome/ico?s=2f2ac530df20294f718580cea710780e" target="_blank">网站统计</a> 
+						</li>	 
+					</ul>			
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+
+<script src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/prettify.js.下载"></script>
+
+
+<div id="gj_NavDiv" style="position: fixed; z-index: 2147483640; right: 0px; width: 0px; height: 0px; bottom: 59px; display: block;"><iframe src="./CoordinatorLayout与滚动的处理 - 泡在网上的日子_files/adcpage.html" id="gj_SafeDaohang" frameborder="0" scrolling="0" allowtransparency="true" width="100%" height="100%" noresize="noresize" style="position: fixed; z-index: 2147483640; right: 0px; width: 0px; height: 0px; bottom: 99px; border: 0px none;"></iframe></div><div id="gj_mini" style="right: 10px; bottom: 50px; display: block; position: fixed; z-index: 2147483641; background-image: url(&quot;http://s.pc.qq.com/navigate/adc/v3/hover-ok.png&quot;); background-position: 0px 0px;"></div><div id="gj_shard" style="right: -70px; bottom: -20px; position: fixed; z-index: 2147483643; display: none;"></div><div id="gj_circle" style="position: fixed; z-index: 2147483642;"></div><div id="gj_bar_left" style="right: 60px; bottom: 58px; position: fixed; z-index: 2147483640; width: 0px;"><div id="tipstext" style="white-space:nowrap;font-size: 14px;font-weight: bold;overflow:hidden;">0个广告已降服</div><div id="tipstext" style="color:#CFDFFE;overflow:hidden;padding-top:0px;white-space: nowrap;">可以清爽的上网了~</div></div></body></html>

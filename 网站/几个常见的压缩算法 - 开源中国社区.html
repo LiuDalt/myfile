@@ -1,0 +1,1363 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0040)https://www.oschina.net/question/16_2639 -->
+<html lang="zh-CN" xml:lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+	<!-- 此meta用于腾讯验证我们网址的有效性 -->
+    <meta property="qc:admins" content="2554550177673301616654">
+	<!-- 此meta用于百度站长工具 -->
+    <meta name="baidu-site-verification" content="kerGDpToCx">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.oschina.net/img/favicon.ico?t=1451964198000">
+  <title>几个常见的压缩算法 - 开源中国社区</title>
+				<meta itemprop="name" content="几个常见的压缩算法- 开源中国社区">
+<meta itemprop="image" content="https://www.oschina.net/img/logo_s2.png">
+
+		  		  <meta name="Description" itemprop="description" content="几个常见的压缩算法- 开源中国社区">
+	  
+  <link rel="stylesheet" href="./几个常见的压缩算法 - 开源中国社区_files/style2013.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="./几个常见的压缩算法 - 开源中国社区_files/channel.css" type="text/css" media="screen">
+  <link rel="stylesheet" type="text/css" href="./几个常见的压缩算法 - 开源中国社区_files/jquery.fancybox-1.3.4.css" media="screen">
+  <link rel="alternate" type="application/rss+xml" title="最新开源项目" href="https://www.oschina.net/project/rss">
+  <link rel="alternate" type="application/rss+xml" title="最新开源资讯" href="https://www.oschina.net/news/rss">
+  <link rel="alternate" type="application/rss+xml" title="最新问题列表" href="https://www.oschina.net/question/rss">
+  <link rel="alternate" type="application/rss+xml" title="最新翻译列表" href="https://www.oschina.net/translate/rss">
+  <link rel="alternate" type="application/rss+xml" title="最新博客列表" href="https://www.oschina.net/blog/rss">
+  <link rel="alternate" type="application/rss+xml" title="推荐博客列表" href="https://www.oschina.net/blog/rss?show=more">
+  <link rel="alternate" type="application/rss+xml" title="推荐软件列表" href="https://www.oschina.net/project/rss?show=recomms">
+  <link rel="alternate" type="application/rss+xml" title="最新代码分享列表" href="https://www.oschina.net/code/rss">
+  <link rel="alternate" type="application/rss+xml" title="开源中国 - 源码列表" href="https://www.oschina.net/code/source_rss">
+    <!--添加emoji支持-->
+    <link rel="stylesheet" type="text/css" href="./几个常见的压缩算法 - 开源中国社区_files/emoji.min.css">
+
+  <script src="./几个常见的压缩算法 - 开源中国社区_files/push.js.下载"></script><script src="./几个常见的压缩算法 - 开源中国社区_files/hm.js.下载"></script><script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/jquery-1.7.1.min.js.下载"></script>
+  <script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/jquery.form.js.下载"></script>
+  <script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/jquery.fancybox-fixed.js.下载"></script>
+    <link rel="stylesheet" href="./几个常见的压缩算法 - 开源中国社区_files/tip-yellowsimple.css" type="text/css">
+  <script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/jquery.poshytip.min.js.下载"></script>
+    <!-- 此script用于百度统计工具-->
+	<script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?a411c4d1664dd70048ee98afe7b28f0b";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+	<script type="text/javascript">
+  	g_user = {
+	id:0,
+	name:'',
+	login:false};  </script>
+    <script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/oschina.js.下载"></script>
+  <script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/utils.js.下载"></script>
+  <script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/channel.js.下载"></script>
+    <style type="text/css">
+  
+  </style>
+<style id="poshytip-css-tip-yellowsimple" type="text/css">div.tip-yellowsimple{visibility:hidden;position:absolute;top:0;left:0;}div.tip-yellowsimple table, div.tip-yellowsimple td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}div.tip-yellowsimple td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}div.tip-yellowsimple td.tip-right{background-position:100% 0;}div.tip-yellowsimple td.tip-bottom{background-position:100% 100%;}div.tip-yellowsimple td.tip-left{background-position:0 100%;}div.tip-yellowsimple div.tip-inner{background-position:-10px -10px;}div.tip-yellowsimple div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}</style><style id="poshytip-css-tip-yellowsimple question-tag" type="text/css">div.tip-yellowsimple question-tag{visibility:hidden;position:absolute;top:0;left:0;}div.tip-yellowsimple question-tag table, div.tip-yellowsimple question-tag td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}div.tip-yellowsimple question-tag td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}div.tip-yellowsimple question-tag td.tip-right{background-position:100% 0;}div.tip-yellowsimple question-tag td.tip-bottom{background-position:100% 100%;}div.tip-yellowsimple question-tag td.tip-left{background-position:0 100%;}div.tip-yellowsimple question-tag div.tip-inner{background-position:-10px -10px;}div.tip-yellowsimple question-tag div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}</style><style id="poshytip-css-tip-yellowsimple question-tag" type="text/css">div.tip-yellowsimple question-tag{visibility:hidden;position:absolute;top:0;left:0;}div.tip-yellowsimple question-tag table, div.tip-yellowsimple question-tag td{margin:0;font-family:inherit;font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;}div.tip-yellowsimple question-tag td.tip-bg-image span{display:block;font:1px/1px sans-serif;height:10px;width:10px;overflow:hidden;}div.tip-yellowsimple question-tag td.tip-right{background-position:100% 0;}div.tip-yellowsimple question-tag td.tip-bottom{background-position:100% 100%;}div.tip-yellowsimple question-tag td.tip-left{background-position:0 100%;}div.tip-yellowsimple question-tag div.tip-inner{background-position:-10px -10px;}div.tip-yellowsimple question-tag div.tip-arrow{visibility:hidden;position:absolute;overflow:hidden;font:1px/1px sans-serif;}</style><link href="./几个常见的压缩算法 - 开源中国社区_files/default.css" rel="stylesheet"><link href="./几个常见的压缩算法 - 开源中国社区_files/oschina.css" rel="stylesheet"></head>
+<body>
+<div id="OSC_NavTop">
+	<div class="wp998">
+        <div id="OSC_Channels">
+        	<ul>
+        	<li class="item"><a href="https://www.oschina.net/" class="home">首页</a></li>        	<li class="item control_select"><a href="https://www.oschina.net/project" class="project">开源项目</a>
+				<ul class="cs_content" style="display: none;">
+					<li><a href="https://www.oschina.net/project/zh">国产开源项目</a></li>
+					<li><a href="https://www.oschina.net/project/tags">项目分类</a></li>
+					<li><a href="https://www.oschina.net/project/list?sort=time">最新收录项目</a></li>
+					<li class="split"></li>
+                	                	<li><a href="https://www.oschina.net/project/lang/19/java">Java 开源软件</a></li>
+                	<li><a href="https://www.oschina.net/project/lang/194/csharp">C# 开源软件</a></li>
+                	<li><a href="https://www.oschina.net/project/lang/22/php">PHP 开源软件</a></li>
+                	<li><a href="https://www.oschina.net/project/lang/21/c">C/C++ 开源软件</a></li>
+                	<li><a href="https://www.oschina.net/project/lang/26/ruby">Ruby 开源软件</a></li>
+                	<li><a href="https://www.oschina.net/project/lang/25/python">Python 开源软件</a></li>
+                	<li><a href="https://www.oschina.net/project/lang/358/go">Go开源软件</a></li>
+                	<li><a href="https://www.oschina.net/project/lang/28/javascript">JS开源软件</a></li>
+				</ul>
+			</li>
+        	<li class="item control_select">
+				<a href="https://www.oschina.net/question" class="question hl">问答</a>
+				<ul class="cs_content">
+                	<li><a href="https://www.oschina.net/question?catalog=1"> 技术问答 » </a></li>
+                	<li><a href="https://www.oschina.net/question?catalog=2"> 技术分享 » </a></li>
+                	<li><a href="https://www.oschina.net/question?catalog=3"> IT大杂烩 » </a></li>
+                	<li><a href="https://www.oschina.net/question?catalog=100"> 职业生涯 » </a></li>
+                	<li><a href="https://www.oschina.net/question?catalog=4"> 站务/建议 » </a></li>
+                	<li><a href="https://www.oschina.net/alipay"> 支付宝专区 » </a></li>
+                	<li><a href="https://www.oschina.net/mopaas"> MoPaaS专区 » </a></li>
+                	<li><a href="https://www.oschina.net/hardware"> 开源硬件专区 » </a></li>
+				</ul>
+			</li>
+        	<li class="item"><a href="https://www.oschina.net/tweets" class="tweets">动弹</a></li>
+        	        	<li class="item"><a href="https://www.oschina.net/blog" class="blog">博客</a></li>
+        	<li class="item"><a href="https://www.oschina.net/translate" class="tran">翻译</a></li>
+            <li class="item"><a href="https://www.oschina.net/news" class="news">资讯</a></li>
+        	<li class="item control_select">
+				<a href="https://www.oschina.net/android" class="mobile">专题</a>
+				<ul class="cs_content cs_mobile">
+        			<li><a href="https://www.oschina.net/events" style="color:#c00">源创会</a> <a href="https://www.oschina.net/video">视频</a></li>
+        			<li><a href="http://www.oschina.net/question/tag/%E9%AB%98%E6%89%8B%E9%97%AE%E7%AD%94">高手问答</a> <a href="http://www.oschina.net/question/tag/%E5%BC%80%E6%BA%90%E8%AE%BF%E8%B0%88">访谈</a></li>
+        			<li><a href="http://www.oschina.net/question/tag/%E5%BC%80%E6%BA%90%E5%91%A8%E5%88%8A">周刊</a> <a href="http://my.oschina.net/xxiaobian/blog?catalog=547834">乱弹</a></li>
+            		<li><a href="https://www.oschina.net/company">公司开源导航页</a></li>
+					<li class="split"></li>
+                	<li class="android_"><a href="https://www.oschina.net/android">Android开发专区</a></li>
+                	<li class="ios_"><a href="https://www.oschina.net/ios/home">iOS开发专区</a></li>
+                	<li class="ios_"><a href="https://www.oschina.net/ios/codingList">iOS代码库</a></li>
+                	<li class="wp7_"><a href="https://www.oschina.net/wp">Windows Phone</a></li>
+					
+				</ul>
+			</li>
+        	        										            <li class="item control_select">
+                <a href="https://city.oschina.net/" id="MyCities" title="城市圈">城市圈</a>
+				<ul class="cs_content">
+				                </ul>
+			</li>
+        	</ul>
+        </div>
+		<div id="OSC_Userbar">
+                		    		当前访客身份：游客 [ <a href="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fwww.oschina.net%2Fquestion%2F16_2639">登录</a> | <a href="https://www.oschina.net/home/reg">加入开源中国</a> ]
+    				</div>
+		<div class="clear"></div>
+	</div>
+
+</div>
+<div id="OSC_Banner"><div class="wp998"><a href="https://www.oschina.net/" class="Logo" title="OSChina 开源中国">开源中国</a>
+<h1><a href="https://www.oschina.net/question">问答</a></h1>
+<dl>
+    <dt>当前位置：</dt>
+    <dd>
+                                    <a href="https://www.oschina.net/question">问答</a>&nbsp;»
+                <a href="https://www.oschina.net/question?catalog=2">技术分享</a>                                        </dd>
+</dl>
+<form action="https://www.oschina.net/search" class="search">
+    <input type="hidden" name="scope" value="bbs">
+    <input id="channel_q" type="text" name="q" value="" placeholder="资讯、软件、分享、代码、博客" class="TXT">
+    <button type="submit" class="BTN">搜 索</button>
+</form>
+<div class="clear"></div></div></div>
+<div id="OSC_Screen">
+	<div id="OSC_Content" class="CenterDiv">
+<script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/scrolltopcontrol.js.下载"></script>
+<script type="text/javascript">
+  	scrolltotop.offset(100,120);
+  	scrolltotop.init();
+	$(function(){
+		$('a.ShowUserOutline img.SmallPortrait').poshytip({
+			className: 'tip-yellowsimple',
+			alignTo: 'target',
+			alignX: 'right',
+			alignY: 'inner-top',
+			offsetX: 5,
+			offsetY: 0,
+			fade: false,
+			slide: false,
+			content: function(updateCallback) {
+				ajax_get("/action/ajax/get_user_outline?id="+$(this).attr('user'),false,function(html){
+					updateCallback(html);
+				});
+				return "<div style='height:100px;'>Loading...</div>";
+			}
+		});
+	});
+	function add_to_favorite(pid,concern_it){
+			alert("必须登录后才能收藏");
+		}
+</script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        osc.show_tag_introduce_project();
+        osc.show_tag_introduce_other();
+    });
+</script>
+
+
+
+<div class="Question">
+    <div class="Body">
+        <div class="main">
+            <div class="Title">
+                <a class="jump_answer" href="https://www.oschina.net/question/16_2639#tags_nav" title="跳到回复"></a>
+
+                <div class="QTitle">
+                                        <h1><a href="https://www.oschina.net/question/16_2639" hidefocus="true" name="top">几个常见的压缩算法</a></h1>
+
+                    <div class="array"></div>
+                </div>
+                <div class="clear"></div>
+            
+                <div class="clear"></div>
+            </div>
+                                
+
+            <div class="Content">
+                <p style="margin:0 0 10px 0;"><a data-traceid="question_detail_above_text_link_1" data-tracepid="question_detail_above_text_link" style="color:#A00;font-weight:bold;" href="https://www.qcloud.com/community/article/162?utm_source=Community&amp;utm_medium=article162&amp;utm_campaign=kyzg" target="_blank">如何设计一个RPC(Remote Procedure Call)系统&gt;&gt;&gt; »</a>&nbsp;&nbsp;<img src="./几个常见的压缩算法 - 开源中国社区_files/hot3.png" align="absmiddle"></p>                <div class="detail"><p>再学习了haffman算法之后发现压缩算法很有意思，上网查了点资料，这是做好的一篇（主要是我能理解）。前面几种都能看懂，关键是那个LZ77算法。这个是很强大的压缩算法，zip，rar用得都是这种算法，让我们来感叹下两个犹太人的强大！！！</p>
+<p>&nbsp;</p>
+<p>几个常见的压缩算法（转）<br><br>（一） 字典算法<br>字典算法是最为简单的压缩算法之一。它是把文本中出现频率比较多的单词或词汇组合做成一个对应的字典列表，并用特殊代码来表示这个单词或词汇。例如：<br>有字典列表：<br>00=Chinese<br>01=People<br>02=China<br>源文本：I am a Chinese people,I am from China 压缩后的编码为：I am a 00 01,I am from 02。压缩编码后的长度显著缩小，这样的编码在SLG游戏等专有名词比较多的游戏中比较容易出现，比如《SD高达》。</p>
+<p>（二） 固定位长算法（Fixed Bit Length Packing）<br>这种算法是把文本用需要的最少的位来进行压缩编码。<br>比 如八个十六进制数：1，2，3，4，5，6，7，8。转换为二进制为：00000001，00000010，00000011，00000100， 00000101，00000110，00000111，00001000。每个数只用到了低4位，而高4位没有用到（全为0），因此对低4位进行压缩编 码后得到：0001，0010，0011，0100，0101，0110，0111，1000。然后补充为字节得到：00010010， 00110100，01010110，01111000。所以原来的八个十六进制数缩短了一半，得到4个十六进制数：12，34，56，78。<br>这也是比较常见的压缩算法之一。</p>
+<p>（三） RLE算法<br>这种压缩编码是一种变长的编码，RLE根据文本不同的具体情况会有不同的压缩编码变体与之相适应，以产生更大的压缩比率。</p>
+<p>　　变体1：重复次数+字符<br>文本字符串：A A A B B B C C C C D D D D，编码后得到：3 A 3 B 4 C 4 D。</p>
+<p>　　变体2：特殊字符+重复次数+字符<br>文本字符串：A A A A A B C C C C B C C C，编码后得到：B B 5 A B B 4 C B B 3 C。编码串的最开始说明特殊字符B，以后B后面跟着的数字就表示出重复的次数。</p>
+<p>　　变体3：把文本每个字节分组成块，每个字符最多重复 127 次。每个块以一个特殊字节开头。那个特殊字节的第 7 位如果被置位，那么剩下的7位数值就是后面的字符的重复次数。如果第 7 位没有被置位，那么剩下 7 位就是后面没有被压缩的字符的数量。例如：文本字符串：A A A A A B C D E F F F。编码后得到：85 A 4 B C D E 83 F（85H= 10000101B、4H= 00000100B、83H= 10000011B）</p>
+<p>　　以上3种不RLE变体是最常用的几种，其他还有很多很多变体算法，这些算法在Winzip Winrar这些软件中也是经常用到的。</p>
+<p>（四） LZ77算法<br>LZ77算法是由 Lempel-Ziv 在1977发明的，也是GBA内置的压缩算法。LZ77算法有许多派生算法(这里面包括 LZSS算法)。它们的算法原理上基本都相同，无论是哪种派生算法，LZ77算法总会包含一个动态窗口（Sliding Window）和一个预读缓冲器（Read Ahead Buffer）。动态窗口是个历史缓冲器，它被用来存放输入流的前n个字节的有关信息。一个动态窗口的数据范围可以从 0K 到 64K，而LZSS算法使用了一个4K的动态窗口。预读缓冲器是与动态窗口相对应的，它被用来存放输入流的前n个字节，预读缓冲器的大小通常在0 – 258 之间。这个算法就是基于这些建立的。用下n个字节填充预读缓存器（这里的n是预读缓存器的大小）。在动态窗口中寻找与预读缓冲器中的最匹配的数据，如果匹 配的数据长度大于最小匹配长度 （通常取决于编码器，以及动态窗口的大小，比如一个4K的动态窗口，它的最小匹配长度就是2），那么就输出一对〈长度（length），距离 （distance）〉数组。长度(length)是匹配的数据长度，而距离(distance)说明了在输入流中向后多少字节这个匹配数据可以被找到。</p>
+<p>　　例如：（假设一个 10个字节的动态窗口, 以及一个5个字节的预读缓冲器）<br>文本：A A A A A A A A A A A B A B A A A A A<br>--------------------- =========<br>动态窗口 预读缓存器<br>动 态窗口中包含10个A ，这就是最后读取的10个字节。预读缓冲器包含了 B A B A A。编码的第一步就是寻找动态窗口与预读缓存器相似长度大于2的字节部分。在动态窗口中找不到B A B A A，所以B就被按照字面输出。然后动态窗口滑过1个字节，现在暂时输出了一个B。<br>第二步：A A A A A A A A A A A B A B A A A A A<br>--------------------- =========<br>动态窗口 预读缓存器<br>现 在预读缓冲器包含A B A A A，然后再和动态窗口进行比较。这时，在动态窗口找到了相似长度为2的A B，因此一对〈长度, 距离〉就被输出了。长度(length)是2 并且向后距离也是2，所以输出为&lt;2,2&gt;，然后动态窗口滑过2个字节。现在已经输出了B &lt;2,2&gt;。<br>第三步：A A A A A A A A A A A B A B A A A A A<br>--------------------- =========<br>动态窗口 预读缓存器<br>继续上面的方法得到输出结果&lt;5,8&gt;。现在已经输出了B &lt;2,2&gt; &lt;5,8&gt;。<br>最终的编码结果是：A A A A A A A A A A A B &lt;2,2&gt; &lt;5,8&gt;。<br>但 数组是无法直接用二进制来表示的，LZ77会把编码每八个数分成一组，每组前用一个前缀标示来说明这八个数的属性。比如数据流：A B A C A C B A C A按照LZ77的算法编码为：A B A C&lt;2,2&gt; &lt;4,5&gt;，刚好八个数。按照LZ77的规则，用“0”表示原文输出，“1”表示数组输出。所以这段编码就表示为：00001111B（等于 0FH），因此得到完整的压缩编码表示：F A B A C 2 2 4 5。虽然表面上只缩短了1个字节的空间，但当数据流很长的时候就会突出它的优势，这种算法在zip格式中是经常用到。</p>
+<p>　　除此之外还有很多压缩算法，像霍夫曼编码（Huffman Encoding）等等。这些编码也是非常的著名而且压缩效率极高，不过这些编码的算法相对比较繁琐，规则也很复杂，由于篇幅就不逐一介绍了。如果大家对这方面感兴趣可以到网站相关网站查询资料。</p>                    <div class="clear"></div><div class="EditLogs">
+	<span class="question_resupply_list">
+		</span>
+</div></div>
+                                <div class="Asker special">
+                    <div class="info" title="JavaGG">
+					<span class="ainfo">
+						<a href="https://my.oschina.net/javagg" class="ShowUserOutline" target="_blank" title="JavaGG"><img src="./几个常见的压缩算法 - 开源中国社区_files/16_50.jpg" align="absmiddle" alt="JavaGG" title="JavaGG" class="SmallPortrait" user="16"></a>
+					</span>
+					<span class="pinfo">
+		    			<a href="https://my.oschina.net/javagg" class="Asker-Name" target="_blank">JavaGG</a><br>
+		    			<span class="pub_time">发帖于&nbsp;7年前</span><br>
+		    			<span><a href="https://www.oschina.net/question/16_2639#answers" class="answer_count">3</a>回/43967阅</span>
+					</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="tags_toolbars">
+                    <div class="Tags" id="tags_nav">
+                        <strong>标签：</strong>
+                                                                            <a href="https://www.oschina.net/question/tag/%E5%8E%8B%E7%BC%A9" class="tag other" data-id="1647" title="">压缩</a> <a href="https://www.oschina.net/question/tag/%E7%AE%97%E6%B3%95" class="tag other" data-id="1242" title="">算法</a>                                                                     </div>
+                                            <div class="SameQuestions">
+			<span class="q_toolbar">
+				<ul>
+                                        <li> <a href="javascript:report(&#39;https://www.oschina.net/question/16_2639&#39;,2639,2)">举报&nbsp;</a></li>
+                    <li id="Share">
+                        <a class="Ask_Share_Tencent" title="分享到腾讯微博" href="javascript:(function(){window.open(&#39;http://v.t.qq.com/share/share.php?url=&#39;+encodeURIComponent(document.location)+&#39;&amp;appkey=96f54f97c4de46e393c4835a266207f4&amp;site=&amp;title=&#39;+encodeURIComponent(document.title)+encodeURIComponent(&#39;: 再学习了haffman算法之后发现压缩算法很有意思，上网查了点资料，这是做好的一篇（主要是我能理解）。前面几种都能看懂，关键是那个LZ77算法。这个是很强大的压缩算法，...&#39;),&#39;&#39;, &#39;width=450, height=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no&#39;);}())"></a>
+                        <a class="Ask_Share_Sina" title="分享到新浪微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=858381728&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;&#39;,&#39;几个常见的压缩算法: 再学习了haffman算法之后发现压缩算法很有意思，上网查了点资料，这是做好的一篇（主要是我能理解）。前面几种都能看懂，关键是那个LZ77算法。这个是很强大的压缩算法，...&#39;,&#39;&#39;,&#39;utf-8&#39;));"></a>
+                        |<a href="javascript:function(0);">&nbsp;分享到</a>
+                    </li>
+                </ul>
+			</span>
+
+                            <div class="clear"></div>
+                        </div>
+                                    </div>
+            </div>
+            <div class="Vote" id="Vote">
+                                                <a id="vote_up" class="vote-up-off" href="https://www.oschina.net/question/16_2639#" title="顶：这问题很有用或者提问清晰明了"></a>
+                                <span class="q_vote_num">0</span>
+                                    <a id="vote_down" class="vote-down-off" href="https://www.oschina.net/question/16_2639#" title="踩：这问题不知道在问什么，或者没什么用"></a>
+                                <span class="store">
+    		<a title="收藏此话题" class="Tool-Store-Off" id="favor_trigger" href="javascript:;">收藏(10)</a>
+    		</span>
+            </div>
+        </div>
+        <style type="text/css">
+            #TagsSwitcher { color : #A00; }
+
+            #RecTags, #MyTags { margin : 5px 0; }
+
+            #RecTags a.tag { line-height : 24px; }
+
+            #favor_form p:first-child { margin : 5px 0; }
+
+            #favor_form { width : 200px; }
+
+            #favor_form p { color : #666; }
+
+            #favor_form form { width : 200px; }
+
+            #favor_form form ._favor_input { display : block; margin : 2px 0; width : 199px; }
+
+            #favor_form form ._favor_button { float : left; padding : 2px 5px; }
+
+            .favor_ok { text-align : center; font-size : 10.5pt; width : 199px; height : 60px; margin-top : 10px; }
+
+            #TagsSwitcher { cursor : pointer; float : right; margin-top : 10px; }
+
+            #MyTags { display : none; width : 199px; }
+
+            #MyTags a.tag { float : left; background-color : #E0EAF1; border-bottom : 1px solid #3E6D8E; border-right : 1px solid #7F9FB6; color : #3E6D8E; font-size : 8pt; line-height : 16px; margin : 2px 2px 2px 0; padding : 2px 4px; text-decoration : none; white-space : nowrap; }
+
+            #MyTags a.tag:hover { background-color : #3E6D8E; color : #FFF; }
+
+            .osc_promotion { position : relative; display : inline-block; padding : 10px; margin : 10px 0; border : 1px solid #ccc; }
+
+            .osc_promotion .c { position : absolute; right : -1px; top : -1px; }
+
+            .ask_toolbar { float : right; list-style : none; font-size : 12px; color : #333; height : 28px; _padding-top : 5px; overflow : hidden; margin : 20px 0 10px 0; }
+
+            .ask_toolbar div { float : left; margin-left : 5px; background : url("/img/ask-icon.gif") no-repeat; padding : 6px 0 6px 15px; padding-left : 15px; height : 16px; }
+
+            .ask_toolbar a { height : 16px; color : #333; text-decoration : none; display : inline-block; zoom : 1; vertical-align : middle; }
+
+            .ask_share { width : 89px; vertical-align : bottom; line-height : 15px; _line-height : 14px; }
+
+            .ask_share a { background : url("/img/ask-icon.gif"); width : 16px; }
+
+            a.ask_share_sina { background : url("/img/ask-icon.gif") 0 -40px no-repeat; margin-left : 5px; }
+
+            a.ask_share_tencent { background-position : 0 -70px; margin-left : 5px; }
+
+            .ask_toolbar em { height : 28px; line-height : 28px; width : 14px; display : inline-block; float : left; background : url("/img/ask-icon.gif") top right; }
+
+            .ask_collect a, .ask_report a, .ask_vote a, .ask_collected a { padding-left : 20px; line-height : 15px; }
+
+            .ask_collect a { background : url("/img/ask-icon.gif") 0 -131px no-repeat; }
+
+            .ask_collected a { background : url("/img/ask-icon.gif") 0 -100px no-repeat; }
+
+            div.ask_collect_count { background : url("/img/ask-icon.gif") 0 -309px no-repeat; font-weight : bold; font-size : 14px; margin-left : 0; height : 16px; line-height : 16px; }
+
+            .ask_report a { background : url("/img/ask-icon.gif") 0 -160px no-repeat; }
+
+            em.ask_collect_count_r { background-position : 59px -309px; }
+
+            .ask_vote a { background : url("/img/ask-icon.gif"); }
+                        a.ask_vote_up { background-position : 3px -190px; }
+
+            a.ask_vote_down { background-position : 0 -280px; }
+
+            a.ask_vote_uped { background-position : 3px -190px; }
+                        a.ask_vote_downed { background-position : 0 -280px; }
+
+            .ask_vote span { display : inline-block; margin : 0 10px; font-weight : bold; font-size : 14px; vertical-align : middle; margin-bottom : 2px; line-height : 16px; }
+        </style>
+        <div class="clear"></div>
+    
+    	        <div class="clear"></div>
+                        <div class="QuestionReplies">
+            <h2>
+				<span class="sort">
+					<a href="https://www.oschina.net/question/16_2639#answers" class="current">按默认排序</a>&nbsp;
+					<a href="https://www.oschina.net/question/16_2639?sort=time#answers">显示最新评论</a>&nbsp;&nbsp;
+				</span>
+                <a name="answers"></a>共有<em class="answer_count">3</em>个评论
+                <a href="https://www.oschina.net/question/16_2639?sort=time#answers" class="last_reply">(最后回答: 7个月前
+                    )</a>            </h2>
+                        <ul class="list"><span class="hr unvisible"></span><div class="Vote" id="vote_3518">
+        <a href="javascript:vote_answer(3518,true,true)" id="a_post_voteup_3518" class=" vote-up-off " title=" 投支持票 "></a>
+    <span class="a_vote_num" id="a_vote_num_3518">0</span>
+    <a href="javascript:vote_answer(3518,false,true)" id="a_post_votedown_3518" class=" vote-down-off " title=" 投反对票 "></a>
+                </div>
+<li class="Answer " id="answer_3518">
+    <div class="user">
+        <span class="user_img"><a href="https://my.oschina.net/osipscfs" class="ShowUserOutline" name="AnchorAnswer3518" target="_blank"><img src="./几个常见的压缩算法 - 开源中国社区_files/36637_50.jpg" align="absmiddle" alt="ISPCFS" title="ISPCFS" class="SmallPortrait" user="36637"></a></span>
+		<span class="user_info">
+			<a href="https://my.oschina.net/osipscfs" title="ISPCFS" target="_blank">ISPCFS</a>
+			<span class="reply-time">7年前</span>
+		</span>
+
+        <div class="clear"></div>
+    </div>
+    <div class="body">
+                                            <div class="clear"></div>
+        <div class="detail"><p>Lz算法导师讲过。。做了灰机。。。呵呵</p></div>
+    </div>
+    <div class="clear"></div>
+    <div class="replies" id="PostReplies_3518"></div>
+
+    <div class="votes">
+                <span class="a_toolbar">
+		<a href="javascript:reply_to_post(3518, 0)">评论(0)</a>|
+            <a href="https://www.oschina.net/question/answer?question=2639&amp;answer=3518">引用此评论</a>|                                        <a href="javascript:report(&#39;https://www.oschina.net/question/16_2639#AnchorAnswer3518&#39;,3518,17)">举报</a>
+            
+            (2009-10-23 10:51)
+		</span>
+    </div>
+</li>
+<span class="hr"></span>
+<script>
+                $('li.Answer').bind('mouseenter', function () {
+            var anwserId = $(this).attr('id');
+        }).bind('mouseleave', function () {
+            var anwserId = $(this).attr('id');
+        });
+        $('.Vote').bind('mouseenter', function () {
+            $(this).find('a.accept-off').show();
+            $(this).find('a.accept-on').show();
+            $(this).next('li.Answer').find('.hover-show').show();
+        }).bind('mouseleave', function () {
+            $(this).find('a.accept-off').hide();
+            $(this).next('li.Answer').find('.hover-show').hide();
+        });
+        </script><div class="Vote" id="vote_414069">
+        <a href="javascript:vote_answer(414069,true,true)" id="a_post_voteup_414069" class=" vote-up-off " title=" 投支持票 "></a>
+    <span class="a_vote_num" id="a_vote_num_414069">0</span>
+    <a href="javascript:vote_answer(414069,false,true)" id="a_post_votedown_414069" class=" vote-down-off " title=" 投反对票 "></a>
+                </div>
+<li class="Answer " id="answer_414069">
+    <div class="user">
+        <span class="user_img"><a href="https://my.oschina.net/u/875520" class="ShowUserOutline" name="AnchorAnswer414069" target="_blank"><img src="./几个常见的压缩算法 - 开源中国社区_files/875520_50.jpg" align="absmiddle" alt="风中稻草人" title="风中稻草人" class="SmallPortrait" user="875520"></a></span>
+		<span class="user_info">
+			<a href="https://my.oschina.net/u/875520" title="风中稻草人" target="_blank">风中稻草人</a>
+			<span class="reply-time">4年前</span>
+		</span>
+
+        <div class="clear"></div>
+    </div>
+    <div class="body">
+                                            <div class="clear"></div>
+        <div class="detail">LZ77算法 讲得模模糊糊的..&nbsp;</div>
+    </div>
+    <div class="clear"></div>
+    <div class="replies" id="PostReplies_414069"></div>
+
+    <div class="votes">
+                <span class="a_toolbar">
+		<a href="javascript:reply_to_post(414069, 0)">评论(0)</a>|
+            <a href="https://www.oschina.net/question/answer?question=2639&amp;answer=414069">引用此评论</a>|                                        <a href="javascript:report(&#39;https://www.oschina.net/question/16_2639#AnchorAnswer414069&#39;,414069,17)">举报</a>
+            
+            (2013-02-07 11:11)
+		</span>
+    </div>
+</li>
+<span class="hr"></span>
+<script>
+                $('li.Answer').bind('mouseenter', function () {
+            var anwserId = $(this).attr('id');
+        }).bind('mouseleave', function () {
+            var anwserId = $(this).attr('id');
+        });
+        $('.Vote').bind('mouseenter', function () {
+            $(this).find('a.accept-off').show();
+            $(this).find('a.accept-on').show();
+            $(this).next('li.Answer').find('.hover-show').show();
+        }).bind('mouseleave', function () {
+            $(this).find('a.accept-off').hide();
+            $(this).next('li.Answer').find('.hover-show').hide();
+        });
+        </script><div class="Vote" id="vote_1116540">
+        <a href="javascript:vote_answer(1116540,true,true)" id="a_post_voteup_1116540" class=" vote-up-off " title=" 投支持票 "></a>
+    <span class="a_vote_num" id="a_vote_num_1116540">0</span>
+    <a href="javascript:vote_answer(1116540,false,true)" id="a_post_votedown_1116540" class=" vote-down-off " title=" 投反对票 "></a>
+                </div>
+<li class="Answer " id="answer_1116540">
+    <div class="user">
+        <span class="user_img"><a href="https://my.oschina.net/u/2520726" class="ShowUserOutline" name="AnchorAnswer1116540" target="_blank"><img src="./几个常见的压缩算法 - 开源中国社区_files/portrait.gif" align="absmiddle" alt="囫囵吞枣C" title="囫囵吞枣C" class="SmallPortrait" user="2520726"></a></span>
+		<span class="user_info">
+			<a href="https://my.oschina.net/u/2520726" title="囫囵吞枣C" target="_blank">囫囵吞枣C</a>
+			<span class="reply-time">7个月前</span>
+		</span>
+
+        <div class="clear"></div>
+    </div>
+    <div class="body">
+                                            <div class="clear"></div>
+        <div class="detail">mark</div>
+    </div>
+    <div class="clear"></div>
+    <div class="replies" id="PostReplies_1116540"></div>
+
+    <div class="votes">
+                <span class="a_toolbar">
+		<a href="javascript:reply_to_post(1116540, 0)">评论(0)</a>|
+            <a href="https://www.oschina.net/question/answer?question=2639&amp;answer=1116540">引用此评论</a>|                                        <a href="javascript:report(&#39;https://www.oschina.net/question/16_2639#AnchorAnswer1116540&#39;,1116540,17)">举报</a>
+            
+            (2016-04-18 22:04)
+		</span>
+    </div>
+</li>
+<span class="hr"></span>
+<script>
+                $('li.Answer').bind('mouseenter', function () {
+            var anwserId = $(this).attr('id');
+        }).bind('mouseleave', function () {
+            var anwserId = $(this).attr('id');
+        });
+        $('.Vote').bind('mouseenter', function () {
+            $(this).find('a.accept-off').show();
+            $(this).find('a.accept-on').show();
+            $(this).next('li.Answer').find('.hover-show').show();
+        }).bind('mouseleave', function () {
+            $(this).find('a.accept-off').hide();
+            $(this).next('li.Answer').find('.hover-show').hide();
+        });
+        </script>            </ul>
+                            </div>
+        <div class="recruitment recruitment-question">
+	<div class="recruit-heading">
+		<div class="title">
+			最新热门职位
+		</div>
+		<div class="more">
+			更多开发者职位上
+			<a href="https://job.oschina.net/" target="_blank" class="link">开源中国·招聘</a>
+		</div>
+	</div>
+	<div class="recruit-body">
+		<ul>
+									<li>
+				<div class="logo-img">
+					<a href="https://job.oschina.net/position/11692_2952946_27784" target="_blank">
+										<img src="./几个常见的压缩算法 - 开源中国社区_files/16150552_nzi12952946.png">
+										</a>
+				</div>
+				<div class="info-list">
+					<div>
+						<a href="https://job.oschina.net/position/11692_2952946_27784" target="_blank">	C-++工程师
+</a>
+						<a href="https://job.oschina.net/company/2952946_11692" target="_blank">
+							<small>加滋杰
+</small>
+						</a>
+					</div>
+					<h5>
+						月薪：
+						<span class="font-red">6-8K</span>
+					</h5>
+				</div>
+			</li>
+												<li>
+				<div class="logo-img">
+					<a href="https://job.oschina.net/position/11663_2939946_27639" target="_blank">
+										<img src="./几个常见的压缩算法 - 开源中国社区_files/08160231_rycy2939946.png">
+										</a>
+				</div>
+				<div class="info-list">
+					<div>
+						<a href="https://job.oschina.net/position/11663_2939946_27639" target="_blank">	Java开发工程师
+</a>
+						<a href="https://job.oschina.net/company/2939946_11663" target="_blank">
+							<small>本木医疗
+</small>
+						</a>
+					</div>
+					<h5>
+						月薪：
+						<span class="font-red">10-20K</span>
+					</h5>
+				</div>
+			</li>
+								</ul>
+	</div>
+	<div class="clear"></div>
+</div>
+<style>
+	/*招聘广告位--样式*/
+	.clear{
+		clear:both;
+		font-size:1px;
+		line-height: 0;
+	}
+	.recruitment{
+		background:#fff;
+		font-size: 14px;
+		color: #333;
+		padding-bottom: 10px;
+	}
+	.recruitment a{
+		text-decoration: none;
+		color: #333;
+	}
+	.recruitment a:hover{
+		text-decoration: none;
+		color: #459120;
+	}
+	.recruitment ul,.recruitment li{
+		list-style-type: none;
+		padding:0;
+		margin:0;
+	}
+	.recruitment h5{
+		font-weight: 400;
+		font-size: 12px;
+		color: #999;
+		margin:0;
+	}
+	.recruitment .recruit-heading{
+		height: 34px;
+		line-height: 34px;
+		border-bottom:1px solid #ddd;
+		margin-bottom: 10px;
+	}
+	.recruitment .recruit-heading .title{
+		float:left;
+	}
+	.recruitment .recruit-heading .more{
+		float:right;
+	}
+	.recruitment .recruit-heading .link{
+		color:#3AA904;
+		font-size: 12px;
+		font-weight: bold;
+	}
+	.recruitment .recruit-body{
+	}
+	.recruitment .recruit-body li{
+		outline: 0;
+		padding:10px 0;
+		width: 50%;
+		height: 50px;
+		margin:0;
+		float: left;
+	}
+	.recruitment .recruit-body li .logo-img{
+		float: left;
+		width: 44px;
+		height: 44px;
+		display: inline-block;
+		padding: 2px;
+		border:1px solid #ccc;
+	}
+	.recruitment .recruit-body li .logo-img img{
+		width: 44px;
+		height: 44px;
+	}
+	.recruitment .recruit-body li .logo-img span{
+		display: block;
+		font-weight: 700;
+		height: 44px;
+		line-height: 44px;
+		font-size: 20px;
+		text-align: center;
+		border-radius: 5px;
+	}
+	.recruitment .recruit-body li .info-list{
+		margin-left:60px;
+	}
+	.recruitment .recruit-body li .info-list div{
+		line-height: 30px;
+	}
+	.recruitment .recruit-body li .info-list div a{
+		margin-right:10px;
+	}
+	.recruitment .recruit-body li .info-list small{
+		color: #666;
+	}
+	.recruitment .font-red{
+		color: #EB6000 !important;
+	}
+	.recruitment-question{
+		border-bottom: 1px solid #ddd;
+	}
+	.recruitment-question .recruit-heading{
+		padding-top:10px;
+		margin:0 !important;
+		border: 0 !important;
+	}
+	.recruitment-question .recruit-heading .title{
+		font-size:16px;
+	}
+
+	.recruitment .recruit-heading .more{
+		font-size:12px;
+	}
+</style>
+        <div class="AnswerForm">
+                    <form id="form_answer" action="https://www.oschina.net/action/question/answer?question=2639" method="post">
+                <input type="hidden" name="user" value="">
+                <div class="ke-container ke-container-oschina" style="width: 650px;"><div style="display:block;" class="ke-toolbar" unselectable="on"><span class="ke-outline" data-name="bold" title="粗体(Ctrl+B)" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-bold" unselectable="on"></span></span><span class="ke-outline" data-name="italic" title="斜体(Ctrl+I)" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-italic" unselectable="on"></span></span><span class="ke-outline" data-name="underline" title="下划线(Ctrl+U)" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-underline" unselectable="on"></span></span><span class="ke-outline" data-name="strikethrough" title="删除线" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-strikethrough" unselectable="on"></span></span><span class="ke-outline" data-name="removeformat" title="删除格式" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-removeformat" unselectable="on"></span></span><span class="ke-inline-block ke-separator"></span><span class="ke-outline" data-name="insertorderedlist" title="编号" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-insertorderedlist" unselectable="on"></span></span><span class="ke-outline" data-name="insertunorderedlist" title="项目符号" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-insertunorderedlist" unselectable="on"></span></span><span class="ke-outline" data-name="forecolor" title="文字颜色" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-forecolor" unselectable="on"></span></span><span class="ke-outline" data-name="hilitecolor" title="文字背景" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-hilitecolor" unselectable="on"></span></span><span class="ke-outline" data-name="fontname" title="字体" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-fontname" unselectable="on"></span></span><span class="ke-outline" data-name="fontsize" title="文字大小" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-fontsize" unselectable="on"></span></span><span class="ke-inline-block ke-separator"></span><span class="ke-outline" data-name="link" title="超级链接" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-link" unselectable="on"></span></span><span class="ke-outline" data-name="unlink" title="取消超级链接" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-unlink" unselectable="on"></span></span><span class="ke-outline" data-name="emoticons" title="插入表情" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-emoticons" unselectable="on"></span></span><span class="ke-outline" data-name="shcode" title="插入程序代码或脚本" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-shcode" unselectable="on"></span></span><span class="ke-outline" data-name="image" title="图片" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-image" unselectable="on"></span></span><span class="ke-outline" data-name="flash" title="Flash" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-flash" unselectable="on"></span></span><span class="ke-outline" data-name="quote" title="引用某段文字" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-quote" unselectable="on"></span></span><span class="ke-inline-block ke-separator"></span><span class="ke-outline" data-name="source" title="HTML代码" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-source" unselectable="on"></span></span><span class="ke-outline" data-name="about" title="关于" unselectable="on"><span class="ke-toolbar-icon ke-toolbar-icon-url ke-icon-about" unselectable="on"></span></span></div><div style="display: block; height: 121px;" class="ke-edit"><iframe class="ke-edit-iframe" hidefocus="true" frameborder="0" style="width: 100%; height: 121px;" src="./几个常见的压缩算法 - 开源中国社区_files/saved_resource.html"></iframe><textarea class="ke-edit-textarea" hidefocus="true" style="width: 100%; height: 121px; display: none;"></textarea></div><div class="ke-statusbar"><span class="ke-inline-block ke-statusbar-center-icon"></span><span class="ke-inline-block ke-statusbar-right-icon" style="visibility: hidden;"></span></div></div><textarea id="txt_answner" name="body" style="width: 650px; height: 160px; display: none;"></textarea>
+                <input type="submit" value=" 发表评论 " id="FormSubmitButton" class="rndbutton">
+                <span id="form_msg" style="display:none;"></span>
+                <br><br>
+                <a href="https://www.oschina.net/question/16_2639#answers">回评论顶部</a>&nbsp;|&nbsp;<a href="https://www.oschina.net/question/16_2639#top">回页面顶部</a>
+            </form>
+            <div class="clear"></div>
+            <script>
+                $('#form_answer').ajaxForm({
+                    dataType: 'json',
+                    beforeSerialize: function ($form, options) {
+                        editor.sync();
+                    },
+                    beforeSubmit: function () {
+                        $('#FormSubmitButton').attr('disabled', 'disabled');
+                        $('#form_msg').html("<span class='ajax_processing'>正在提交评论，请稍候...</span>");
+                        $('#form_msg').show();
+                    },
+                    success: function (json) {
+                        $('#FormSubmitButton').removeAttr('disabled');
+                        if (json.msg) {
+                            $('#form_msg').html("<span class='error_msg'>" + json.msg + "</span>");
+                            $('#form_msg').show();
+                        }
+                        else if (json.id) {
+                            ajax_get("/question/show_answer?_answer_id=" + json.id, true, function (data) {
+                                                                    $('.QuestionReplies ul.list').append(data);
+                                                                editor.html('');
+                                $('.answer_count').html(json.answer_count);
+                            });
+                            $('#form_msg').hide();
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </div>
+    
+<script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/xregexp-min.js.下载"></script>
+<script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/shCore.min.js.下载"></script>
+<script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/shAutoloader.js.下载"></script>
+<link type="text/css" rel="stylesheet" href="./几个常见的压缩算法 - 开源中国社区_files/shCore.css">
+<link type="text/css" rel="Stylesheet" href="./几个常见的压缩算法 - 开源中国社区_files/shThemeDefault.css">
+
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+            'applescript			/js/sh309/scripts/shBrushAppleScript.js?t=1451964199000',
+            'actionscript3 as3		/js/sh309/scripts/shBrushAS3.js?t=1451964199000',
+            'bash shell				/js/sh309/scripts/shBrushBash.js?t=1451964199000',
+            'coldfusion cf			/js/sh309/scripts/shBrushColdFusion.js?t=1451964199000',
+            'cpp c					/js/sh309/scripts/shBrushCpp.js?t=1451964199000',
+            'obj-c objc				/js/sh309/scripts/shBrushObjC.js?t=1451964199000',
+            'c# c-sharp csharp		/js/sh309/scripts/shBrushCSharp.js?t=1451964199000',
+            'css					/js/sh309/scripts/shBrushCss.js?t=1451964199000',
+            'delphi pascal			/js/sh309/scripts/shBrushDelphi.js?t=1451964199000',
+            'diff patch pas			/js/sh309/scripts/shBrushDiff.js?t=1451964199000',
+            'erl erlang				/js/sh309/scripts/shBrushErlang.js?t=1451964199000',
+            'groovy					/js/sh309/scripts/shBrushGroovy.js?t=1451964199000',
+            'haxe hx				/js/sh309/scripts/shBrushHaxe.js?t=1451964199000',
+            'java					/js/sh309/scripts/shBrushJava.js?t=1451964199000',
+            'jfx javafx				/js/sh309/scripts/shBrushJavaFX.js?t=1451964199000',
+            'js jscript javascript	/js/sh309/scripts/shBrushJScript.js?t=1451964199000',
+            'perl pl				/js/sh309/scripts/shBrushPerl.js?t=1451964199000',
+            'php					/js/sh309/scripts/shBrushPhp.js?t=1451964199000',
+            'text plain				/js/sh309/scripts/shBrushPlain.js?t=1451964199000',
+            'py python				/js/sh309/scripts/shBrushPython.js?t=1451964199000',
+            'ruby rails ror rb		/js/sh309/scripts/shBrushRuby.js?t=1451964199000',
+            'scala					/js/sh309/scripts/shBrushScala.js?t=1451964199000',
+            'sql					/js/sh309/scripts/shBrushSql.js?t=1451964199000',
+            'vb vbnet				/js/sh309/scripts/shBrushVb.js?t=1451964199000',
+            'xml xhtml xslt html	/js/sh309/scripts/shBrushXml.js?t=1451964199000'
+    );
+    SyntaxHighlighter.all();
+</script>
+    <div class="QuestionRelations">
+        <div id="QuestionWizard">
+            有什么技术问题吗？
+            <a href="https://www.oschina.net/question/ask" class="rndbutton"><span>我要提问</span></a>
+
+            <div class="clear"></div>
+        </div>
+            					<div style="text-align:center;margin-bottom:10px;">
+		<a name="question_banner_one">
+		</a><a data-traceid="questionbanner01" data-tracepid="question_banner_one" href="https://www.jiguang.cn/devservice/?from=oschna01" target="_blank" title="极光推送">
+			<img src="./几个常见的压缩算法 - 开源中国社区_files/160136_F2jV_2491310.jpg" width="250" height="250">
+		</a>
+		 </div>
+	                    <div class="AskerCard">
+                                        <div id="OtherQuestionsOfUser" class="Qlist">
+                    <strong><a href="https://my.oschina.net/javagg/?ft=bbs&amp;scope=2&amp;showme=1" class="more">全部(478
+                        )</a>JavaGG...的其它问题</strong>
+                    <ul>
+                                                                                    <li><a href="https://www.oschina.net/question/16_122461" title="mysql 性能统计">mysql 性能统计</a><span class="date">(2回/433
+                                    阅,3年前)</span></li>                                                                                    <li><a href="https://www.oschina.net/question/16_53116" title="LinkedList vs ArrayList  ">LinkedList vs ArrayList  </a><span class="date">(2回/540
+                                    阅,5年前)</span></li>                                                                                    <li><a href="https://www.oschina.net/question/16_49613" title="年薪：8-10万学历不限招高级工程师">年薪：8-10万学历不限招高级工程师</a><span class="date">(14回/2745
+                                    阅,5年前)</span></li>                                                                                    <li><a href="https://www.oschina.net/question/16_38894" title="广州8-12k招人了~语言不限">广州8-12k招人了~语言不限</a><span class="date">(10回/3781
+                                    阅,5年前)</span></li>                                                                                    <li><a href="https://www.oschina.net/question/16_38277" title="Android实现文件下载并自动安装apk包">Android实现文件下载并自动安装apk包</a><span class="date">(3回/7870
+                                    阅,5年前)</span></li>                                            </ul>
+                </div>
+                    </div>
+        					<div style="text-align:center;margin-top:20px;">
+		<a name="question_banner_two">
+		</a><a data-traceid="questionbanner02" data-tracepid="question_banner_two" href="http://www.sohotask.com/?ag=11" target="_blank" title="网易云信">
+			<img src="./几个常见的压缩算法 - 开源中国社区_files/question_banner_two_rATSq.jpg" width="250" height="250">
+		</a>
+		 </div>
+	
+                    
+        <div id="Similarity" class="Qlist">
+                                        <strong>类似的话题</strong>
+                <ul>
+                                                                        <li><a href="https://www.oschina.net/question/195301_30053" title="Android 开发图片压缩/缩略图的方法">Android 开发图片压缩/缩略图的方法</a><span class="date">(0回/805
+                                阅,5年前)</span></li>                                    </ul>
+                    </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/kindeditor-min.js.下载" charset="utf-8"></script>
+<script type="text/javascript">
+    <!--
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('#txt_answner', {
+            themeType: 'oschina',
+            resizeType: 1,
+            urlType: 'domain',
+            shadowMode: false,
+            allowPreviewEmoticons: false,
+            allowImageUpload: true,
+            allowFlashUpload: false,
+            cssPath: '/css/ke-oschina.css?t=1451964198000',
+            uploadJson: '/action/blog/upload_img',
+            afterCreate: function () {
+                /*
+                K.ctrl(this.edit.iframe.get(0).contentWindow.document, 13, function() {
+                    $("#txt_answner
+
+
+
+                                                                ").parent().submit();
+                                                                            });
+                                                                            */
+                $(this.edit.iframe.get(0).contentWindow.document).keydown(function (e) {
+                    if ((e.ctrlKey || e.metaKey) && e.which == 13 && !e.shiftKey && !e.altKey) {
+                        $("#txt_answner").parent().submit();
+                    }
+                });
+            },
+            afterChange: function () {
+                this.sync();
+            },
+            items: ['bold', 'italic', 'underline', 'strikethrough', 'removeformat', '|', 'insertorderedlist', 'insertunorderedlist',
+                'forecolor', 'hilitecolor', 'fontname', 'fontsize', '|', 'link', 'unlink', 'emoticons',
+                'shcode', 'image', 'flash', 'quote', '|', 'source', 'about'],
+            htmlTags: {
+                script: ['src'],
+                font: ['color', 'size', 'face', '.background-color'],
+                span: [
+                    '.color', '.background-color', '.font-size', '.font-family', '.background',
+                    '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.line-height'
+                ],
+                div: [
+                    'class', 'align', '.border', '.margin', '.padding', '.text-align', '.color',
+                    '.background-color', '.font-size', '.font-family', '.font-weight', '.background',
+                    '.font-style', '.text-decoration', '.vertical-align', '.margin-left'
+                ],
+                table: [
+                    'border', 'cellspacing', 'cellpadding', 'width', 'height', 'align', 'bordercolor',
+                    '.padding', '.margin', '.border', 'bgcolor', '.text-align', '.color', '.background-color',
+                    '.font-size', '.font-family', '.font-weight', '.font-style', '.text-decoration', '.background',
+                    '.width', '.height', '.border-collapse'
+                ],
+                'td,th': [
+                    'align', 'valign', 'width', 'height', 'colspan', 'rowspan', 'bgcolor',
+                    '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.font-weight',
+                    '.font-style', '.text-decoration', '.vertical-align', '.background', '.border'
+                ],
+                a: ['href', 'target', 'name'],
+                embed: ['src', 'width', 'height', 'type', 'loop', 'autostart', 'quality', '.width', '.height', 'align', 'allowscriptaccess'],
+                img: ['src', 'width', 'height', 'border', 'alt', 'title', 'align', '.width', '.height', '.border'],
+                'p,ol,ul,li,blockquote,h1,h2,h3,h4,h5,h6': [
+                    'align', '.text-align', '.color', '.background-color', '.font-size', '.font-family', '.background',
+                    '.font-weight', '.font-style', '.text-decoration', '.vertical-align', '.text-indent', '.margin-left'
+                ],
+                pre: ['class'],
+                hr: ['class', '.page-break-after'],
+                'br,tbody,tr,strong,b,sub,sup,em,i,u,strike,s,del': []
+            }
+        });
+    });
+    //-->
+</script>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="/js/minmax.js?t=1451964199000  </script>
+<![endif]-->
+<script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/question"></script>
+<script type="text/javascript">
+    <!--
+    $(document).ready(function () {
+        $.ajax({
+            url: "/action/favorite/attentionUsersCount",
+            type: "get",
+            data: "id="+2639+"&type="+2,
+            success: function (msg) {
+                $("#favor_trigger").html("收藏(" + msg + ")");
+            }
+        });
+        $('.Answer .replies li').hover(
+                function () {
+                    $(this).addClass('hover');
+                },
+                function () {
+                    $(this).removeClass('hover');
+                }
+        );
+
+        $('.detail img').css('cursor', 'pointer');
+        jQuery.each($('.detail img'), function (idx, v) {
+            if (!$(v).parent().is("a")) {
+                $(v).wrap("<a href='" + $(this).attr('src') + "' target='_blank'></a>");
+            }
+        });
+
+        $('#c').bind('mouseover mouseout', function () {
+            $('#c_on').toggle();
+            $('#c_off').toggle();
+        });
+
+        $('#favor_trigger').click(function () {
+                            add_to_favor(2639,2);
+                    });
+    });
+    function ask_too(qid, ask) {
+        ajax_post("/action/question/ask_too?id=" + qid + "&ask=" + ask, "", function (html) {
+            json = eval('(' + html + ')');
+            if (json.asker_count >= 0) {
+                $('#c_asker_count').html(json.asker_count);
+                if (json.ask_mode)
+                    $('#RQuestionAction').html("<span class='rect'>已问同一问题 | <a href='javascript:ask_too(2639,false)'>取消？</a></span>");
+                else
+                    $('#RQuestionAction').html("<a href='javascript:ask_too(2639,true)' class='rndbutton'><span>我想问同样的问题</span></a>");
+            }
+            else {
+                $('#RQuestionAction').poshytip({
+                    className: 'tip-yellowsimple',
+                    content: json.msg,
+                    showOn: 'none',
+                    alignTo: 'target',
+                    alignX: 'center',
+                    alignY: 'top',
+                    offsetY: 6
+                });
+                $('#RQuestionAction').poshytip('show');
+                var t = setTimeout(function () {
+                    clearTimeout(t);
+                    $('#RQuestionAction').poshytip('destroy');
+                }, 4000);
+            }
+        });
+    }
+    function delete_q(qid) {
+        if (!confirm("您确认要删除此问题吗，删除的数据不可恢复？"))
+            return;
+                ajax_post("/action/question/delete?id=" + qid + "&hash=-1274591526" +"&user_code=", "", function (html) {
+            if (html.length > 0)
+                alert(html);
+            else {
+                location.href = "/question";
+            }
+        });
+    }
+    function edit_answer(aid) {
+        location.href = "/question/edit_answer?id=" + aid +"&user_code=" ;
+    }
+    function delete_answer(aid, hash) {
+        if (!confirm("您确认要删除此答案吗，删除的数据不可恢复？"))
+            return;
+        ajax_post("/action/question/delete_answer?id=" + aid + "&hash=" + hash +"&user_code=", "", function (html) {
+            if (html.length > 0)
+                alert(html);
+            else {
+                $('#answer_' + aid).fadeOut();
+                $('#vote_' + aid).fadeOut();
+                $('#answer_' + aid).next('.hr').fadeOut();
+            }
+        });
+    }
+    function delete_post_reply(aid, hash) {
+        if (!confirm("您确认要删除此评论吗，删除的数据不可恢复？"))
+            return;
+        ajax_post("/action/question/delete_answer?id=" + aid + "&hash=" + hash+"&user_code=", "", function (html) {
+            if (html.length > 0)
+                alert(html);
+            else {
+                $('#PostReply_' + aid).fadeOut();
+            }
+        });
+    }
+    function delete_q_rpl(qid, rid) {
+        if (!confirm("删除补充说明会被扣威望值，是否继续？"))
+            return;
+        ajax_post("/action/question/delete_detail?id=" + rid+"&user_code=", "", function (html) {
+            if (html.length > 0)
+                alert(html);
+            else
+                $("#q_reply_" + rid).fadeOut();
+        });
+    }
+    function close_tip(tid) {
+        $('#' + tid).poshytip('destroy');
+    }
+    //答案投票
+    function vote_answer(qid, vote_up, need_confirm) {
+        if (need_confirm && !vote_up) {
+            if (!$('#a_post_votedown_' + qid).hasClass('bold')) {
+                var vote_down_confirm_msg = "<p>此操作将会扣掉你1个积分，是否继续？</p><p style='margin-top:10px;'><a href='javascript:vote_answer(" + qid + ",false,false)' class='rbtn' style='margin:0 10px 0 50px;'><span>确定</span></a><a href=\"javascript:close_tip('a_post_votedown_" + qid + "')\" class='rbtn'><span>取消</span></a></p>";
+                $('#a_post_votedown_' + qid).poshytip({
+                    className: 'tip-yellowsimple',
+                    content: vote_down_confirm_msg,
+                    showOn: 'none',
+                    slide: false,
+                    fade: false,
+                    alignTo: 'target',
+                    alignX: 'center',
+                    offsetY: 8
+                });
+                $('#a_post_votedown_' + qid).poshytip('show');
+                return;
+            }
+        }
+        if (!need_confirm) {
+            $('#a_post_votedown_' + qid).poshytip('destroy');
+        }
+        ajax_post("/action/question/vote_answer?id=" + qid + "&vote=" + vote_up + "&user=" +"&user_code=", "", function (data) {
+            json = eval('(' + data + ')');
+            if (json.msg) {
+                var aid = vote_up ? "a_post_voteup_" : "a_post_votedown_";
+                aid += qid;
+                $('#' + aid).poshytip({
+                    className: 'tip-yellowsimple',
+                    content: json.msg,
+                    showOn: 'none',
+                    alignTo: 'target',
+                    alignX: 'center',
+                    alignY: 'top',
+                    offsetY: 6
+                });
+                $('#' + aid).poshytip('show');
+                var t = setTimeout(function () {
+                    clearTimeout(t);
+                    $('#' + aid).poshytip('destroy');
+                }, 2000);
+                //jQuery.fancybox("<div class='error_box'>"+json.msg+"</div>");
+            }
+            else {
+                if (vote_up) {
+                    $('#post_voteup_' + qid).html('(' + json.vote + ')');
+                    var a_post_voteup = $('#a_post_voteup_' + qid);
+                    if (a_post_voteup.attr('class').indexOf("vote-up-off") != -1) {
+                        $('#a_post_voteup_' + qid).attr('class', 'vote-up-on');
+                        $('#a_post_voteup_' + qid).attr('title', '取消支持票');
+                        $('#a_vote_num_' + qid).html(parseInt($('#a_vote_num_' + qid).html()) + 1);
+                    } else {
+                        $('#a_post_voteup_' + qid).attr('class', 'vote-up-off');
+                        $('#a_post_voteup_' + qid).attr('title', '投支持票');
+                        $('#a_vote_num_' + qid).html(parseInt($('#a_vote_num_' + qid).html()) - 1);
+                    }
+                } else {
+                    $('#post_votedown_' + qid).html('(' + json.vote + ')');
+                    var a_post_votedown = $('#a_post_votedown_' + qid);
+                    if (a_post_votedown.attr('class').indexOf("vote-down-off") != -1) {
+                        a_post_votedown.attr('class', 'vote-down-on').attr('title', '取消反对票');
+                        $('#a_vote_num_' + qid).html(parseInt($('#a_vote_num_' + qid).html()) - 1);
+                    } else {
+                        a_post_votedown.attr('class', 'vote-down-off');
+                        a_post_votedown.attr('title', '投反对票');
+                        $('#a_vote_num_' + qid).html(parseInt($('#a_vote_num_' + qid).html()) + 1);
+                    }
+                }
+            }
+        });
+    }
+    //问题投票
+    $('#vote_up').click(function () {
+        if (this.clickTimeout) {
+            // 双击
+            clearTimeout(this.clickTimeout);
+            this.clickTimeout = null;
+            alert("不用那么费劲啦，点击一下就够了:)");
+        }
+        else {
+            // 单击
+            var elem = this;
+            this.clickTimeout = setTimeout(function () {
+                // 执行点击动作
+                elem.clickTimeout = null;
+                vote_question(2639, true, true);
+            }, 250);
+        }
+        //阻止链接onclick时的默认行为
+        return false;
+    });
+    $('#vote_down').click(function () {
+        vote_question(2639, false, true);
+        /*
+        if(this.clickTimeout){
+            // 双击
+            clearTimeout(this.clickTimeout);
+            this.clickTimeout = null;
+            alert("不用那么费劲啦，点击一下就够了:)");
+        }
+        else{
+            // 单击
+            var elem = this;
+            this.clickTimeout = setTimeout(function(){
+                // 执行点击动作
+                elem.clickTimeout = null;
+                vote_question(2639,false, true);
+        }, 250);
+    }
+    //阻止链接onclick时的默认行为
+	*/
+        return false;
+    });
+    function vote_question(qid, vote_up, need_confirm) {
+        if (need_confirm && !vote_up) {
+            if ($('#Vote #vote_down').hasClass('ask_vote_down')) {
+                var vote_down_confirm_msg = "<p>踩问题将会扣掉你1个积分，是否继续？</p><p style='margin-top:10px;'><a href='javascript:vote_question(2639,false,false)' class='rbtn' style='margin-right:10px;'><span>确定</span></a><a href=\"javascript:close_tip('vote_down')\" class='rbtn'><span>取消</span></a></p>";
+                $('#Vote #vote_down').poshytip({
+                    className: 'tip-yellowsimple',
+                    content: vote_down_confirm_msg,
+                    slide: false,
+                    fade: false,
+                    showOn: 'none',
+                    alignTo: 'target',
+                    alignX: 'inner-right',
+                    alignY: 'bottom',
+                    offsetX: -35,
+                    offsetY: 5
+                });
+                $('#Vote #vote_down').poshytip('show');
+                return;
+            }
+        }
+        if (!need_confirm) {
+            $('#Vote #vote_down').poshytip('destroy');
+        }
+        ajax_post("/action/question/vote?user=&id=" + qid + "&vote=" + vote_up, "", function (data) {
+            json = eval('(' + data + ')');
+            if (json.msg) {
+                var aid = vote_up ? "vote_up" : "vote_down";
+                $('#' + aid).poshytip({
+                    className: 'tip-yellowsimple',
+                    content: json.msg,
+                    showOn: 'none',
+                    alignTo: 'target',
+                    alignX: 'inner-right',
+                    alignY: 'bottom',
+                    offsetX: 5,
+                    offsetX: -35
+                });
+                $('#' + aid).poshytip('show');
+                var t = setTimeout(function () {
+                    clearTimeout(t);
+                    $('#' + aid).poshytip('destroy');
+                }, 2000);
+            }
+            else {
+                            if (vote_up) {
+                    $('#Vote .vote-up-count').html(json.vote_up);
+                    if ($('#vote_up').attr('class').indexOf("vote-up-off") != -1) {
+                        $('#vote_up').attr('class', 'vote-up-on');
+                        $('#vote_up').attr('title', '取消顶');
+                        $('.q_vote_num').html(parseInt($('.q_vote_num').html()) + 1);
+                    } else {
+                        $('#vote_up').attr('class', 'vote-up-off');
+                        $('#vote_up').attr('title', '顶：这问题很有用或者很提问清晰明了');
+                        $('.q_vote_num').html(parseInt($('.q_vote_num').html()) - 1);
+                    }
+                }
+                else {
+                    $('#Vote .vote-down-count').html(json.vote_down);
+                    if ($('#vote_down').attr('class').indexOf("vote-down-off") != -1) {
+                        $('#vote_down').attr('class', 'vote-down-on');
+                        $('#vote_down').attr('title', '取消踩');
+                        $('.q_vote_num').html(parseInt($('.q_vote_num').html()) - 1);
+                    } else {
+                        $('#vote_down').attr('class', 'vote-down-off');
+                        $('#vote_down').attr('title', '踩：这问题不知道在问什么，或者没什么用');
+                        $('.q_vote_num').html(parseInt($('.q_vote_num').html()) + 1);
+                    }
+                }
+            }
+        });
+    }
+    //评论答案
+    function reply_to_post(postid, uid) {
+            url = "/action/ajax/reply_to_post?id=" + postid + "&refer=" + uid
+        ajax_post(url, "", function (data) {
+            $.fancybox({
+                content: data,
+                onComplete: function () {
+                    $input = $('#ta_body');
+                        $input.focus();
+                    pos = $input.val()?$input.val().length: 0;
+                    if (document.selection) {
+                        range = $input[0].createTextRange();
+                        range.move("character", pos);
+                        range.select();
+                    } else {
+                        if ($input[0])
+                            $input[0].setSelectionRange(pos, pos);
+                    }
+                }
+            });
+        });
+    }
+
+    function show_rp_next(postid, current, total) {
+        if (current < total) {
+            var next_page = current + 1;
+            var url = "/question/post_replies?answer=" + postid + "&rp=" + next_page;
+            ajax_post(url, "", function (html) {
+                $('#PostReplies_' + postid).html(html);
+                addRepliesHoverEvent();
+            });
+        }
+    }
+
+    function addRepliesHoverEvent() {
+        $("li [id ^= 'PostReply']").hover(function () {
+            $(this).addClass("hover");
+        }, function () {
+            $(this).removeClass("hover");
+        });
+    }
+
+    function show_rp_prev(postid, current, total) {
+        if (current > 1) {
+            var next_page = current - 1;
+            var url = "/question/post_replies?answer=" + postid + "&rp=" + next_page;
+            ajax_post(url, "", function (html) {
+                $('#PostReplies_' + postid).html(html);
+                addRepliesHoverEvent();
+            });
+        }
+    }
+    function mark_as_top(qid, as_top) {
+        var args = "id=" + qid + "&top=" + as_top+"&user_code=";
+        ajax_post("/action/question/mark_as_top", args, function (html) {
+            alert(html);
+        });
+    }
+    function mark_as_best(postid, is_best) {
+        var args = "id=" + postid + "&best=" + (is_best ? 1 : 0)+"&user_code=";
+        ajax_post("/action/question/mark_as_best", args, function (html) {
+            if (html.length > 0) {
+                $('#best_answer_' + postid).poshytip({
+                    className: 'tip-yellowsimple',
+                    content: html,
+                    showOn: 'none',
+                    alignTo: 'target',
+                    alignX: 'center',
+                    alignY: 'top',
+                    offsetY: 6
+                });
+                $('#best_answer_' + postid).poshytip('show');
+                var t = setTimeout(function () {
+                    clearTimeout(t);
+                    $('#best_answer_' + postid).poshytip('destroy');
+                }, 2000);
+            }
+            else {
+                if (is_best) {
+                    $('#answer_' + postid).addClass('Best');
+                    $('#best_answer_' + postid).attr('class', 'accept-on')
+                            .attr('href', 'javascript:mark_as_best(' + postid + ',false)')
+                            .attr('title', '取消标记为最佳答案');
+                } else {
+                    $('#answer_' + postid).removeClass('Best');
+                    $('#best_answer_' + postid).attr('class', 'accept-off')
+                            .attr('href', 'javascript:mark_as_best(' + postid + ',true)')
+                            .attr('title', '标记为最佳答案');
+                }
+            }
+        });
+    }
+    function edit_tags(qid) {
+        popup("/question/edit_tags?question=" + qid);
+    }
+    function edit_catalogs(qid) {
+        popup("/admin/catalog/set-catalogs?parent=1&type=2&id=" + qid);
+    }
+    function event_apply(event_id) {
+        popup("/action/ajax/event_apply", "id=" + event_id);
+    }
+    function cancel_apply(event_id) {
+        if (confirm("您确认要取消参加此次活动吗？")) {
+            ajax_post("/action/event/cancel", "event=" + event_id, function (html) {
+                if (html.length > 0)
+                    alert(html);
+                else
+                    alert('已取消参加此次活动，感谢您的支持:)');
+            });
+        }
+    }
+
+    var favor_ok = "<p class='favor_ok'>已成功添加到收藏夹<br/><br/> <a href='null/favorites?type=$DAISY_OBJ_TYPE'>我的收藏夹</a> | <a href='javascript:close_favor()'>关闭</a></p>";
+    function delete_favor(obi_id, obj_type) {
+        if (!confirm('确定取消收藏？')) return;
+        $.post("/action/favorite/cancel?type=" + obj_type + "&id=" + obi_id + "&user=", function (html) {
+            $('#favor_trigger').parent('div').removeClass('ask_collected').addClass('ask_collect');
+            $('#favor_trigger').attr('title', '添加到收藏');
+            $('#p_favor_count').html(html);
+            $('#favor_trigger').unbind('click');
+            $('#favor_trigger').click(function () {
+                add_to_favor(2639,2);
+            });
+        });
+    }
+    function add_to_favor(obj_id, obj_type) {
+                    if (confirm('必须登录后才能收藏，是否现在登录？')) {
+                location.href = "https://www.oschina.net/home/login?goto_page=" + location.href;
+            }
+            }
+    function close_favor(elem_id) {
+        $('#favor_trigger').poshytip('destroy');
+    }
+    function setTag(tv) {
+        var t = $("._favor_input");
+        var value = t.val();
+        var tags = value.replace(/，/ig, ',').split(',');
+        var exist = false;
+        value = $.map(tags, function (v, i) {
+            if ($.trim(tv) == $.trim(v)) {
+                exist = true;
+                return undefined;
+            }
+            return v;
+        }).join(',');
+        if (exist) {
+            t.val(value);
+            return;
+        }
+        if (value != "")
+            t.val(value + "," + tv);
+        else
+            t.val(tv)
+    }
+    //-->
+</script>
+
+        <script>
+        window.addEventListener("load", function() {
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        });
+    </script>
+    <div class="clear"></div></div>
+	<div id="OSC_Footer" class="CenterDiv"><style>
+.oscapp {text-align:left; width:220px;}
+.oscapp span {float:left;width:140px;}
+.oscapp a {float:left;text-indent:-9999em;width:16px;margin-left:8px;}
+.oscapp a.android {background:url('/img/android.gif') no-repeat left center;}
+.oscapp a.iphone {background:url('/img/iphone.gif') no-repeat left center;}
+.oscapp a.wp7 {background:url('/img/wp7.gif') no-repeat left center;}
+</style>
+<table width="100%"><tbody><tr>
+<td align="left">© 开源中国(OSChina.NET) | <a href="https://www.oschina.net/home/aboutosc">关于我们</a> | <a href="mailto:market@oschina.cn">广告联系</a> | <a href="http://weibo.com/oschina2010" target="_blank">@新浪微博</a> | <a href="http://m.oschina.net/">开源中国手机版</a> | <a href="http://www.miitbeian.gov.cn/" target="_blank" style="color:#737573;text-decoration:none;">粤ICP备12009483号-3</a></td>
+<td class="oscapp">
+	<span>开源中国手机客户端：</span>
+	<a href="http://www.oschina.net/app" class="android" title="Android客户端">Android</a>
+	<a href="http://www.oschina.net/app" class="iphone" title="iPhone 客户端">iPhone</a>
+	<a href="http://www.oschina.net/app" class="wp7" title="Windows Phone 客户端">WP7</a>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="left">开源中国社区(OSChina.net)是工信部 <a href="http://www.copu.org.cn/" target="_blank">开源软件推进联盟</a> 指定的官方社区</td>
+</tr>
+</tbody></table>
+<script type="text/javascript">
+<!--
+if (top.location != self.location)top.location=self.location;
+//-->
+</script></div>
+</div>
+
+	<script type="text/javascript">
+     (function (ww, dt) {
+         ww.__gac = {
+             domain: 'www.oschina.net'
+         };
+         if(!(/\/marketing\/ad-slice/.test(location.href))){
+             var script = dt.createElement('script');
+             script.setAttribute('type', 'text/javascript');
+             script.setAttribute('src', '//www.oschina.net/public/javascripts/cjl/ga.js?t=20160926');
+             dt.body.appendChild(script);
+         }
+     } (window, window.document));
+ </script><script type="text/javascript" src="./几个常见的压缩算法 - 开源中国社区_files/ga.js.下载"></script>
+
+<!-- Generated by OsChina.NET (init:0[ms],page:60[ms],ip:219.133.170.82) --><div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div><div id="topcontrol" title="回到顶部" style="position: fixed; bottom: 120px; right: 100px; cursor: pointer; display: none;"><img src="./几个常见的压缩算法 - 开源中国社区_files/gotop.gif" style="width:31px; height:31px;"></div></body></html>

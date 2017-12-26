@@ -1,0 +1,3 @@
+var OX_5544a8b7 = '';
+OX_5544a8b7 += "<"+"a href=\'//gg1.51cto.com/www/delivery/ck.php?oaparams=2__bannerid=3687__zoneid=460__cb=966bafa92a__oadest=http%3A%2F%2Fform.mikecrm.com%2Fwr41wq\' target=\'_blank\'><"+"div style=\" color:red;font-family:微软雅黑 \">视频开放日，免费获取CTO训练营整季视频！<"+"/div><"+"/a><"+"div id=\'beacon_966bafa92a\' style=\'position: absolute; left: 0px; top: 0px; visibility: hidden;\'><"+"img src=\'//gg.51cto.com/www/delivery/lg.php?bannerid=3687&amp;campaignid=804&amp;zoneid=460&amp;loc=1&amp;referer=http%3A%2F%2Fsupercharles888.blog.51cto.com%2F609344%2F981316&amp;cb=966bafa92a\' width=\'0\' height=\'0\' alt=\'\' style=\'width: 0px; height: 0px;\' /><"+"/div>\n";
+document.write(OX_5544a8b7);

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<!-- saved from url=(0098)https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89 -->
+<html lang="en" class="js fontface webkit chrome windows no-ie8 wf-adelle-n4-active wf-adelle-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<script type="text/javascript" src="./Git - 储藏（Stashing）_files/20c4a8c482"></script><script src="./Git - 储藏（Stashing）_files/nr-963.min.js"></script><script type="text/javascript" async="" id="gauges-tracker" data-site-id="4f919d1df5a1f504b3000026" src="./Git - 储藏（Stashing）_files/track.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"20c4a8c482","applicationID":"454369","transactionName":"dl5cQkcLXF9XRBoHW1paQRlGAVNHW1lb","queueTime":10,"applicationTime":170,"ttGuid":"","agentToken":null,"agent":""}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(u(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(2),u=t(3),c=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var s=["setPageViewName","setCustomAttribute","finished","addToTrace","inlineHit"],p="api-",l=p+"ixn-";a(s,function(t,e){f[e]=o(p+e,!0,"api")}),f.addPageAction=o(p+"addPageAction",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var d=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{c.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){d[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],2:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],3:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?u(t,a,i):i()}function n(n,r,o){t&&t(n,r,o);for(var i=e(o),a=l(n),u=a.length,c=0;c<u;c++)a[c].apply(i,r);var s=f[m[n]];return s&&s.push([w,n,r,i]),i}function p(t,e){g[t]=l(t).concat(e)}function l(t){return g[t]||[]}function d(t){return s[t]=s[t]||o(n)}function v(t,e){c(t,function(t,n){e=e||"feature",m[n]=e,e in f||(f[e]=[])})}var g={},m={},w={on:p,emit:n,get:d,listeners:l,context:e,buffer:v};return w}function i(){return new r}var a="nr@context",u=t("gos"),c=t(2),f={},s={},p=e.exports=o();p.backlog=f},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!h++){var t=y.info=NREUM.info,e=s.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){c(m,function(e,n){t[e]||(t[e]=n)});var n="https"===g.split(":")[0]||t.sslForHttp;y.proto=n?"https://":"http://",u("mark",["onload",a()],null,"api");var r=s.createElement("script");r.src=y.proto+t.agent,e.parentNode.insertBefore(r,e)}}}function o(){"complete"===s.readyState&&i()}function i(){u("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var u=t("handle"),c=t(2),f=window,s=f.document,p="addEventListener",l="attachEvent",d=f.XMLHttpRequest,v=d&&d.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:d,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},t(1);var g=""+location,m={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-963.min.js"},w=d&&v&&v[p]&&!/CriOS/.test(navigator.userAgent),y=e.exports={offset:a(),origin:g,features:{},xhrWrappable:w};s[p]?(s[p]("DOMContentLoaded",i,!1),f[p]("load",r,!1)):(s[l]("onreadystatechange",o),f[l]("onload",r)),u("mark",["firstbyte",a()],null,"api");var h=0},{}]},{},["loader"]);</script>
+
+  <title>Git - 储藏（Stashing）</title>
+
+  <link href="https://git-scm.com/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="alternate" href="https://git-scm.com/blog.rss" type="application/rss+xml" title="Git - Blog">
+
+  <link rel="stylesheet" media="screen" href="./Git - 储藏（Stashing）_files/git-scm-65ca8280a031499ee9e8e2b10c8a596c.css">
+  <script src="./Git - 储藏（Stashing）_files/modernizr-10d8d48497292341fc1c4a63d06c6f61.js"></script>
+<script src="./Git - 储藏（Stashing）_files/modernizr-tests-0e26a9afd9c6455a99b7b4165485c366.js"></script>
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+
+  <script src="./Git - 储藏（Stashing）_files/jsq2fql.js" type="text/javascript"></script>
+  <style type="text/css">.tk-adelle{font-family:"adelle",serif;}</style><link rel="stylesheet" href="./Git - 储藏（Stashing）_files/l" media="all"><script>
+    //<![CDATA[
+      try{Typekit.load();}catch(e){}
+    //]]>
+  </script>
+
+</head>
+
+<body id="documentation">
+
+  <div class="inner">
+    <header>
+
+  <a href="https://git-scm.com/"><img src="./Git - 储藏（Stashing）_files/logo@2x.png" width="110" height="46" alt="Git"></a>
+  <span id="tagline">
+    <em>--</em>everything-is-local
+  </span>
+
+  <form id="search" action="https://git-scm.com/search/results">
+    <input id="search-text" name="search" placeholder="Search entire site..." autocomplete="off" type="text">
+  </form>
+  <div id="search-results"></div>
+
+</header>
+
+  </div> <!-- .inner -->
+
+    <div class="inner">
+      <div id="content-wrapper">
+        <aside class="sidebar">
+  <nav>
+    <ul>
+      <li>
+        <a href="https://git-scm.com/about">About</a>
+      </li>
+      <li>
+        <a class="active" href="https://git-scm.com/doc">Documentation</a>
+        <ul class="expanded">
+          <li>
+            <a href="https://git-scm.com/docs">Reference</a>
+          </li>
+          <li>
+            <a href="https://git-scm.com/book">Book</a>
+          </li>
+          <li>
+            <a href="https://git-scm.com/videos">Videos</a>
+          </li>
+          <li>
+            <a href="https://git-scm.com/doc/ext">External Links</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://git-scm.com/blog">Blog</a>
+      </li>
+      <li>
+        <a href="https://git-scm.com/downloads">Downloads</a>
+        <ul class="">
+          <li>
+            <a href="https://git-scm.com/downloads/guis">GUI Clients</a>
+          </li>
+          <li>
+            <a href="https://git-scm.com/downloads/logos">Logos</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="https://git-scm.com/community">Community</a>
+      </li>
+    </ul>
+      <hr class="sidebar">
+        
+  <p>
+This book is translated into
+  <a href="https://git-scm.com/book/de">Deutsch</a>,
+  <a href="https://git-scm.com/book/zh">简体中文</a>,
+  <a href="https://git-scm.com/book/zh-tw">正體中文</a>,
+  <a href="https://git-scm.com/book/fr/v2">Français</a>,
+  <a href="https://git-scm.com/book/ja">日本語</a>,
+  <a href="https://git-scm.com/book/nl">Nederlands</a>,
+  <a href="https://git-scm.com/book/ru">Русский</a>,
+  <a href="https://git-scm.com/book/ko">한국어</a>,
+  <a href="https://git-scm.com/book/pt-br">Português (Brasil)</a> and
+  <a href="https://git-scm.com/book/cs">Čeština</a>.
+</p>
+<p>
+Partial translations available in
+  <a href="https://git-scm.com/book/ar">Arabic</a>,
+  <a href="https://git-scm.com/book/es">Español</a>,
+  <a href="https://git-scm.com/book/id">Indonesian</a>,
+  <a href="https://git-scm.com/book/it">Italiano</a>,
+  <a href="https://git-scm.com/book/fi">Suomi</a>,
+  <a href="https://git-scm.com/book/mk">Македонски</a>,
+  <a href="https://git-scm.com/book/pl">Polski</a> and
+  <a href="https://git-scm.com/book/tr">Türkçe</a>.
+</p>
+<p>
+Translations started for
+  <a href="https://git-scm.com/book/az">Azərbaycan dili</a>,
+  <a href="https://git-scm.com/book/be">Беларуская</a>,
+  <a href="https://git-scm.com/book/ca">Català</a>,
+  <a href="https://git-scm.com/book/eo">Esperanto</a>,
+  <a href="https://git-scm.com/book/es-ni">Español (Nicaragua)</a>,
+  <a href="https://git-scm.com/book/fa" dir="rtl">فارسی</a>,
+  <a href="https://git-scm.com/book/hi">हिन्दी</a>,
+  <a href="https://git-scm.com/book/hu">Magyar</a>,
+  <a href="https://git-scm.com/book/no-nb">Norwegian Bokmål</a>,
+  <a href="https://git-scm.com/book/ro">Română</a>,
+  <a href="https://git-scm.com/book/sr">Српски</a>,
+  <a href="https://git-scm.com/book/th">ภาษาไทย</a>,
+  <a href="https://git-scm.com/book/vi">Tiếng Việt</a>,
+  <a href="https://git-scm.com/book/uk">Українська</a> and
+  <a href="https://git-scm.com/book/uz/v2">Ўзбекча</a>.
+</p>
+<hr class="sidebar">
+<p>
+The source of this book is <a href="https://github.com/progit/progit2">hosted on GitHub.</a><br>
+Patches, suggestions and comments are welcome.
+</p>
+
+  
+
+  </nav>
+</aside>
+        <div id="content">
+          
+
+<div id="book-chapters">
+  <a class="dropdown-trigger" id="book-chapters-trigger" data-panel-id="chapters-dropdown" href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89#">Chapters ▾</a>
+<div class="dropdown-panel" id="chapters-dropdown">
+  <div class="three-column">
+    <div class="column-left">
+      <ol class="book-toc">
+  <li class="chapter">
+  <h2>1. <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5">起步</a></h2>
+    <ol>
+          <li>
+            1.1
+            <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E4%BA%8E%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6">关于版本控制</a>
+          </li>
+          <li>
+            1.2
+            <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-Git-%E7%AE%80%E5%8F%B2">Git 简史</a>
+          </li>
+          <li>
+            1.3
+            <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-Git-%E5%9F%BA%E7%A1%80">Git 基础</a>
+          </li>
+          <li>
+            1.4
+            <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">安装 Git</a>
+          </li>
+          <li>
+            1.5
+            <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE">初次运行 Git 前的配置</a>
+          </li>
+          <li>
+            1.6
+            <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E8%8E%B7%E5%8F%96%E5%B8%AE%E5%8A%A9">获取帮助</a>
+          </li>
+          <li>
+            1.7
+            <a href="https://git-scm.com/book/zh/v1/%E8%B5%B7%E6%AD%A5-%E5%B0%8F%E7%BB%93">小结</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>2. <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80">Git 基础</a></h2>
+    <ol>
+          <li>
+            2.1
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E5%8F%96%E5%BE%97%E9%A1%B9%E7%9B%AE%E7%9A%84-Git-%E4%BB%93%E5%BA%93">取得项目的 Git 仓库</a>
+          </li>
+          <li>
+            2.2
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E8%AE%B0%E5%BD%95%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%88%B0%E4%BB%93%E5%BA%93">记录每次更新到仓库</a>
+          </li>
+          <li>
+            2.3
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2">查看提交历史</a>
+          </li>
+          <li>
+            2.4
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%92%A4%E6%B6%88%E6%93%8D%E4%BD%9C">撤消操作</a>
+          </li>
+          <li>
+            2.5
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8">远程仓库的使用</a>
+          </li>
+          <li>
+            2.6
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE">打标签</a>
+          </li>
+          <li>
+            2.7
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%8A%80%E5%B7%A7%E5%92%8C%E7%AA%8D%E9%97%A8">技巧和窍门</a>
+          </li>
+          <li>
+            2.8
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E5%B0%8F%E7%BB%93">小结</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>3. <a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF">Git 分支</a></h2>
+    <ol>
+          <li>
+            3.1
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E4%BD%95%E8%B0%93%E5%88%86%E6%94%AF">何谓分支</a>
+          </li>
+          <li>
+            3.2
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6">分支的新建与合并</a>
+          </li>
+          <li>
+            3.3
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E7%AE%A1%E7%90%86">分支的管理</a>
+          </li>
+          <li>
+            3.4
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%A9%E7%94%A8%E5%88%86%E6%94%AF%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">利用分支进行开发的工作流程</a>
+          </li>
+          <li>
+            3.5
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF">远程分支</a>
+          </li>
+          <li>
+            3.6
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E8%A1%8D%E5%90%88">分支的衍合</a>
+          </li>
+          <li>
+            3.7
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%88%86%E6%94%AF-%E5%B0%8F%E7%BB%93">小结</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+    </div>
+    <div class="column-middle">
+      <ol class="book-toc">
+  <li class="chapter">
+  <h2>4. <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git">服务器上的 Git</a></h2>
+    <ol>
+          <li>
+            4.1
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E5%8D%8F%E8%AE%AE">协议</a>
+          </li>
+          <li>
+            4.2
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%83%A8%E7%BD%B2-Git">在服务器上部署 Git</a>
+          </li>
+          <li>
+            4.3
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5">生成 SSH 公钥</a>
+          </li>
+          <li>
+            4.4
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E6%9E%B6%E8%AE%BE%E6%9C%8D%E5%8A%A1%E5%99%A8">架设服务器</a>
+          </li>
+          <li>
+            4.5
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E5%85%AC%E5%85%B1%E8%AE%BF%E9%97%AE">公共访问</a>
+          </li>
+          <li>
+            4.6
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-GitWeb">GitWeb</a>
+          </li>
+          <li>
+            4.7
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Gitosis">Gitosis</a>
+          </li>
+          <li>
+            4.8
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Gitolite">Gitolite</a>
+          </li>
+          <li>
+            4.9
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Git-%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B">Git 守护进程</a>
+          </li>
+          <li>
+            4.10
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Git-%E6%89%98%E7%AE%A1%E6%9C%8D%E5%8A%A1">Git 托管服务</a>
+          </li>
+          <li>
+            4.11
+            <a href="https://git-scm.com/book/zh/v1/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E5%B0%8F%E7%BB%93">小结</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>5. <a href="https://git-scm.com/book/zh/v1/%E5%88%86%E5%B8%83%E5%BC%8F-Git">分布式 Git</a></h2>
+    <ol>
+          <li>
+            5.1
+            <a href="https://git-scm.com/book/zh/v1/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%88%86%E5%B8%83%E5%BC%8F%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B">分布式工作流程</a>
+          </li>
+          <li>
+            5.2
+            <a href="https://git-scm.com/book/zh/v1/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E4%B8%BA%E9%A1%B9%E7%9B%AE%E4%BD%9C%E8%B4%A1%E7%8C%AE">为项目作贡献</a>
+          </li>
+          <li>
+            5.3
+            <a href="https://git-scm.com/book/zh/v1/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%AE%A1%E7%90%86">项目的管理</a>
+          </li>
+          <li>
+            5.4
+            <a href="https://git-scm.com/book/zh/v1/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E5%B0%8F%E7%BB%93">小结</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>6. <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7">Git 工具</a></h2>
+    <ol>
+          <li>
+            6.1
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E4%BF%AE%E8%AE%A2%E7%89%88%E6%9C%AC%EF%BC%88Revision%EF%BC%89%E9%80%89%E6%8B%A9">修订版本（Revision）选择</a>
+          </li>
+          <li>
+            6.2
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%9A%82%E5%AD%98">交互式暂存</a>
+          </li>
+          <li>
+            6.3
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89">储藏（Stashing）</a>
+          </li>
+          <li>
+            6.4
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2">重写历史</a>
+          </li>
+          <li>
+            6.5
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E4%BD%BF%E7%94%A8-Git-%E8%B0%83%E8%AF%95">使用 Git 调试</a>
+          </li>
+          <li>
+            6.6
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97">子模块</a>
+          </li>
+          <li>
+            6.7
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A0%91%E5%90%88%E5%B9%B6">子树合并</a>
+          </li>
+          <li>
+            6.8
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E6%80%BB%E7%BB%93">总结</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+    </div>
+    <div class="column-right">
+      <ol class="book-toc">
+  <li class="chapter">
+  <h2>7. <a href="https://git-scm.com/book/zh/v1/%E8%87%AA%E5%AE%9A%E4%B9%89-Git">自定义 Git</a></h2>
+    <ol>
+          <li>
+            7.1
+            <a href="https://git-scm.com/book/zh/v1/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-%E9%85%8D%E7%BD%AE-Git">配置 Git</a>
+          </li>
+          <li>
+            7.2
+            <a href="https://git-scm.com/book/zh/v1/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git%E5%B1%9E%E6%80%A7">Git属性</a>
+          </li>
+          <li>
+            7.3
+            <a href="https://git-scm.com/book/zh/v1/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git%E6%8C%82%E9%92%A9">Git挂钩</a>
+          </li>
+          <li>
+            7.4
+            <a href="https://git-scm.com/book/zh/v1/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E5%BC%BA%E5%88%B6%E7%AD%96%E7%95%A5%E5%AE%9E%E4%BE%8B">Git 强制策略实例</a>
+          </li>
+          <li>
+            7.5
+            <a href="https://git-scm.com/book/zh/v1/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-%E6%80%BB%E7%BB%93">总结</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>8. <a href="https://git-scm.com/book/zh/v1/Git-%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F">Git 与其他系统</a></h2>
+    <ol>
+          <li>
+            8.1
+            <a href="https://git-scm.com/book/zh/v1/Git-%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F-Git-%E4%B8%8E-Subversion">Git 与 Subversion</a>
+          </li>
+          <li>
+            8.2
+            <a href="https://git-scm.com/book/zh/v1/Git-%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F-%E8%BF%81%E7%A7%BB%E5%88%B0-Git">迁移到 Git</a>
+          </li>
+          <li>
+            8.3
+            <a href="https://git-scm.com/book/zh/v1/Git-%E4%B8%8E%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F-%E6%80%BB%E7%BB%93">总结</a>
+          </li>
+    </ol>
+  </li>
+  <li class="chapter">
+  <h2>9. <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86">Git 内部原理</a></h2>
+    <ol>
+          <li>
+            9.1
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-%E5%BA%95%E5%B1%82%E5%91%BD%E4%BB%A4-Plumbing-%E5%92%8C%E9%AB%98%E5%B1%82%E5%91%BD%E4%BB%A4-Porcelain">底层命令 (Plumbing) 和高层命令 (Porcelain)</a>
+          </li>
+          <li>
+            9.2
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-Git-%E5%AF%B9%E8%B1%A1">Git 对象</a>
+          </li>
+          <li>
+            9.3
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-Git-References">Git References</a>
+          </li>
+          <li>
+            9.4
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-Packfiles">Packfiles</a>
+          </li>
+          <li>
+            9.5
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-The-Refspec">The Refspec</a>
+          </li>
+          <li>
+            9.6
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE">传输协议</a>
+          </li>
+          <li>
+            9.7
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-%E7%BB%B4%E6%8A%A4%E5%8F%8A%E6%95%B0%E6%8D%AE%E6%81%A2%E5%A4%8D">维护及数据恢复</a>
+          </li>
+          <li>
+            9.8
+            <a href="https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-%E6%80%BB%E7%BB%93">总结</a>
+          </li>
+    </ol>
+  </li>
+</ol>
+
+    </div>
+  </div>
+ </div>
+
+    <span class="light" id="edition">
+      1st Edition
+    </span>
+</div>
+
+<div id="main" class="book edition1">
+    <h1>6.3 Git 工具 - 储藏（Stashing）</h1>
+  <div><h2>储藏（Stashing）</h2>
+
+<p>经常有这样的事情发生，当你正在进行项目中某一部分的工作，里面的东西处于一个比较杂乱的状态，而你想转到其他分支上进行一些工作。问题是，你不想提交进行了一半的工作，否则以后你无法回到这个工作点。解决这个问题的办法就是<code>git stash</code>命令。</p>
+
+<p>“‘储藏”“可以获取你工作目录的中间状态——也就是你修改过的被追踪的文件和暂存的变更——并将它保存到一个未完结变更的堆栈中，随时可以重新应用。</p>
+
+<h3 id="储藏你的工作"><a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89#储藏你的工作">储藏你的工作</a></h3>
+
+<p>为了演示这一功能，你可以进入你的项目，在一些文件上进行工作，有可能还暂存其中一个变更。如果你运行 <code>git status</code>，你可以看到你的中间状态：</p>
+
+<pre><code>$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#      modified:   index.html
+#
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#
+#      modified:   lib/simplegit.rb
+#
+</code></pre>
+
+<p>现在你想切换分支，但是你还不想提交你正在进行中的工作；所以你储藏这些变更。为了往堆栈推送一个新的储藏，只要运行 <code>git stash</code>：</p>
+
+<pre><code>$ git stash
+Saved working directory and index state \
+  "WIP on master: 049d078 added the index file"
+HEAD is now at 049d078 added the index file
+(To restore them type "git stash apply")
+</code></pre>
+
+<p>你的工作目录就干净了：</p>
+
+<pre><code>$ git status
+# On branch master
+nothing to commit, working directory clean
+</code></pre>
+
+<p>这时，你可以方便地切换到其他分支工作；你的变更都保存在栈上。要查看现有的储藏，你可以使用 <code>git stash list</code>：</p>
+
+<pre><code>$ git stash list
+stash@{0}: WIP on master: 049d078 added the index file
+stash@{1}: WIP on master: c264051 Revert "added file_size"
+stash@{2}: WIP on master: 21d80a5 added number to log
+</code></pre>
+
+<p>在这个案例中，之前已经进行了两次储藏，所以你可以访问到三个不同的储藏。你可以重新应用你刚刚实施的储藏，所采用的命令就是之前在原始的 stash 命令的帮助输出里提示的：<code>git stash apply</code>。如果你想应用更早的储藏，你可以通过名字指定它，像这样：<code>git stash apply stash@{2}</code>。如果你不指明，Git 默认使用最近的储藏并尝试应用它：</p>
+
+<pre><code>$ git stash apply
+# On branch master
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#
+#      modified:   index.html
+#      modified:   lib/simplegit.rb
+#
+</code></pre>
+
+<p>你可以看到 Git 重新修改了你所储藏的那些当时尚未提交的文件。在这个案例里，你尝试应用储藏的工作目录是干净的，并且属于同一分支；但是一个干净的工作目录和应用到相同的分支上并不是应用储藏的必要条件。你可以在其中一个分支上保留一份储藏，随后切换到另外一个分支，再重新应用这些变更。在工作目录里包含已修改和未提交的文件时，你也可以应用储藏——Git 会给出归并冲突如果有任何变更无法干净地被应用。</p>
+
+<p>对文件的变更被重新应用，但是被暂存的文件没有重新被暂存。想那样的话，你必须在运行 <code>git stash apply</code> 命令时带上一个 <code>--index</code> 的选项来告诉命令重新应用被暂存的变更。如果你是这么做的，你应该已经回到你原来的位置：</p>
+
+<pre><code>$ git stash apply --index
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#      modified:   index.html
+#
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#
+#      modified:   lib/simplegit.rb
+#
+</code></pre>
+
+<p>apply 选项只尝试应用储藏的工作——储藏的内容仍然在栈上。要移除它，你可以运行 <code>git stash drop</code>，加上你希望移除的储藏的名字：</p>
+
+<pre><code>$ git stash list
+stash@{0}: WIP on master: 049d078 added the index file
+stash@{1}: WIP on master: c264051 Revert "added file_size"
+stash@{2}: WIP on master: 21d80a5 added number to log
+$ git stash drop stash@{0}
+Dropped stash@{0} (364e91f3f268f0900bc3ee613f9f733e82aaed43)
+</code></pre>
+
+<p>你也可以运行 <code>git stash pop</code> 来重新应用储藏，同时立刻将其从堆栈中移走。</p>
+
+<h3>取消储藏(Un-applying a Stash)</h3>
+
+<p>在某些情况下，你可能想应用储藏的修改，在进行了一些其他的修改后，又要取消之前所应用储藏的修改。Git没有提供类似于 <code>stash unapply</code> 的命令，但是可以通过取消该储藏的补丁达到同样的效果：</p>
+
+<pre><code>$ git stash show -p stash@{0} | git apply -R
+</code></pre>
+
+<p>同样的，如果你沒有指定具体的某个储藏，Git 会选择最近的储藏：</p>
+
+<pre><code>$ git stash show -p | git apply -R
+</code></pre>
+
+<p>你可能会想要新建一个別名，在你的 Git 里增加一个 <code>stash-unapply</code> 命令，这样更有效率。例如：</p>
+
+<pre><code>$ git config --global alias.stash-unapply '!git stash show -p | git apply -R'
+$ git stash apply
+$ #... work work work
+$ git stash-unapply
+</code></pre>
+
+<h3 id="从储藏中创建分支"><a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%EF%BC%88Stashing%EF%BC%89#从储藏中创建分支">从储藏中创建分支</a></h3>
+
+<p>如果你储藏了一些工作，暂时不去理会，然后继续在你储藏工作的分支上工作，你在重新应用工作时可能会碰到一些问题。如果尝试应用的变更是针对一个你那之后修改过的文件，你会碰到一个归并冲突并且必须去化解它。如果你想用更方便的方法来重新检验你储藏的变更，你可以运行 <code>git stash branch</code>，这会创建一个新的分支，检出你储藏工作时的所处的提交，重新应用你的工作，如果成功，将会丢弃储藏。</p>
+
+<pre><code>$ git stash branch testchanges
+Switched to a new branch "testchanges"
+# On branch testchanges
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#      modified:   index.html
+#
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#
+#      modified:   lib/simplegit.rb
+#
+Dropped refs/stash@{0} (f0dfc4d5dc332d1cee34a634182e168c4efc3359)
+</code></pre>
+
+<p>这是一个很棒的捷径来恢复储藏的工作然后在新的分支上继续当时的工作。</p>
+
+<div id="nav"><a href="https://git-scm.com/book/zh/Git-%E5%B7%A5%E5%85%B7-%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%9A%82%E5%AD%98">prev</a> | <a href="https://git-scm.com/book/zh/v1/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E5%86%99%E5%8E%86%E5%8F%B2">next</a></div></div>
+</div>
+
+        </div>
+      </div>
+      <footer>
+  <div class="site-source">
+    This <a href="https://github.com/git/git-scm.com/blob/master/README.md#license">open sourced</a> site is <a href="https://github.com/git/git-scm.com">hosted on GitHub.</a><br>
+    Patches, suggestions and comments are welcome.
+  </div>
+  <div class="sfc-member">
+    Git is a member of <a href="https://git-scm.com/sfc">Software Freedom Conservancy</a>
+  </div>
+</footer>
+
+<script src="./Git - 储藏（Stashing）_files/jquery-1.7.1.min-ae4fcd0fbc7a69a0676014f3b0488876.js"></script>
+<script src="./Git - 储藏（Stashing）_files/jquery-ui-1.8.18.custom.min-e26b28f4c867b7ddf80395d18c42afe3.js"></script>
+<script src="./Git - 储藏（Stashing）_files/jquery.defaultvalue-fb4265b0e862acfce66a73a5131528b3.js"></script>
+<script src="./Git - 储藏（Stashing）_files/session.min-84e4d7864bab5f4f7b2eafd9c1ebc0ca.js"></script>
+<script src="./Git - 储藏（Stashing）_files/site-1dedb2e04243f2cda0b571c1ade66561.js"></script>
+
+    </div><script type="text/javascript" src="./Git - 储藏（Stashing）_files/jsapi"></script>
+
+
+
+</body></html>

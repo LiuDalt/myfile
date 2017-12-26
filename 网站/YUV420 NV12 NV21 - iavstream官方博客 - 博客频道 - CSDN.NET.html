@@ -1,0 +1,1619 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0057)http://blog.csdn.net/vblittleboy/article/details/10945143 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+
+    <script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ca-pub-8990951720398508.js.下载"></script><script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/hm.js.下载"></script><script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/tracking.js.下载" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script><script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/repoAddr2.js.下载"></script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/vblittleboy/article/details/10945143#">
+
+    <title>YUV420 NV12 NV21 - iavstream官方博客
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="二叉树的遍历分为以下三种：先序遍历：遍历顺序规则为【根左右】中序遍历：遍历顺序规则为【左根右】后序遍历：遍历顺序规则为【左右根】什么是【根左右】？就是先遍历根，再遍历左孩子，最后遍历右孩子；举个例子，看下图（图从网上找的）：先序遍历：ABCDEFGHK中序遍历：BDCAEHGKF后序遍历：DCBHKGFEA以中序遍历为例：中序遍历的规则是【左根右】，">
+    <script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/jquery.js.下载" type="text/javascript"></script>
+      <script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/jquery-version.js.下载"></script>
+    <script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ad.js.下载"></script>
+        <!--new top-->
+       
+        <link rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/index.css">
+        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/tracking.js(1).下载"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/style.css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/vbLittleBoy/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/share.js.下载"></script><link rel="stylesheet" type="text/css" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/job_reco.css"><link href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/wxLogin.js.下载"></script><link rel="stylesheet" type="text/css" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/style(1).css"><link type="text/css" rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/style(2).css"><script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/get_ads.php" type="text/javascript"></script><script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/logger.js.下载"></script><link rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/share_style0_16.css"></head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/saved_resource.html"></iframe>
+
+
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" id="revive-0-0"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/html.js.下载" type="text/javascript"></script><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label">标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">摘要</label>                        <div class="col-sm-10">                          <textarea id="input-description" class="form-control description"></textarea>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/vblittleboy">iavstream官方博客</a></h2>
+            <h3>libavstream--最好用的免费安卓流媒体引擎(iavstream.com)</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/vblittleboy?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/vblittleboy?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/vblittleboy/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "vbLittleBoy";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/vblittleboy";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://bss.csdn.net/m/topic/edu_exam" target="_blank">
+<font color="blue">2017直通软考，拿证无忧
+
+
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://edu.csdn.net/huiyiCourse/detail/274" target="_blank">
+<font color="red">程序员简历优化指南！ 
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/PK.html" target="_blank">
+<font color="blue">【观点】移动原生App开发 PK HTML 5开发
+</font></a>
+
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://bss.csdn.net/m/product/aliyun_essay/index" target="_blank">
+<font color="red">云端应用征文大赛，秀绝招，赢无人机！
+</font></a>
+
+
+</div>                        </div>
+                        
+
+
+
+  
+<link href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/jquery.cookie.js.下载"></script>
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/main.js.下载"></script>
+<link rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/markdown_views.css">
+<link rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/category.css">
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/MathJax.js.下载"></script>
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/web-storage-cache.min.js.下载"></script>
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/replace.min.js.下载"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+      
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=YUV420+NV12+NV21&u=http://blog.csdn.net/vblittleboy/article/details/10945143"
+
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Repost"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/vblittleboy/article/details/10945143">
+        YUV420 NV12 NV21            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2013-09-02 18:42</span>
+            <span class="link_view" title="阅读次数">24924人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/vblittleboy/article/details/10945143#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(1)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;YUV420+NV12+NV21&#39;,&#39;10945143&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/vblittleboy/article/details/10945143#report" onclick="javascript:report(10945143,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody" style="display:none" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[]}"></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;1252717&#39;,&#39;vbLittleBoy&#39;,&#39;top&#39;,&#39;10945143&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">H.264<em>（54）</em></span>
+                      <img class="arrow-down" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/vbLittleBoy/article/category/1252717" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_1252717">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/category.js.下载"></script>  
+
+  
+
+  
+  
+     
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/vblittleboy/article/details/10945143#t0">Name</a></li><li><a href="http://blog.csdn.net/vblittleboy/article/details/10945143#t1">Description</a></li></ol></div><div style="clear:both"></div><div id="article_content" class="article_content">
+
+<p><span style="font-family:Simsun; font-size:14px"><strong>V4L2_PIX_FMT_NV12 ('NV12'), V4L2_PIX_FMT_NV21 ('NV21')</strong></span></p>
+<p><span style="font-family:Simsun; font-size:14px"><strong><br>
+</strong></span></p>
+<p><span style="font-family:Simsun; font-size:14px; font-weight:bold"></span>
+</p><table bgcolor="#FFFFFF" width="100%" cellpadding="0" cellspacing="0" style="font-family:Simsun">
+<tbody>
+<tr>
+<td style="font-size:14px">
+<div class="navheader">
+<table width="100%" summary="Navigation header">
+<tbody>
+<tr>
+<th colspan="3" align="center">V4L2_PIX_FMT_NV12 ('NV12'), V4L2_PIX_FMT_NV21 ('NV21')</th>
+</tr>
+<tr>
+<td width="20%" align="left" style="font-size:14px"><a target="_blank" accesskey="p" href="http://www.chineselinuxuniversity.net/kerneldocs/media/V4L2-PIX-FMT-YUV411P.html">Prev</a>&nbsp;</td>
+<th width="60%" align="center">YUV Formats</th>
+<td width="20%" align="right" style="font-size:14px">&nbsp;<a target="_blank" accesskey="n" href="http://www.chineselinuxuniversity.net/kerneldocs/media/V4L2-PIX-FMT-NV12M.html">Next</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</div>
+<div class="refentry" title="V4L2_PIX_FMT_NV12 (&#39;NV12&#39;), V4L2_PIX_FMT_NV21 (&#39;NV21&#39;)">
+<a target="_blank" id="id564022"></a>
+<div class="titlepage"></div>
+<div class="refnamediv">
+<h2><a name="t0"></a>Name</h2>
+<p><code class="constant">V4L2_PIX_FMT_NV12</code>,&nbsp;<code class="constant">V4L2_PIX_FMT_NV21</code>&nbsp;— Formats with ½ horizontal and vertical chroma resolution, also known as YUV 4:2:0. One luminance and one chrominance plane with alternating chroma samples
+ as opposed to<code class="constant">V4L2_PIX_FMT_YVU420</code></p>
+</div>
+<div class="refsect1" title="Description"><a target="_blank" id="id564035"></a>
+<h2><a name="t1"></a>Description</h2>
+<p>These are two-plane versions of the YUV 4:2:0 format. The three components are separated into two sub-images or planes. The Y plane is first. The Y plane has one byte per pixel. For&nbsp;<code class="constant">V4L2_PIX_FMT_NV12</code>, a combined CbCr plane immediately
+ follows the Y plane in memory. The CbCr plane is the same width, in bytes, as the Y plane (and of the image), but is half as tall in pixels. Each CbCr pair belongs to four pixels. For example, Cb<sub>0</sub>/Cr<sub>0</sub>&nbsp;belongs to Y'<sub>00</sub>, Y'<sub>01</sub>,
+ Y'<sub>10</sub>, Y'<sub>11</sub>.&nbsp;<code class="constant">V4L2_PIX_FMT_NV21</code>&nbsp;is the same except the Cb and Cr bytes are swapped, the CrCb plane starts with a Cr byte.</p>
+<p>If the Y plane has pad bytes after each row, then the CbCr plane has as many pad bytes after its rows.</p>
+<div class="example"><a target="_blank" id="id564078"></a>
+<p class="title" style="font-size:16px; color:rgb(255,255,255); background-color:rgb(16,54,103)">
+<strong>Example&nbsp;2.23.&nbsp;<code class="constant">V4L2_PIX_FMT_NV12</code>&nbsp;4 × 4 pixel image</strong></p>
+<div class="example-contents">
+<p title="Byte Order."><strong>Byte Order.&nbsp;</strong>Each cell is one byte.</p>
+<div class="informaltable">
+<table border="0">
+<colgroup><col align="left"><col><col><col><col></colgroup>
+<tbody valign="top">
+<tr>
+<td align="left" valign="top" style="font-size:14px">start&nbsp;+&nbsp;0:</td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>00</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>01</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>02</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>03</sub></td>
+</tr>
+<tr>
+<td align="left" valign="top" style="font-size:14px">start&nbsp;+&nbsp;4:</td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>10</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>11</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>12</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>13</sub></td>
+</tr>
+<tr>
+<td align="left" valign="top" style="font-size:14px">start&nbsp;+&nbsp;8:</td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>20</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>21</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>22</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>23</sub></td>
+</tr>
+<tr>
+<td align="left" valign="top" style="font-size:14px">start&nbsp;+&nbsp;12:</td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>30</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>31</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>32</sub></td>
+<td align="center" valign="top" style="font-size:14px">Y'<sub>33</sub></td>
+</tr>
+<tr>
+<td align="left" valign="top" style="font-size:14px">start&nbsp;+&nbsp;16:</td>
+<td align="center" valign="top" style="font-size:14px">Cb<sub>00</sub></td>
+<td align="center" valign="top" style="font-size:14px">Cr<sub>00</sub></td>
+<td align="center" valign="top" style="font-size:14px">Cb<sub>01</sub></td>
+<td align="center" valign="top" style="font-size:14px">Cr<sub>01</sub></td>
+</tr>
+<tr>
+<td align="left" valign="top" style="font-size:14px">start&nbsp;+&nbsp;20:</td>
+<td align="center" valign="top" style="font-size:14px">Cb<sub>10</sub></td>
+<td align="center" valign="top" style="font-size:14px">Cr<sub>10</sub></td>
+<td align="center" valign="top" style="font-size:14px">Cb<sub>11</sub></td>
+<td align="center" valign="top" style="font-size:14px">Cr<sub>11</sub></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p title="Byte Order."></p>
+<p title="Color Sample Location."><strong>Color Sample Location.&nbsp;</strong></p>
+<div class="informaltable">
+<table border="0">
+<colgroup><col><col><col><col><col><col><col></colgroup>
+<tbody valign="top">
+<tr>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">0</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">1</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">2</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">3</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="font-size:14px">0</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">C</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">C</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="font-size:14px">1</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td class="auto-generated" style="font-size:14px">&nbsp;</td>
+<td class="auto-generated" style="font-size:14px">&nbsp;</td>
+<td class="auto-generated" style="font-size:14px">&nbsp;</td>
+<td class="auto-generated" style="font-size:14px">&nbsp;</td>
+<td class="auto-generated" style="font-size:14px">&nbsp;</td>
+<td class="auto-generated" style="font-size:14px">&nbsp;</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="font-size:14px">2</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">C</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">C</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+</tr>
+<tr>
+<td align="center" valign="top" style="font-size:14px">3</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+<td align="center" valign="top" style="font-size:14px">&nbsp;</td>
+<td align="center" valign="top" style="font-size:14px">Y</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p title="Color Sample Location."></p>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<p></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+YUV格式有两大类：planar和packed。<br style="margin:0px; padding:0px">
+对于planar的YUV格式，先连续存储所有像素点的Y，紧接着存储所有像素点的U，随后是所有像素点的V。<br style="margin:0px; padding:0px">
+对于packed的YUV格式，每个像素点的Y,U,V是连续交*存储的。</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+YUV，分为三个分量，“Y”表示明亮度（Luminance或Luma），也就是灰度值；而“U”和“V” 表示的则是色度（Chrominance或Chroma），作用是描述影像色彩及饱和度，用于指定像素的颜色。</p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; font-size:13px; color:rgb(89,89,89); line-height:25px; font-family:Arial,Helvetica,simsun,u5b8bu4f53; background-color:rgb(250,250,250)">
+<span style="margin:0px; padding:0px; color:rgb(0,0,0); background-color:rgb(255,255,255)">&nbsp;</span><span style="margin:0px; padding:0px; color:rgb(0,0,0)">&nbsp;&nbsp; 与我们熟知的RGB类似，YUV也是一种颜色编码方法，主要用于电视系统以及模拟视频领域，它将亮度信息（Y）与色彩信息（UV）分离，没有UV信息一样可以显示完整的图像，只不过是黑白的，这样的设计很好地解决了彩色电视机与黑白电视的兼容问题。并且，YUV不像RGB那样要求三个独立的视频信号同时传输，所以用YUV方式传送占用极少的频宽。</span></p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+YUV码流的存储格式其实与其采样的方式密切相关，主流的采样方式有三种，YUV4:4:4，YUV4:2:2，YUV4:2:0，关于其详细原理，可以通过网上其它文章了解，这里我想强调的是如何根据其采样格式来从码流中还原每个像素点的YUV值，因为只有正确地还原了每个像素点的YUV值，才能通过YUV与RGB的转换公式提取出每个像素点的RGB值，然后显示出来。</p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+&nbsp;&nbsp;&nbsp; 用三个图来直观地表示采集的方式吧，以黑点表示采样该像素点的Y分量，以空心圆圈表示采用该像素点的UV分量。</p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+&nbsp;</p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/24439730_13282389538k8V.jpg" alt="" style="margin:0px; padding:0px; border:0px"></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+先记住下面这段话，以后提取每个像素的YUV分量会用到。</p>
+<ol style="margin:5px 0px 5px 40px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<li style="margin:0px 0px 1em; padding:0px; list-style:decimal">YUV&nbsp;4:4:4采样，每一个Y对应一组UV分量。</li><li style="margin:0px 0px 1em; padding:0px; list-style:decimal">YUV&nbsp;4:2:2采样，每两个Y共用一组UV分量。&nbsp;</li><li style="margin:0px 0px 1em; padding:0px; list-style:decimal">YUV&nbsp;4:2:0采样，每四个Y共用一组UV分量。&nbsp;</li></ol>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px">
+<span style="margin:0px; padding:0px">2.&nbsp; 存储方式</span></p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px">
+&nbsp;&nbsp;&nbsp; 下面我用图的形式给出常见的YUV码流的存储方式，并在存储方式后面附有取样每个像素点的YUV数据的方法，其中，Cb、Cr的含义等同于U、V。</p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px">
+<span style="margin:0px; padding:0px">（1） YUVY 格式 （属于YUV422）</span></p>
+<img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/202410157.png" alt="" style="margin:0px; padding:0px; border:0px"></div>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+&nbsp;</div>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<span style="margin:0px; padding:0px">YUYV为YUV422采样的存储格式中的一种，相邻的两个Y共用其相邻的两个Cb、Cr，分析，对于像素点Y'00、Y'01 而言，其Cb、Cr的值均为 Cb00、Cr00，其他的像素点的YUV取值依次类推。</span>&nbsp;<span style="margin:0px; padding:0px">（2） UYVY 格式 （属于YUV422）</span></div>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/202455202.png" alt="" style="margin:0px; padding:0px; border:0px"></div>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<span style="margin:0px; padding:0px">UYVY格式也是YUV422采样的存储格式中的一种，只不过与YUYV不同的是UV的排列顺序不一样而已，还原其每个像素点的YUV值的方法与上面一样。</span></div>
+<div style="margin:0px; padding:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;</div>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<span style="margin:0px; padding:0px">（3） YUV422P（属于YUV422）</span></div>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<img src="http://blog.csdn.net/vblittleboy/article/details/10945143" alt="" style="margin:0px; padding:0px; border:0px">&nbsp;<span style="margin:0px; padding:0px">YUV422P也属于YUV422的一种，它是一种Plane模式，即平面模式，并不是将YUV数据交错存储，而是先存放所有的Y分量，然后存储所有的U（Cb）分量，最后存储所有的V（Cr）分量，如上图所示。其每一个像素点的YUV值提取方法也是遵循YUV422格式的最基本提取方法，即两个Y共用一个UV。比如，对于像素点Y'00、Y'01
+ 而言，其Cb、Cr的值均为 Cb00、Cr00。</span></div>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<span style="margin:0px; padding:0px">（4）YV12，YU12格式（属于YUV420）</span></div>
+<div style="margin:0px; padding:0px; font-size:13px; line-height:19px; background-color:rgb(245,245,245); font-family:Arial,Helvetica,simsun,u5b8bu4f53">
+<img src="http://blog.csdn.net/vblittleboy/article/details/10945143" alt="" style="margin:0px; padding:0px; border:0px">
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px">
+YU12和YV12属于YUV420格式，也是一种Plane模式，将Y、U、V分量分别打包，依次存储。其每一个像素点的YUV数据提取遵循YUV420格式的提取方式，即4个Y分量共用一组UV。注意，上图中，Y'00、Y'01、Y'10、Y'11共用Cr00、Cb00，其他依次类推。</p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px">
+<span style="margin:0px; padding:0px">（5）NV12、NV21（属于YUV420）</span></p>
+<img src="http://blog.csdn.net/vblittleboy/article/details/10945143" alt="" style="margin:0px; padding:0px; border:0px">
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px">
+NV12和NV21属于YUV420格式，是一种two-plane模式，即Y和UV分为两个Plane，但是UV（CbCr）为交错存储，而不是分为三个plane。其提取方式与上一种类似，即Y'00、Y'01、Y'10、Y'11共用Cr00、Cb00</p>
+</div>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+YUV420 planar数据， 以720×488大小图象YUV420 planar为例，</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+其存储格式是： 共大小为(720×480×3&gt;&gt;1)字节，</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+分为三个部分:Y,U和V</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+Y分量：&nbsp;&nbsp;&nbsp;&nbsp;(720×480)个字节&nbsp;&nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+U(Cb)分量：(720×480&gt;&gt;2)个字节</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+V(Cr)分量：(720×480&gt;&gt;2)个字节</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+三个部分内部均是行优先存储，三个部分之间是Y,U,V 顺序存储。</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+即YUV数据的0－－720×480字节是Y分量值， &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+720×480－－720×480×5/4字节是U分量 &nbsp;&nbsp;&nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+720×480×5/4 －－720×480×3/2字节是V分量。</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+4 ：2： 2 和4：2：0 转换：</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+最简单的方式：</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+YUV4:2:2 ---&gt; YUV4:2:0&nbsp;&nbsp;Y不变，将U和V信号值在行(垂直方向)在进行一次隔行抽样。 YUV4:2:0 ---&gt; YUV4:2:2&nbsp;&nbsp;Y不变，将U和V信号值的每一行分别拷贝一份形成连续两行数据。</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+在YUV420中，一个像素点对应一个Y，一个4X4的小方块对应一个U和V。对于所有YUV420图像，它们的Y值排列是完全相同的，因为只有Y的图像就是灰度图像。YUV420sp与YUV420p的数据格式它们的UV排列在原理上是完全不同的。420p它是先把U存放完后，再存放V，也就是说UV它们是连续的。而420sp它是UV、UV这样交替存放的。(见下图) 有了上面的理论，我就可以准确的计算出一个YUV420在内存中存放的大小。 width * hight =Y（总和） U = Y / 4 &nbsp; V = Y / 4</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+<span style="margin:0px; padding:0px; font-size:14px">所以YUV420 数据在内存中的长度是 width * hight * 3 / 2，</span></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+<span style="margin:0px; padding:0px; font-size:14px">假设一个分辨率为8X4的YUV图像，它们的格式如下图：</span></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="margin:0px; padding:0px">YUV420sp格式如下图&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/1346422970_2927.png" alt="" style="margin:0px; padding:0px; border:0px">&nbsp;&nbsp; &nbsp; &nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;YUV420p数据格式如下图</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/1346422959_6364.png" alt="" style="margin:0px; padding:0px; border:0px"></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+旋转90度的<a href="http://lib.csdn.net/base/datastructure" class="replace_word" title="算法与数据结构知识库" target="_blank" style="color:#df3434; font-weight:bold;">算法</a>:</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+public static void rotateYUV240SP(byte[] src,byte[] des,int width,int height)<br style="margin:0px; padding:0px">
+&nbsp;{<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;int wh = width * height;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;//旋转Y<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;int k = 0;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;for(int i=0;i&lt;width;i++) {<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;for(int j=0;j&lt;height;j++)&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;{<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; des[k] = src[width*j + i];&nbsp;&nbsp;&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k++;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;}<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;}<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;for(int i=0;i&lt;width;i+=2) {<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;for(int j=0;j&lt;height/2;j++)&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;{&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; des[k] = src[wh+ width*j + i];&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; des[k+1]=src[wh + width*j + i+1];<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; k+=2;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;&nbsp;}<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;}<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;&nbsp;<br style="margin:0px; padding:0px">
+&nbsp;}</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+YV12和I420的区别 &nbsp; &nbsp; &nbsp; &nbsp;一般来说，直接采集到的视频数据是RGB24的格式，RGB24一帧的大小size＝width×heigth×3 Bit，RGB32的size＝width×heigth×4，如果是I420（即YUV标准格式4：2：0）的数据量是 size＝width×heigth×1.5 Bit。 &nbsp; &nbsp; &nbsp; 在采集到RGB24数据后，需要对这个格式的数据进行第一次压缩。即将图像的颜色空间由RGB2YUV。因为，X264在进行编码的时候需要标准的YUV（4：2：0）。但是这里需要注意的是，虽然YV12也是（4：2：0），但是YV12和I420的却是不同的，<span style="margin:0px; padding:0px; color:rgb(204,0,0)">在存储空间上面有些区</span>别。如下：
+ YV12 ： 亮度（行×列） ＋ U（行×列/4) + V（行×列/4）</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+I420 ： 亮度（行×列） ＋ V（行×列/4) + U（行×列/4）</p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+<span style="margin:0px; padding:0px; color:rgb(255,0,0); line-height:18px; font-family:Verdana,宋体,sans-serif; font-size:10px; background-color:rgb(245,229,180)">可以看出，YV12和I420基本上是一样的，就是UV的顺序不同。</span></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+<span style="margin:0px; padding:0px; color:rgb(255,0,0); line-height:18px; font-family:Verdana,宋体,sans-serif; font-size:10px"><span style="margin:0px; padding:0px; color:rgb(70,70,70); line-height:25px; background-color:rgb(255,255,255)">继续我们的话题，经过第一次数据压缩后RGB24－&gt;YUV（I420）。这样，数据量将减少一半，为什么呢？呵呵，这个就太基础了，我就不多写了。同样，如果是RGB24－&gt;YUV（YV12），也是减少一半。但是，虽然都是一半，如果是YV12的话效果就有很大损失。然后，经过X264编码后，数据量将大大减少。将编码后的数据打包，通过RTP实时传送。到达目的地后，将数据取出，进行解码。完成解码后，数据仍然是YUV格式的，所以，还需要一次转换，这样windows的驱动才可以处理，就是YUV2RGB24。</span></span></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+<span style="margin:0px; padding:0px; color:rgb(255,0,0); line-height:18px; font-family:Verdana,宋体,sans-serif; font-size:10px"><span style="margin:0px; padding:0px; color:rgb(70,70,70); line-height:25px; background-color:rgb(255,255,255)"><span style="margin:0px; padding:0px; background-color:rgb(245,229,180)">YUY2&nbsp;
+ 是 4:2:2&nbsp;</span><span style="margin:0px; padding:0px; background-color:rgb(245,229,180)">&nbsp;[Y0 U0 Y1 V0]</span></span></span></p>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;</p>
+<div style="margin:1em 0px 0.5em; padding:0px; font-size:13px; color:rgb(70,70,70); line-height:21px; font-family:Arial; background-color:rgb(245,229,180)">
+yuv420p 和 YUV420的区别 在存储格式上有区别</div>
+<div style="margin:1em 0px 0.5em; padding:0px; font-size:13px; color:rgb(70,70,70); line-height:21px; font-family:Arial; background-color:rgb(245,229,180)">
+yuv420p：yyyyyyyy uuuuuuuu vvvvv yuv420： yuv yuv yuv</div>
+<p style="margin:10px auto; padding-top:0px; padding-bottom:0px; font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif; font-size:13px; line-height:19px; background-color:rgb(245,245,245)">
+&nbsp;&nbsp;&nbsp;&nbsp; YUV420P，Y，U，V三个分量都是平面格式，分为I420和YV12。I420格式和YV12格式的不同处在U平面和V平面的位置不同。在I420格式中，U平面紧跟在Y平面之后，然后才是V平面（即：YUV）；但YV12则是相反（即：YVU）。<br style="margin:0px; padding:0px">
+YUV420SP, Y分量平面格式，UV打包格式, 即NV12。 NV12与NV21类似，U 和 V 交错排列,不同在于UV顺序。<br style="margin:0px; padding:0px">
+I420: YYYYYYYY UU VV&nbsp;&nbsp;&nbsp; =&gt;YUV420P<br style="margin:0px; padding:0px">
+YV12: YYYYYYYY VV UU&nbsp;&nbsp;&nbsp; =&gt;YUV420P<br style="margin:0px; padding:0px">
+NV12: YYYYYYYY UVUV&nbsp;&nbsp;&nbsp;&nbsp; =&gt;YUV420SP<br style="margin:0px; padding:0px">
+NV21: YYYYYYYY VUVU&nbsp;&nbsp;&nbsp;&nbsp; =&gt;YUV420SP</p>
+<br>
+http://www.cnblogs.com/azraelly/archive/2013/01/01/2841269.html<br>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1486373904558">
+<a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/blog_detail.css">
+
+    
+<!--172.16.140.11-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+
+        <div id="digg" articleid="10945143">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>2</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;/vblittleboy/article/details/10945073&#39;;">上一篇</span><a href="http://blog.csdn.net/vblittleboy/article/details/10945073" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">Android 关于获取摄像头帧数据</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;/vblittleboy/article/details/10945255&#39;;">下一篇</span><a href="http://blog.csdn.net/vblittleboy/article/details/10945255" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">原YUV格式的解析 Android NV21 视频采集</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article" style="">
+                <h4>我的同类文章</h4>
+                <div class="similar_c" style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;1252717&#39;,&#39;vbLittleBoy&#39;,&#39;foot&#39;,&#39;10945143&#39;);">H.264<em>（54）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141" style="max-height:195px;">
+                        <a href="http://blog.csdn.net/" style="display:none" target="_blank">http://blog.csdn.net</a>
+                        <ul class="similar_list fl"><li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/20124081" id="foot_aritcle_20124081undefined5881996463238917" target="_blank" title="I,P，B帧和PTS，DTS的关系">I,P，B帧和PTS，DTS的关系</a><span>2014-02-28</span><label><i>阅读</i><b>987</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/12437425" id="foot_aritcle_12437425undefined14022199607612018" target="_blank" title="jsvm代码理解">jsvm代码理解</a><span>2013-10-08</span><label><i>阅读</i><b>762</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/10945439" id="foot_aritcle_10945439undefined5039762795139926" target="_blank" title="入门视频采集与处理（学会分析YUV数据）">入门视频采集与处理（学会分析YUV数据）</a><span>2013-09-02</span><label><i>阅读</i><b>1798</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/9302675" id="foot_aritcle_9302675undefined7302860965662081" target="_blank" title="android-ndk-r8d 编译 x264 方法">android-ndk-r8d 编译 x264 方法</a><span>2013-07-11</span><label><i>阅读</i><b>3775</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/9094209" id="foot_aritcle_9094209undefined6129497031388211" target="_blank" title="DXVA加速方案及加速级别">DXVA加速方案及加速级别</a><span>2013-06-14</span><label><i>阅读</i><b>663</b></label></li> </ul>
+
+                        <ul class="similar_list fr"><li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/12437491" id="foot_aritcle_12437491undefined36130731434581653" target="_blank" title="JSVM介绍">JSVM介绍</a><span>2013-10-08</span><label><i>阅读</i><b>862</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/11872469" id="foot_aritcle_11872469undefined36142297310081006" target="_blank" title="可伸缩视频编解码SVC技术介绍应用分析">可伸缩视频编解码SVC技术介绍应用分析</a><span>2013-09-21</span><label><i>阅读</i><b>1452</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/10095399" id="foot_aritcle_10095399undefined5808750914739336" target="_blank" title="标准测试视频序列下载地址">标准测试视频序列下载地址</a><span>2013-08-20</span><label><i>阅读</i><b>920</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/9096177" id="foot_aritcle_9096177undefined13643538974077773" target="_blank" title="VS2010设置VC6的字体样式及背景色、选中字高亮">VS2010设置VC6的字体样式及背景色、选中字高亮</a><span>2013-06-14</span><label><i>阅读</i><b>616</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/vbLittleBoy/article/details/9048899" id="foot_aritcle_9048899undefined7777230697511883" target="_blank" title="RFC2733-FEC for rtp">RFC2733-FEC for rtp</a><span>2013-06-07</span><label><i>阅读</i><b>1545</b></label></li> </ul>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1252717" class="MoreArticle">更多文章</a></div>
+                </div>
+            </div>    
+    <script type="text/javascript">
+        $(function () {
+            GetCategoryArticles('1252717', 'vbLittleBoy','foot','10945143');
+        });
+    </script>
+      
+</div>
+
+    <div>
+            <div class="J_adv" data-view="true" data-mod="ad_popu_205" data-mtp="43" data-order="114" data-con="ad_content_1900" style="width: 728px; height: 90px;"><script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/adsbygoogle.js.下载"></script><ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-8990951720398508" data-ad-slot="8267689356/3776917242" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/saved_resource(2).html"></iframe></ins></ins></ins><script>(adsbygoogle=window.adsbygoogle || []).push({});</script></div> 
+     </div>
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/vbLittleBoy/svc/GetSuggestContent/10945143",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/replace.css">
+
+<div id="relate" data-mod="popu_218" class="tracking-ad" style="display: block;">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c"><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/datastructure"><img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/1461035533512_512.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/datastructure">算法与数据结构知识库</a></h4><p><label><span>12813</span><em>关注</em><i>|</i><span>2320</span><em>收录</em></label></p></dd></dl></div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived"> 
+    <div class="embody embody_b" id="libkeyparent" style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/job_reco.js.下载" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "10945143",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    <div class="tracking-ad" data-mod="popu_84"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/435" title="Windows Server 2012 存储和文件管理" strategy="v4:content" target="_blank">Windows Server 2012 存储和文件管理</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/1100" title="Windows Server 2012 R2 存储和文件服务管理" strategy="v4:content" target="_blank">Windows Server 2012 R2 存储和文件服务管理</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2513" title="顾荣：开源大数据存储系统Alluxio（原Tachyon）的原理分析与案例简介" strategy="v4:content" target="_blank">顾荣：开源大数据存储系统Alluxio（原Tachyon）的原理分析与案例简介</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/1487" title="Ceph—分布式存储系统的另一个选择" strategy="v4:content" target="_blank">Ceph—分布式存储系统的另一个选择</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/1344" title="数据结构基础系列(1)：数据结构和算法" strategy="v4:content" target="_blank">数据结构基础系列(1)：数据结构和算法</a></dd></div></div>  
+
+    
+     <div id="res" data-mod="popu_36" class="tracking-ad" style="width: 42%; float: left; margin-right: 30px; display: block;"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/gitzzp/article/details/51680368" title="Android直播必备之YUV使用总结  常用的几种格式NV21NV12YV12YUV420P的区别" strategy="SearchAlgorithm" target="_blank">Android直播必备之YUV使用总结  常用的几种格式NV21NV12YV12YUV420P的区别</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/zxccxzzxz/article/details/52282214" title="Android直播必备之YUV使用总结  Android常用的几种格式NV21NV12YV12YUV420P的区别" strategy="SearchAlgorithm" target="_blank">Android直播必备之YUV使用总结  Android常用的几种格式NV21NV12YV12YUV420P的区别</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/lgh1992314/article/details/52299058" title="FFMPEG 实现 YUVRGB各种图像原始数据之间的转换swscale" strategy="SearchAlgorithm" target="_blank">FFMPEG 实现 YUVRGB各种图像原始数据之间的转换swscale</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/haima1998/article/details/51993248" title="关于yuv 格式-Semi Planar和Planar" strategy="SearchAlgorithm" target="_blank">关于yuv 格式-Semi Planar和Planar</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/jmq_0000/article/details/7536805" title="V4L2 API Specification" strategy="SearchAlgorithm" target="_blank">V4L2 API Specification</a></dd></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'YUV420 NV12 NV21' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+
+    <div id="ad_cen">        
+<div class="J_adv" data-view="true" data-mod="ad_popu_71" data-mtp="43" data-order="367" data-con="ad_content_2022" style="width: 728px; height: 90px;"><script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/adsbygoogle.js.下载"></script><ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-7443704194229694" data-ad-slot="2229151504" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/saved_resource(3).html"></iframe></ins></ins></ins><script>(adsbygoogle=window.adsbygoogle || []).push({});</script></div>    </div>  
+
+    <!-- 广告位开始 -->
+    <div class="J_adv" data-view="true" data-mod="ad_popu_72" data-mtp="61" data-order="114" data-con="ad_content_1937"><script id="popuLayer_js_q" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/popuLayer.js.下载" defer="" type="text/javascript"></script><div id="location_parent_google"></div><script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/adsbygoogle.js.下载"></script><div id="layerd_google" style="position: fixed; bottom: 0px; right: 0px; line-height: 0px; z-index: 1000; width: 302px; height: 275px;"><div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><ins class="adsbygoogle" style="display: inline-block; width: 300px; height: 250px;" data-ad-client="ca-pub-8990951720398508" data-ad-slot="8267689356/2658895482" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><ins id="aswift_2_anchor" style="display:block;border:none;height:250px;margin:0;padding:0;position:relative;visibility:visible;width:300px;background-color:transparent"><iframe width="300" height="250" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/saved_resource(4).html"></iframe></ins></ins></ins></div><script>(adsbygoogle=window.adsbygoogle || []).push({});</script><script>  document.getElementById('popuLayer_js_q').onload=function(){      var styObjd=styObj={width:'302px',height:'275px'};window.CSDN.Layer.PopuLayer('#layerd_google',{storageName:'layerd',styleObj:styObjd,total:50,expoire:1000*60});  }</script></div>
+    <!-- 广告位结束 -->
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_4246243"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/blacksheep1314" target="_blank">blacksheep1314</a> <span class="ptime">2014-09-03 17:40发表</span>  <a href="http://blog.csdn.net/vblittleboy/article/details/10945143#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display:none;" commentid="4246243" username="blacksheep1314"> <a href="http://blog.csdn.net/vblittleboy/article/details/10945143#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/vblittleboy/article/details/10945143#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/blacksheep1314" target="_blank"><img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/3_blacksheep1314.jpg" width="40" height="40"></a></dd><dd class="comment_body">这篇文章很有帮助，感谢！</dd></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fvblittleboy%2Farticle%2Fdetails%2F10945143">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '10945143';
+    var commentscount = 1;
+    var islock = false
+</script>
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/comment.js.下载"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="">
+
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone" target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace" target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+
+</div>
+  <script language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/vbLittleBoy/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/async_new.js.下载"></script>      
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/vbLittleBoy" target="_blank">
+    <img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/1_vblittleboy.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/vbLittleBoy" class="user_name" target="_blank">vbLittleBoy</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=vbLittleBoy&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>1283104次</span></li>
+    <li>积分：<span>12950</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/blog7.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：12950 </div>
+        </span>  </li>
+    <li>排名：<span>第784名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>66篇</span></li>
+    <li>转载：<span>534篇</span></li>
+    <li>译文：<span>1篇</span></li>
+    <li>评论：<span>134条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1252717" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">H.264</a><span>(55)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1252718" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Directshow</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1252719" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">WINCE</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1252720" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Ubuntu Linux</a><span>(67)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1252721" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Matlab</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1252722" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Opencv</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1263721" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">ffmpeg</a><span>(90)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1374425" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">HEVC(H.265)</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1421814" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">opencl</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1499999" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">android</a><span>(89)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1688225" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">vlc</a><span>(16)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1752351" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Doxygen</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1754391" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">IPTV</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1762013" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">DOM</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1810265" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">互联网视频</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1850629" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">P2P/P4P</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1912675" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Adobe Flash Video</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/1923443" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">RTP/RTCP/RTSP</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2137479" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">SDL</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2166665" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">OPENSL ES</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2169611" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">VLC android</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2203001" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Router</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2214469" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">AAC</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2244797" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">集群通信</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2262035" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Darwin Streaming Server</a><span>(11)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2319083" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">互联网电话</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2340841" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">SSH</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2356735" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">SIP/SDP/SAP</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2358345" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">RTSP</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2423567" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">mp3</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2429327" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">杂谈</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2433273" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Gstreamill</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2498519" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">HTML5 &amp; CSS3</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2498751" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">视频网站地址解析</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2504369" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">视频制作</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2601891" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">DLNA</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2744521" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android TV</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2796287" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">UGC/PGC</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2836001" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">大数据之海量视频</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/2867115" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Bigbluebutton</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/5657707" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">PHP</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/5777827" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">libavstream</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/5777831" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">BLife</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/6173628" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">C#</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/vbLittleBoy/article/category/6206545" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">JSP</a><span>(2)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2016/07">2016年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2016/06">2016年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2016/05">2016年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2016/04">2016年04月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2016/03">2016年03月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2015/09">2015年09月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2015/08">2015年08月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2015/07">2015年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2015/05">2015年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2015/01">2015年01月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/12">2014年12月</a><span>(22)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/11">2014年11月</a><span>(19)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/10">2014年10月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/09">2014年09月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/08">2014年08月</a><span>(18)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/07">2014年07月</a><span>(17)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/06">2014年06月</a><span>(25)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/05">2014年05月</a><span>(20)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/04">2014年04月</a><span>(35)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/03">2014年03月</a><span>(24)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/02">2014年02月</a><span>(24)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2014/01">2014年01月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/12">2013年12月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/11">2013年11月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/10">2013年10月</a><span>(21)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/09">2013年09月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/08">2013年08月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/07">2013年07月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/06">2013年06月</a><span>(8)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/05">2013年05月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/04">2013年04月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/03">2013年03月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/02">2013年02月</a><span>(15)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2013/01">2013年01月</a><span>(28)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/12">2012年12月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/11">2012年11月</a><span>(21)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/10">2012年10月</a><span>(31)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/09">2012年09月</a><span>(16)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/08">2012年08月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/07">2012年07月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/06">2012年06月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/05">2012年05月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/04">2012年04月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2012/03">2012年03月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/11">2011年11月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/10">2011年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/09">2011年09月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/08">2011年08月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/07">2011年07月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/06">2011年06月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/05">2011年05月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/04">2011年04月</a><span>(11)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/03">2011年03月</a><span>(31)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/02">2011年02月</a><span>(21)</span></li><li><a href="http://blog.csdn.net/vbLittleBoy/article/month/2011/01">2011年01月</a><span>(5)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/8103264" title="chmod 777 修改权限">chmod 777 修改权限</a><span>(78899)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/21012991" title="Makefile执行过程中出错：make: *** No rule to make target ` ‘, needed by xxx. Stop.">Makefile执行过程中出错：make: *** No rule to make target ` ‘, needed by xxx. Stop.</a><span>(53696)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/9187447" title="关于高斯模糊与opencv中的GaussianBlur函数">关于高斯模糊与opencv中的GaussianBlur函数</a><span>(25574)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/10945143" title="YUV420 NV12 NV21">YUV420 NV12 NV21</a><span>(24901)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/8982857" title="ffmpeg与x264编码指南">ffmpeg与x264编码指南</a><span>(19296)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/19339311" title="ubuntu12.04 android studio 安装">ubuntu12.04 android studio 安装</a><span>(15813)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/12706011" title="VLC在web系统中应用（x-vlc-plugin 即如何把VLC嵌入HTML中）第一篇">VLC在web系统中应用（x-vlc-plugin 即如何把VLC嵌入HTML中）第一篇</a><span>(15811)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/12708309" title="在浏览器中使用VLC插件播放在线影片">在浏览器中使用VLC插件播放在线影片</a><span>(11983)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/10361671" title="android读取文件权限">android读取文件权限</a><span>(10981)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/19827865" title="利用FFmpeg将 IPCamera 的RTSP转码成RTMP发布在RED5">利用FFmpeg将 IPCamera 的RTSP转码成RTMP发布在RED5</a><span>(10231)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/12706011" title="VLC在web系统中应用（x-vlc-plugin 即如何把VLC嵌入HTML中）第一篇">VLC在web系统中应用（x-vlc-plugin 即如何把VLC嵌入HTML中）第一篇</a><span>(15)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/8560065" title="利用ffmpeg将无命名规则的静态图片合成视频">利用ffmpeg将无命名规则的静态图片合成视频</a><span>(6)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/10945255" title="原YUV格式的解析 Android NV21 视频采集">原YUV格式的解析 Android NV21 视频采集</a><span>(4)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/19827865" title="利用FFmpeg将 IPCamera 的RTSP转码成RTMP发布在RED5">利用FFmpeg将 IPCamera 的RTSP转码成RTMP发布在RED5</a><span>(4)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/8032609" title="x264_t 结构体解析">x264_t 结构体解析</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/6451924" title="使用MPEG4IP_mp4v2实现3GP文件合成">使用MPEG4IP_mp4v2实现3GP文件合成</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/9187447" title="关于高斯模糊与opencv中的GaussianBlur函数">关于高斯模糊与opencv中的GaussianBlur函数</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/8488388" title="ffmpeg: error while loading shared libraries: libavdevice.so.53">ffmpeg: error while loading shared libraries: libavdevice.so.53</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/7760585" title="使用openCV画出一幅图像的直方图">使用openCV画出一幅图像的直方图</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/vblittleboy/article/details/8473215" title="ffserver联合ffmpeg建立媒体服务器">ffserver联合ffmpeg建立媒体服务器</a><span>(3)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/laoyang360/article/details/53843771" target="_blank">* 而立之年——三线城市程序员的年终告白</a></li>
+<li><a href="http://blog.csdn.net/sdkfjksf/article/details/54380659" target="_blank">* Java集合框架中隐藏的设计套路</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/54092364" target="_blank">* Python脚本下载今日头条视频(附加Android版本辅助下载器)</a></li>
+<li><a href="http://blog.csdn.net/caowenbin/article/details/54406716" target="_blank">* 人工智能的冷思考</a></li>
+<li><a href="http://blog.csdn.net/it_talk/article/details/54346566" target="_blank">* React Native 实战系列教程之热更新原理分析与实现</a></li>
+
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/6610564#comments">关于VBV-------Video Buffering Verifier</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/mountain_high" class="user_name">hwtx</a>:
+hehe,
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/12706011#comments">VLC在web系统中应用（x-vlc-plugin 即如何把VLC嵌入HTML中）第一篇</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/Shinedi" class="user_name">Shinedi</a>:
+fubodigu@163.com,万分感谢
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/18080149#comments">基于P2P的流媒体开源系统介绍----peercast，myseelite，p2pcenter</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/caoshangpa" class="user_name">灿哥哥</a>:
+谢谢分享
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/10945255#comments">原YUV格式的解析 Android NV21 视频采集</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/duanboqiang" class="user_name">Daniel_BBQ</a>:
+迫切需要这个转换代码，感谢楼主，我的email是designbook@sina.cn
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/12708499#comments">Control Firefox VLC Plugin In Javascript</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/angelafanfan0329" class="user_name">angelafanfan0329</a>:
+firefox貌似用不了js api啊，下面是我的求助帖。http://bbs.csdn.net/t...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/48712655#comments">推荐几本介绍Android Studio开发的好书</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/z123jjjj" class="user_name">z123jjjj</a>:
+thank you！
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/22886661#comments">vlc-android源码git下载</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/zngoo" class="user_name">zngoo</a>:
+楼主，第一个地址怎么获取源码呀，第二个从git上获取，这地址从在点问题；
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/22886661#comments">推荐几本介绍Android Studio开发的好书</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u014787262" class="user_name">ganye88</a>:
+不错
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/7571386#comments">多声道音频数据和 WAVE 文件</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/idzzn001" class="user_name">idzzn001</a>:
+你好能问个问题吗，有一个程序设置的primary中的格式nAvgBytesPerSec是192000...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/vblittleboy/article/details/12708309#comments">在浏览器中使用VLC插件播放在线影片</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u014419425" class="user_name">哈迪彗星</a>:
+插件呢
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+
+                   <!-- 广告位开始 --> 
+                    <div class="J_adv" data-view="true" data-mod="ad_popu_190" data-mtp="37" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 200px;"><!-- 广告占位容器 --><div id="cpro_u2734128"><iframe id="iframeu2734128_0" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/kctm.html" width="200" height="200" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] || {})['u2734128']={at:'3',rsi0:'200',rsi1:'200',pat:'17',tn:'baiduCustNativeAD',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'',rss2:'#000000',titSU:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u2734128'});  </script>  <script src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/c.js.下载" type="text/javascript"></script></div> 
+                    <!-- 广告位结束 -->
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/cnick.js.下载"></script>
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/newblog.min.js.下载"></script>
+
+
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/JavaScript1.js.下载"></script><link rel="stylesheet" type="text/css" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-600-2320</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2016, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/saved_resource(5).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/notify.js.下载"></script>
+
+    <script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/login.js.下载"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/counter.js.下载"></script><script type="text/javascript" charset="UTF-8" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/msg.popup.js.下载"></script>
+<script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ad-blog.js.下载"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div><input type="hidden" id="aa_g_data_ids">
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/toolbar.js.下载"></script>
+     <!--new top-->
+   
+    <link href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ask_float_block.css" type="text/css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/wmd.js.下载"></script>
+    <script language="JavaScript" type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/showdown.js.下载"></script>
+    <script language="JavaScript" type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/prettify.js.下载"></script>
+    <script language="JavaScript" type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ask_float_block.js.下载"></script>
+   
+
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    <link rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/blog_code.css">
+    <script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/saveToCode.js.下载"></script>
+      <script type="text/javascript" src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/main.js(1).下载"></script>
+
+     <link rel="stylesheet" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/fa.css">
+
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/saved_resource(6).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no">
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;   
+ </iframe></div><div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><link rel="stylesheet" type="text/css" media="screen" href="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-reply" title="快速回复" style="top:447px"></a><a id="com-quick-collect" title="我要收藏" style="top:485px"></a><a id="com-d-top-a" style="top: 523px; display: inline;" title="返回顶部" onclick=""></a> </div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/vblittleboy/article/details/10945143#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/vblittleboy/article/details/10945143#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./YUV420 NV12 NV21 - iavstream官方博客 - 博客频道 - CSDN.NET_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/vblittleboy/article/details/10945143#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="YUV420 NV12 NV21" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="YUV420 NV12 NV21： http://blog.csdn.net/vblittleboy/article/details/10945143"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value=""><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div></body></html>

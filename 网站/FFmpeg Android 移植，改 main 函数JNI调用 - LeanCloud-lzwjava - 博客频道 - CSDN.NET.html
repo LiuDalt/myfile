@@ -1,0 +1,1347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0054)http://blog.csdn.net/lzw_java/article/details/21564091 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ncdm"></script>  
+
+    <script src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/hm.js.下载"></script><script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/tracking.js.下载" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script><script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/repoAddr2.js.下载"></script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/lzw_java/article/details/21564091#">
+
+    <title>FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="在window-&gt;Preferences-&gt;general-&gt;keys中，找到 content asist 修改下边值Binding 改成 Alt+/ When 改为 Editing Text ok.">
+    <script src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/jquery.js.下载" type="text/javascript"></script>
+      <script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/jquery-version.js.下载"></script>
+    <script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ad.js.下载"></script>
+        <!--new top-->
+       
+        <link rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/index.css">
+        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/tracking.js(1).下载"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/style.css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/lzw_java/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/default_big.css">
+ 
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/share.js.下载"></script><link rel="stylesheet" type="text/css" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/job_reco.css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"><script src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/wxLogin.js.下载"></script><link rel="stylesheet" type="text/css" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/style(1).css"><link type="text/css" rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/style(2).css"><script src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/get_ads.php" type="text/javascript"></script><script src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/logger.js.下载"></script><link rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/share_style0_16.css"></head>
+<body><div id="BAIDU_DUP_fp_wrapper" style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;"><iframe id="BAIDU_DUP_fp_iframe" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/o.html" style="width: 0px; height: 0px; visibility: hidden; display: none;"></iframe></div><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/saved_resource.html"></iframe>
+
+
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57" id="revive-0-0"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/html.js.下载" type="text/javascript"></script><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label">标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">摘要</label>                        <div class="col-sm-10">                          <textarea id="input-description" class="form-control description"></textarea>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    <iframe src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/saved_resource(1).html" frameborder="0" allowtransparency="true" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe></div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/lzw_java">LeanCloud-lzwjava</a></h2>
+            <h3>我是LeanCloud工程师，LeanCloud帮你更快开发应用 https://leancloud.cn</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/lzw_java?viewmode=contents"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/lzw_java?viewmode=list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/lzw_java/rss/list"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "lzw_java";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/lzw_java";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://bss.csdn.net/m/topic/edu_exam" target="_blank">
+<font color="blue">2017直通软考，拿证无忧
+
+
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://edu.csdn.net/huiyiCourse/detail/274" target="_blank">
+<font color="red">程序员简历优化指南！ 
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/PK.html" target="_blank">
+<font color="blue">【观点】移动原生App开发 PK HTML 5开发
+</font></a>
+
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://bss.csdn.net/m/product/aliyun_essay/index" target="_blank">
+<font color="red">云端应用征文大赛，秀绝招，赢无人机！
+</font></a>
+
+
+</div>                        </div>
+                        
+
+
+
+  
+<link href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/jquery.cookie.js.下载"></script>
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/main.js.下载"></script>
+<link rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/markdown_views.css">
+<link rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/category.css">
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/MathJax.js.下载"></script>
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/web-storage-cache.min.js.下载"></script>
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/replace.min.js.下载"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+      
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=FFmpeg+Android+%e7%a7%bb%e6%a4%8d%ef%bc%8c%e6%94%b9+main+%e5%87%bd%e6%95%b0JNI%e8%b0%83%e7%94%a8&u=http://blog.csdn.net/lzw_java/article/details/21564091"
+
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/lzw_java/article/details/21564091">
+        FFmpeg Android 移植，改 main 函数JNI调用            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/ffmpeg" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">ffmpeg</a><a href="http://www.csdn.net/tag/android%20ndk" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">android ndk</a><a href="http://www.csdn.net/tag/%e9%9f%b3%e8%a7%86%e9%a2%91%e5%90%88%e6%88%90" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">音视频合成</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2014-03-20 00:52</span>
+            <span class="link_view" title="阅读次数">3752人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])">评论</a>(10)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;FFmpeg+Android+%e7%a7%bb%e6%a4%8d%ef%bc%8c%e6%94%b9+main+%e5%87%bd%e6%95%b0JNI%e8%b0%83%e7%94%a8&#39;,&#39;21564091&#39;);return false;" title="收藏" target="_blank">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" onclick="javascript:report(21564091,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody" style="" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[{&quot;name&quot;:&quot;直播技术知识库&quot;,&quot;url&quot;:&quot;http://lib.csdn.net/base/57?source=blogtop&quot;,&quot;logo&quot;:&quot;http://img.knowledge.csdn.net/upload/base/1472614759773_773.jpg&quot;}]}"> <a href="http://lib.csdn.net/base/57?source=blogtop" target="_blank"> <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/1472614759773_773.jpg"> <em><b>直播技术知识库</b></em> </a></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;1838421&#39;,&#39;lzw_java&#39;,&#39;top&#39;,&#39;21564091&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">Android<em>（5）</em></span>
+                      <img class="arrow-down" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/lzw_java/article/category/1838421" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_1838421">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/category.js.下载"></script>  
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div style="clear:both"></div><div style="border:solid 1px #ccc; background:#eee; float:left; min-width:200px;padding:4px 10px;"><p style="text-align:right;margin:0;"><span style="float:left;">目录<a href="http://blog.csdn.net/lzw_java/article/details/21564091#" title="系统根据文章中H1到H6标签自动生成文章目录">(?)</a></span><a href="http://blog.csdn.net/lzw_java/article/details/21564091#" onclick="javascript:return openct(this);" title="展开">[+]</a></p><ol style="display:none;margin-left:14px;padding-left:14px;line-height:160%;"><li><a href="http://blog.csdn.net/lzw_java/article/details/21564091#t0">缘起</a></li><li><a href="http://blog.csdn.net/lzw_java/article/details/21564091#t1">思路</a></li><li><a href="http://blog.csdn.net/lzw_java/article/details/21564091#t2">环境</a></li><li><a href="http://blog.csdn.net/lzw_java/article/details/21564091#t3">改接口调用</a></li><li><a href="http://blog.csdn.net/lzw_java/article/details/21564091#t4">调试ffmpeg</a></li><li><a href="http://blog.csdn.net/lzw_java/article/details/21564091#t5">Eclipse里用ndk-build</a></li><li><a href="http://blog.csdn.net/lzw_java/article/details/21564091#t6">一键生成jni函数头</a></li></ol></div><div style="clear:both"></div><div id="article_content" class="article_content">
+
+<h1><a name="t0"></a><span style="font-size:18px">缘起</span></h1>
+<div><span style="font-size:18px">&nbsp; 至于还不知道ffmpeg的同学，请移步<a target="_blank" href="http://www.cnblogs.com/dwdxdy/p/3240167.html">FFmpeg常用基本命令</a>，翻阅一两下，看看它的功能能不能让你的app更好玩更强大。</span></div>
+<div><span style="font-size:18px">&nbsp; &nbsp;它可以合成音视频，播放各类编码的音视频，截取某一段，让多张图片合成一个视频并且和音频合成、转格式等等。</span></div>
+<div><span style="font-size:18px"><br>
+</span></div>
+<p><span style="font-size:18px">&nbsp; &nbsp;配音秀里的配音很好玩，我们也想做一个配音的模块。于是找到了工具ffmpeg。试图把它移植到<a href="http://lib.csdn.net/base/android" class="replace_word" title="Android知识库" target="_blank" style="color:#df3434; font-weight:bold;">Android</a>上。ffmpeg大概捣鼓了我3、4天，差不多是一个版本版本的试，</span><span style="font-size:18px">网上的很多文章都不行，最后让我成功的是这篇文章</span><a target="_blank" href="http://blog.csdn.net/kaven826/article/details/14517189" style="font-size:18px">《android
+ 使用ffmpeg 并调用接口》</a><span style="font-size:18px">&nbsp;。</span><span style="font-size:18px">我试过很多版本，只有ffmpeg1.2和ndkr9搭配，能移植成功。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<h1><a name="t1"></a><span style="font-size:18px">思路</span></h1>
+<p><span style="font-size:18px">ffmpeg是一个c写的程序，ffmpeg.c里面有main函数，我们先把它在Android ndk下编译出来libffmpeg.so文件，然后利用这个库，来编译ffmpeg.c文件，把ffmpeg.c文件中的main函数改为video_merge函数，即video_merge(int argc,char **argv)。那么接下来像这样子合成视频视频：</span></p>
+<p><span style="font-size:18px"></span></p>
+<div class="dp-highlighter bg_cpp"><div class="bar"><div class="tools"><b>[cpp]</b> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 756px; top: 960px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/246066" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/246066/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1" class="dp-cpp"><li class="alt"><span><span class="keyword">void</span><span>&nbsp;jstringToCstr(JNIEnv&nbsp;*env,jstring&nbsp;_jstring,jbyte&nbsp;**_cstr){&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;jboolean&nbsp;isCopy=0;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;(*_cstr)=(*env)-&gt;GetStringUTFChars(env,_jstring,&amp;isCopy);&nbsp;&nbsp;</span></li><li class=""><span>}&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>JNIEXPORT&nbsp;jstring&nbsp;JNICALL&nbsp;Java_com_lzw_iword_video_Myffmpeg_stringFromJNI&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;(JNIEnv&nbsp;*&nbsp;env,&nbsp;jclass&nbsp;clz,&nbsp;jstring&nbsp;videoPath,&nbsp;jstring&nbsp;audioPath,&nbsp;jstring&nbsp;avPath){&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;<span class="datatypes">char</span><span>&nbsp;</span><span class="keyword">const</span><span>&nbsp;*str1;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;n&nbsp;=&nbsp;0;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;<span class="datatypes">char</span><span>&nbsp;*argv[20];&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;jbyte*&nbsp;str[3];&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;jstringToCstr(env,videoPath,&amp;str[0]);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;jstringToCstr(env,audioPath,&amp;str[1]);&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;jstringToCstr(env,avPath,&amp;str[2]);&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;<span class="string">"ffmpeg"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;<span class="string">"-i"</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;str[0];&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;<span class="string">"-i"</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;str[1];&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;<span class="string">"-y"</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;<span class="string">"-strict"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;<span class="string">"-2"</span><span>;&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;argv[n++]&nbsp;=&nbsp;str[2];&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;<span class="datatypes">int</span><span>&nbsp;ret&nbsp;=&nbsp;vedio_merge(n,&nbsp;argv);&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;str1&nbsp;=&nbsp;<span class="string">"Using&nbsp;FFMPEG&nbsp;doing&nbsp;your&nbsp;job"</span><span>;&nbsp;&nbsp;</span></span></li><li class="alt"><span>&nbsp;&nbsp;<span class="keyword">return</span><span>&nbsp;(*env)-&gt;NewStringUTF(env,&nbsp;str1);&nbsp;&nbsp;</span></span></li><li class=""><span>}&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="246066" snippet_file_name="blog_20140320_1_3862592" name="code" class="cpp" style="display: none;">void jstringToCstr(JNIEnv *env,jstring _jstring,jbyte **_cstr){
+  jboolean isCopy=0;
+  (*_cstr)=(*env)-&gt;GetStringUTFChars(env,_jstring,&amp;isCopy);
+}
+
+JNIEXPORT jstring JNICALL Java_com_lzw_iword_video_Myffmpeg_stringFromJNI
+  (JNIEnv * env, jclass clz, jstring videoPath, jstring audioPath, jstring avPath){
+  char const *str1;
+  int n = 0;
+  char *argv[20];
+  jbyte* str[3];
+  jstringToCstr(env,videoPath,&amp;str[0]);
+  jstringToCstr(env,audioPath,&amp;str[1]);
+  jstringToCstr(env,avPath,&amp;str[2]);
+
+  argv[n++] = "ffmpeg";
+  argv[n++] = "-i";
+  argv[n++] = str[0];
+  argv[n++] = "-i";
+  argv[n++] = str[1];
+  argv[n++] = "-y";
+  argv[n++] = "-strict";
+  argv[n++] = "-2";
+  argv[n++] = str[2];
+  int ret = vedio_merge(n, argv);
+  str1 = "Using FFMPEG doing your job";
+  return (*env)-&gt;NewStringUTF(env, str1);
+}</pre><br>
+<span style="font-size:18px">也就像在命令行下调用：ffmpeg -i src1 -i src2 -y output</span>
+<p></p>
+<p><br>
+</p>
+<p></p>
+<h1><a name="t2"></a><span style="font-size:18px">环境</span></h1>
+<p><span style="font-size:18px">&nbsp;ubuntu 12.04</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">先去看那篇教程，不行了再来翻阅这篇，讲讲在那篇教程下还会遇到的问题。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<h1><a name="t3"></a><span style="font-size:18px">改接口调用</span></h1>
+<div class="dp-highlighter bg_plain"><div class="bar"><div class="tools"><b>[plain]</b> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 766px; top: 1820px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/246066" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/246066/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1"><li class="alt"><span><span>LOCAL_PATH&nbsp;:=&nbsp;$(call&nbsp;my-dir)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>include&nbsp;$(CLEAR_VARS)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;PATH_TO_FFMPEG_SOURCE:=$(LOCAL_PATH)/ffmpeg&nbsp;&nbsp;</span></li><li class="alt"><span>LOCAL_C_INCLUDES&nbsp;+=&nbsp;$(PATH_TO_FFMPEG_SOURCE)&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;LOCAL_LDLIBS&nbsp;:=&nbsp;-lffmpeg&nbsp;-llog&nbsp;-ljnigraphics&nbsp;-lz&nbsp;-ldl&nbsp;-lgcc&nbsp;&nbsp;//这些就是所要关联的库了，刚才把ffmpeg.so复制到android-ndk-r8d/platforms/android-14/arch-arm/usr/lib目录下的原因就是为了这个&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;LOCAL_MODULE&nbsp;&nbsp;&nbsp;&nbsp;:=&nbsp;ffmpeg-jni&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;LOCAL_SRC_FILES&nbsp;:=&nbsp;ffmpeg-jni.c&nbsp;ffmpeg/cmdutils.h&nbsp;ffmpeg/cmdutils.c&nbsp;ffmpeg/ffmpeg.h&nbsp;ffmpeg/ffmpeg_opt.c&nbsp;ffmpeg/ffmpeg_filter.c&nbsp;&nbsp;//必须把这几个文件编译进去，不然会很多undefinded的。。&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;</span></li><li class=""><span>include&nbsp;$(BUILD_SHARED_LIBRARY)&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="246066" snippet_file_name="blog_20140320_2_4276512" name="code" class="plain" style="display: none;">LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+ PATH_TO_FFMPEG_SOURCE:=$(LOCAL_PATH)/ffmpeg
+LOCAL_C_INCLUDES += $(PATH_TO_FFMPEG_SOURCE) 
+ LOCAL_LDLIBS := -lffmpeg -llog -ljnigraphics -lz -ldl -lgcc  //这些就是所要关联的库了，刚才把ffmpeg.so复制到android-ndk-r8d/platforms/android-14/arch-arm/usr/lib目录下的原因就是为了这个
+ LOCAL_MODULE    := ffmpeg-jni
+ LOCAL_SRC_FILES := ffmpeg-jni.c ffmpeg/cmdutils.h ffmpeg/cmdutils.c ffmpeg/ffmpeg.h ffmpeg/ffmpeg_opt.c ffmpeg/ffmpeg_filter.c  //必须把这几个文件编译进去，不然会很多undefinded的。。
+
+include $(BUILD_SHARED_LIBRARY)</pre>在改接口调用的时候，那篇文章，用了这个Android.mk，
+<p></p>
+<p><span style="font-size:18px">首先，</span></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)">LOCAL_LDLIBS&nbsp;:=&nbsp;-lffmpeg</span><br>
+</span></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)">这个我一直没有运行成功。</span></span></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)">这个表示链接库，也就是要编译当前这个MODULE，那些所需要的函数等就去一个目录找，找libffmpeg.so文件，-l的意思是说link的意思，ffmpeg表示库的名字，至于lib和.so系统自动会加上。</span></span></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)">于是我用了这个：</span></span></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)"></span></span></p>
+<div class="dp-highlighter bg_plain"><div class="bar"><div class="tools"><b>[plain]</b> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 766px; top: 2325px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_3" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/246066" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/246066/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1"><li class="alt"><span><span>LOCAL_PATH&nbsp;:=&nbsp;$(call&nbsp;my-dir)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>include&nbsp;$(CLEAR_VARS)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>LOCAL_MODULE&nbsp;=myffmpeg&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>LOCAL_SRC_FILES&nbsp;:=libffmpeg.so&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>include&nbsp;$(PREBUILT_SHARED_LIBRARY)&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;</span></li><li class="alt"><span>include&nbsp;$(CLEAR_VARS)&nbsp;&nbsp;</span></li><li class=""><span>PATH_TO_FFMPEG_SOURCE:=$(LOCAL_PATH)/ffmpeg&nbsp;&nbsp;</span></li><li class="alt"><span>LOCAL_C_INCLUDES&nbsp;+=&nbsp;$(PATH_TO_FFMPEG_SOURCE)&nbsp;&nbsp;</span></li><li class=""><span>LOCAL_MODULE=ffmpeg-jni&nbsp;&nbsp;</span></li><li class="alt"><span>LOCAL_LDLIBS&nbsp;:=&nbsp;-llog&nbsp;-ljnigraphics&nbsp;-lz&nbsp;-ldl&nbsp;-lgcc&nbsp;-lm&nbsp;&nbsp;</span></li><li class=""><span>LOCAL_SRC_FILES&nbsp;:=&nbsp;myffmpeg.c&nbsp;ffmpeg/cmdutils.h&nbsp;ffmpeg/cmdutils.c&nbsp;ffmpeg/ffmpeg.h&nbsp;ffmpeg/ffmpeg_opt.c&nbsp;ffmpeg/ffmpeg_filter.c&nbsp;&nbsp;</span></li><li class="alt"><span>LOCAL_SHARED_LIBRARIES:=myffmpeg&nbsp;&nbsp;&nbsp;</span></li><li class=""><span>include&nbsp;$(BUILD_SHARED_LIBRARY)&nbsp;&nbsp;</span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/save_snippets.png"></a></div></div><pre code_snippet_id="246066" snippet_file_name="blog_20140320_3_6468340" name="code" class="plain" style="display: none;">LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE =myffmpeg
+
+LOCAL_SRC_FILES :=libffmpeg.so
+
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+PATH_TO_FFMPEG_SOURCE:=$(LOCAL_PATH)/ffmpeg
+LOCAL_C_INCLUDES += $(PATH_TO_FFMPEG_SOURCE)
+LOCAL_MODULE=ffmpeg-jni
+LOCAL_LDLIBS := -llog -ljnigraphics -lz -ldl -lgcc -lm
+LOCAL_SRC_FILES := myffmpeg.c ffmpeg/cmdutils.h ffmpeg/cmdutils.c ffmpeg/ffmpeg.h ffmpeg/ffmpeg_opt.c ffmpeg/ffmpeg_filter.c
+LOCAL_SHARED_LIBRARIES:=myffmpeg 
+include $(BUILD_SHARED_LIBRARY)
+</pre><br>
+注意到这个先编译了一个共享库myffmpeg，然后再通过
+<p></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)"></span></span></p>
+<div class="dp-highlighter bg_plain"><div class="bar"><div class="tools"><b>[plain]</b> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><span data-mod="popu_168"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><div style="position: absolute; left: 766px; top: 2820px; width: 27px; height: 15px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="27" height="15" name="ZeroClipboardMovie_4" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=27&amp;height=15" wmode="transparent"></div></span><span data-mod="popu_169"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a></span><a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><span class="tracking-ad" data-mod="popu_167"><a href="https://code.csdn.net/snippets/246066" target="_blank" title="在CODE上查看代码片" style="text-indent:0;"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/CODE_ico.png" width="12" height="12" alt="在CODE上查看代码片" style="position:relative;top:1px;left:2px;"></a></span><span class="tracking-ad" data-mod="popu_170"><a href="https://code.csdn.net/snippets/246066/fork" target="_blank" title="派生到我的代码片" style="text-indent:0;"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ico_fork.svg" width="12" height="12" alt="派生到我的代码片" style="position:relative;top:2px;left:2px;"></a></span></div></div><ol start="1"><li class="alt"><span><span>LOCAL_SHARED_LIBRARIES:=myffmpeg&nbsp;&nbsp;</span></span></li></ol><div class="save_code tracking-ad" data-mod="popu_249" style="display: none;"><a href="javascript:;" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/save_snippets_01.png"></a></div></div><pre code_snippet_id="246066" snippet_file_name="blog_20140320_4_2248218" name="code" class="plain" style="line-height: 18px; display: none;">LOCAL_SHARED_LIBRARIES:=myffmpeg</pre>
+<p></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)">链接进来编译最终我们需要的ffmpeg-jni。</span></span></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)">这时候要把libffmpeg.so文件放在jni的目录下，像这样：</span></span></p>
+<p><span style="font-size:18px"><span style="font-family:Consolas,&#39;Courier New&#39;,Courier,mono,serif; line-height:18px; background-color:rgb(248,248,248)"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140319234254031" alt=""><br>
+</span></span></p>
+<p><br>
+</p>
+<h1><a name="t4"></a><span style="font-size:18px">调试ffmpeg</span></h1>
+<p><span style="font-size:18px">ffmpeg移植后，也用了jni来调用函数，但可能出现很多问题，怎么调试呢？</span></p>
+<p><span style="font-size:18px">如果我们也能得到像命令行下这个调式信息就好了，</span></p>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140319234746796" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">这个是log日志，我们只用找到相应的位置，把它的printf语句附近加一个Log.i就可以了。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">这个printf的位置，你可以在eclipse下从原来的main函数入口在av_log类似的位置按住ctrl键点击，跳转到函数位置一步步跟踪下去得到。它在ffmpeg/libavutil/log.c里面的av_log_default_callback函数里，像这样：</span></p>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140319235155750" alt=""><br>
+</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">注意到LOGD了么，它是</span></p>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140319235301109" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">...是可变长参数。可变长参数最简单的例子就是printf，有时可以pirntf("%d",a)，还可以printf("%d %d",a,a);前一个是两个参数，后一个是三个参数。就是用类似的语法做到的。</span></p>
+<p><span style="font-size:18px">__android_log_print就是android提供的打印到Logcat里的函数。</span></p>
+<p><span style="font-size:18px">这样，你就可以看到输出日志了，对于为什么合成不了，是不支持mp3还是不支持amr，还是视频问题就可以通过这个日志来帮忙了。</span></p>
+<p><span style="font-size:18px">有时会突然异常突出。</span></p>
+<p><span style="font-size:18px">如何知道出错位置呢。</span></p>
+<p><span style="font-size:18px">命令行下输入：adb shell logcat | ndk-stack -sym obj/local/armeabi</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">你会发现合成好了，app还是会崩溃退出，因为ffmpeg原来的main函数最后面有个exit语句，注释掉即可。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">合成好了，又会发现，再把它调用一次，会出现NVALID HEAP ADDRESS IN dlfree ffmpeg的错误。原因是ffmpeg内存泄漏，还有一些动态申请的空间没有释放掉。我们干脆让ffmpeg的合成放在一个service里好了。合成一次，然后就把那个service杀掉。</span></p>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140320000555515" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">AnroidMainfest.xml ：</span></p>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140320000647796" alt=""></span></p>
+<p><span style="font-size:18px">在你的程序里注册一个receiver：</span></p>
+<p><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140320000958906" alt="" style="font-size:18px"></p>
+<p><br>
+</p>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140320000908437" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">所以，你就可以第一次调用ffmpeg生成一个没有声音的video文件，播放它，让用户配音，然后第二次调用，合成用户的声音以及视频。</span></p>
+<p><span style="font-size:18px">在我这里，比较蛋疼的是，如果录音AAC Encoder的话，能合成视频，但是不能用mediaplayer播放AAC文件（小米2s专有问题？），而如果用armnb的话便不能合成，还要重新生成libffmpeg.so，在configure里enable-armnb，还有一些问题没有成功，就是enable-armnb之后运行./config.sh编译armnb出问题，说不能找到相应的文件。找到了又说它所include的文件又没找到。同样，enable-libmp3lame也没弄成功。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">之所以要求也能播放，是因为合成一次10s的1280*720与10秒的录音要大概1分钟的时间。希望用户可以先听听配音的效果，然后再确定合不合成。</span></p>
+<p><span style="font-size:18px">观察配音秀的dubbing文件夹就可以发现，配音秀录好了用户的声音，得到tmp.amr,tmp.pcm然后上传到服务器，进行合成，再把合成好的下载下来。</span></p>
+<p><span style="font-size:18px">当配音的时候，已经下载好了原声的视频、</span><span style="font-size:18px">字幕、已经去除了需要配音的片段的声音的音频。这样配音的时候，它一直播放那个音频就行，到用户配音的时候，音频里是静音的。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<h1><a name="t5"></a><span style="font-size:18px">Eclipse里用ndk-build</span></h1>
+<p><span style="font-size:18px">&nbsp; 其实不用在命令行中进行ndk build，选中项目，右击选择Android tools，然后选择Add native Support，那么每次在项目里运行的时候，自动会ndk build。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<h1><a name="t6"></a><span style="font-size:18px">一键生成jni函数头</span></h1>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140320003034156" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">每次都要自己来写这个挺麻烦的，其实可以一键生成：</span></p>
+<p><span style="font-size:18px">配置一个external tools，</span></p>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140320003330015" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">就是用javah命令来生成，然后让它集成到eclipse里面。</span></p>
+<p><span style="font-size:18px">在eclipse里的标题栏里点击<img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140320003826968" alt="">就可以在jni目录里看到com_lzw_iword_video_Myffmpeg.h类似的文件，像这样：</span></p>
+<p><span style="font-size:18px"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/20140320004008781" alt=""><br>
+</span></p>
+<p><span style="font-size:18px">像这样，把这个头文件include进你的c文件然后，复制粘贴函数头就行。</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+<p><span style="font-size:18px">如果君移植ffmpeg到Android，或者用ffmpeg遇到什么问题，可以评论评论提提问呗，交流交流～</span></p>
+<p><span style="font-size:18px"><br>
+</span></p>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad bdshare-button-style0-16" style="float: right;" data-mod="popu_172" data-bd-bind="1486382519913">
+<a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank"></a>
+<a href="http://blog.csdn.net/lzw_java/article/details/21564091#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/blog_detail.css">
+
+    
+<!--172.16.140.14-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/bds_s_v2.js.下载"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+
+        <div id="digg" articleid="21564091">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>2</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;/lzw_java/article/details/18939089&#39;;">上一篇</span><a href="http://blog.csdn.net/lzw_java/article/details/18939089" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])">App第一次启动时翻页介绍的简洁实现</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;/lzw_java/article/details/23759981&#39;;">下一篇</span><a href="http://blog.csdn.net/lzw_java/article/details/23759981" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])">用AVOS Cloud加速移动开发，map.save()即可把键值对保存到服务器上</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article" style="">
+                <h4>我的同类文章</h4>
+                <div class="similar_c" style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;1838421&#39;,&#39;lzw_java&#39;,&#39;foot&#39;,&#39;21564091&#39;);">Android<em>（5）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141" style="max-height:195px;">
+                        <a href="http://blog.csdn.net/" style="display:none" target="_blank">http://blog.csdn.net</a>
+                        <ul class="similar_list fl"><li><em>•</em><a href="http://blog.csdn.net/lzw_java/article/details/23759981" id="foot_aritcle_23759981undefined18199427975698446" target="_blank" title="用AVOS Cloud加速移动开发，map.save()即可把键值对保存到服务器上">用AVOS Cloud加速移动开发，map.save()即可把键值对保存到服务器上</a><span>2014-04-15</span><label><i>阅读</i><b>1413</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/lzw_java/article/details/18744003" id="foot_aritcle_18744003undefined7444723925454653" target="_blank" title="表白神器（画笔+计算坐标+处理触摸事件）">表白神器（画笔+计算坐标+处理触摸事件）</a><span>2014-01-24</span><label><i>阅读</i><b>1614</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/lzw_java/article/details/17787807" id="foot_aritcle_17787807undefined279356232630549" target="_blank" title="Android开发手记&lt;开发自习助手&gt;">Android开发手记&lt;开发自习助手&gt;</a><span>2014-01-03</span><label><i>阅读</i><b>930</b></label></li> </ul>
+
+                        <ul class="similar_list fr"><li><em>•</em><a href="http://blog.csdn.net/lzw_java/article/details/18939089" id="foot_aritcle_18939089undefined9965347270575597" target="_blank" title="App第一次启动时翻页介绍的简洁实现">App第一次启动时翻页介绍的简洁实现</a><span>2014-02-05</span><label><i>阅读</i><b>2232</b></label></li> <li><em>•</em><a href="http://blog.csdn.net/lzw_java/article/details/18740519" id="foot_aritcle_18740519undefined09408559150676932" target="_blank" title="Android基础代码片段（复习查阅用）">Android基础代码片段（复习查阅用）</a><span>2014-01-25</span><label><i>阅读</i><b>1064</b></label></li> </ul>
+                    </div>
+                </div>
+            </div>    
+    <script type="text/javascript">
+        $(function () {
+            GetCategoryArticles('1838421', 'lzw_java','foot','21564091');
+        });
+    </script>
+      
+</div>
+
+     <div>
+                <script type="text/javascript">
+                    /*博客内容页下方Banner1-960*90，创建于2016-12-13*/
+                    var cpro_id = "u2843955";
+                </script>
+                <script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u2843955_0"><iframe id="iframeu2843955_0" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ncdm.html" width="960" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div>
+    </div>
+
+<div id="suggest">
+
+</div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/lzw_java/svc/GetSuggestContent/21564091",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/replace.css">
+
+<div id="relate" data-mod="popu_218" class="tracking-ad" style="display: block;">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c"><dl class="relate_list"><dt><a target="_blank" href="http://lib.csdn.net/base/android"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/1455589744328_328.jpg" alt="img"></a></dt><dd><h4><a target="_blank" href="http://lib.csdn.net/base/android">Android知识库</a></h4><p><label><span>30148</span><em>关注</em><i>|</i><span>2567</span><em>收录</em></label></p></dd></dl></div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived"> 
+    <div class="embody embody_b" id="libkeyparent" style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/job_reco.js.下载" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "21564091",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    <div class="tracking-ad" data-mod="popu_84"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2617" title="TCP/IP/UDP Socket通讯开发实战 适合iOS/Android/Linux" strategy="v4:content" target="_blank">TCP/IP/UDP Socket通讯开发实战 适合iOS/Android/Linux</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/3801" title="高效使用eclipse调试工具" strategy="v4:content" target="_blank">高效使用eclipse调试工具</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/3575" title="快乐玩转eclipse plugin插件开发之swt" strategy="v4:content" target="_blank">快乐玩转eclipse plugin插件开发之swt</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/3812" title="快乐玩转eclipse plugin插件开发之swt" strategy="v4:content" target="_blank">快乐玩转eclipse plugin插件开发之swt</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/2283" title="Android APP开发之真机调试环境实现" strategy="v4:content" target="_blank">Android APP开发之真机调试环境实现</a></dd></div></div>  
+
+    
+     <div id="res" data-mod="popu_36" class="tracking-ad" style="width: 42%; float: left; margin-right: 30px; display: block;"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/u013378580/article/details/52329175" title="Android开发安装NDK移植OpenCV231JNI调用OpenCV全过程" strategy="SearchAlgorithm" target="_blank">Android开发安装NDK移植OpenCV231JNI调用OpenCV全过程</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/luowenlong860502/article/details/8201279" title="移植soundtouch到android 通过JNI来调用二" strategy="SearchAlgorithm" target="_blank">移植soundtouch到android 通过JNI来调用二</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/yanzi1225627/article/details/8525720" title="Android开发安装NDK移植OpenCV231JNI调用OpenCV全过程" strategy="SearchAlgorithm" target="_blank">Android开发安装NDK移植OpenCV231JNI调用OpenCV全过程</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/ccm_oliver/article/details/9128043" title="ffmpeg移植改接口调用 " strategy="SearchAlgorithm" target="_blank">ffmpeg移植改接口调用 </a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="http://blog.csdn.net/wishfly/article/details/53432078" title="ffmpeg main函数" strategy="SearchAlgorithm" target="_blank">ffmpeg main函数</a></dd></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'FFmpeg Android 移植，改 main 函数JNI调用' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+
+    <div id="ad_cen">        
+                    <script type="text/javascript">
+                        /*博客内容页下方Banner-728*90，创建于2014-7-3*/
+                        var cpro_id = "u1607657";
+                    </script>
+                    <script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/c.js.下载"></script><div id="BAIDU_SSP__wrapper_u1607657_0"><iframe id="iframeu1607657_0" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ncdm(1).html" width="728" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div>
+    </div>  
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list"><dl class="comment_item comment_topic" id="comment_item_5831470"><dt class="comment_head" floor="8">8楼 <span class="user"><a class="username" href="http://blog.csdn.net/u011027879" target="_blank">飞黄腾达5858</a> <span class="ptime">2016-01-05 17:50发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="5831470" username="u011027879"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u011027879" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_u011027879.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你好 请问第二次执行命令的时候崩溃怎么解决 用你说的service解决好像也不行</dd></dl><dl class="comment_item comment_topic" id="comment_item_5831469"><dt class="comment_head" floor="7">7楼 <span class="user"><a class="username" href="http://blog.csdn.net/u011027879" target="_blank">飞黄腾达5858</a> <span class="ptime">2016-01-05 17:49发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="5831469" username="u011027879"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u011027879" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_u011027879.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你好 请问第二次执行命令的时候崩溃怎么解决 用你说的service解决好像也不行吧</dd></dl><dl class="comment_item comment_topic" id="comment_item_5517765"><dt class="comment_head" floor="6">6楼 <span class="user"><a class="username" href="http://blog.csdn.net/mtzai" target="_blank">mtzai</a> <span class="ptime">2015-10-19 18:03发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="5517765" username="mtzai"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/mtzai" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_mtzai.jpg" width="40" height="40"></a></dd><dd class="comment_body">ffmpeg android合并字幕怎么弄?</dd></dl><dl class="comment_item comment_topic" id="comment_item_4971445"><dt class="comment_head" floor="5">5楼 <span class="user"><a class="username" href="http://blog.csdn.net/litianpeng1991" target="_blank">Jeff-Li</a> <span class="ptime">2015-04-25 18:20发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="4971445" username="litianpeng1991"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/litianpeng1991" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_litianpeng1991.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主你好，请问可以发一份demo给我研究一下吗？非常感谢啊，jefflee1314@163.com</dd></dl><dl class="comment_item comment_topic" id="comment_item_4580549"><dt class="comment_head" floor="4">4楼 <span class="user"><a class="username" href="http://blog.csdn.net/u013161218" target="_blank">哓氏</a> <span class="ptime">2014-12-03 14:26发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="4580549" username="u013161218"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/u013161218" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_u013161218.jpg" width="40" height="40"></a></dd><dd class="comment_body">你好 当我用http://blog.csdn.net/kaven826/article/details/14517189你说的这个里面的方法生成so库的时候 会出现下面的提示：<br><br>sed: 无法读取 config.h: 没有那个文件或目录<br><br>就是我使用chmod +x config.sh这个命令行<br>和./config.sh 这个命令之后就出现了上面的提示 我用的是ubuntu14.04  ffmpeg和NDK都是用的最新的<br>谢谢，看见请回答我，专注等。</dd></dl><dl class="comment_item comment_topic" id="comment_item_4164945"><dt class="comment_head" floor="3">3楼 <span class="user"><a class="username" href="http://blog.csdn.net/WECANACE" target="_blank">WECANACE</a> <span class="ptime">2014-08-12 11:45发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="4164945" username="WECANACE"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/WECANACE" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_wecanace.jpg" width="40" height="40"></a></dd><dd class="comment_body">你好楼主，模拟命令行需要系统支持，你在Android上跑命令行怎么能跑得通呢？你的android手机上安装了ffmpeg吗？能不能上穿个源码啊？谢谢！</dd></dl><dl class="comment_item comment_topic" id="comment_item_3894341"><dt class="comment_head" floor="2">2楼 <span class="user"><a class="username" href="http://blog.csdn.net/xiaotian0627" target="_blank">xiaotian0627</a> <span class="ptime">2014-05-29 18:17发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="3894341" username="xiaotian0627"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaotian0627" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_xiaotian0627.jpg" width="40" height="40"></a></dd><dd class="comment_body">你好楼主，ffmpeg/libavutil/log.c 中#include &lt;jni.h&gt;是自动加入的么，在我的ffmpeg源码中是没有这个的<br>还有LOG方法在ffmpeg/libavutil/log.c中添加后，是需要重新编译的么？<br>谢谢</dd><dl class="comment_item comment_reply" id="comment_item_3941757"><dt class="comment_head" floor="2">Re: <span class="user"><a class="username" href="http://blog.csdn.net/lzw_java" target="_blank">lzw_java</a> <span class="ptime">2014-06-09 23:56发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="3941757" username="lzw_java"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lzw_java" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_lzw_java.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复xiaotian0627：嗯嗯，我加入的，为了能把命令执行的log输出到logcat上来。需要重新编译。</dd></dl></dl><dl class="comment_item comment_topic" id="comment_item_3893415"><dt class="comment_head" floor="1">1楼 <span class="user"><a class="username" href="http://blog.csdn.net/xiaotian0627" target="_blank">xiaotian0627</a> <span class="ptime">2014-05-29 15:02发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="3893415" username="xiaotian0627"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/xiaotian0627" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_xiaotian0627.jpg" width="40" height="40"></a></dd><dd class="comment_body">楼主好人啊，音频合成是否可以这样做？amr_nb格式支持怎么样？谢谢</dd><dl class="comment_item comment_reply" id="comment_item_3941753"><dt class="comment_head" floor="1">Re: <span class="user"><a class="username" href="http://blog.csdn.net/lzw_java" target="_blank">lzw_java</a> <span class="ptime">2014-06-09 23:53发表</span>  <a href="http://blog.csdn.net/lzw_java/article/details/21564091#reply" class="cmt_btn reply" title="回复">[回复]</a> <span class="comment_manage" style="display: none;" commentid="3941753" username="lzw_java"> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#quote" class="cmt_btn quote" title="引用">[引用]</a> <a href="http://blog.csdn.net/lzw_java/article/details/21564091#report" class="cmt_btn report" title="举报">[举报]</a></span></span></dt><dd class="comment_userface"><a href="http://blog.csdn.net/lzw_java" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/3_lzw_java.jpg" width="40" height="40"></a></dd><dd class="comment_body">回复xiaotian0627：多个音频合成一段，长度一样是吧，ffmpeg当然可以这么干。先是去找ffmpeg命令在电脑跑通，然后移植手机，模拟命令行调用即可。如果直接是多个音频合成一个，长度加起来那样连接音频的话，直接用inputstream读入，都写到一个outputstream，第二段音频开始忽略前几个字节。<br>要amr_nb支持的话，似乎要在编译的时候开启一些选项。</dd></dl></dl><div class="clear"></div></div>
+    <div id="comment_bar" style="display: none;">
+    </div>
+    <div id="comment_form"><div class="guest_link">您还没有登录,请<a href="javascript:void(0);" onclick="javascript:loginbox();">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Flzw_java%2Farticle%2Fdetails%2F21564091">[注册]</a></div></div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '21564091';
+    var commentscount = 10;
+    var islock = false
+</script>
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/comment.js.下载"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="">
+
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/%E6%95%B0%E6%8D%AE%E5%BA%93" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone" target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/%E4%BA%91%E8%AE%A1%E7%AE%97" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace" target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/%E5%A4%A7%E6%95%B0%E6%8D%AE" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+
+</div>
+  <script language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/lzw_java/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/async_new.js.下载"></script>      
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/lzw_java" target="_blank">
+    <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/1_lzw_java.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/lzw_java" class="user_name" target="_blank">lzw_java</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=lzw_java&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>88678次</span></li>
+    <li>积分：<span>1740</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/blog4.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：1740 </div>
+        </span>  </li>
+    <li>排名：<span>第18734名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>76篇</span></li>
+    <li>转载：<span>0篇</span></li>
+    <li>译文：<span>4篇</span></li>
+    <li>评论：<span>38条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/1267782" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">成长日记</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/1574211" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">翻译</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/1633589" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">lisp</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/1773633" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">环境配置</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/1838421" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">Android</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/1849477" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">网络编程</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/2125839" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">算法竞赛</a><span>(42)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/2304343" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">clojure</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/2390173" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">小技巧</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/lzw_java/article/category/2504119" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); ">AC</a><span>(2)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list"><li><a href="http://blog.csdn.net/lzw_java/article/month/2015/06">2015年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2015/04">2015年04月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2015/02">2015年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/12">2014年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/11">2014年11月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/10">2014年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/08">2014年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/07">2014年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/06">2014年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/04">2014年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/03">2014年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/02">2014年02月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2014/01">2014年01月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2013/12">2013年12月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2013/11">2013年11月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2013/10">2013年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2013/09">2013年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2013/08">2013年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2012/11">2012年11月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2012/10">2012年10月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2012/04">2012年04月</a><span>(9)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2012/03">2012年03月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2012/02">2012年02月</a><span>(20)</span></li><li><a href="http://blog.csdn.net/lzw_java/article/month/2012/01">2012年01月</a><span>(7)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/40968199" title="创业之前 ——Paul Graham 最新博文">创业之前 ——Paul Graham 最新博文</a><span>(4019)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/21564091" title="FFmpeg Android 移植，改 main 函数JNI调用">FFmpeg Android 移植，改 main 函数JNI调用</a><span>(3752)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/17016279" title="把Eclipse打造成Emacs——写给Eclipse下挣扎的Emacser">把Eclipse打造成Emacs——写给Eclipse下挣扎的Emacser</a><span>(3286)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/7215607" title="uva 10557 - XYZZY 关键词：正环，无敌bfs，单源最短路spfa算法">uva 10557 - XYZZY 关键词：正环，无敌bfs，单源最短路spfa算法</a><span>(2841)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/18939089" title="App第一次启动时翻页介绍的简洁实现">App第一次启动时翻页介绍的简洁实现</a><span>(2232)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/7486512" title="最大值最小化">最大值最小化</a><span>(1793)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/37695177" title="在linux上使用曲径">在linux上使用曲径</a><span>(1747)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/38753797" title="AVOS Cloud 技术支持系统开源了">AVOS Cloud 技术支持系统开源了</a><span>(1741)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/18049581" title="零基础看图学GetPost模拟网页登录">零基础看图学GetPost模拟网页登录</a><span>(1637)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/18744003" title="表白神器（画笔+计算坐标+处理触摸事件）">表白神器（画笔+计算坐标+处理触摸事件）</a><span>(1614)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/18744003" title="表白神器（画笔+计算坐标+处理触摸事件）">表白神器（画笔+计算坐标+处理触摸事件）</a><span>(11)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/21564091" title="FFmpeg Android 移植，改 main 函数JNI调用">FFmpeg Android 移植，改 main 函数JNI调用</a><span>(10)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/7232287" title="uva 10129 - Play on Words">uva 10129 - Play on Words</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/18049581" title="零基础看图学GetPost模拟网页登录">零基础看图学GetPost模拟网页登录</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/7215607" title="uva 10557 - XYZZY 关键词：正环，无敌bfs，单源最短路spfa算法">uva 10557 - XYZZY 关键词：正环，无敌bfs，单源最短路spfa算法</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/43665017" title="如何失去时间和金钱的 —— Paul Graham">如何失去时间和金钱的 —— Paul Graham</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/40494205" title="Learn By Doing &amp; 随笔">Learn By Doing &amp; 随笔</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/15238363" title="从usaco hamming Codes谈FP思想及FP技巧">从usaco hamming Codes谈FP思想及FP技巧</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/18939089" title="App第一次启动时翻页介绍的简洁实现">App第一次启动时翻页介绍的简洁实现</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/lzw_java/article/details/18929943" title="Paul Graham对我的影响">Paul Graham对我的影响</a><span>(1)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/mmoaay/article/details/54562045" target="_blank">* 造轮子 | 如何设计一个面向协议的 iOS 网络请求库</a></li>
+<li><a href="http://blog.csdn.net/guolin_blog/article/details/53122387" target="_blank">* Android新特性介绍，ConstraintLayout完全解析</a></li>
+<li><a href="http://blog.csdn.net/lmj623565791/article/details/54882693" target="_blank">* Android 热修复 Tinker接入及源码浅析</a></li>
+<li><a href="http://blog.csdn.net/zwgdft/article/details/54728677" target="_blank">* 创业公司做数据分析（六）数据仓库的建设</a></li>
+<li><a href="http://blog.csdn.net/chenssy/article/details/54883355" target="_blank">* 【死磕Java并发】-----深入分析synchronized的实现原理</a></li>
+
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/17016279#comments">把Eclipse打造成Emacs——写给Eclipse下挣扎的Emacser</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lhbaccount" class="user_name">lhbaccount</a>:
+AutoHotKey 可以解决最后一个问题另外请问一下 我不喜欢代码助手，怎么禁用他
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/21564091#comments">FFmpeg Android 移植，改 main 函数JNI调用</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u011027879" class="user_name">飞黄腾达5858</a>:
+楼主你好 请问第二次执行命令的时候崩溃怎么解决 用你说的service解决好像也不行
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/21564091#comments">FFmpeg Android 移植，改 main 函数JNI调用</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u011027879" class="user_name">飞黄腾达5858</a>:
+楼主你好 请问第二次执行命令的时候崩溃怎么解决 用你说的service解决好像也不行吧
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/21564091#comments">FFmpeg Android 移植，改 main 函数JNI调用</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/mtzai" class="user_name">mtzai</a>:
+ffmpeg android合并字幕怎么弄?
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/21564091#comments">FFmpeg Android 移植，改 main 函数JNI调用</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/litianpeng1991" class="user_name">Jeff-Li</a>:
+楼主你好，请问可以发一份demo给我研究一下吗？非常感谢啊，jefflee1314@163.com
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/40494205#comments">Learn By Doing &amp; 随笔</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lzw_java" class="user_name">lzw_java</a>:
+@huihuibisheng:我是 LeanCloud 最水的。。先是搞 Android 开发，后来...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/40494205#comments">Learn By Doing &amp; 随笔</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/huihuibisheng" class="user_name">光源_Android</a>:
+卧槽，原来才大二。刚刚在看你写的leanCloud云代码demo,一路追寻至此，真想不到竟然是大二的...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/43665017#comments">如何失去时间和金钱的 —— Paul Graham</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lzw_java" class="user_name">lzw_java</a>:
+@u013054770:好看吗
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/43665017#comments">如何失去时间和金钱的 —— Paul Graham</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u013054770" class="user_name">冠越灵</a>:
+这让我想起我刚刚看过的一部电影叫做时间规划局
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/lzw_java/article/details/43665017#comments">FFmpeg Android 移植，改 main 函数JNI调用</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u013161218" class="user_name">哓氏</a>:
+你好 当我用http://blog.csdn.net/kaven826/article/detail...
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+
+                   <!-- 广告位开始 --> 
+                    <div class="J_adv" data-view="true" data-mod="ad_popu_190" data-mtp="37" data-order="40" data-con="ad_content_1260" style="width: 200px; height: 200px;"><!-- 广告占位容器 --><div id="cpro_u2734128"><iframe id="iframeu2734128_0" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ncdm(2).html" width="200" height="200" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0; vertical-align:bottom;margin:0;" allowtransparency="true"></iframe></div><!-- 投放代码 --><script type="text/javascript">(window['cproStyleApi'] = window['cproStyleApi'] || {})['u2734128']={at:'3',rsi0:'200',rsi1:'200',pat:'17',tn:'baiduCustNativeAD',rss1:'#FFFFFF',conBW:'1',adp:'1',ptt:'0',titFF:'%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91',titFS:'',rss2:'#000000',titSU:'0'};/*服务器频道首页置顶Banner960*90，创建于2014-7-3*/(window.cproArray = window.cproArray || []).push({id:'u2734128'});  </script>  <script src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/c.js.下载" type="text/javascript"></script></div> 
+                    <!-- 广告位结束 -->
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/cnick.js.下载"></script>
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/newblog.min.js.下载"></script>
+
+
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/JavaScript1.js.下载"></script><link rel="stylesheet" type="text/css" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱">webmaster@csdn.net</a><span class="phone" title="服务热线">400-600-2320</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2016, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><div id="note1" class="csdn_note" style="display:none; position:absolute; z-index:9999; width:440px">  <span class="notice_top_arrow"><span class="inner"></span></span>  <div class="box"></div></div><div class="csdn_notice_tip" style="display:none; position:absolute; z-index:9990; width:170px">  <iframe src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/saved_resource(2).html" frameborder="0" scrolling="no" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:100%;background:transparent"></iframe>  <div class="tip_text">您有<strong>0</strong>条新通知</div>  <a href="javascript:void 0" class="close2"></a></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/notify.js.下载"></script>
+
+    <script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/login.js.下载"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/counter.js.下载"></script><script type="text/javascript" charset="UTF-8" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/msg.popup.js.下载"></script>
+<script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ad-blog.js.下载"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div><input type="hidden" id="aa_g_data_ids">
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/toolbar.js.下载"></script>
+     <!--new top-->
+   
+    <link href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ask_float_block.css" type="text/css" rel="stylesheet">
+    <script language="JavaScript" type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/wmd.js.下载"></script>
+    <script language="JavaScript" type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/showdown.js.下载"></script>
+    <script language="JavaScript" type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/prettify.js.下载"></script>
+    <script language="JavaScript" type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ask_float_block.js.下载"></script>
+   
+
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/52b5334.js.下载"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    <link rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/blog_code.css">
+    <script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/saveToCode.js.下载"></script>
+      <script type="text/javascript" src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/main.js(1).下载"></script>
+
+     <link rel="stylesheet" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/fa.css">
+
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$(&#39;.pop_CA&#39;).hide();$(&#39;.pop_CA_cover&#39;).hide();"></span>
+          </div>
+          <iframe src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/saved_resource(3).html" id="fa" frameborder="0" width="100%" height="360" scrolling="no">
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;   
+ </iframe></div><div id="tag-suggest-pop">
+  <div class="relative">
+    <div class="close"></div>
+    <div class="content"></div>
+  </div>
+</div><link rel="stylesheet" type="text/css" media="screen" href="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/ask_float_fonts_css-6b30a53970eb5c3a2a045e3df585b475.css"><div data-mod="popu_64" class="csdn-tracking-statistics" chg-blk="0"><a id="com-quick-reply" title="快速回复" style="top:447px"></a><a id="com-quick-collect" title="我要收藏" style="top:485px"></a><a id="com-d-top-a" style="top: 523px; display: block;" title="返回顶部" onclick=""></a> </div><div class="pop_edit ask_second comm_ask_second"><h3>提问</h3><span class="ask_float_span">您的问题将会被发布在“<a class="ask_float_channel" href="http://ask.csdn.net/" target="_blank" style="cursor:pointer">技术问答</a>”频道</span><a href="http://blog.csdn.net/lzw_java/article/details/21564091#" nodetype="close" class="close">×</a><div class="context"><div class="err_div"><span class="err_ico"></span><span class="err_txt">该问题已存在，请勿重复提问</span></div><div class="input_div"><input id="askInputSecond" type="text" style="font-size:14px;" placeholder="问题标题"></div><div class="cm_box"><div class="cm_dialog"></div> <div class="pop_cm cm_add_link"><input type="text" placeholder="链接内容" id="af_cm_link_txt"><input type="text" placeholder="链接地址" id="af_cm_link_url"><input type="text" placeholder="链接提示" id="af_cm_link_tit"><div class="text-right"><span class="btn btn-default btn-sm" id="add_link_btn">插入链接</span> </div> </div><div class="pop_cm cm_add_img"><div class="nav-tabs"><a class="img_tab active" href="http://blog.csdn.net/lzw_java/article/details/21564091#tab_upload">本地上传</a><a class="img_tab" href="http://blog.csdn.net/lzw_java/article/details/21564091#tab_weburl">网络图片</a></div><div class="tab_panel active" id="tab_upload"><div class="set_img"><iframe src="./FFmpeg Android 移植，改 main 函数JNI调用 - LeanCloud-lzwjava - 博客频道 - CSDN.NET_files/upload.html"></iframe></div></div><div class="tab_panel" id="tab_weburl"><input type="text" placeholder="图片地址" id="af_cm_img_url"><input type="text" placeholder="图片说明" id="af_cm_img_alt"><div class="text-right"><span class="btn btn-default btn-sm" id="add_img_btn">插入图片</span> </div></div> </div></div> <textarea id="editor_all" rows="8" style="display: none;"></textarea><div class="editor-toolbar"><i class="separator">|</i><a class="icon-headline" title="标题一（Ctrl+Alt+1）"></a><a class="icon-heading" title="标题二（Ctrl+Alt+2）"></a><a class="icon-bold" title="粗体（Ctrl+B）"></a><a class="icon-italic" title="斜体（Ctrl+I）"></a><i class="separator">|</i><a class="icon-quote-left" title="引用（Ctrl+’）"></a><a class="icon-code" title="插入代码片（Ctrl+,）"></a><a class="icon-list-ul" title="无序列表（Ctrl+L）"></a><a class="icon-list-ol" title="有序列表（Ctrl+Alt+L）"></a><i class="separator">|</i><a class="icon-link" title="添加链接（Ctrl+K）"></a><a class="icon-picture" title="添加图片（Ctrl+Alt+I）"></a><i class="separator">|</i><a class="icon-reply" title="撤退（Ctrl+Z）"></a><a class="icon-share-alt" title="前进（Ctrl+Shift+Z）"></a><i class="separator">|</i><a class="icon-info" href="http://ask.csdn.net/pages/markdown" target="_blank" title="markdown语法参考"></a><a class="icon-preview" title="预览"></a><i class="separator">|</i></div><div class="CodeMirror cm-s-paper CodeMirror-focused"><div style="overflow: hidden; position: relative; width: 3px; height: 0px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none; font-size: 4px;" tabindex="0"></textarea></div><div class="CodeMirror-hscrollbar"><div style="height: 1px;"></div></div><div class="CodeMirror-vscrollbar"><div style="width: 1px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="min-width: 33px;"><div style="position: relative;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>&nbsp;<span style="display: inline-block; width: 1px; margin-right: -1px;">&nbsp;</span></pre></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code"></div><div class="CodeMirror-cursor" style="visibility: hidden;">&nbsp;</div><div class="CodeMirror-cursor CodeMirror-secondarycursor" style="visibility: hidden;">&nbsp;</div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px;"></div><div class="CodeMirror-gutters" style="display: none;"></div></div></div><div class="editor-statusbar"><span class="lines">0</span><span class="words">0</span><span class="cursor">0:0</span></div><div class="div_tags clearfix"><div id="divSearchTags" class="tags_con"><input type="text"></div><input type="hidden" name="txtSearchTags"></div><div id="ask2_tagRecomm_div" class="drt_tagRecomm tracking-ad" data-mod="popu_73"><span class="drt_tit">推荐标签：</span></div></div><div class="success"><div class="left_area"><input id="chk_cb" type="checkbox"><span class="wyxs">我要悬赏</span><input id="cb_num" class="cb_num" readonly="true"><span class="phib_rii"><span> 币</span></span></div><a href="http://blog.csdn.net/lzw_java/article/details/21564091#" nodetype="cancel" class="cancel">取消</a><a href="http://blog.csdn.net/lzw_java/article/details/21564091#" nodetype="ok" class="ok">发布</a></div></div><div id="common_ask_div_sc" class="searchContainer"><div class="sTitle">可能存在类似的问题：</div><div class="sFooter"><a class="sFirstNewAsk">我想提一个新问题</a></div></div><div id="mask_code"></div><div class="gist_edit"><div class="save_snippets clearfix"><div class="tit"><h3>保存代码片</h3><span>整理和分享保存的代码片，请访问<a href="https://code.csdn.net/snippets_manage" target="_blank">代码笔记</a></span></div><div class="con_form"><ul class="gist_edit_list clearfix"><li><span class="red">*</span><span class="txt">标题</span><input id="form_title" class="form-input" placeholder="FFmpeg Android 移植，改 main 函数JNI调用" type="text"></li><li><span class="red">*</span><span class="txt">描述</span><textarea id="form-textarea" class="form-textarea" placeholder="FFmpeg Android 移植，改 main 函数JNI调用： http://blog.csdn.net/lzw_java/article/details/21564091"></textarea></li><li><span class="red">&nbsp;</span><span class="txt">标签</span><div id="divSearchTags"><span class="label blog_tag"><span>ffmpeg</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>android ndk</span><a title="Removing tag" href="javascript:;">x</a></span><span class="label blog_tag"><span>音视频合成</span><a title="Removing tag" href="javascript:;">x</a></span><input id="insertTag" class="insertTag" placeholder="请输入标签，按Enter生成(最多5项)" type="text" value="" name="insertTag" maxlength="21" style="color: rgb(51, 51, 51);"><input id="OrganTag" class="OrganTag" type="hidden" name="OrganTag" value="ffmpeg,android" ndk,音视频合成,=""><input id="OldOrganTag" class="OldOrganTag" type="hidden" name="OldOrganTag" value=""><input type="hidden" name="txtSearchTags"></div></li></ul></div><div class="bottom-bar"><a href="javascript:;" class="btn-submit btn-cancel">取消</a><span class="tracking-ad" data-mod="popu_250"><a class="btn-submit btn-confirm" href="javascript:;" target="_blank">确定</a></span></div></div></div></body></html>

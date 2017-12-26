@@ -1,0 +1,154 @@
+
+
+(function (globals) {
+
+  var django = globals.django || (globals.django = {});
+
+  
+  django.pluralidx = function (count) { return (count == 1) ? 0 : 1; };
+  
+
+  
+  /* gettext library */
+
+  django.catalog = {
+    "%(count)s results": "%(count)s resultados", 
+    "All %(count)s results": "Todos os %(count)s resultados", 
+    "Cancel": "Cancelar", 
+    "Click to insert your credentials": "Clique para inserir suas credenciais", 
+    "Could not load project credentials.": "N\u00e3o foi poss\u00edvel carregar a credencial do projeto.", 
+    "Could not load projects list.": "N\u00e3o foi poss\u00edvel carregar a lista de projetos.", 
+    "Could not save your project selection.": "N\u00e3o foi poss\u00edvel salvar a sele\u00e7\u00e3o de projeto.", 
+    "Credentials": "Credenciais", 
+    "History Preferences": "Prefer\u00eancias de hist\u00f3rico", 
+    "How can we improve this page?": "Como podemos melhorar esta p\u00e1gina?", 
+    "Insert": "Inserir", 
+    "Insert credential": "Inserir credencial", 
+    "It doesn't have what I need.": "N\u00e3o tem o que preciso.", 
+    "It's inaccurate.": "Imprecisa.", 
+    "Loading credentials...": "Carregando credencial\u2026", 
+    "Loading projects...": "Carregando projetos\u2026", 
+    "Loading your history...": "Carregando seu hist\u00f3rico\u2026", 
+    "Most Recently Visited": "Visitadas recentemente", 
+    "My Most Visited": "Mais visitadas", 
+    "Other (use text area above)": "Outro (use a \u00e1rea de texto acima)", 
+    "Project": "Projeto", 
+    "Sign in to insert your credentials.": "Fa\u00e7a login para inserir suas credenciais.", 
+    "Sign in to view your recently visited pages.": "Fazer login para visualizar as p\u00e1ginas visitadas recentemente.", 
+    "Sorry. We couldn't load the credentials for this project. You can visit the %(start_link)sDevelopers Console%(end_link)s to see them.": "Sorry. We couldn't load the credentials for this project. You can visit the %(start_link)sDevelopers Console%(end_link)s to see them.", 
+    "Sorry. We couldn't load your projects. You can visit the %(start_link)sDevelopers Console%(end_link)s to see them.": "Sorry. We couldn't load your projects. You can visit the %(start_link)sDevelopers Console%(end_link)s to see them.", 
+    "The Google Developers website now saves the pages you visit when you are logged into Google. You can quickly access them via the history icon at the top of the site. %(link_html)sManage History%(end_link_html)s": "O website do Google Developers agora salvar\u00e1 as p\u00e1ginas que voc\u00ea acessar quando estiver conectado ao Google. Acesse-as rapidamente por meio do \u00edcone do hist\u00f3rico no topo do site. %(link_html)sGerenciar hist\u00f3rico%(end_link_html)s", 
+    "There's a typo, broken link, or layout problem.": "H\u00e1 um erro de digita\u00e7\u00e3o, um link corrompido ou um problema no layout.", 
+    "This project has no appropriate credentials. You can add one in the %(start_link)sDevelopers Console%(end_link)s.": "This project has no appropriate credentials. You can add one in the %(start_link)sDevelopers Console%(end_link)s.", 
+    "Turn on %(begin_link_html)shistory%(end_link_html)s to view recently visited pages.": "Ative o %(begin_link_html)shist\u00f3rico%(end_link_html)s para visualizar as p\u00e1ginas rec\u00e9m-visitadas.", 
+    "You have no projects. You can create one in the %(start_link)sDevelopers Console%(end_link)s.": "You have no projects. You can create one in the %(start_link)sDevelopers Console%(end_link)s.", 
+    "Your browsing history on Google Developers will appear here.": "Seu hist\u00f3rico de navega\u00e7\u00e3o no Google Developers aparecer\u00e1 aqui."
+  };
+
+  django.gettext = function (msgid) {
+    var value = django.catalog[msgid];
+    if (typeof(value) == 'undefined') {
+      return msgid;
+    } else {
+      return (typeof(value) == 'string') ? value : value[0];
+    }
+  };
+
+  django.ngettext = function (singular, plural, count) {
+    var value = django.catalog[singular];
+    if (typeof(value) == 'undefined') {
+      return (count == 1) ? singular : plural;
+    } else {
+      return value[django.pluralidx(count)];
+    }
+  };
+
+  django.gettext_noop = function (msgid) { return msgid; };
+
+  django.pgettext = function (context, msgid) {
+    var value = django.gettext(context + '\x04' + msgid);
+    if (value.indexOf('\x04') != -1) {
+      value = msgid;
+    }
+    return value;
+  };
+
+  django.npgettext = function (context, singular, plural, count) {
+    var value = django.ngettext(context + '\x04' + singular, context + '\x04' + plural, count);
+    if (value.indexOf('\x04') != -1) {
+      value = django.ngettext(singular, plural, count);
+    }
+    return value;
+  };
+  
+
+  django.interpolate = function (fmt, obj, named) {
+    if (named) {
+      return fmt.replace(/%\(\w+\)s/g, function(match){return String(obj[match.slice(2,-2)])});
+    } else {
+      return fmt.replace(/%s/g, function(match){return String(obj.shift())});
+    }
+  };
+
+
+  /* formatting library */
+
+  django.formats = {
+    "DATETIME_FORMAT": "j \\d\\e F \\d\\e Y \u00e0\\s H:i", 
+    "DATETIME_INPUT_FORMATS": [
+      "%d/%m/%Y %H:%M:%S", 
+      "%d/%m/%Y %H:%M:%S.%f", 
+      "%d/%m/%Y %H:%M", 
+      "%d/%m/%Y", 
+      "%d/%m/%y %H:%M:%S", 
+      "%d/%m/%y %H:%M:%S.%f", 
+      "%d/%m/%y %H:%M", 
+      "%d/%m/%y", 
+      "%Y-%m-%d %H:%M:%S", 
+      "%Y-%m-%d %H:%M:%S.%f", 
+      "%Y-%m-%d %H:%M", 
+      "%Y-%m-%d"
+    ], 
+    "DATE_FORMAT": "j \\d\\e F \\d\\e Y", 
+    "DATE_INPUT_FORMATS": [
+      "%d/%m/%Y", 
+      "%d/%m/%y", 
+      "%Y-%m-%d"
+    ], 
+    "DECIMAL_SEPARATOR": ",", 
+    "FIRST_DAY_OF_WEEK": "0", 
+    "MONTH_DAY_FORMAT": "j \\d\\e F", 
+    "NUMBER_GROUPING": "3", 
+    "SHORT_DATETIME_FORMAT": "d/m/Y H:i", 
+    "SHORT_DATE_FORMAT": "d/m/Y", 
+    "THOUSAND_SEPARATOR": ".", 
+    "TIME_FORMAT": "H:i", 
+    "TIME_INPUT_FORMATS": [
+      "%H:%M:%S", 
+      "%H:%M:%S.%f", 
+      "%H:%M"
+    ], 
+    "YEAR_MONTH_FORMAT": "F \\d\\e Y"
+  };
+
+  django.get_format = function (format_type) {
+    var value = django.formats[format_type];
+    if (typeof(value) == 'undefined') {
+      return format_type;
+    } else {
+      return value;
+    }
+  };
+
+  /* add to global namespace */
+  globals.pluralidx = django.pluralidx;
+  globals.gettext = django.gettext;
+  globals.ngettext = django.ngettext;
+  globals.gettext_noop = django.gettext_noop;
+  globals.pgettext = django.pgettext;
+  globals.npgettext = django.npgettext;
+  globals.interpolate = django.interpolate;
+  globals.get_format = django.get_format;
+
+}(this));
+

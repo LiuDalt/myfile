@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link type="text/css" rel="stylesheet" href="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/comments.min.css">
+	
+	<meta http-equiv="Content-Language" content="zh-cn">
+	<meta content="always" name="referrer">
+						<meta name="keywords" content="GLSurfaceView,Android OpenGL ES 开发教程,Android教程">
+			
+						<meta name="description" content="AndroidOpenGLES相关的包主要定义在javax.microedition.khronos.openglesG...">
+			
+			<title>GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki</title>
+	
+	<link rel="stylesheet" type="text/css" href="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/register.css">
+	<link rel="shortcut icon" href="http://wiki.jikexueyuan.com/assets/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/detail.min.css">
+	<link rel="stylesheet" type="text/css" href="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/markdownbody.min.css">
+<script async="" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/analytics.js.下载"></script><script type="text/javascript" async="" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/vds.js.下载"></script><script src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/share.js.下载"></script><link rel="stylesheet" href="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/share_style0_16.css"><style type="text/css">#gj_mini{background-image:url(http://s.pc.qq.com/navigate/adc/v3/hover-ok.png);background-repeat:no-repeat;display:block;width:58px;height:58px;background-position:0 0}#gj_shard{background-image:url(http://s.pc.qq.com/navigate/adc/v3/suipian.png);background-repeat:no-repeat;display:none;width:200px;height:200px;background-position:0 0}#gj_circle{background-image:url(http://s.pc.qq.com/navigate/adc/v3/guangquan.png);background-repeat:no-repeat;display:none;width:58px;height:58px;background-position:0 0}#gj_bar_left{background: url(http://s.pc.qq.com/navigate/adc/v3/zuo.png) no-repeat; height:42px; width :0px; font-family: "Microsoft YaHei" ! important;overflow:hidden; display:block;}#gj_bar_left #tipstext{line-height:normal;padding-left: 20px;padding-top: 3px;font-size: 12px;padding-right: 10px;color: #fff;overflow:hidden;}#gj_bar_left span{font-size: 14px;font-weight: bold;overflow:hidden;}#gj_bar_right{background: url(http://s.pc.qq.com/navigate/adc/v3/you.png) no-repeat; height:42px; width :0px; font-family: "Microsoft YaHei" ! important;overflow:hidden; display:block;}#gj_bar_right #tipstext{line-height:normal;padding-left: 20px;padding-top: 3px;font-size: 12px;padding-right: 10px;color: #fff;overflow:hidden;}#gj_bar_right span{font-size: 14px;font-weight: bold;overflow:hidden;}</style></head>
+
+<body>
+<header class="detail-headfix">
+	<nav class="w-1200 clearfix">
+		<a href="http://www.jikexueyuan.com/" class="head-logo" target="_blank">
+			<h2>
+				<img src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/logo.png" class="jklogo" alt="极客学院" data-bd-imgshare-binded="1">
+			</h2>
+		</a>
+		<ul class="head-catalog">
+			<li class="head-catalog-list">
+				<a href="http://wiki.jikexueyuan.com/">Wiki</a>
+			</li>
+			<li class="head-catalog-list">
+				<a href="http://wiki.jikexueyuan.com/list/mobile">移动开发</a>
+			</li>
+			<li class="head-catalog-list">
+				<a href="http://wiki.jikexueyuan.com/list/android">Android</a>
+			</li>
+			<li class="head-catalog-list">
+				<a href="http://wiki.jikexueyuan.com/project/opengl-es-guide">Android OpenGL ES 开发教程</a>
+			</li>
+		</ul>
+		<div class="head-loginbox" id="header-loginbox"><div class="un-loginbox"><a href="http://passport.jikexueyuan.com/sso/login" class="un-loginbox-out diaLoginBtn" target="_blank">登录</a><em>|</em><a href="http://passport.jikexueyuan.com/sso/reg_phone" class="un-loginbox-out diaRegBtn" target="_blank">注册</a></div></div>
+	</nav>
+</header>
+
+<div class="detail-wrapper w-1200  clearfix">
+	<div class="detail-left">
+		<ul class="detail-nav">
+			<li class="detail-navlist navlist-one ">
+				<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/">关于</a></div>
+			</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/introduction.html">导言</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/opengl-es.html">关于 OpenGL ES</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/pipeline.html">OpenGL ES 管道(Pipeline)</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/api.html">OpenGL ES API 命名习惯</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/about-egl.html">关于 EGL</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one  navlist-active ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html">GLSurfaceView</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/opengldemos.html">创建实例应用 OpenGLDemos 程序框架</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/basic-geometry-definition.html">基本几何图形定义</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/point.html">绘制点 Point</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/line-segment.html">绘制线段 Line Segment</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/triangle.html">绘制三角形 Triangle</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/surface.html">绘制一个 20 面体</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/stage-summary.html">阶段小结</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/coordinate.html">三维坐标系及坐标变换初步概述</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/common-matrix.html">通用的矩阵变换指令</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/viewing-modeling.html">Viewing 和 Modeling(MODELVIEW) 变换</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/projection.html">投影变换 Projection</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/viewport.html">Viewport 变换</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/miniature-solar-system.html">绘制迷你太阳系</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/color.html">颜色 Color</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/front-behind.html">定义 3D 模型的前面和后面</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/sphere.html">绘制一个球体</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/framebuffer.html">FrameBuffer</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/depth-buffer.html">Depth Buffer</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/illumination-model.html">OpenGL 光照模型</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/set-lighting.html">设置光照效果 Set Lighting</a>
+							</div>
+					</li>
+			<li class="detail-navlist navlist-one ">
+			<div class="detail-navlist-title"><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/material-and-light.html">材质及光照示例</a>
+							</div>
+					</li>
+			</ul>
+		<div class="detail-left-bottom">
+			Via 由 [ <a href="http://wiki.jikexueyuan.com/" class="detail-navlist-wikilogo" target="_blank">极客学院 Wiki</a> ] 提供
+		</div>
+	</div>
+	<aside class="detail-right">
+		<!-- author -->
+		<div class="right-author">
+			<!-- 欢迎成为极客学院WIKI作者 -->
+									<!-- 授权极客学院转载 -->
+				<div class="right-author-reprint">
+					<a href="http://www.imobilebbs.com/wordpress/archives/1722" class="reprint-name right-top-img" data-name="点击授权商" target="_blank">引路蜂</a>
+				</div>
+						</div>
+		<!-- /author -->
+				<!-- ad -->
+		<h2 class="right-adtitle">Sponsered by</h2>
+		<div class="mg-t10 ad" id="ad-right-1"></div>
+		<div class="mg-t10 ad" id="ad-right-2"></div>
+		<div class="mg-t10 ad" id="ad-right-3"></div>
+
+		<!-- 请置于所有广告位代码之前 -->
+		<script type="text/javascript" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/m.js.下载"></script>
+
+		<!-- 广告位：注册页 -->
+		<script type="text/javascript">
+			BAIDU_CLB_fillSlotAsync('1176465', 'ad-right-1');
+			BAIDU_CLB_fillSlotAsync('1176522', 'ad-right-2');
+			BAIDU_CLB_fillSlotAsync('1176466', 'ad-right-3');
+		</script>
+		<!-- /ad -->
+				<!-- download -->
+		<h2 class="right-h2">离线下载</h2>
+		<div class="right-download">
+							<a href="http://tinyletter.com/jikexueyuanwiki" target="_blank" class="download-notice blue-btn"><i class="icon-email"></i>获取电子书上线通知</a>
+				
+		</div>
+		<!-- /download -->
+
+		<!-- resource -->
+		<h2 class="right-h2">相关资源</h2>
+		<ul class="right-resource">
+						<li class="resource-item">
+				<img src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/iconblog.png" data-bd-imgshare-binded="1"><a href="http://wiki.jikexueyuan.com/project/notes" target="_blank"> Android&amp;Java 技术笔记</a>
+			</li>
+						<li class="resource-item">
+				<img src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/iconblog.png" data-bd-imgshare-binded="1"><a href="http://wiki.jikexueyuan.com/project/android-source" target="_blank"> Android 开源项目指南</a>
+			</li>
+						<li class="resource-item">
+				<img src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/iconvideo.png" data-bd-imgshare-binded="1"><a href="http://www.jikexueyuan.com/course/178.html" target="_blank"> JavaScript语法详解</a>
+			</li>
+						<li class="resource-item">
+				<img src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/iconask.png" data-bd-imgshare-binded="1"><a href="http://wenda.jikexueyuan.com/question/25431" target="_blank"> 怎么自定义dialog样式</a>
+			</li>
+						<li class="resource-item">
+				<img src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/icondown.png" data-bd-imgshare-binded="1"><a href="http://download.jikexueyuan.com/detail/id/858" target="_blank"> Android--12306 火车票订票项目源码</a>
+			</li>
+						<li class="resource-item">
+				<img src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/icongroup.png" data-bd-imgshare-binded="1"><a href="http://qun.jikexueyuan.com/android/topic/185" target="_blank"> #干货分享#Android开发新姿势Kotlin&amp;amp...Android【五】</a>
+			</li>
+					</ul>
+		<!-- /resource -->
+
+	</aside>
+	<div class="detail-main">
+		<div class="markdown-body"><h1>GLSurfaceView</h1>
+<p>Android OpenGL ES 相关的包主要定义在</p>
+<ul>
+<li>javax.microedition.khronos.opengles    GL 绘图指令</li>
+<li>javax.microedition.khronos.egl               EGL 管理Display, surface等</li>
+<li>android.opengl    Android GL辅助类，连接OpenGL 与Android View，Activity</li>
+<li>javax.nio Buffer类  </li>
+</ul>
+<p>其中 GLSurfaceView 为 android.opengl 包中核心类：</p>
+<ul>
+<li>起到连接 OpenGL ES 与 Android 的 View 层次结构之间的桥梁作用。</li>
+<li>使得 Open GL ES 库适应于 Anndroid 系统的 Activity 生命周期。</li>
+<li>使得选择合适的 Frame buffer 像素格式变得容易。</li>
+<li>创建和管理单独绘图线程以达到平滑动画效果。</li>
+<li>提供了方便使用的调试工具来跟踪 OpenGL ES 函数调用以帮助检查错误。  </li>
+</ul>
+<p>使用过 Java ME ,JSR 239 开发过 OpenGL ES 可以看到 Android 包javax.microedition.khronos.egl ,javax.microedition.khronos.opengles 和 JSR239 基本一致，因此理论上不使用 android.opengl 包中的类也可以开发 Android 上 OpenGL ES 应用，但此时就需要自己使用 EGL 来管理 Display，Context，Surfaces 的创建，释放，捆绑，可以参见 <a rel="nofollow" href="http://www.imobilebbs.com/wordpress/archives/1873" "="">Android OpenGL ES 开发教程(5)：关于EGL</a> 。</p>
+<p>使用 EGL 实现 GLSurfaceView 一个可能的实现如下：</p>
+<pre><code>class GLSurfaceView extends SurfaceView
+ implements SurfaceHolder.Callback, Runnable {
+ public GLSurfaceView(Context context) {
+ super(context);
+ mHolder = getHolder();
+ mHolder.addCallback(this);
+ mHolder.setType(SurfaceHolder.SURFACE_TYPE_GPU);
+ }
+ public void setRenderer(Renderer renderer) {
+ mRenderer = renderer;
+ }
+ public void surfaceCreated(SurfaceHolder holder) {
+ }
+ public void surfaceDestroyed(SurfaceHolder holder) {
+ running = false;
+ try {
+ thread.join();
+ } catch (InterruptedException e) {
+ }
+ thread = null;
+ }
+ public void surfaceChanged(SurfaceHolder holder,
+ int format, int w, int h) {
+ synchronized(this){
+ mWidth = w;
+ mHeight = h;
+ thread = new Thread(this);
+ thread.start();
+ }
+ }
+ public interface Renderer {
+ void EGLCreate(SurfaceHolder holder);
+ void EGLDestroy();
+ int Initialize(int width, int height);
+ void DrawScene(int width, int height);
+ }
+ public void run() {
+ synchronized(this) {
+ mRenderer.EGLCreate(mHolder);
+ mRenderer.Initialize(mWidth, mHeight);
+ running=true;
+ while (running) {
+ mRenderer.DrawScene(mWidth, mHeight);
+ }
+ mRenderer.EGLDestroy();
+ }
+ }
+ private SurfaceHolder mHolder;
+ private Thread thread;
+ private boolean running;
+ private Renderer mRenderer;
+ private int mWidth;
+ private int mHeight;
+}
+class GLRenderer implements GLSurfaceView.Renderer {
+ public GLRenderer() 
+ }
+ public int Initialize(int width, int height){
+ gl.glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+ return 1;
+ }
+ public void DrawScene(int width, int height){
+ gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+ egl.eglSwapBuffers(eglDisplay, eglSurface);
+ }
+ public void EGLCreate(SurfaceHolder holder){
+ int[] num_config = new int[1];
+ EGLConfig[] configs = new EGLConfig[1];
+ int[] configSpec = {
+ EGL10.EGL_RED_SIZE,            8,
+ EGL10.EGL_GREEN_SIZE,        8,
+ EGL10.EGL_BLUE_SIZE,        8,
+ EGL10.EGL_SURFACE_TYPE,     EGL10.EGL_WINDOW_BIT,
+ EGL10.EGL_NONE
+ };
+ this.egl = (EGL10) EGLContext.getEGL();
+ eglDisplay = this.egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+ this.egl.eglInitialize(eglDisplay, null);
+ this.egl.eglChooseConfig(eglDisplay, configSpec,
+ configs, 1, num_config);
+ eglConfig = configs[0];
+ eglContext = this.egl.eglCreateContext(eglDisplay, eglConfig,
+ EGL10.EGL_NO_CONTEXT, null);
+ eglSurface = this.egl.eglCreateWindowSurface(eglDisplay,
+ eglConfig, holder, null);
+ this.egl.eglMakeCurrent(eglDisplay, eglSurface,
+ eglSurface, eglContext);
+ gl = (GL10)eglContext.getGL();
+ }
+ public void EGLDestroy(){
+ if (eglSurface != null) {
+ egl.eglMakeCurrent(eglDisplay, EGL10.EGL_NO_SURFACE,
+ EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_CONTEXT);
+ egl.eglDestroySurface(eglDisplay, eglSurface);
+ eglSurface = null;
+ }
+ if (eglContext != null) {
+ egl.eglDestroyContext(eglDisplay, eglContext);
+ eglContext = null;
+ }
+ if (eglDisplay != null) {
+ egl.eglTerminate(eglDisplay);
+ eglDisplay = null;
+ }
+ }
+ private EGL10 egl;
+ private GL10 gl;
+ private EGLDisplay eglDisplay;
+ private EGLConfig  eglConfig;
+ private EGLContext eglContext;
+ private EGLSurface eglSurface;
+}  </code></pre>
+<p>可以看到需要派生 SurfaceView ，并手工创建，销毁 Display，Context，工作繁琐。</p>
+<p>使用 GLSurfaceView 内部提供了上面类似的实现，对于大部分应用只需调用一个方法来设置 OpenGLView 用到的 GLSurfaceView.Renderer。</p>
+<pre><code>public void  setRenderer(GLSurfaceView.Renderer renderer)   </code></pre>
+<p>GLSurfaceView.Renderer 定义了一个统一图形绘制的接口，它定义了如下三个接口函数：</p>
+<pre><code>// Called when the surface is created or recreated.
+public void onSurfaceCreated(GL10 gl, EGLConfig config)
+// Called to draw the current frame.
+public void onDrawFrame(GL10 gl)
+// Called when the surface changed size.
+public void onSurfaceChanged(GL10 gl, int width, int height)  </code></pre>
+<ul>
+<li>onSurfaceCreated：在这个方法中主要用来设置一些绘制时不常变化的参数，比如：背景色，是否打开 z-buffer等。</li>
+<li>onDrawFrame：定义实际的绘图操作。</li>
+<li>onSurfaceChanged：如果设备支持屏幕横向和纵向切换，这个方法将发生在横向<code>&lt;-&gt;</code>纵向互换时。此时可以重新设置绘制的纵横比率。  </li>
+</ul>
+<p>如果有需要，也可以通过函数来修改 GLSurfaceView 一些缺省设置：</p>
+<ul>
+<li>setDebugFlags(int) 设置 Debug 标志。</li>
+<li>setEGLConfigChooser (boolean) 选择一个 Config 接近 16bitRGB 颜色模式，可以打开或关闭深度(Depth)Buffer ,缺省为RGB_565 并打开至少有 16bit 的 depth Buffer。</li>
+<li>setEGLConfigChooser(EGLConfigChooser)  选择自定义 EGLConfigChooser。</li>
+<li>setEGLConfigChooser(int, int, int, int, int, int) 指定 red ,green, blue, alpha, depth ,stencil 支持的位数，缺省为 RGB_565 ,16 bit depth buffer。  </li>
+</ul>
+<p>GLSurfaceView 缺省创建为 RGB_565 颜色格式的 Surface，如果需要支持透明度，可以调用 getHolder().setFormat(PixelFormat.TRANSLUCENT)。</p>
+<p>GLSurfaceView 的渲染模式有两种，一种是连续不断的更新屏幕，另一种为 on-demand ，只有在调用 requestRender() 在更新屏幕。 缺省为 RENDERMODE_CONTINUOUSLY 持续刷新屏幕。</p></div>
+
+		
+		<div class="previous-and-next">
+							<span class="pull-left">上一篇: <a id="previous_link" href="http://wiki.jikexueyuan.com/project/opengl-es-guide/about-egl.html" data-toggle="tooltip" data-placement="top" title="" data-original-title="上翻页快捷键：左方向键">关于 EGL</a></span>
+			
+							<span class="pull-right">下一篇: <a id="next_link" href="http://wiki.jikexueyuan.com/project/opengl-es-guide/opengldemos.html" data-toggle="tooltip" data-placement="top" title="" data-original-title="下翻页快捷键：右方向键">创建实例应用 Ope...</a></span>
+					</div>
+
+		<div class="detail-share clearfix">
+			<div class="bdsharebuttonbox share-item bdshare-button-style0-16" data-bd-bind="1482560456369">
+				<a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" class="bds_more" data-cmd="more"></a>
+				<a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+				<a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+				<a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+				<a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+			</div>
+			<script>
+				window._bd_share_config = {
+					"common": {
+						"bdSnsKey": {},
+						"bdText": "",
+						"bdMini": "2",
+						"bdMiniList": false,
+						"bdPic": "",
+						"bdStyle": "0",
+						"bdSize": "16"
+					},
+					"share": {},
+					"image": {
+						"viewList": ["weixin", "tsina", "qzone", "youdao"],
+						"viewText": "分享到：",
+						"viewSize": "16"
+					}
+				};
+				with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+			</script>
+		</div>
+					<div id="jkcomments"><ul></ul><div id="pager"></div><div class="jkxy-subask-nologin">只有登录了才能参与评论，快<a href="http://passport.jikexueyuan.com/sso/login">登录</a>！如果你还没有账号你可以<a href="http://passport.jikexueyuan.com/sso/reg_phone">注册</a>一个账号。</div></div>
+					<div class="wiki-right">
+			<div class="backtotop">
+				<a href="javascript:;" class="btn-backtotop" style="display: none;">
+					<div class="arrow"></div>
+					<div class="stick"></div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/jquery.min.js.下载"></script>
+<script type="text/javascript" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/detail.js.下载"></script>
+<script type="text/javascript" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/bootstrap.min.js.下载"></script>
+<script type="text/javascript" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/LoginAndRegister.js.下载"></script><script src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/m.js.下载"></script>
+
+
+	<script>
+		var JKcomments = {
+			perPage: 15,
+			model: "wiki", //模块名称（必填）
+			parent_id: "opengl-es-guide",
+			item_id: "edb908f2960058901fdd9f649a7fe913" //被评论信息ID（必填）
+		}
+	</script>
+	<script type="text/javascript" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/comments.min.js.下载"></script>
+	
+<script type="text/javascript">
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    var _Sjkxy     = _Sjkxy || [];
+    _Sjkxy['params']    = {wikiP:'Android OpenGL ES 开发教程' , posId:117001, po:69001 , wPId : '289'};
+</script>
+
+
+<script type="text/javascript" src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/growingio.js.下载"></script>
+
+
+
+<div id="bdimgshare_1482560456374" class="sr-bdimgshare sr-bdimgshare-list sr-bdimgshare-16 sr-bdimgshare-black" style="height:36px;line-height:26px;font-size:12px;width:autopx;display:none;" data-bd-bind="1482560456374"><div class="bdimgshare-bg"></div><div class="bdimgshare-content bdsharebuttonbox bdshare-button-style0-16"><label class="bdimgshare-lbl">分享到：</label><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" onclick="return false;" class="bds_weixin" data-cmd="weixin" hidefocus=""></a><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" onclick="return false;" class="bds_tsina" data-cmd="tsina" hidefocus=""></a><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" onclick="return false;" class="bds_qzone" data-cmd="qzone" hidefocus=""></a><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" onclick="return false;" class="bds_youdao" data-cmd="youdao" hidefocus=""></a><a href="http://wiki.jikexueyuan.com/project/opengl-es-guide/glsurfaceview.html#" onclick="return false;" class="bds_more" data-cmd="more" hidefocus=""></a></div></div><div id="gj_NavDiv" style="position: fixed; z-index: 2147483640; right: 0px; width: 0px; height: 0px; bottom: 59px; display: block;"><iframe src="./GLSurfaceView - Android OpenGL ES 开发教程 - 极客学院Wiki_files/adcpage.html" id="gj_SafeDaohang" frameborder="0" scrolling="0" allowtransparency="true" width="100%" height="100%" noresize="noresize" style="position: fixed; z-index: 2147483640; right: 0px; width: 0px; height: 0px; bottom: 99px; border: 0px none;"></iframe></div><div id="gj_mini" style="right: 10px; bottom: 50px; display: block; position: fixed; z-index: 2147483641; background-image: url(&quot;http://s.pc.qq.com/navigate/adc/v3/hover-ok.png&quot;); background-position: 0px 0px;"></div><div id="gj_shard" style="right: -70px; bottom: -20px; position: fixed; z-index: 2147483643; display: none;"></div><div id="gj_circle" style="position: fixed; z-index: 2147483642;"></div><div id="gj_bar_left" style="right: 60px; bottom: 58px; position: fixed; z-index: 2147483640; overflow: hidden; width: 0px;"><div id="tipstext" style="white-space:nowrap;font-size: 14px;font-weight: bold;overflow:hidden;">0个广告已降服</div><div id="tipstext" style="color:#CFDFFE;overflow:hidden;padding-top:0px;white-space: nowrap;">可以清爽的上网了~</div></div></body></html>
